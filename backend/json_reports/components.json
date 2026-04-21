@@ -1,0 +1,224 @@
+[
+    {
+        "file_id": 1,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 1
+    },
+    {
+        "file_id": 1,
+        "component_name": "Header",
+        "type": "Custom",
+        "component_id": 2
+    },
+    {
+        "file_id": 1,
+        "component_name": "router-view",
+        "type": "Custom",
+        "component_id": 3
+    },
+    {
+        "file_id": 1,
+        "component_name": "Footer",
+        "type": "Custom",
+        "component_id": 4
+    },
+    {
+        "file_id": 2,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 5
+    },
+    {
+        "file_id": 3,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 6
+    },
+    {
+        "file_id": 3,
+        "component_name": "label",
+        "type": "Structural",
+        "component_id": 7
+    },
+    {
+        "file_id": 3,
+        "component_name": "label",
+        "type": "Structural",
+        "component_id": 8
+    },
+    {
+        "file_id": 3,
+        "component_name": "label",
+        "type": "Structural",
+        "component_id": 9
+    },
+    {
+        "file_id": 3,
+        "component_name": "label",
+        "type": "Structural",
+        "component_id": 10
+    },
+    {
+        "file_id": 3,
+        "component_name": "label",
+        "type": "Structural",
+        "component_id": 11
+    },
+    {
+        "file_id": 4,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 12
+    },
+    {
+        "file_id": 5,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 13
+    },
+    {
+        "file_id": 6,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 14
+    },
+    {
+        "file_id": 7,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 15
+    },
+    {
+        "file_id": 8,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 16
+    },
+    {
+        "file_id": 9,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 17
+    },
+    {
+        "file_id": 10,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 18
+    },
+    {
+        "file_id": 10,
+        "component_name": "router-view",
+        "type": "Custom",
+        "component_id": 19
+    },
+    {
+        "file_id": 11,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 20
+    },
+    {
+        "file_id": 12,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 21
+    },
+    {
+        "file_id": 12,
+        "component_name": "Dialog",
+        "type": "Custom",
+        "component_id": 22
+    },
+    {
+        "file_id": 13,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 23
+    },
+    {
+        "file_id": 14,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 24
+    },
+    {
+        "file_id": 14,
+        "component_name": "FormKit",
+        "type": "Custom",
+        "component_id": 25
+    },
+    {
+        "file_id": 14,
+        "component_name": "FormKit",
+        "type": "Custom",
+        "component_id": 26
+    },
+    {
+        "file_id": 14,
+        "component_name": "FormKit",
+        "type": "Custom",
+        "component_id": 27
+    },
+    {
+        "file_id": 14,
+        "component_name": "FormKit",
+        "type": "Custom",
+        "component_id": 28
+    },
+    {
+        "file_id": 14,
+        "component_name": "FormKit",
+        "type": "Custom",
+        "component_id": 29
+    },
+    {
+        "file_id": 14,
+        "component_name": "json-viewer",
+        "type": "Custom",
+        "component_id": 30
+    },
+    {
+        "file_id": 15,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 31
+    },
+    {
+        "file_id": 15,
+        "component_name": "FormKit",
+        "type": "Custom",
+        "component_id": 32
+    },
+    {
+        "file_id": 15,
+        "component_name": "FormKit",
+        "type": "Custom",
+        "component_id": 33
+    },
+    {
+        "file_id": 15,
+        "component_name": "FormKit",
+        "type": "Custom",
+        "component_id": 34
+    },
+    {
+        "file_id": 15,
+        "component_name": "json-viewer",
+        "type": "Custom",
+        "component_id": 35
+    },
+    {
+        "file_id": 16,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 36
+    },
+    {
+        "file_id": 17,
+        "component_name": "PageBody",
+        "type": "Container",
+        "component_id": 37
+    }
+]

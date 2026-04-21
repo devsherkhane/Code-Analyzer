@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.env
+.env
+*.sqlite3
+*.db
+*.pkl
+*.log
+
+# Node
+node_modules/
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-specific
+analyzer/history/
+backend/history/
+backend/logs/
+backend/temp/
+backend/temp_dir/
+backend/uploads/
+analyzer/temp/
+uploads/
+
+# Ignore all .env files
+.env*
+*.env

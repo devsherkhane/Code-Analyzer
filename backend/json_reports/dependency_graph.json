@@ -1,0 +1,110 @@
+{
+    "connections": [],
+    "file_map": {
+        "1": {
+            "name": "defaultLayout.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\defaultLayout.vue",
+            "exports": []
+        },
+        "2": {
+            "name": "ApplicationServices.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\ApplicationServices.vue",
+            "exports": []
+        },
+        "3": {
+            "name": "ExamFormSubmission.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\ExamFormSubmission.vue",
+            "exports": []
+        },
+        "4": {
+            "name": "FeeDetails.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\FeeDetails.vue",
+            "exports": []
+        },
+        "5": {
+            "name": "HallTicketPage.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\HallTicketPage.vue",
+            "exports": []
+        },
+        "6": {
+            "name": "iLikeDashboard.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\iLikeDashboard.vue",
+            "exports": []
+        },
+        "7": {
+            "name": "iLikeCourses.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\iLikeCourses.vue",
+            "exports": []
+        },
+        "8": {
+            "name": "iLikeCoursesNew.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\iLikeCoursesNew.vue",
+            "exports": []
+        },
+        "9": {
+            "name": "iLikeLanding.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\iLikeLanding.vue",
+            "exports": []
+        },
+        "10": {
+            "name": "spLayout.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\spLayout.vue",
+            "exports": []
+        },
+        "11": {
+            "name": "ResultPage.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\ResultPage.vue",
+            "exports": []
+        },
+        "12": {
+            "name": "SelectedApplicationService.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\SelectedApplicationService.vue",
+            "exports": []
+        },
+        "13": {
+            "name": "Transactions.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\Transactions.vue",
+            "exports": []
+        },
+        "14": {
+            "name": "uploadFile.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\uploadFile.vue",
+            "exports": []
+        },
+        "15": {
+            "name": "uploadProgessFile.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\uploadProgessFile.vue",
+            "exports": []
+        },
+        "16": {
+            "name": "viewExamTimeTable.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\viewExamTimeTable.vue",
+            "exports": []
+        },
+        "17": {
+            "name": "viewMarksheet.vue",
+            "path": "C:\\Users\\devs\\Desktop\\code-analyzer\\backend\\temp\\viewMarksheet.vue",
+            "exports": []
+        }
+    },
+    "impact_map": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": [],
+        "10": [],
+        "11": [],
+        "12": [],
+        "13": [],
+        "14": [],
+        "15": [],
+        "16": [],
+        "17": []
+    },
+    "cycles": []
+}

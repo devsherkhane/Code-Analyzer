@@ -1,0 +1,12 @@
+{
+  "name": "ts_parser",
+  "version": "1.0.0",
+  "description": "Vue 3 & TypeScript AST parser helper",
+  "main": "parse_node.js",
+  "dependencies": {
+    "@typescript-eslint/parser": "^7.10.0",
+    "@typescript-eslint/typescript-estree": "^7.10.0",
+    "@vue/compiler-sfc": "^3.4.27",
+    "typescript": "^5.4.5"
+  }
+}

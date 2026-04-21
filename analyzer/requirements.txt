@@ -1,0 +1,6 @@
+openai
+python-dotenv
+flask
+# google-genai (removed)
+# groq (removed)
+# cerebras_cloud_sdk (removed)
