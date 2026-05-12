@@ -469,6 +469,12 @@ Contributions are welcome.
 5. Open a Pull Request
 
 ---
+# 🎬 Demo Preview
+
+<p align="center">
+  <img src="./assets/Final_Internship_video.gif" alt="Code-Analyzer Demo"/>
+</p>
+---
 
 
 # ⭐ Final Note
