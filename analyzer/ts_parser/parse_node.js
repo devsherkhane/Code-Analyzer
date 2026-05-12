@@ -3,14 +3,17 @@ const compilerSfc = require('@vue/compiler-sfc');
 const { parse } = require('@typescript-eslint/typescript-estree');
 const postcss = require('postcss');
 
-const filePath = process.argv[2];
-if (!filePath) {
-    console.error("Usage: node parse_node.js <file>");
+const isWorker = process.argv.includes('--worker');
+const filePathArg = process.argv.find(arg => arg !== 'node' && !arg.endsWith('parse_node.js') && arg !== '--worker');
+
+if (!isWorker && !filePathArg) {
+    console.error("Usage: node parse_node.js <file> [--worker]");
     process.exit(1);
 }
 
 const TAILWIND_COLORS = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'gray', 'slate', 'zinc', 'neutral', 'stone', 'orange', 'amber', 'lime', 'emerald', 'teal', 'cyan', 'sky', 'indigo', 'violet', 'fuchsia', 'rose'];
 
+function parseFile(filePath) {
 try {
     const content = fs.readFileSync(filePath, 'utf-8');
     let scriptContent = content;
@@ -216,8 +219,7 @@ try {
     }
 
     if (!scriptContent.trim()) {
-        console.log(JSON.stringify(result));
-        process.exit(0);
+        return result;
     }
 
     let tsAst;
@@ -229,8 +231,7 @@ try {
             sourceType: 'module'
         });
     } catch (e) {
-        console.log(JSON.stringify(result)); 
-        process.exit(0);
+        return result;
     }
     
     // Calculate Complexity
@@ -294,7 +295,7 @@ try {
         if (node.type === 'ObjectExpression') {
             const props = {};
             node.properties.forEach(p => {
-                const key = p.key.name || p.key.value;
+                const key = p.key ? (p.key.name || p.key.value) : null;
                 if (key && p.value && p.value.type === 'Literal') {
                     props[key] = p.value.value;
                 }
@@ -392,7 +393,7 @@ try {
             const arg = node.arguments[0];
             if (arg && arg.type === 'ObjectExpression') {
                 arg.properties.forEach(p => {
-                    const key = p.key.name || p.key.value;
+                    const key = p.key ? (p.key.name || p.key.value) : null;
                     if (key) {
                         const propName = key;
                         let type = 'any';
@@ -401,7 +402,7 @@ try {
                             type = p.value.name;
                         } else if (p.value.type === 'ObjectExpression') {
                             p.value.properties.forEach(ip => {
-                                const ikey = ip.key.name || ip.key.value;
+                                const ikey = ip.key ? (ip.key.name || ip.key.value) : null;
                                 if (ikey === 'type') type = ip.value.name || 'any';
                                 if (ikey === 'required') required = ip.value.value === true;
                             });
@@ -426,7 +427,7 @@ try {
                 });
             } else if (arg && arg.type === 'ObjectExpression') {
                 arg.properties.forEach(p => {
-                    const key = p.key.name || p.key.value;
+                    const key = p.key ? (p.key.name || p.key.value) : null;
                     if (key) emitsData.push(key);
                 });
             }
@@ -438,13 +439,13 @@ try {
             const keyName = node.key.name || node.key.value;
             if (keyName === 'methods' && node.value && node.value.type === 'ObjectExpression') {
                 node.value.properties.forEach(p => { 
-                    const k = p.key.name || p.key.value;
+                    const k = p.key ? (p.key.name || p.key.value) : null;
                     if (k) result.methods.push(k); 
                 });
             } else if (keyName === 'props' && node.value && node.value.type === 'ObjectExpression') {
                 const propsData = {};
                 node.value.properties.forEach(p => {
-                    const k = p.key.name || p.key.value;
+                    const k = p.key ? (p.key.name || p.key.value) : null;
                     if (k) {
                         const propName = k;
                         let type = 'any';
@@ -453,7 +454,7 @@ try {
                             type = p.value.name;
                         } else if (p.value.type === 'ObjectExpression') {
                             p.value.properties.forEach(ip => {
-                                const ik = ip.key.name || ip.key.value;
+                                const ik = ip.key ? (ip.key.name || ip.key.value) : null;
                                 if (ik === 'type') type = ip.value.name || 'any';
                                 if (ik === 'required') required = ip.value.value === true;
                             });
@@ -468,34 +469,54 @@ try {
                     node.value.elements.forEach(el => { if (el.type === 'Literal') emitsData.push(el.value); });
                 } else {
                     node.value.properties.forEach(p => { 
-                        const k = p.key.name || p.key.value;
+                        const k = p.key ? (p.key.name || p.key.value) : null;
                         if (k) emitsData.push(k); 
                     });
                 }
                 result.emits_definition = emitsData;
             } else if (keyName === 'computed' && node.value && node.value.type === 'ObjectExpression') {
                 node.value.properties.forEach(p => { 
-                    const k = p.key.name || p.key.value;
+                    const k = p.key ? (p.key.name || p.key.value) : null;
                     if (k) result.computed.push(k); 
                 });
             } else if (keyName === 'watch' && node.value && node.value.type === 'ObjectExpression') {
                 node.value.properties.forEach(p => { 
-                    const k = p.key.name || p.key.value;
+                    const k = p.key ? (p.key.name || p.key.value) : null;
                     if (k) result.watchers.push(k); 
                 });
             } else if (keyName === 'components' && node.value && node.value.type === 'ObjectExpression') {
                 node.value.properties.forEach(p => { 
-                    const k = p.key.name || p.key.value;
+                    const k = p.key ? (p.key.name || p.key.value) : null;
                     if (k) result.registered_components.push(k); 
                 });
             }
         }
     });
 
-    console.log(JSON.stringify(result));
-    process.exit(0);
+    return result;
 
 } catch (e) {
-    console.log(JSON.stringify({ error: e.message, stack: e.stack }));
+    return { error: e.message, stack: e.stack };
+}
+}
+
+if (isWorker) {
+    const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+        terminal: false
+    });
+
+    rl.on('line', (line) => {
+        const filePath = line.trim();
+        if (filePath) {
+            const result = parseFile(filePath);
+            console.log(JSON.stringify(result));
+        }
+    });
+} else {
+    const result = parseFile(filePathArg);
+    console.log(JSON.stringify(result));
     process.exit(0);
 }

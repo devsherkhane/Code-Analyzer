@@ -99,7 +99,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="report in history" :key="report.report_id" class="row-clickable" @click="$emit('load-report', report.report_id)">
+            <tr v-for="report in paginatedHistory" :key="report.report_id" class="row-clickable" @click="$emit('load-report', report.report_id)">
               <td class="cell-primary">
                 <div class="project-cell">
                    <div class="proj-icon">
@@ -123,6 +123,11 @@
             </tr>
           </tbody>
         </table>
+        <div v-if="hasMoreHistory" style="text-align:center; padding:1.25rem 0;">
+          <button class="btn btn-sm btn-ghost" @click="visibleCount += 10">
+            Show More ({{ history.length - visibleCount }} remaining)
+          </button>
+        </div>
       </div>
 
       <div v-else class="empty-history card card-flat">
@@ -163,7 +168,8 @@ export default {
     return {
       history: [],
       loading: true,
-      error: null
+      error: null,
+      visibleCount: 10
     };
   },
   computed: {
@@ -174,6 +180,12 @@ export default {
     },
     totalIssues() {
       return this.history.reduce((acc, curr) => acc + (curr.total_issues || 0), 0);
+    },
+    paginatedHistory() {
+      return this.history.slice(0, this.visibleCount);
+    },
+    hasMoreHistory() {
+      return this.visibleCount < this.history.length;
     }
   },
   async mounted() {

@@ -1,45 +1,113 @@
-import os
-
-def get_luminance(hex_color):
-    """Calculate relative luminance from hex color"""
-    hex_color = hex_color.lstrip('#')
-    if len(hex_color) == 3:
-        hex_color = "".join([c*2 for c in hex_color])
+import re
+from bs4 import BeautifulSoup
+from collections import Counter, defaultdict
+def extract_fonts(content):
+    fonts = set()
     try:
-        r, g, b = int(hex_color[0:2], 16), int(hex_color[2:4], 16), int(hex_color[4:6], 16)
-        # Using the standard relative luminance formula
-        vals = []
-        for v in [r, g, b]:
-            v /= 255.0
-            if v <= 0.03928:
-                vals.append(v / 12.92)
-            else:
-                vals.append(((v + 0.055) / 1.055) ** 2.4)
-        return 0.2126 * vals[0] + 0.7152 * vals[1] + 0.0722 * vals[2]
+        # Find font-family styles in CSS or inline styles
+        matches = re.finditer(r'font-family:\s*["\']?([^";,]+)', content, re.IGNORECASE)
+        for match in matches:
+            font = match.group(1).strip().lower()
+            if font and len(font) > 1:
+                fonts.add(font)
+        
+        # Find common fonts mentioned in class names (e.g., class="font-roboto")
+        class_matches = re.finditer(r'class="[^"]*\b(roboto|arial|sans-serif|mono)[^"]*"', content, re.IGNORECASE)
+        for match in class_matches:
+            fonts.add(match.group(1).lower())
     except:
-        return 0
+        pass
+    return fonts
 
-def check_contrast_issues(colors):
-    """Simple check for potential contrast issues between detected colors"""
-    issues = []
-    # Simplified: check each color against black and white as a heuristic
-    for color in colors:
-        if color.startswith('#'):
-            lum = get_luminance(color)
-            # Contrast against white (1.0)
-            ratio_white = (1.0 + 0.05) / (lum + 0.05)
-            # Contrast against black (0.0)
-            ratio_black = (lum + 0.05) / (0.0 + 0.05)
-            
-            if ratio_white < 3.0 and ratio_black < 3.0:
-                issues.append(f"Color {color} has poor contrast against both black and white (< 3:1).")
-    return issues
+def extract_font_sizes(content):
+    sizes = set()
+    try:
+        matches = re.finditer(r'font-size:\s*(\d+)(?:px|em|rem)', content, re.IGNORECASE)
+        for match in matches:
+            sizes.add(f"{match.group(1)}px")
+    except:
+        pass
+    return sizes
 
-def get_metrics(file_path, parsed_script):
-    """
-    Extract metrics strictly using standard string manipulation and 
-    the provided Structural AST data. No regex allowed.
-    """
+def extract_colors(content):
+    colors = set()
+    try:
+        # HEX colors (e.g., #ffffff, #000)
+        hex_matches = re.finditer(r'#[0-9a-fA-F]{3,6}', content)
+        for match in hex_matches:
+            colors.add(match.group(0).lower())
+        
+        # RGB colors (e.g., rgb(255, 255, 255))
+        rgb_matches = re.finditer(r'rgb\([^)]+\)', content, re.IGNORECASE)
+        for match in rgb_matches:
+            colors.add(match.group(0).lower())
+        
+        # Standard named colors used in CSS 'color' or 'background' properties
+        color_names = ['red', 'blue', 'green', 'gray', 'grey', 'white', 'black', 'yellow', 'orange']
+        for color in color_names:
+            if re.search(rf'color:\s*{color}', content, re.IGNORECASE):
+                colors.add(color)
+    except:
+        pass
+    return colors
+
+def extract_padding(content):
+    paddings = set()
+    try:
+        matches = re.finditer(r'padding:\s*(\d+)(?:px|em|rem)', content, re.IGNORECASE)
+        for match in matches:
+            paddings.add(f"{match.group(1)}px")
+    except:
+        pass
+    return paddings
+
+def extract_margins(content):
+    margins = set()
+    try:
+        matches = re.finditer(r'margin:\s*(\d+)(?:px|em|rem)', content, re.IGNORECASE)
+        for match in matches:
+            margins.add(f"{match.group(1)}px")
+    except:
+        pass
+    return margins
+def extract_header_styles(content):
+    """Extract header font sizes and styles"""
+    styles = {"h1_sizes": set(), "h2_sizes": set(), "h3_sizes": set()}
+    try:
+        # Find all h1, h2, h3 tags with styles
+        for tag_name in ['h1', 'h2', 'h3']:
+            pattern = rf'<{tag_name}[^>]*style="([^"]*)"'
+            matches = re.finditer(pattern, content, re.IGNORECASE)
+            for match in matches:
+                style_str = match.group(1)
+                # Specifically capture the numeric pixel value
+                size_match = re.search(r'font-size:\s*(\d+)px', style_str)
+                if size_match:
+                    styles[f'{tag_name}_sizes'].add(f"{size_match.group(1)}px")
+    except:
+        pass
+    return styles
+def extract_alignment_info(content, elements):
+    """Extract text alignment information"""
+    alignments = set()
+    try:
+        for elem in elements:
+            # Look for the style attribute in the specified tags (e.g., h1, h2, h3)
+            pattern = rf'<{elem}[^>]*style="([^"]*)"'
+            matches = re.finditer(pattern, content, re.IGNORECASE)
+            for match in matches:
+                style_str = match.group(1)
+                # Capture 'text-align' or just 'align' values
+                align_match = re.search(r'(?:text-)?align:\s*(\w+)', style_str)
+                if align_match:
+                    alignments.add(align_match.group(1))
+    except:
+        pass
+    return alignments
+
+
+def get_metrics(file_path, tags):
+    """Extract metrics from a Vue file with isolated template and style scanning"""
     try:
         with open(file_path, 'r', encoding="utf8") as f:
             content = f.read()
@@ -48,142 +116,125 @@ def get_metrics(file_path, parsed_script):
         print(f"Error reading file {file_path}: {e}")
         return get_empty_metrics()
 
-    # --- 1. Basic Template Metrics ---
-    visible_ui_text = ""
-    max_depth = 0
-    t_lines = 0
-    missing_alt_count = 0
-    unlabeled_inputs = 0
-    interactive_without_role = 0
-    headers_count = {f"h{i}": 0 for i in range(1, 7)}
+    # --- 1. Surgical Block Extraction ---
+    # Extract Template specifically for UI Spelling
+    # Extract Template specifically for UI Spelling
+    template_match = re.search(r'<template>(.*?)</template>', content, re.DOTALL)
+    template_content = template_match.group(1) if template_match else ""
     
-    if parsed_script and parsed_script.get('template_metrics'):
-        t_metrics = parsed_script['template_metrics']
-        visible_ui_text = t_metrics.get('visible_text', '')
-        max_depth = t_metrics.get('max_depth', 0)
-        t_lines = t_metrics.get('lines', 0)
-        missing_alt_count = t_metrics.get('missing_alt_count', 0)
-        unlabeled_inputs = t_metrics.get('unlabeled_inputs', 0)
-        interactive_without_role = t_metrics.get('interactive_without_role', 0)
-        
-        for el in parsed_script.get("ui_elements", []):
-            tag_name = el.get("tag", "").lower()
-            if tag_name in headers_count:
-                headers_count[tag_name] += 1
+    # 1. Strip Vue mustache bindings (e.g., {{ user.firstName }})
+    text_without_vars = re.sub(r'\{\{.*?\}\}', ' ', template_content, flags=re.DOTALL)
     
-    # --- 2. Structural Component Metrics ---
-    if parsed_script:
-        num_methods = len(parsed_script.get("methods", []))
-        num_computed = len(parsed_script.get("computed", []))
-        num_watchers = len(parsed_script.get("watchers", []))
-        
-        imports = parsed_script.get("imported_components", [])
-        regs = parsed_script.get("registered_components", [])
-        script_components = list(set(imports + regs))
-        
-        script_metrics = parsed_script.get('script_metrics', {})
-        cyc_val = script_metrics.get('cyclomatic_complexity', 1)
-        cog_val = script_metrics.get('cognitive_complexity', 0)
-    else:
-        num_methods = num_computed = num_watchers = 0
+    # 2. Safely extract only human-readable text using BeautifulSoup
+    soup_text = BeautifulSoup(text_without_vars, "html.parser").get_text(separator=' ')
+    
+    # 3. Clean up extra whitespace and stray braces
+    visible_ui_text = ' '.join(soup_text.split())
+
+    # Extract Style specifically for Button/UI Color validation
+    style_match = re.search(r'<style[^>]*>(.*?)</style>', content, re.DOTALL)
+    css_content = style_match.group(1) if style_match else ""
+
+    # --- 2. Component Metrics (Script Logic) ---
+    methods = re.findall(r'methods:\s*{', content)
+    computed = re.findall(r'computed:\s*{', content)
+    watchers = re.findall(r'watch:\s*{', content)
+    
+    def count_props(block_name):
+        try:
+            match = re.search(rf'{block_name}:\s*\{{(.*?)\n\s*\}}', content, re.DOTALL)
+            if not match: return 0
+            return len(re.findall(r'\w+\s*\(', match.group(1)))
+        except Exception:
+            return 0
+
+    # Script-based Component Detection
+    try:
+        imported_components = re.findall(r'import\s+(\w+)\s+from', content)
+        comp_block_match = re.search(r'components\s*:\s*\{([^}]*)\}', content, re.DOTALL)
+        registered_locally = []
+        if comp_block_match:
+            registered_locally = re.findall(r'(\w+)\s*[:|,]', comp_block_match.group(1))
+        script_components = list(set(imported_components + registered_locally))
+    except Exception:
         script_components = []
-        cyc_val = 1
-        cog_val = 0
 
-    # --- 3. Style Metrics (Pure AST/Structural) ---
-    font_families = []
-    font_sizes = []
-    colors_used = []
-    padding_values = []
-    margin_values = []
+    # --- 3. UI/Header Metrics ---
+    try:
+        headers = {
+            "h1": len(re.findall(r'<h1', template_content, re.IGNORECASE)),
+            "h2": len(re.findall(r'<h2', template_content, re.IGNORECASE)),
+            "h3": len(re.findall(r'<h3', template_content, re.IGNORECASE))
+        }
+    except Exception:
+        headers = {"h1": 0, "h2": 0, "h3": 0}
+
+    # Use isolated CSS content for style metrics to ensure accuracy
+    header_styles = extract_header_styles(content) # Keeps full content check for inline styles
+    header_alignment = extract_alignment_info(template_content, ['h1', 'h2', 'h3'])
     
-    if parsed_script and parsed_script.get('style_metrics'):
-        s_metrics = parsed_script['style_metrics']
-        font_families = sorted(list(set(s_metrics.get('fonts', []))))
-        font_sizes = sorted(list(set(s_metrics.get('font_sizes', []))))
-        colors_used = sorted(list(set(s_metrics.get('colors', []))))
-        
-        for item in s_metrics.get('spacing', []):
-            prop = item.get('prop', '')
-            val = item.get('val', '')
-            if 'padding' in prop or val.startswith('p-'):
-                padding_values.append(val)
-            elif 'margin' in prop or val.startswith('m-'):
-                margin_values.append(val)
+    # Global Style Extraction (Now uses full content but targets CSS patterns)
+    font_families = extract_fonts(content)
+    font_sizes = extract_font_sizes(content)
+    colors_used = extract_colors(css_content) # Target ONLY the CSS block for color inventory
+    padding_values = extract_padding(content)
+    margin_values = extract_margins(content)
 
-    # --- 4. Element-Specific Analysis (Regex-free) ---
-    button_metrics = []
-    if parsed_script and parsed_script.get("ui_elements"):
-        for el in parsed_script.get("ui_elements", []):
-            if el.get("tag") == "button":
-                label = el.get("label", "").strip().lower()
-                action = "generic"
-                # String-based semantic checks
-                if "save" in label or "submit" in label or "confirm" in label: action = "confirm"
-                elif "delete" in label or "remove" in label or "cancel" in label: action = "danger"
-                
-                button_metrics.append({
-                    "label": label,
-                    "class": el.get("attrs", {}).get("class", ""),
-                    "action": action
-                })
-
-    # --- 5. Token & Ghost Detection ---
-    raw_hex_codes = [c for c in colors_used if c.startswith('#')]
-    token_usage = [c for c in colors_used if 'var(--' in c]
+    # Calculate nesting depth within template
+    max_depth = 0
+    try:
+        if tags:
+            for tag in tags:
+                depth = len(list(tag.parents))
+                if ("v-if" in tag.attrs or "v-for" in tag.attrs) and depth > max_depth:
+                    max_depth = depth
+    except Exception:
+        max_depth = 0
 
     return {
         "loc": len(lines),
-        "methods": num_methods,
-        "computed": num_computed,
-        "watchers": num_watchers,
-        "template_lines": t_lines,
+        "methods": count_props("methods") or len(methods),
+        "computed": count_props("computed") or len(computed),
+        "watchers": count_props("watch") or len(watchers),
+        "template_lines": len(template_content.splitlines()),
         "nesting_depth": max_depth,
-        "cyclomatic_complexity": cyc_val,
-        "cognitive_complexity": cog_val,
         "content": content,
-        "css_content": "", # CSS logic is now handled in Node AST
+        "css_content": css_content,       # New: Isolated CSS for Button Color rules
         "script_components": script_components,
-        "visible_text": visible_ui_text,
-        "headers": headers_count,
-        "header_styles": {"h1_sizes": [], "h2_sizes": [], "h3_sizes": []}, # Simplified
-        "header_alignment": [],
-        "padding_values": sorted(list(set(padding_values))),
-        "margin_values": sorted(list(set(margin_values))),
-        "font_families": font_families,
-        "font_sizes": font_sizes,
-        "colors_used": colors_used,
-        "raw_hex_codes": raw_hex_codes,
-        "token_usage": token_usage,
-        "button_metrics": button_metrics,
-        "missing_alt_count": missing_alt_count,
-        "unlabeled_inputs": unlabeled_inputs,
-        "interactive_without_role": interactive_without_role,
-        "hardcoded_colors": len(raw_hex_codes),
-        "focus_styles": [],
-        "hover_styles": [],
-        "outline_rules": [],
-        "contrast_issues": check_contrast_issues(colors_used),
-        "props_definition": parsed_script.get("props_definition") if parsed_script else {},
-        "emits_definition": parsed_script.get("emits_definition") if parsed_script else [],
+        "visible_text": visible_ui_text,  # Updated: Only UI text for Spelling
+        "headers": headers,
+        "header_styles": {k: list(v) for k, v in header_styles.items()},
+        "header_alignment": list(header_alignment),
+        "padding_values": list(padding_values),
+        "margin_values": list(margin_values),
+        "font_families": list(font_families),
+        "font_sizes": list(font_sizes),
+        "colors_used": list(colors_used),
+        "contrast_issues": [],
     }
 
+# ... (Keep existing extract_header_styles, extract_alignment_info, etc. functions) ...
+
 def get_empty_metrics():
+    """Return empty metrics dict structure with new fields"""
     return {
-        "loc": 0, "methods": 0, "computed": 0, "watchers": 0,
-        "template_lines": 0, "nesting_depth": 0,
-        "content": "", "css_content": "",
-        "script_components": [], "visible_text": "",
-        "headers": {f"h{i}": 0 for i in range(1, 7)},
+        "loc": 0,
+        "methods": 0,
+        "computed": 0,
+        "watchers": 0,
+        "template_lines": 0,
+        "nesting_depth": 0,
+        "content": "",
+        "css_content": "",
+        "script_components": [],
+        "visible_text": "",
+        "headers": {"h1": 0, "h2": 0, "h3": 0},
         "header_styles": {"h1_sizes": [], "h2_sizes": [], "h3_sizes": []},
         "header_alignment": [],
-        "padding_values": [], "margin_values": [],
-        "font_families": [], "font_sizes": [], "colors_used": [],
-        "raw_hex_codes": [], "token_usage": [],
-        "button_metrics": [],
-        "missing_alt_count": 0, "unlabeled_inputs": 0,
-        "interactive_without_role": 0, "hardcoded_colors": 0,
-        "focus_styles": [], "hover_styles": [], "outline_rules": [],
+        "padding_values": [],
+        "margin_values": [],
+        "font_families": [],
+        "font_sizes": [],
+        "colors_used": [],
         "contrast_issues": [],
-        "props_definition": {}, "emits_definition": [],
     }

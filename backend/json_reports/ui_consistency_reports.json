@@ -1,29 +1,20 @@
 [
     {
         "file_id": 0,
-        "rule_category": "Button Consistency",
-        "defect_type": "INCONSISTENT_BUTTON_STYLE",
-        "finding_details": "Action 'generic' uses 4 different styles: btn btn-success btn-solid, btn-download bg-[#54519e] text-white py-2 px-4 rounded, btn btn-main btn-outline, btn btn-main btn-solid",
-        "severity": "medium",
-        "id": 1,
-        "created_at": "2026-04-20T15:47:48.563518"
-    },
-    {
-        "file_id": 0,
         "rule_category": "Typography",
         "defect_type": "TYPOGRAPHY_SCALE_CHAOS",
-        "finding_details": "Project uses 9 distinct font sizes. Recommended: < 6.",
+        "finding_details": "Project uses 10 distinct font sizes. Recommended: < 6.",
         "severity": "low",
-        "id": 2,
-        "created_at": "2026-04-20T15:47:48.563548"
+        "id": 1,
+        "created_at": "2026-05-12T12:55:34.937612"
     },
     {
         "file_id": 0,
         "rule_category": "Spacing",
         "defect_type": "SPACING_CHAOS",
-        "finding_details": "Project uses 13 distinct padding values. Sign of missing design system.",
+        "finding_details": "Project uses 8 distinct padding values. Sign of missing design system.",
         "severity": "low",
-        "id": 3,
-        "created_at": "2026-04-20T15:47:48.563552"
+        "id": 2,
+        "created_at": "2026-05-12T12:55:34.937612"
     }
 ]

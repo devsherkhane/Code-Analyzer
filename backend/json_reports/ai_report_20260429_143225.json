@@ -1,0 +1,222 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "vuefiles",
+    "report_id": "20260429_143225",
+    "timestamp": "2026-04-29T14:32:25.200324",
+    "files_analyzed": 17,
+    "total_issues": 7,
+    "total_real_issues": 7,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "3",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis crashed. File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [
+                {
+                    "line": 15,
+                    "wcag_rule": "1.1.1 Non-text Content",
+                    "severity": "critical",
+                    "element": "h1",
+                    "problem": "The `h1` element containing the user's name uses only text, which is appropriate. However, the code doesn't provide any visual indication that this is a header, violating WCAG 1.3.1 (Info and Relationships) as screen readers may not automatically announce it as a heading.",
+                    "original_code": "   <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:         Name: {{ userObj.fullName }}\n16:         </h1>",
+                    "fixed_code": "   <h1 class=\"text-center mb-2 font-bold text-xl\">Name: {{ userObj.fullName }}</h1>",
+                    "explanation": "Adding the `role='heading'` attribute to the `h1` element will explicitly inform screen readers that this element is a heading, allowing them to announce it accordingly.  This improves semantic meaning and accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 @@\n-   <h1 class=\"text-center mb-2 font-bold text-xl\">\n+   <h1 role=\"heading\" class=\"text-center mb-2 font-bold text-xl\">Name: {{ userObj.fullName }}</h1>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 24,
+                    "wcag_rule": "1.1.1 Non-text Content",
+                    "severity": "minor",
+                    "element": "h1",
+                    "problem": "Similar to the user's name, the `h1` element displaying the selected courses is primarily text. While visually acceptable, screen readers might not treat it as a heading, hindering navigation and screen reader usability. This violates WCAG 1.3.1 (Info and Relationships).",
+                    "original_code": "   <h1 class=\"font-bold text-center mb-2 subject-info\">\n24:         Selected courses for {{ selectedSubjects[0]?.applicationType }}\n25:       </h1>",
+                    "fixed_code": "   <h1 role=\"heading\" class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}</h1>",
+                    "explanation": "Adding `role='heading'` to this `h1` element ensures screen readers can properly interpret and announce it as a heading, improving the overall accessibility experience.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -24 +24 @@\n-   <h1 class=\"font-bold text-center mb-2 subject-info\">\n+   <h1 role=\"heading\" class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}</h1>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 53,
+                    "wcag_rule": "1.4.1 Keyboard",
+                    "severity": "minor",
+                    "element": "div",
+                    "problem": "The `div` element containing the 'Total Amount' text is visually focused, but does not have any associated focusable element.  Users relying solely on keyboard navigation may have difficulty determining what element has focus when the page loads. This violates WCAG 2.1.3 Keyboard.",
+                    "original_code": "   <div class=\"font-bold text-2xl text-center mb-2 subject-info\">\n53:         Total Amount : {{ finalFee }}\n54:       </div>",
+                    "fixed_code": "   <div class=\"font-bold text-2xl text-center mb-2 subject-info\" aria-label=\"Total Amount\">\n53:         Total Amount : {{ finalFee }}\n54:       </div>",
+                    "explanation": "Adding `aria-label` provides a descriptive label for the visual element, describing its purpose.  This will help keyboard users locate the element and understand its content.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -53 +53 @@\n-   <div class=\"font-bold text-2xl text-center mb-2 subject-info\">\n+   <div aria-label=\"Total Amount\" class=\"font-bold text-2xl text-center mb-2 subject-info\">\n53:         Total Amount : {{ finalFee }}\n54:       </div>",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [
+                {
+                    "line": 12,
+                    "wcag_rule": "1.4.10 Sensory Adaptation",
+                    "severity": "critical",
+                    "element": "<div class=\"box flex items-center gap-3 mb-6\">",
+                    "problem": "The tooltip positioning is likely to cause sensory adaptation, as the user relies on the right side to visually identify the button, which could be confusing.",
+                    "original_code": "<div class=\"box flex items-center gap-3 mb-6\">\n    <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n        <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n    </div>\n",
+                    "fixed_code": "<div class=\"box flex items-center gap-3 mb-6\">\n    <div data-tip=\"Back\" class=\"tooltip cursor-pointer\" @click=\"goBack()\">\n        <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n    </div>\n",
+                    "explanation": "Changing the tooltip positioning from 'right' to 'none' will eliminate the reliance on visual cues that can lead to sensory adaptation.  A standard cursor pointer will provide a more accessible and intuitive experience.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +-13\n@@ -14 +-14\n\n    <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n        <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n    </div>\n    <div class=\"tooltip cursor-pointer\" @click=\"goBack()\">\n        <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n    </div>\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 28,
+                    "wcag_rule": "1.4.3 Moving Text",
+                    "severity": "important",
+                    "element": "{{ getTermDisplayName(term) }}",
+                    "problem": "The term name dynamically changes, causing moving text which can be distracting and disorienting for users, especially those with vestibular disorders.",
+                    "original_code": "{{ getTermDisplayName(term) }}",
+                    "fixed_code": "{{ getTermDisplayName(term) }}",
+                    "explanation": "The dynamic change of text content is inherently problematic for accessibility. While there isn't a perfect solution without refactoring the `getTermDisplayName` function, this highlights the need for a more stable display of the term name.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -27 +-27\n\n    {{ getTermDisplayName(term) }}\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 61,
+                    "wcag_rule": "3.1.1 Error Identification",
+                    "severity": "medium",
+                    "element": "Decryption(JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj)",
+                    "problem": "Lack of explicit error handling around the decryption process. If decryption fails, there is no feedback to the user.",
+                    "original_code": "Decryption(JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj)",
+                    "fixed_code": "Decryption(JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj, (error) => {\n          if (error) {\n              console.error('Decryption error:', error);\n              this.$toast.error('Decryption failed. Please try again.');\n          }\n        })\n",
+                    "explanation": "Adding error handling will provide a mechanism to notify the user if the decryption process fails. This can be done through a toast notification or other appropriate visual indication.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -61 +-61\n@@ -62 +-62\n\nDecryption(JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj)\nDecryption(JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj, (error) => {\n          if (error) {\n              console.error('Decryption error:', error);\n              this.$toast.error('Decryption failed. Please try again.');\n          }\n        })\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 70,
+                    "wcag_rule": "3.1.4 Consistent Component",
+                    "severity": "medium",
+                    "element": "clientId: this.userObj.clientId",
+                    "problem": "The `clientId` is being passed to the backend. This might not be necessary and could expose sensitive information.",
+                    "original_code": "clientId: this.userObj.clientId",
+                    "fixed_code": "clientId: '',",
+                    "explanation": "This change removes the `clientId` from the payload. If it is not used by the backend, it's best practice to avoid transmitting unnecessary data, reducing potential security risks.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -70 +-70\n\nclientId: this.userObj.clientId,\nclientId: ''\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        }
+    ]
+}

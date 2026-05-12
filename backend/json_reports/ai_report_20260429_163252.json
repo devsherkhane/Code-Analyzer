@@ -1,0 +1,243 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "vuefiles",
+    "report_id": "20260429_163252",
+    "timestamp": "2026-04-29T16:32:52.525302",
+    "files_analyzed": 17,
+    "total_issues": 4,
+    "total_real_issues": 4,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "4",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 15,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "15: {{ userObj.fullName }}",
+                    "problem": "Lack of accessibility support for screen readers. The `userObj` property is not accessible in a screen reader without explicit ARIA attributes.",
+                    "original_code": "15: {{ userObj.fullName }}\n16:         </h1\n",
+                    "fixed_code": "15: {{ userObj.fullName }}",
+                    "explanation": "Adding ARIA attributes will improve screen reader support.  While this does not fix the problem, it is included for demonstration purposes.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 @@\n-15: {{ userObj.fullName }}\n+15: {{ userObj.fullName }}",
+                    "accessibility_details": "This element lacks ARIA attributes, making it inaccessible to screen reader users.  Screen readers will not announce the text within this element.  Adding `aria-label` or `aria-describedby` attributes can assist the screen reader.",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 18,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "18: {{ userObj?.SENumber }}\n19:         </h1\n",
+                    "problem": "Similar to the previous issue, the `userObj?.SENumber` property might not be accessible to screen readers.",
+                    "original_code": "18: {{ userObj?.SENumber }}\n19:         </h1\n",
+                    "fixed_code": "18: {{ userObj?.SENumber }}",
+                    "explanation": "Adding ARIA attributes will improve screen reader support. While this does not fix the problem, it is included for demonstration purposes.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -18 +18 @@\n-18: {{ userObj?.SENumber }}\n+18: {{ userObj?.SENumber }}",
+                    "accessibility_details": "This element lacks ARIA attributes, making it inaccessible to screen reader users.  Screen readers will not announce the text within this element.  Adding `aria-label` or `aria-describedby` attributes can assist the screen reader.",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 24,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "24: Selected courses for {{ selectedSubjects[0]?.applicationType }}\n25:       </h1\n",
+                    "problem": "The `selectedSubjects[0]?.applicationType` property might not be accessible to screen readers.",
+                    "original_code": "24: Selected courses for {{ selectedSubjects[0]?.applicationType }}\n25:       </h1\n",
+                    "fixed_code": "24: Selected courses for {{ selectedSubjects[0]?.applicationType }}",
+                    "explanation": "Adding ARIA attributes will improve screen reader support. While this does not fix the problem, it is included for demonstration purposes.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -24 +24 @@\n-24: Selected courses for {{ selectedSubjects[0]?.applicationType }}\n+24: Selected courses for {{ selectedSubjects[0]?.applicationType }}",
+                    "accessibility_details": "This element lacks ARIA attributes, making it inaccessible to screen reader users.  Screen readers will not announce the text within this element.  Adding `aria-label` or `aria-describedby` attributes can assist the screen reader.",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 66,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "66:     <Dialog\n67:       v-model:visible=\"showDeclarationModel\"\n68:       modal\n69:       header=\"Declaration From Student\"\n70:       :style=\"{ width: '60rem' }\"\n71:     >",
+                    "problem": "The Dialog component is missing `aria-label` attributes, making it inaccessible to screen readers.",
+                    "original_code": "66:     <Dialog\n67:       v-model:visible=\"showDeclarationModel\"\n68:       modal\n69:       header=\"Declaration From Student\"\n70:       :style=\"{ width: '60rem' }\"\n71:     >",
+                    "fixed_code": "66:     <Dialog\n67:       v-model:visible=\"showDeclarationModel\"\n68:       modal\n69:       header=\"Declaration From Student\"\n70:       :style=\"{ width: '60rem' }\"\n71:       aria-label=\"Declaration From Student\"\n72:     >",
+                    "explanation": "Adding `aria-label` provides a descriptive label for the dialog, aiding screen readers in understanding its purpose.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -66 +66 @@\n-66:     <Dialog\n+66:     <Dialog aria-label=\"Declaration From Student\"\n67:       v-model:visible=\"showDeclarationModel\"\n68:       modal\n69:       header=\"Declaration From Student\"\n70:       :style=\"{ width: '60rem' }\"\n71:     >",
+                    "accessibility_details": "This element is missing `aria-label`, which is essential for screen reader accessibility.  Screen readers will not be able to identify the dialog's purpose without this attribute.",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        }
+    ]
+}

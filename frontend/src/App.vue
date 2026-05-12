@@ -11,11 +11,13 @@ export default {
       analysisDone: false,
       activeView: 'dashboard', // 'dashboard' | 'overview' | 'issues' | 'files' | 'architecture'
       theme: 'dark',
-      sidebarCollapsed: false
+      sidebarCollapsed: false,
+      selectedReportId: null
     }
   },
   created() {
-    const saved = localStorage.getItem('va-theme');
+    let saved = null;
+    try { saved = localStorage.getItem('va-theme'); } catch { /* SecurityError in iframe/private browsing */ }
     this.theme = saved || 'dark';
     document.documentElement.setAttribute('data-theme', this.theme);
   },
@@ -35,22 +37,20 @@ export default {
     toggleTheme() {
       this.theme = this.theme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', this.theme);
-      localStorage.setItem('va-theme', this.theme);
+      try { localStorage.setItem('va-theme', this.theme); } catch { /* SecurityError in iframe/private browsing */ }
     },
     goHome() {
       this.analysisDone = false;
       this.activeView = 'dashboard';
+      this.selectedReportId = null;
     },
     loadReport(reportId) {
         // Logic to point the app to a specific historical report
-        // For now, our app always reads ai_report.json which is a copy of Latest.
-        // In a full implementation, we'd pass the reportId to components.
+        this.selectedReportId = reportId;
         this.analysisDone = true;
         this.activeView = 'overview';
     },
-    printReport() {
-      window.print();
-    }
+
   }
 }
 </script>
@@ -78,7 +78,7 @@ export default {
                 <line x1="12" y1="2" x2="12" y2="8.5"></line>
               </svg>
             </div>
-            <span class="brand-name">Vue<span class="brand-accent">Analyzer</span></span>
+            <span class="brand-name">Prism<span class="brand-accent">AI</span></span>
           </div>
 
           <!-- Breadcrumb in report mode -->
@@ -93,10 +93,7 @@ export default {
             <span class="status-dot"></span>
             Report Active
           </div>
-          <button v-if="analysisDone" class="btn-ghost btn-pdf" @click="printReport" title="Export PDF">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-            <span class="btn-label">Export PDF</span>
-          </button>
+
           <button class="btn-ghost theme-toggle" @click="toggleTheme" :title="theme === 'dark' ? 'Switch to Light' : 'Switch to Dark'">
             <!-- Sun icon -->
             <svg v-if="theme === 'dark'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -165,7 +162,11 @@ export default {
             </div>
 
             <div class="nav-section">
-              <div class="nav-section-label">Visualization</div>
+              <div class="nav-section-label">Visualization & AI</div>
+              <button class="nav-item" :class="{ active: activeView === 'chat' }" @click="activeView = 'chat'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <span>AI Assistant</span>
+              </button>
               <button class="nav-item" :class="{ active: activeView === 'architecture' }" @click="activeView = 'architecture'">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                 <span>Architecture</span>
@@ -184,12 +185,13 @@ export default {
           <main class="report-main">
             <transition name="fade" mode="out-in">
               <AIReport
-                v-if="activeView === 'overview' || activeView === 'issues' || activeView === 'files'"
+                v-if="['overview', 'issues', 'files', 'chat'].includes(activeView)"
                 :activeView="activeView"
+                :selectedReportId="selectedReportId"
                 @navigate="activeView = $event"
                 :key="activeView"
               />
-              <DependencyGraph v-else-if="activeView === 'architecture'" key="dep-graph" />
+              <DependencyGraph v-else-if="activeView === 'architecture'" :selectedReportId="selectedReportId" key="dep-graph" />
             </transition>
           </main>
         </div>
@@ -198,7 +200,7 @@ export default {
 
     <!-- ── Footer ─────────────────────────────────────────────────── -->
     <footer class="app-footer">
-      <span>VueAnalyzer v2.0 · Built with Vue 3 · Gemini AI · Markuplint</span>
+      <span>PrismAI · Built with Vue 3 · Gemini AI · Markuplint</span>
     </footer>
   </div>
 </template>

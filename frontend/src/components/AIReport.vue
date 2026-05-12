@@ -1,5 +1,19 @@
 <template>
   <div class="report-root">
+    <!-- Fix Status Toast -->
+    <transition name="slide-up">
+      <div v-if="fixToast.visible" class="fix-toast" :class="'fix-toast-' + fixToast.status">
+        <div class="fix-toast-icon">
+          <svg v-if="fixToast.status === 'success'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <svg v-else-if="fixToast.status === 'error'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+          <svg v-else-if="fixToast.status === 'warning'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <svg v-else-if="fixToast.status === 'rolledback'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        </div>
+        <span class="fix-toast-msg">{{ fixToast.message }}</span>
+        <button class="fix-toast-close" @click="fixToast.visible = false">&times;</button>
+      </div>
+    </transition>
     <!-- Loading / Error States -->
     <transition name="fade" mode="out-in">
       <div v-if="loading" class="state-panel" key="loading">
@@ -12,7 +26,14 @@
       </div>
     </transition>
 
-    <div v-if="reportData && !loading" class="dashboard">
+    <!-- Component Error Boundary Fallback -->
+    <div v-if="componentError" class="state-panel state-error" key="component-error">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      <p class="state-text">{{ componentError }}</p>
+      <button class="btn btn-sm btn-secondary" @click="componentError = null; fetchReport()">Retry</button>
+    </div>
+
+    <div v-if="reportData && !loading && !componentError" class="dashboard">
       <!-- Warning Banner -->
       <div v-if="reportData.audit_status === 'partial'" class="analysis-warning">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
@@ -113,7 +134,12 @@
             <h3>Issue Breakdown by File</h3>
             <button class="btn-ghost btn-sm" @click="$emit('navigate', 'issues')">View all issues →</button>
           </div>
-          <div class="table-wrap">
+          <div v-if="safeFilesCount > 0" class="safe-files-summary" style="padding: 1rem 1.5rem; background: var(--surface-2); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.75rem; color: var(--text-secondary);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>{{ safeFilesCount }} files</strong> passed the AI audit and are completely clean.</span>
+          </div>
+
+          <div class="table-wrap" v-if="filesWithIssues.length > 0">
             <table class="data-table">
               <thead>
                 <tr>
@@ -126,7 +152,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(f, idx) in reportData.files" :key="idx" class="row-clickable" @click="openFile(idx)">
+                <tr v-for="f in filesWithIssues" :key="f._origIdx" class="row-clickable" @click="openFile(f._origIdx)">
                   <td class="cell-primary"><span class="file-name-cell">{{ f.file_name }}</span></td>
                   <td class="cell-number">{{ getUICount(f) }}</td>
                   <td class="cell-number">{{ getAICount(f) }}</td>
@@ -231,7 +257,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               <input type="text" v-model="searchQuery" placeholder="Filter..." class="fs-input"/>
             </div>
-            <div class="sidebar-list custom-scrollbar">
+            <div class="fs-list custom-scrollbar">
               <FileTree 
                 :treeData="fileTree" 
                 :selectedPath="selectedFile?.file_path"
@@ -254,7 +280,7 @@
                 </div>
                 <code class="ws-path">{{ selectedFile.file_path }}</code>
               </div>
-              <div class="ws-body">
+              <div class="ws-body custom-scrollbar">
                 <!-- Integrated Source Code Viewer -->
                 <div class="ws-source-v2">
                    <div class="source-header">
@@ -281,7 +307,7 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" :class="{ 'rotate-180': issuesPanelOpen }"><polyline points="6 9 12 15 18 9"></polyline></svg>
                   </div>
                   <transition name="slide-fade">
-                    <div v-if="issuesPanelOpen" class="issues-panel-body">
+                    <div v-if="issuesPanelOpen" class="issues-panel-body custom-scrollbar">
                       <div
                         v-for="(issue, idx) in selectedFileIssues"
                         :key="idx"
@@ -320,9 +346,10 @@
                               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                               Open in Editor
                             </button>
-                            <button v-if="issue.fixed_code_snippet || issue.fixed_code" class="btn btn-primary btn-sm" @click.stop="applyFixInVsCode(issue)">
-                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                              Apply AI Fix
+                            <button v-if="issue.fixed_code_snippet || issue.fixed_code" class="btn btn-primary btn-sm" :disabled="fixApplying" @click.stop="applyFixInVsCode(issue)">
+                              <svg v-if="!fixApplying" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                              <span v-if="fixApplying" class="btn-spinner"></span>
+                              {{ fixApplying ? 'Applying...' : 'Apply AI Fix' }}
                             </button>
                           </div>
 
@@ -358,6 +385,10 @@
                     </div>
                   </transition>
                 </div>
+                <div v-else-if="selectedFile.visual_simulation?.engineering_health_score === 0" class="ws-clean-badge" style="background: var(--accent-warning-subtle); color: var(--accent-warning); border: 1px dashed var(--accent-warning);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  <span>AI analysis unavailable due to server timeout. Please re-run analysis.</span>
+                </div>
                 <div v-else-if="getIssueCount(selectedFile) === 0" class="ws-clean-badge">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                   <span>No issues detected — this file passed AI audit</span>
@@ -367,8 +398,12 @@
           </div>
         </div>
       </div>
+
+      <div v-else-if="activeView === 'chat'" class="view-chat" style="animation:fadeIn .3s var(--ease-out); height: 100%; display: flex; flex-direction: column;">
+        <ChatWidget :activeFile="selectedFile" :workspacePath="workspacePath" :allFiles="reportData.files" />
+      </div>
+
     </div>
-    <ChatWidget :activeFile="selectedFile" :workspacePath="workspacePath" />
   </div>
 </template>
 
@@ -381,13 +416,17 @@ import ChatWidget from "./ChatWidget.vue";
 export default {
   name: "AIReport",
   components: { SourceViewer, FileTree, ChatWidget },
-  props: { activeView: { type: String, default: 'overview' } },
+  props: { 
+    activeView: { type: String, default: 'overview' },
+    selectedReportId: { type: String, default: null } 
+  },
   emits: ['navigate'],
   data() {
     return { 
       reportData: null, 
       loading: true, 
       error: null, 
+      componentError: null,
       selectedFileIndex: 0, 
       searchQuery: '', 
       issueFilter: 'all', 
@@ -397,10 +436,23 @@ export default {
       selectedIssueLines: [],
       aiArchitecture: null,
       issuesPanelOpen: true,
-      activeFileIssue: null
+      activeFileIssue: null,
+      fixApplying: false,
+      fixToast: { visible: false, status: '', message: '' },
+      _fixToastTimer: null
     };
   },
   computed: {
+    filesWithIssues() {
+      if (!this.reportData?.files) return [];
+      return this.reportData.files
+        .map((f, idx) => ({ ...f, _origIdx: idx }))
+        .filter(f => this.getIssueCount(f) > 0);
+    },
+    safeFilesCount() {
+      if (!this.reportData?.files) return 0;
+      return this.reportData.files.length - this.filesWithIssues.length;
+    },
     workspacePath() {
        return new URLSearchParams(window.location.search).get('path') || 'Your Project Workspace';
     },
@@ -543,13 +595,27 @@ export default {
       return this.reportData.files.map((f, idx) => ({ ...f, _origIdx: idx })).filter(f => !q || f.file_name.toLowerCase().includes(q) || (f.file_path || '').toLowerCase().includes(q));
     }
   },
-  async mounted() { await this.fetchReport(); },
+  async mounted() {
+    await this.fetchReport();
+    // Listen for fix status messages from VS Code extension
+    window.addEventListener('message', this.handleFixStatus);
+  },
+  errorCaptured(err, instance, info) {
+    console.error('[AIReport] Component error caught:', err, info);
+    this.componentError = `A rendering error occurred: ${err.message}. Try refreshing the report.`;
+    return false; // Prevent the error from propagating further
+  },
+  beforeUnmount() {
+    window.removeEventListener('message', this.handleFixStatus);
+    if (this._fixToastTimer) clearTimeout(this._fixToastTimer);
+  },
   methods: {
     async fetchReport() {
       this.loading = true;
       try {
+        const reportUrl = this.selectedReportId ? `/ai_report?id=${this.selectedReportId}&_t=${Date.now()}` : `/ai_report?_t=${Date.now()}`;
         const [reportRes, archRes] = await Promise.all([
-          axios.get(`/ai_report?_t=${Date.now()}`),
+          axios.get(reportUrl),
           axios.get(`/ai_architecture?_t=${Date.now()}`).catch(() => ({ data: null }))
         ]);
         
@@ -576,10 +642,12 @@ export default {
       return 'Low';
     },
     getSeverityBadge(f) {
+      if (f.visual_simulation?.engineering_health_score === 0) return 'badge-warning';
       const c = this.getIssueCount(f);
       if (c === 0) return 'badge-success'; if (c <= 2) return 'severity-low'; if (c <= 5) return 'severity-medium'; return 'severity-high';
     },
     getSeverityLabel(f) {
+      if (f.visual_simulation?.engineering_health_score === 0) return 'Timeout';
       const c = this.getIssueCount(f);
       if (c === 0) return 'Clean'; if (c <= 2) return 'Low'; if (c <= 5) return 'Medium'; return 'High';
     },
@@ -649,6 +717,7 @@ export default {
     },
     getRiskAssessment(f) {
       if (!f) return { label: 'Unknown', class: 'badge-neutral' };
+      if (f.visual_simulation?.engineering_health_score === 0) return { label: 'Analysis Failed', class: 'badge-warning' };
       const issues = this.getIssueCount(f);
       if (issues === 0) return { label: 'Safe', class: 'badge-success' };
       
@@ -680,8 +749,24 @@ export default {
       
       window.parent.postMessage(payload, '*');
     },
+    handleFixStatus(event) {
+      if (event.data && event.data.command === 'fixStatus') {
+        this.fixApplying = false;
+        this.fixToast = {
+          visible: true,
+          status: event.data.status,
+          message: event.data.message
+        };
+        // Auto-hide toast after 6 seconds
+        if (this._fixToastTimer) clearTimeout(this._fixToastTimer);
+        this._fixToastTimer = setTimeout(() => {
+          this.fixToast.visible = false;
+        }, 6000);
+      }
+    },
     applyFixInVsCode(issue) {
-      if (!this.selectedFile) return;
+      if (!this.selectedFile || this.fixApplying) return;
+      this.fixApplying = true;
       const startLine = issue.line_number || issue.line || this.extractLineNumber(issue.rationale) || this.extractLineNumber(issue.suggestion);
       const codeToMeasure = issue.original_code || issue.original_code_snippet || issue.fixed_code || issue.fixed_code_snippet;
       let count = 1;
@@ -940,6 +1025,53 @@ export default {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 0.65rem !important;
+}
+
+/* ═══ FIX STATUS TOAST ═══ */
+.fix-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-lg, 12px);
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  backdrop-filter: blur(12px);
+  min-width: 340px;
+  max-width: 600px;
+  border: 1px solid;
+}
+.fix-toast-success { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.35); color: #34d399; }
+.fix-toast-error   { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.35); color: #f87171; }
+.fix-toast-warning { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.35); color: #fbbf24; }
+.fix-toast-rolledback { background: rgba(99, 102, 241, 0.15); border-color: rgba(99, 102, 241, 0.35); color: #818cf8; }
+.fix-toast-cancelled { background: rgba(107, 114, 128, 0.15); border-color: rgba(107, 114, 128, 0.35); color: #9ca3af; }
+.fix-toast-icon { flex-shrink: 0; display: flex; align-items: center; }
+.fix-toast-msg { flex: 1; line-height: 1.4; }
+.fix-toast-close { background: none; border: none; color: inherit; opacity: 0.6; cursor: pointer; font-size: 1.3rem; padding: 0 0.2rem; line-height: 1; transition: opacity 0.2s; }
+.fix-toast-close:hover { opacity: 1; }
+
+/* Toast transition */
+.slide-up-enter-active { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.slide-up-leave-active { transition: all 0.3s ease-in; }
+.slide-up-enter-from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+.slide-up-leave-to { opacity: 0; transform: translateX(-50%) translateY(10px); }
+
+/* Button spinner */
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
 }
 
 /* Print Styles */

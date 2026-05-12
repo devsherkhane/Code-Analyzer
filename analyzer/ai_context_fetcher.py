@@ -92,7 +92,7 @@ def fetch_all_issues_context(db_conn=None):
         file_name = file_record.get('file_name')
         
         issues = []
-        is_frontend = file_name.lower().endswith(('.vue', '.js', '.ts', '.tsx', '.jsx'))
+        is_frontend = file_name.lower().endswith(('.vue', '.js', '.ts', '.tsx', '.jsx', '.html'))
         
         if is_frontend:
             source_code = ""
@@ -136,9 +136,8 @@ def fetch_all_issues_context(db_conn=None):
                 "global_design_context": global_design_context
             })
             
-    # Filter for all .vue files
-    vue_bundles = [b for b in context_bundles if str(b.get("file_name", "")).lower().endswith(".vue")]
-    return vue_bundles
+    # Return all frontend file bundles (not just .vue)
+    return context_bundles
 if __name__ == "__main__":
     bundles = fetch_all_issues_context()
     print(f"Fetched context for {len(bundles)} files.")

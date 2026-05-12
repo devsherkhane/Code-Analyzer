@@ -4,11 +4,15 @@ def scan_folder(root):
     files = []
     folders = []
     
-    # List of folders to ignore
-    exclude = set(['node_modules', 'dist', '.git', '__pycache__'])
+    # List of folders to ignore (industry-standard exclusions)
+    exclude = set([
+        'node_modules', 'dist', '.git', '__pycache__', 'build', 'coverage',
+        '.nuxt', '.next', '.vite', 'vendor', '.output', '.cache', '.parcel-cache',
+        '.turbo', 'storybook-static', '.svelte-kit', 'out', '.vercel', '.netlify'
+    ])
 
-    # Only include code files for dependency analysis
-    include_extensions = ('.vue', '.js', '.ts', '.jsx', '.tsx')
+    # Include all web frontend file types
+    include_extensions = ('.vue', '.js', '.ts', '.jsx', '.tsx', '.html', '.css', '.scss')
 
     for path, dirs, filenames in os.walk(root):
         # Modify dirs in-place to skip excluded folders

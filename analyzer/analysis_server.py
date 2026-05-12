@@ -7,7 +7,7 @@ _this_dir = os.path.dirname(os.path.abspath(__file__))
 if _this_dir not in sys.path:
     sys.path.insert(0, _this_dir)
 
-from script_parser import parse_vue_script
+from script_parser import parse_source
 from metrics_extractor import get_metrics
 from ai_reporter import analyze_batch_sync
 from ai_config import get_client
@@ -19,15 +19,10 @@ def process_single_file_for_uiux(file_path, content):
     if not client:
         return {"error": "AI Client not configured"}
         
-    # Attempt to write the content back to file if possible since get_metrics reads from file path
-    try:
-        if os.path.exists(file_path):
-            with open(file_path, 'w', encoding='utf-8') as f:
-                f.write(content)
-    except:
-        pass
+    # NOTE: Never write to the original file — pass content in-memory only.
+    # parse_source(content, file_path) and get_metrics() work without disk writes.
         
-    parsed = parse_vue_script(content)
+    parsed = parse_source(content, file_path)
     metrics = get_metrics(file_path, parsed)
     
     # Build the bundle that analyze_batch_sync expects
@@ -98,6 +93,7 @@ def chat():
     active_file_content = data.get('activeContent', '')
     active_file_name = data.get('activeFileName', '')
     workspace_path = data.get('workspacePath', '')
+    history_arr = data.get('history', [])
     
     client = get_client()
     if not client:
@@ -123,14 +119,16 @@ def chat():
             
     user_prompt = f"{message}"
     
+    llm_messages = [{"role": "system", "content": system_prompt}]
+    for past_msg in history_arr:
+        llm_messages.append({"role": past_msg.get("role", "user"), "content": past_msg.get("content", "")})
+    llm_messages.append({"role": "user", "content": user_prompt})
+    
     try:
         model_name = os.environ.get("LLM_MODEL", "gemma2-9b")
         response = client.chat.completions.create(
             model=model_name,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
+            messages=llm_messages,
             temperature=0.7,
             max_tokens=2048,
         )

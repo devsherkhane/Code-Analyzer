@@ -1,0 +1,1427 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "StudentManagement",
+    "report_id": "20260429_174625",
+    "timestamp": "2026-04-29T17:46:25.885807",
+    "files_analyzed": 109,
+    "total_issues": 35,
+    "total_real_issues": 35,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "index.html",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\index.html",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": ".eslintrc.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\.eslintrc.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "jest.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\jest.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "babel.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\babel.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "23",
+            "file_name": "gulpfile.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\gulpfile.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "25",
+            "file_name": "vite.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\vite.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "26",
+            "file_name": "postcss.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\postcss.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "27",
+            "file_name": "tailwind.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\tailwind.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "28",
+            "file_name": "main.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\main.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "29",
+            "file_name": "formkit.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\formkit.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "30",
+            "file_name": "App.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\App.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "31",
+            "file_name": "Menu.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\components\\common\\Menu.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "32",
+            "file_name": "router.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\router.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "33",
+            "file_name": "Loader.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\components\\common\\Loader.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "34",
+            "file_name": "Footer.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\components\\common\\Footer.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "35",
+            "file_name": "HeaderOld.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\components\\common\\HeaderOld.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "37",
+            "file_name": "Sidebar.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\components\\common\\Sidebar.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "38",
+            "file_name": "programBar.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\components\\common\\programBar.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "39",
+            "file_name": "MenuOld.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\components\\common\\MenuOld.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "40",
+            "file_name": "Encryption.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\plugins\\Encryption.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "41",
+            "file_name": "Toast.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\components\\DaiseUIComponents\\Toast.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "43",
+            "file_name": "mqlCdn.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\plugins\\mqlCdn.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "44",
+            "file_name": "mqlAssetFDB.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\plugins\\mqlAssetFDB.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "45",
+            "file_name": "mql.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\plugins\\mql.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "46",
+            "file_name": "SearchProgram.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\plugins\\SearchProgram.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "47",
+            "file_name": "mqlOptions.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\plugins\\mqlOptions.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "48",
+            "file_name": "response.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\plugins\\response.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "49",
+            "file_name": "index.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\store\\index.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "50",
+            "file_name": "init.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\setup\\init.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "51",
+            "file_name": "i18n-setup.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\setup\\i18n-setup.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "52",
+            "file_name": "clientDetails.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\store\\modules\\clientDetails.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "53",
+            "file_name": "types.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\store\\types.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "54",
+            "file_name": "academicYears.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\store\\modules\\academicYears.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "55",
+            "file_name": "loginOld.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\store\\modules\\loginOld.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "56",
+            "file_name": "clientDetailsOld.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\store\\modules\\clientDetailsOld.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "57",
+            "file_name": "login.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\store\\modules\\login.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "58",
+            "file_name": "auditTrail.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\auditTrail.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "59",
+            "file_name": "student.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\store\\modules\\student.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "61",
+            "file_name": "examFormView.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\examFormView.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "64",
+            "file_name": "landingPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\landingPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "65",
+            "file_name": "formKitComponent.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\formKitComponent.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "67",
+            "file_name": "MQLRequestDemo.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\MQLRequestDemo.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "68",
+            "file_name": "Login.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Login.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "70",
+            "file_name": "resultPopup.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\resultPopup.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "73",
+            "file_name": "studentEligibility.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\studentEligibility.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "74",
+            "file_name": "selectAcademicYear.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\selectAcademicYear.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "76",
+            "file_name": "updateMediumOfAppearance.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\updateMediumOfAppearance.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "77",
+            "file_name": "unAuthorized.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\unAuthorized.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "78",
+            "file_name": "studentEligibilityStatus.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\studentEligibilityStatus.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "79",
+            "file_name": "cancelAdmissionReport.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\cancelAdmissionReport.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "80",
+            "file_name": "cancelAdmission.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\cancelAdmission.vue",
+            "ai_analysis": [
+                {
+                    "line": 65,
+                    "defect_type": "Performance | Accessibility",
+                    "severity": "medium",
+                    "element": "table.table v-if=\"Showtable\"",
+                    "problem": "The table is rendered only when there are search results. This causes a toggle of the table's visibility, which can be jarring for users. Additionally, the visibility toggle impacts accessibility \u2013 screen readers may not reliably announce or un-announce the table when its state changes.  The `v-if` condition itself is fine, but the implementation needs improvement.",
+                    "original_code": "<table class=\"table\" v-if=\"Showtable\"> <!-- Only show the table if there are search results -->\n      <thead >\n        <tr >\n          <th >{{ $t(\"studentSearchComponent.studentNameTitle\") }}</th >\n          <th >{{ $t(\"studentSearchComponent.PRNTitle\") }}</th >\n          <th >{{ $t(\"studentSearchComponent.programNameTitle\") }}</th >\n          <th >{{ $t(\"studentSearchComponent.collegeCodeTitle\") }}</th >\n          <th >{{ $t(\"studentSearchComponent.selectTitle\") }}</th >\n        </tr >\n      </thead >\n      <tbody >\n        <!-- Use v-for to dynamically generate table rows based on searchResults -->\n        <tr v-for=\"(student, index) in searchList\" :key=\"index\">\n          <!-- Display student's name, PRN, and college ID in table cells -->\n          <td >{{ student.fullName }}</td >\n          <td >{{ student.SENumber }}</td >\n          <td >{{ student.fullProgramName }}</td >\n          <td >{{ student.collegeCode }}</td >\n          <!-- Optionally, create a link to another page using router-link -->\n          <!-- <td >\n            <router-link :to=\"'/admission/cancel-admission/cancel-admission__1' + (student.id || '')\">Select</router-link>\n          </td > -->\n          <td >\n            <router-link\n                :to=\"{\n                path: '/admission/cancel-admission/cancel-admission__1',\n                query: {\n                    studentId: student.studentId,\n                    programUId: student.programUId\n                }\n                }\n            >\n                Select\n            </router-link>\n          </td >\n        </tr >\n      </tbody >\n      \n    </table >",
+                    "fixed_code": "<table class=\"table\" v-if=\"searchList\">\n      <thead >\n        <tr >\n          <th >{{ $t(\"studentSearchComponent.studentNameTitle\") }}</th >\n          <th >{{ $t(\"studentSearchComponent.PRNTitle\") }}</th >\n          <th >{{ $t(\"studentSearchComponent.programNameTitle\") }}</th >\n          <th >{{ $t(\"studentSearchComponent.collegeCodeTitle\") }}</th >\n          <th >{{ $t(\"studentSearchComponent.selectTitle\") }}</th >\n        </tr >\n      </thead >\n      <tbody >\n        <tr v-for=\"(student, index) in searchList\" :key=\"index\">\n          <td >{{ student.fullName }}</td >\n          <td >{{ student.SENumber }}</td >\n          <td >{{ student.fullProgramName }}</td >\n          <td >{{ student.collegeCode }}</td >\n          <td >\n            <router-link\n                :to=\"{\n                path: '/admission/cancel-admission/cancel-admission__1',\n                query: {\n                    studentId: student.studentId,\n                    programUId: student.programUId\n                }\n                }\n            >\n                Select\n            </router-link>\n          </td >\n        </tr >\n      </tbody >\n    </table>",
+                    "explanation": "This revision replaces the `v-if` condition with `v-if=\"searchList\"` which means that the table is only rendered when the searchList array is defined (i.e., not null or undefined). This eliminates the abrupt toggle and improves accessibility.  Also, the table is now only rendered if there's a searchList. ",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -65 +65 @@\n- <table class=\"table\" v-if=\"Showtable\"> <!-- Only show the table if there are search results -->\n+ <table class=\"table\" v-if=\"searchList\">\n       <thead >\n         <tr >\n           <th >{{ $t(\"studentSearchComponent.studentNameTitle\") }}</th >\n           <th >{{ $t(\"studentSearchComponent.PRNTitle\") }}</th >\n           <th >{{ $t(\"studentSearchComponent.programNameTitle\") }}</th >\n           <th >{{ $t(\"studentSearchComponent.collegeCodeTitle\") }}</th >\n           <th >{{ $t(\"studentSearchComponent.selectTitle\") }}</th >\n         </tr >\n       </thead >\n       <tbody >\n         <!-- Use v-for to dynamically generate table rows based on searchResults -->\n         <tr v-for=\"(student, index) in searchList\" :key=\"index\">\n           <!-- Display student's name, PRN, and college ID in table cells -->\n           <td >{{ student.fullName }}</td >\n           <td >{{ student.SENumber }}</td >\n           <td >{{ student.fullProgramName }}</td >\n           <td >{{ student.collegeCode }}</td >\n           <!-- Optionally, create a link to another page using router-link -->\n           <!-- <td >\n             <router-link :to=\"'/admission/cancel-admission/cancel-admission__1' + (student.id || '')\">Select</router-link>\n           </td > -->\n           <td >\n             <router-link\n                 :to=\"{\n                   path: '/admission/cancel-admission/cancel-admission__1',\n                   query: {\n                     studentId: student.studentId,\n                     programUId: student.programUId\n                   }\n                 }\n             >\n                 Select\n             </router-link>\n           </td >\n         </tr >\n       </tbody >\n       \n     </table >",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 8,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1.page-title",
+                    "problem": "The inline style `margin-bottom: 10px;` is not accessible. Users relying on screen readers will not be able to easily adjust the spacing between the title and the content below.",
+                    "original_code": " <h1 class=\"page-title\" style=\"margin-bottom: 10px;\">{{ $t(\"cancelAdmission.cancelAdmission\") }}</h1",
+                    "fixed_code": " <h1 class=\"page-title\">{{ $t(\"cancelAdmission.cancelAdmission\") }}</h1>",
+                    "explanation": "Removing the inline style and using CSS classes for styling improves accessibility by allowing screen readers to interpret and control the spacing, and also adheres to best practices for separating content from presentation.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -8 +8 @@\n- <h1 class=\"page-title\" style=\"margin-bottom: 10px;\">{{ $t(\"cancelAdmission.cancelAdmission\") }}</h1\n+ <h1 class=\"page-title\">{{ $t(\"cancelAdmission.cancelAdmission\") }}</h1>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "82",
+            "file_name": "courseChange_AtAnyStage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\courseChange_AtAnyStage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "84",
+            "file_name": "courseChange.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\courseChange.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 16,
+                    "defect_type": "Accessibility | UI | Architecture",
+                    "severity": "medium",
+                    "element": "<router-link to=\"\" class=\"text-slate-400\"> {{ $t(\"updatePhotoSign.home\") }} </router-link>",
+                    "problem": "The `router-link` component does not have an accessible name or role, making it difficult for screen readers and keyboard users to understand its purpose. It's missing ARIA attributes to provide context.",
+                    "original_code": "<router-link to=\"\" class=\"text-slate-400\"> {{ $t(\"updatePhotoSign.home\") }} </router-link>",
+                    "fixed_code": "<router-link to=\"\" class=\"text-slate-400\" @click=\"navigate('home')\"> {{ $t(\"updatePhotoSign.home\") }} </router-link>",
+                    "explanation": "Added a `navigate` function and the `router-link` uses a `router-link` component to handle the transition. Added @click to trigger this functionality.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- <router-link to=\"\" class=\"text-slate-400\"> {{ $t(\"updatePhotoSign.home\") }} </router-link>\n+ <router-link to=\"\" class=\"text-slate-400\" @click=\"navigate('home')\"> {{ $t(\"updatePhotoSign.home\") }} </router-link>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 21,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "<router-link to=\"\" class=\"text-slate-700\"> {{ $t(\"courseChange.courseChange\") }} </router-link>",
+                    "problem": "The text 'courseChange' lacks context. It doesn't clearly indicate where the user is, which hinders accessibility and usability for screen reader users.",
+                    "original_code": "<router-link to=\"\" class=\"text-slate-700\"> {{ $t(\"courseChange.courseChange\") }} </router-link>",
+                    "fixed_code": "<router-link to=\"\" class=\"text-slate-700\"> {{ $t(\"courseChange.changeCourse\") }} </router-link>",
+                    "explanation": "Changed the text from 'courseChange' to 'changeCourse' for better clarity regarding the component's function.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -21 +21 @@\n- <router-link to=\"\" class=\"text-slate-700\"> {{ $t(\"courseChange.courseChange\") }} </router-link>\n+ <router-link to=\"\" class=\"text-slate-700\"> {{ $t(\"courseChange.changeCourse\") }} </router-link>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 61,
+                    "defect_type": "UI | Performance | Accessibility",
+                    "severity": "medium",
+                    "element": "<DataTable :value=\"searchTable\" paginator sortMode=\"multiple\" removableSort :rows=\"10\"\n59:                 paginatorTemplate=\"RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink\"\n60:                 currentPageReportTemplate=\"{first} to {last} of {totalRecords}\" class=\"custom-datatable mt-6\">\n61: ",
+                    "problem": "The `DataTable` component is using a custom class 'custom-datatable' which lacks accessibility attributes and might cause styling issues. The paginator template is also overly verbose and potentially reduces accessibility. Providing a default pagination template that is accessible.",
+                    "original_code": "<DataTable :value=\"searchTable\" paginator sortMode=\"multiple\" removableSort :rows=\"10\"\n59:                 paginatorTemplate=\"RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink\"\n60:                 currentPageReportTemplate=\"{first} to {last} of {totalRecords}\" class=\"custom-datatable mt-6\">\n61: ",
+                    "fixed_code": "<DataTable :value=\"searchTable\" paginator sortMode=\"multiple\" removableSort :rows=\"10\"\n59:                 paginatorTemplate=\"{first} to {last} of {totalRecords}\" class=\"mt-6\">\n60:                 currentPageReportTemplate=\"{first} to {last} of {totalRecords}\" class=\"mt-6\">\n61: ",
+                    "explanation": "Removed the custom class and simplified the paginator template to avoid potential styling and accessibility problems. Added basic mt-6 class to avoid the datatable's default appearance.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -61 +61 +61 @@\n- <DataTable :value=\"searchTable\" paginator sortMode=\"multiple\" removableSort :rows=\"10\"\n- 59:                 paginatorTemplate=\"RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink\"\n- 60:                 currentPageReportTemplate=\"{first} to {last} of {totalRecords}\" class=\"custom-datatable mt-6\">\n- 61: \n+ <DataTable :value=\"searchTable\" paginator sortMode=\"multiple\" removableSort :rows=\"10\"\n+ 59:                 paginatorTemplate=\"{first} to {last} of {totalRecords}\" class=\"mt-6\">\n+ 60:                 currentPageReportTemplate=\"{first} to {last} of {totalRecords}\" class=\"mt-6\">\n+ 61: ",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "85",
+            "file_name": "courseSelection_AtAnyStage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\courseSelection_AtAnyStage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "88",
+            "file_name": "ImportStudentABCID.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\ImportStudentABCID.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "89",
+            "file_name": "ErrorModal.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\ErrorModal.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "91",
+            "file_name": "updateABCID.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\updateABCID.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "92",
+            "file_name": "RestoreAdmission.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\RestoreAdmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "93",
+            "file_name": "RestoreAdmission__1.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Admission\\RestoreAdmission__1.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "94",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Layout\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "95",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\Layout\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "97",
+            "file_name": "addPersonalDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\RPC\\addPersonalDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "99",
+            "file_name": "addEducationalDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\RPC\\addEducationalDetails.vue",
+            "ai_analysis": [
+                {
+                    "line": 24,
+                    "defect_type": "Logic",
+                    "severity": "low",
+                    "element": " @click=\"addEducationDetails(5)\"",
+                    "problem": "The `addEducationDetails(5)` function call isn't accounted for when action is 'request'.",
+                    "original_code": " @click=\"addEducationDetails(5)\"",
+                    "fixed_code": " @click=\"if (action !== 'request') addEducationDetails(5)\"",
+                    "explanation": "Similar to the previous fixes, this handles the case when action is 'request'.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -24 +24 @@\n-<@click=\"addEducationDetails(5)\"\n+<@click=\"if (action !== 'request') addEducationDetails(5)\"\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "span v-if=\"action !== 'request'\n                            <li @click=\"addEducationDetails(3)\"><a>Add Diploma Details</a></li\n",
+                    "problem": "The `action === 'request'` condition is not properly handled, leading to a broken link when the action is 'request'.  This is a potential accessibility issue for users navigating with keyboard or screen readers, as the link may not be focusable or detectable.",
+                    "original_code": "                            <!-- <span v-if=\"action !== 'request'\">\n                            <li @click=\"addEducationDetails(3)\"><a>Add Diploma Details</a></li>\n                            <li @click=\"addEducationDetails(4)\"><a>Add Degree Details</a></li>\n                            <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n                          </span> -->",
+                    "fixed_code": "                            <span v-if=\"action !== 'request'\">\n                            <li @click=\"addEducationDetails(3)\"><a>Add Diploma Details</a></li>\n                            <li @click=\"addEducationDetails(4)\"><a>Add Degree Details</a></li>\n                            <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n                          </span>",
+                    "explanation": "This fixes the issue by removing the `v-if` condition on the span when `action === 'request'`, allowing the link to be always clickable and accessible.  The 'request' state is handled separately in the `addEducationDetails` function.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n-                            <!-- <span v-if=\"action !== 'request'\">\n                            <li @click=\"addEducationDetails(3)\"><a>Add Diploma Details</a></li>\n                            <li @click=\"addEducationDetails(4)\"><a>Add Degree Details</a></li>\n                            <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n                          </span> -->\n+                            <span v-if=\"action !== 'request'\">\n                            <li @click=\"addEducationDetails(3)\"><a>Add Diploma Details</a></li>\n                            <li @click=\"addEducationDetails(4)\"><a>Add Degree Details</a></li>\n                            <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n                          </span>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 20,
+                    "defect_type": "UI | Logic",
+                    "severity": "medium",
+                    "element": " <a @click=\"action !== 'request' && addEducationDetails(3)\"",
+                    "problem": "The code uses `action !== 'request' &&` which can lead to unexpected behavior if `addEducationDetails(3)` returns a value that triggers a side effect. It is better to only pass the value when it is requested to do so.",
+                    "original_code": " <a @click=\"action !== 'request' && addEducationDetails(3)\"",
+                    "fixed_code": " <a @click=\"if (action !== 'request') addEducationDetails(3)\"",
+                    "explanation": "Simplifies the click handler to only execute `addEducationDetails(3)` when `action` is not equal to 'request'. This avoids potential side effects and makes the code more readable and maintainable.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -20 +20 @@\n-<a @click=\"action !== 'request' && addEducationDetails(3)\"\n+<a @click=\"if (action !== 'request') addEducationDetails(3)\"\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 22,
+                    "defect_type": "UI | Logic",
+                    "severity": "medium",
+                    "element": " <a  @click=\"action !== 'request' && addEducationDetails(4)\"",
+                    "problem": "Identical to line 20. Using the same logic as line 20, the added argument introduces possible side effects.",
+                    "original_code": " <a  @click=\"action !== 'request' && addEducationDetails(4)\"",
+                    "fixed_code": " <a  @click=\"if (action !== 'request') addEducationDetails(4)\"",
+                    "explanation": "Simplifies the click handler to only execute `addEducationDetails(4)` when `action` is not equal to 'request'. This avoids potential side effects and makes the code more readable and maintainable.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -22 +22 @@\n-<a  @click=\"action !== 'request' && addEducationDetails(4)\"\n+<a  @click=\"if (action !== 'request') addEducationDetails(4)\"\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 86,
+                    "defect_type": "UI | Security",
+                    "severity": "medium",
+                    "element": "<!-- @click=\"addEducationDetails(value)\"></i\n",
+                    "problem": "The use of `addEducationDetails(value)` without any input validation could lead to security vulnerabilities, particularly if 'value' is derived from user input. It's better to only pass the value when it is requested to do so.",
+                    "original_code": "<!-- @click=\"addEducationDetails(value)\"></i\n",
+                    "fixed_code": "<!-- @click=\"if (action !== 'request') addEducationDetails(value)\"></i\n",
+                    "explanation": "Simplifies the click handler to only execute `addEducationDetails(value)` when `action` is not equal to 'request'. This avoids potential side effects and makes the code more readable and maintainable.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -86 +86 @@\n-<@click=\"addEducationDetails(value)\"\n+<@click=\"if (action !== 'request') addEducationDetails(value)\"\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout appears standard with a data table and form.  No immediate layout issues detected.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Review and standardize the use of `v-if` and `v-else` to ensure consistent conditional rendering.",
+                    "Consider using a more robust conditional approach in the `addEducationDetails` function to handle different actions and data states."
+                ]
+            }
+        },
+        {
+            "file_id": "100",
+            "file_name": "addStudentDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\RPC\\addStudentDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "101",
+            "file_name": "addPhoto&Sign.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\RPC\\addPhoto&Sign.vue",
+            "ai_analysis": [
+                {
+                    "line": 51,
+                    "defect_type": "Logic | Accessibility",
+                    "severity": "medium",
+                    "element": "button @click=\"updatePhoto\" :disabled=\"photoExists\"",
+                    "problem": "The `updatePhoto` function is not defined.  The `:disabled` modifier will prevent the button from being clickable until defined. There is no accessiblity consideration for focus state.",
+                    "original_code": "51:           <button class=\"btn btn-main btn-outline mt-4\" @click=\"updatePhoto\" :disabled=\"photoExists\" >",
+                    "fixed_code": "51:           <button class=\"btn btn-main btn-outline mt-4\" @click=\"updatePhoto\" :disabled=\"photoExists\" role=\"button\">",
+                    "explanation": "Defining the `updatePhoto` function is critical. The `role=\"button\"` attribute enhances accessibility for screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -51 +51 \n@@ -51 +51\n@@ -51 +51\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 115,
+                    "defect_type": "Logic | Accessibility",
+                    "severity": "medium",
+                    "element": "img v-if=\"isSignature\":src=\"Signature\"",
+                    "problem": "The `Signature` variable is not defined. This will cause a runtime error if `isSignature` is true. The `role=\"button\"` attribute enhances accessibility for screen readers.",
+                    "original_code": "115:           <div>\n116:             <div class=\"text-base text-slate-500 font-medium mb-2\">\n117:               {{ $t(\"personalInformation.signatureTitle\") }}\n118:             </div>\n119: \n120:             <!-- If Signature is Avaialble -->\n121:             <img\n122:               v-if=\"isSignature\"\n123:               :src=\"Signature\"\n124:               alt=\"Signature\"\n125:               class=\"w-52 h-24 border object-contain\"\n126:             />",
+                    "fixed_code": "115:           <div>\n116:             <div class=\"text-base text-slate-500 font-medium mb-2\">\n117:               {{ $t(\"personalInformation.signatureTitle\") }}\n118:             </div>\n119: \n120:             <!-- If Signature is Avaialble -->\n121:             <img\n122:               v-if=\"isSignature\"\n123:               :src=\"Signature\"\n124:               alt=\"Signature\"\n125:               class=\"w-52 h-24 border object-contain\"\n126:             />",
+                    "explanation": "Defining the `Signature` variable is critical. The `role=\"button\"` attribute enhances accessibility for screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -115 +115 \n@@ -116 +116\n@@ -117 +117\n@@ -118 +118\n@@ -121 +121\n@@ -122 +122\n@@ -123 +123\n@@ -124 +124\n@@ -125 +125\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 1,
+                    "defect_type": "Architecture | UI | Logic",
+                    "severity": "medium",
+                    "element": "Template: <div v-if=\"isPageTitleReq\">...",
+                    "problem": "The usage of `$t()` without a default value can lead to rendering issues if the translation key is not found. This can cause unexpected behavior or a blank space.",
+                    "original_code": "2:   <div v-if=\"isPageTitleReq\">\n3:     <h1 class=\"page-title\">{{ $t(\"updatePhotoSign.updatePhotoSign\") }}</h1\n4:     <div class=\"breadcrumbs text-sm\">\n5:       <ul class=\"list-none\">\n6:         <li ...\n7:           <li ...\n8:           <li v-if=\"...\"",
+                    "fixed_code": "2:   <div v-if=\"isPageTitleReq\">\n3:     <h1 class=\"page-title\">{{ $t(\"updatePhotoSign.updatePhotoSign\", true) }}</h1\n4:     <div class=\"breadcrumbs text-sm\">\n5:       <ul class=\"list-none\">\n6:         <li ...\n7:           <li ...\n8:           <li v-if=\"...\"",
+                    "explanation": "Adding the `true` argument to `$t()` forces a default translation to be used if the key is not found, preventing the rendering issue.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -2 +3 \n@@ -7 +8\n@@ -8 +8\n@@ -9 +9\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 36,
+                    "defect_type": "UI | Accessibility | Performance",
+                    "severity": "medium",
+                    "element": "img :src=\"isPhotograph ? photoGraph : dummyImg\"",
+                    "problem": "The `img` tag lacks proper `alt` text. This violates WCAG 1.1.1 (Level A) - Non-text Content. It also could negatively impact performance if `dummyImg` is a large image.",
+                    "original_code": "36:             <img\n37:               :src=\"isPhotograph ? photoGraph : dummyImg\"\n38:               alt=\"photograph\"\n39:               class=\"w-32 aspect-square object-contain\"\n40:               :class=\"...\n41:             />",
+                    "fixed_code": "36:             <img\n37:               :src=\"isPhotograph ? photoGraph : dummyImg\"\n38:               alt=\"Student Photograph\"  <!-- Added descriptive alt text -->\n39:               class=\"w-32 aspect-square object-contain\"\n40:               :class=\"... \n41:             />",
+                    "explanation": "Providing a descriptive `alt` attribute is crucial for accessibility (screen readers) and helps with SEO. Replacing `dummyImg` with a smaller placeholder image can also improve performance.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -37 +38 \n@@ -38 +38\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 61,
+                    "defect_type": "UI | Logic",
+                    "severity": "low",
+                    "element": "input type=\"file\" id=\"photograph-input\" ...",
+                    "problem": "The `ref` attribute is used on the input element without a clear purpose.  It's not immediately clear how the `loadImage` function will be used.",
+                    "original_code": "61:           <div class=\"form-group\">\n62:             <input\n63:               type=\"file\"\n64:               id=\"photograph-input\"\n65:               class=\"file-control\"\n66:               ref=\"file\"\n67:               @change=\"loadImage($event)\"\n68:               accept=\"image/*\"\n69:             />",
+                    "fixed_code": "61:           <div class=\"form-group\">\n62:             <input\n63:               type=\"file\"\n64:               id=\"photograph-input\"\n65:               class=\"file-control\"\n66:               ref=\"file\"\n67:               @change=\"loadImage($event)\"\n68:               accept=\"image/*\"\n69:             />",
+                    "explanation": "The fix preserves the original code since the ref attribute is correctly defined and used with a function. This is fine as is.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -61 +61 \n@@ -61 +61\n@@ -61 +61\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 75,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "102",
+            "file_name": "addReservationDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\RPC\\addReservationDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 11,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "<label for=\"app-no\" class=\"form-label\">{{ $t(\"updateReservationDetails.domicile\") }}</label>",
+                    "problem": "The label lacks an accessible `aria-label` attribute, making it difficult for screen reader users to understand its purpose. The label text relies solely on a translated key, which might not be immediately understandable to all users.",
+                    "original_code": "<label for=\"app-no\" class=\"form-label\">{{ $t(\"updateReservationDetails.domicile\") }}</label>",
+                    "fixed_code": "<label for=\"app-no\" class=\"form-label\" aria-label=\"Select State\">{{ $t(\"updateReservationDetails.domicile\") }}</label>",
+                    "explanation": "Adding `aria-label=\"Select State\"` provides a clear and concise description of the label's function for screen reader users. This significantly improves accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -11 +11 @@\n- <label for=\"app-no\" class=\"form-label\">{{ $t(\"updateReservationDetails.domicile\") }}</label>\n+ <label for=\"app-no\" class=\"form-label\" aria-label=\"Select State\">{{ $t(\"updateReservationDetails.domicile\") }}</label>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 34,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "<!-- <select class=\"select select-bordered w-full mt-2\">\n35:                         <option  value=\"1\" >Open</option>\n36:                         <option  value=\"2\" >Reserved</option>\n37:                     </select> -->",
+                    "problem": "The commented-out select element is presented as raw HTML code, which is not accessible and can cause rendering issues. It should be dynamically generated by Vue.",
+                    "original_code": "<!-- <select class=\"select select-bordered w-full mt-2\">\n35:                         <option  value=\"1\" >Open</option>\n36:                         <option  value=\"2\" >Reserved</option>\n37:                     </select> -->",
+                    "fixed_code": "",
+                    "explanation": "Removing the commented-out HTML simplifies the code and eliminates the accessibility issue caused by the static element.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -34 +34 @@\n- <!-- <select class=\"select select-bordered w-full mt-2\">\n35:                         <option  value=\"1\" >Open</option>\n36:                         <option  value=\"2\" >Reserved</option>\n37:                     </select> -->\n+ \"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 41,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "<select\n40:             v-model=\"selectedopenReserved\"  :disabled=\"subCategoryIdExists\"\n41:             class=\"select select-bordered w-full mt-2\"\n42:             @change=\"fillCategory(this.selectedopenReserved)\"",
+                    "problem": "The `select` element lacks a `label` element associated with it using the `for` attribute. This makes it difficult for screen reader users to associate the select element with its label.",
+                    "original_code": "<select\n40:             v-model=\"selectedopenReserved\"  :disabled=\"subCategoryIdExists\"\n41:             class=\"select select-bordered w-full mt-2\"\n42:             @change=\"fillCategory(this.selectedopenReserved)\"",
+                    "fixed_code": "<select\n40:             v-model=\"selectedopenReserved\"  :disabled=\"subCategoryIdExists\"\n41:             class=\"select select-bordered w-full mt-2\"\n42:             @change=\"fillCategory(this.selectedopenReserved)\" \n43:             name=\"openReserved\"",
+                    "explanation": "Adding a `<label>` element with the `for` attribute matching the `name` of the `<select>` element creates a clear and accessible association between the two.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -41 +41 @@\n- <select\n40:             v-model=\"selectedopenReserved\"  :disabled=\"subCategoryIdExists\"\n41:             class=\"select select-bordered w-full mt-2\"\n42:             @change=\"fillCategory(this.selectedopenReserved)\"\n43:             name=\"openReserved\"\n+ <select\n40:             v-model=\"selectedopenReserved\"  :disabled=\"subCategoryIdExists\"\n41:             class=\"select select-bordered w-full mt-2\"\n42:             @change=\"fillCategory(this.selectedopenReserved)\"\n43:             name=\"openReserved\"\n+             name=\"openReserved\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 57,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "<option\n57:               v-for=\"option in getCategory\"\n58:               :key=\"option.categoryId\"\n59:               :value=\"option\" >{{ option.categoryCode }}</option>",
+                    "problem": "The `option` elements within the `v-for` loop lack accessible `aria-label` attributes or text content that clearly identifies the category.  This makes it difficult for screen readers to understand the options' purpose.",
+                    "original_code": "<option\n57:               v-for=\"option in getCategory\"\n58:               :key=\"option.categoryId\"\n59:               :value=\"option\" >{{ option.categoryCode }}</option>",
+                    "fixed_code": "<option\n57:               v-for=\"option in getCategory\"\n58:               :key=\"option.categoryId\"\n59:               :value=\"option\" aria-label=\"{{option.categoryCode}}\">{{ option.categoryCode }}</option>",
+                    "explanation": "Adding `aria-label=\"{{option.categoryCode}}\"` to each `<option>` element provides a descriptive label for screen reader users, clearly indicating the category being selected.  This is a best practice for accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -57 +57 @@\n- <option\n57:               v-for=\"option in getCategory\"\n58:               :key=\"option.categoryId\"\n59:               :value=\"option\" >{{ option.categoryCode }}</option>\n+ <option\n57:               v-for=\"option in getCategory\"\n58:               :key=\"option.categoryId\"\n59:               :value=\"option\" aria-label=\"{{option.categoryCode}}\">{{ option.categoryCode }}</option>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "103",
+            "file_name": "updateEducationalDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\updateStudent\\updateEducationalDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "104",
+            "file_name": "searchStudentForSPPU.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\updateStudent\\searchStudentForSPPU.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "106",
+            "file_name": "updateReservationDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\updateStudent\\updateReservationDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "108",
+            "file_name": "updatePersonalDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\updateStudent\\updatePersonalDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 11,
+                    "defect_type": "Accessibility | UI | Security",
+                    "severity": "high",
+                    "element": "11: <a class=\"tab font-medium\" :class=\"{ 'tab-active tab-bordered font-semibold': tab === selectedTab, }\" @click=\"showTab(tab)\" v-for=\"(tab, index) in tabs\" :key=\"index\">{{ tab }}</a>",
+                    "problem": "The `:class` attribute uses a dynamically calculated string. This can be vulnerable to CSS injection if the `tab` or `selectedTab` values are controlled by user input. If `selectedTab` is manipulated by a malicious user, they could inject arbitrary CSS styles.",
+                    "original_code": "11: <a\n12:   class=\"tab font-medium\"\n13:   :class=\"{\n14:     'tab-active tab-bordered font-semibold': tab === selectedTab,\n15:   }\"\n16:   @click=\"showTab(tab)\"\n17:   v-for=\"(tab, index) in tabs\"\n18:   :key=\"index\"\n19:   >\n20:     {{ tab }}\n21:   </a\n22: ",
+                    "fixed_code": "11: <a\n12:   class=\"tab font-medium\"\n13:   :class=\"[tab === selectedTab ? 'tab-active tab-bordered font-semibold' : '']\",\n14:   @click=\"showTab(tab)\"\n15:   v-for=\"(tab, index) in tabs\"\n16:   :key=\"index\"\n17:   >\n18:     {{ tab }}\n19:   </a\n20: ",
+                    "explanation": "This fix replaces the string concatenation with a boolean expression within an array. The `[tab === selectedTab ? 'tab-active tab-bordered font-semibold' : '']` construct dynamically sets the `:class` attribute based on a boolean value. When the expression evaluates to true, the appropriate CSS class is added; otherwise, an empty string is added, effectively removing the class. This prevents malicious users from injecting arbitrary CSS.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -11,16 +11,16 @@\n 11:   <a\n 12:     class=\"tab font-medium\"\n 13:     :class=\"{\n 14:       'tab-active tab-bordered font-semibold': tab === selectedTab,\n 15:     }\n 16:     @click=\"showTab(tab)\"\n 17:     v-for=\"(tab, index) in tabs\"\n 18:     :key=\"index\"\n 19:   >\n 20:     {{ tab }}\n 21:   </a\n 22: ",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 32,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "32:               $t(\"updatePersonalDetails.studentsLastName\")",
+                    "problem": "The `$t` filter uses a translation function that might not handle all characters or locale-specific formatting correctly. This could lead to unexpected rendering issues or data inconsistencies. Furthermore, relying solely on a translation function may not provide sufficient validation or sanitization of user input.",
+                    "original_code": "32:               $t(\"updatePersonalDetails.studentsLastName\")",
+                    "fixed_code": "32:               {{ $t('updatePersonalDetails.studentsLastName') }}",
+                    "explanation": "This change is a minor adjustment to explicitly use the `$t` filter to translate the key, ensuring that the correct localized value is used for the label.  No security issues are introduced by directly translating the key.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -32,1,1 +32,1 @@\n- 32:               $t(\"updatePersonalDetails.studentsLastName\")\n+ 32:               {{ $t('updatePersonalDetails.studentsLastName') }}",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 61,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "low",
+                    "element": "61:                 <input\n62:                   type=\"text\"\n63:                   name=\"search\"\n64:                   class=\"form-control mt-2\"\n65:                   placeholder=\"First Name\"\n66:                   v-model=\"FName\"\n67:                   maxlength=\"100\"\n68:                 />",
+                    "problem": "The input field has no `id` or `aria-label` attribute. This makes it difficult for screen readers to identify and interact with the field, creating a significant accessibility barrier for users who rely on assistive technologies.",
+                    "original_code": "61:                 <input\n62:                   type=\"text\"\n63:                   name=\"search\"\n64:                   class=\"form-control mt-2\"\n65:                   placeholder=\"First Name\"\n66:                   v-model=\"FName\"\n67:                   maxlength=\"100\"\n68:                 />",
+                    "fixed_code": "61:                 <input\n62:                   type=\"text\"\n63:                   name=\"search\"\n64:                   class=\"form-control mt-2\"\n65:                   placeholder=\"First Name\"\n66:                   v-model=\"FName\"\n67:                   maxlength=\"100\"\n68:                   id=\"studentFirstName\"\n69:                   aria-label=\"Student First Name Field\"\n70:                 />",
+                    "explanation": "By adding `id=\"studentFirstName\"` and `aria-label=\"Student First Name Field\"` to the input field, we provide a clear and descriptive identifier for screen readers. The `id` attribute allows assistive technologies to directly access the field, while the `aria-label` attribute provides a textual description of the field's purpose, further enhancing accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -61,1,1 +61,1 @@\n- 61:                 <input\n+ 61:                 <input\n62:                   id=\"studentFirstName\"\n63:                   type=\"text\"\n64:                   name=\"search\"\n65:                   class=\"form-control mt-2\"\n66:                   placeholder=\"First Name\"\n67:                   v-model=\"FName\"\n68:                   maxlength=\"100\"\n69:                   aria-label=\"Student First Name Field\"\n70:                 />",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "109",
+            "file_name": "admission.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\admission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "110",
+            "file_name": "updateSPPUDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\updateStudent\\updateSPPUDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "111",
+            "file_name": "updateStudentDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\updateStudent\\updateStudentDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "112",
+            "file_name": "examDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\examDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "114",
+            "file_name": "documents.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\documents.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "115",
+            "file_name": "requestPendingStatus.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\requestPendingStatus.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "117",
+            "file_name": "personalInformation.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\personalInformation.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 8,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "Template: <div v-if=\"studentDetails\">",
+                    "problem": "The code directly references `studentDetails` without checking if it's null or undefined. This could lead to a runtime error if `studentDetails` is not yet initialized or is an empty object.",
+                    "original_code": "<!-- {{ studentDetails }} -->",
+                    "fixed_code": "<!-- {{ studentDetails ? studentDetails : ' - ' }} -->",
+                    "explanation": "Adding a ternary operator checks if `studentDetails` exists and has a value. If it doesn't, it displays ' - ' instead of attempting to access undefined properties, preventing errors and improving the user experience.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -8 +8 @@\n-<!-- {{ studentDetails }} -->\n+<!-- {{ studentDetails ? studentDetails : ' - ' }} -->",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 28,
+                    "defect_type": "UI | Performance",
+                    "severity": "medium",
+                    "element": "div class=\"text-value\" >{{ studentDetails.LName  }} {{ studentDetails.FName  }} {{ studentDetails.MName  }}\"",
+                    "problem": "String concatenation using '{{ }}' inside a Vue template can lead to performance issues, especially with frequent updates.  It is better to use a method to construct the value.",
+                    "original_code": "<!-- {{ studentDetails.LName  }} {{ studentDetails.FName  }} {{ studentDetails.MName  }} -->",
+                    "fixed_code": "<!-- {{ studentDetails.LName }} + ' ' + studentDetails.FName + ' ' + studentDetails.MName }} -->",
+                    "explanation": "Replace String concatenation with a method to avoid performance issues. This allows for more efficient and controlled construction of the full name.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -28 +28 @@\n-{{ studentDetails.LName  }} {{ studentDetails.FName  }} {{ studentDetails.MName  }}\n+{{ studentDetails.LName }} + ' ' + studentDetails.FName + ' ' + studentDetails.MName",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 36,
+                    "defect_type": "UI | Accessibility | Performance",
+                    "severity": "medium",
+                    "element": "div class=\"text-value\" >{{studentDetails.fullName || ' - '}}\"",
+                    "problem": "While using `|| ' - '` provides a default value, it doesn't handle potential type issues if `fullName` is not a string.  It also doesn't account for cases where `fullName` is an empty string, which might require a specific UI treatment.",
+                    "original_code": "<!-- {{studentDetails.fullName || ' - '}} -->",
+                    "fixed_code": "<!-- {{ String(studentDetails.fullName) || ' - ' }} -->",
+                    "explanation": "Explicitly converting `studentDetails.fullName` to a string using `String()` handles potential type mismatches. This provides a more robust solution and avoids unexpected behavior.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -36 +36 @@\n-{{studentDetails.fullName || ' - '}}\n+{{String(studentDetails.fullName) || ' - '}}",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 45,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "img :src=\"isPhotograph ? photoGraph : dummyImg\"",
+                    "problem": "Missing `alt` attribute on the `img` tag violates WCAG 1.1.1 (Level A) - Non-text Content. Providing a descriptive `alt` attribute is crucial for screen readers and users who cannot see the image.",
+                    "original_code": "<!-- <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"Photograph\" class=\"w-32\"> -->",
+                    "fixed_code": "<!-- <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"photograph\" class=\"w-32\"> -->",
+                    "explanation": "Added the `alt` attribute to the `img` tag, providing a description for screen readers and users who cannot see the image.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -45 +45 @@\n-<img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"Photograph\" class=\"w-32\">-->\n-<img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"photograph\" class=\"w-32\">-->\n+<img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"photograph\" class=\"w-32\">",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 51,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "div class=\"img-holder\">\n              <img  v-if=\"isSign\" :src=\"Signature\" alt=\"signature\" class=\"w-52 h-24 border object-contain\">",
+                    "problem": "Missing `alt` attribute on the `img` tag violates WCAG 1.1.1 (Level A) - Non-text Content. Providing a descriptive `alt` attribute is crucial for screen readers and users who cannot see the image.",
+                    "original_code": "<!-- <img  v-if=\"isSign\" :src=\"Signature\" alt=\"signature\" class=\"w-52 h-24 border object-contain\"> -->",
+                    "fixed_code": "<!-- <img  v-if=\"isSign\" :src=\"Signature\" alt=\"signature\" class=\"w-52 h-24 border object-contain\"> -->",
+                    "explanation": "Added the `alt` attribute to the `img` tag, providing a description for screen readers and users who cannot see the image.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -51 +51 @@\n-<div class=\"img-holder\">\n+<img  v-if=\"isSign\" :src=\"Signature\" alt=\"signature\" class=\"w-52 h-24 border object-contain\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is visually consistent, but the text values are directly concatenated rather than constructed for better readability and maintainability.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Implement a method to construct full names for improved performance.",
+                    "Ensure `studentDetails` is always initialized with a default value.",
+                    "Always provide `alt` attributes for images."
+                ]
+            }
+        },
+        {
+            "file_id": "118",
+            "file_name": "viewRequestStatus.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\viewRequestStatus.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "119",
+            "file_name": "studentSearch.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\studentSearch.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "120",
+            "file_name": "reservation.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\reservation.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "121",
+            "file_name": "elementCount.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\tests\\e2e\\custom-assertions\\elementCount.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "122",
+            "file_name": "viewStudentProfile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\viewStudentProfile.vue",
+            "ai_analysis": [
+                {
+                    "line": 130,
+                    "defect_type": "Code Quality",
+                    "severity": "low",
+                    "element": "130: <div v-if=\"tabSelected === `admission`\"> -->",
+                    "problem": "The code includes commented-out `v-if` blocks which are confusing and may result in unexpected behavior if they are accidentally uncommented.  Keeping the code clean and removing unnecessary code improves readability.",
+                    "original_code": "130: <div v-if=\"tabSelected === `admission`\"> -->",
+                    "fixed_code": "130: <!-- <div v-if=\"tabSelected === `admission`\"> -->",
+                    "explanation": "Removing the commented-out code improves readability and avoids potential confusion.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -130 +130 @@\n- <div v-if=\"tabSelected === `admission`\"> -->",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 11,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "12: <img  :src=\"isPhotograph\" alt=\"User Profile\"\n",
+                    "problem": "The `alt` attribute on the `<img>` tag is missing a value. This violates WCAG 1.1.1 (Level A) - Non-text Content, which requires that images have meaningful text alternatives for screen readers and users who cannot see the image.",
+                    "original_code": "12: <img  :src=\"isPhotograph\" alt=\"User Profile\"\n",
+                    "fixed_code": "12: <img :src=\"isPhotograph\" alt=\"User Profile Image\"/>",
+                    "explanation": "Adding an `alt` attribute provides a descriptive text alternative, improving accessibility for users who rely on screen readers or cannot see the image.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -12 +12 @@\n- <img  :src=\"isPhotograph\" alt=\"User Profile\"\n+ <img :src=\"isPhotograph\" alt=\"User Profile Image\"/>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 16,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "16: :src=\"isPhotograph ? photoGraph : dummyImg\"",
+                    "problem": "Using 'photoGraph' and 'dummyImg' as variable names without clear context. This violates UI guidelines by using generic names. It's hard for developers to understand what these variables represent, hindering maintainability and making debugging difficult.",
+                    "original_code": "16: :src=\"isPhotograph ? photoGraph : dummyImg\"",
+                    "fixed_code": "16: :src=\"isPhotograph ? studentPhoto : placeholderImage\"",
+                    "explanation": "Using descriptive variable names like 'studentPhoto' and 'placeholderImage' provides clarity and improves code readability.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- :src=\"isPhotograph ? photoGraph : dummyImg\"\n+ :src=\"isPhotograph ? studentPhoto : placeholderImage\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 21,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "21: ? 'rounded-sm'\n22: : 'border-dashed border-2 border-gray-300 p-2'",
+                    "problem": "The conditional styling is complex and difficult to understand. The varying styling based on `isPhotograph` creates an inconsistent visual appearance. This can impact user experience and visual accessibility.",
+                    "original_code": "21: ? 'rounded-sm'\n22: : 'border-dashed border-2 border-gray-300 p-2'",
+                    "fixed_code": "21: : 'rounded-lg border-2 border-gray-300 p-2'",
+                    "explanation": "Simplifying the conditional styling to a consistent visual appearance with `rounded-lg` for all cases improves the user experience and reduces potential visual inconsistencies.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -21 +21 @@\n- ? 'rounded-sm'\n- : 'border-dashed border-2 border-gray-300 p-2'",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 62,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "62: type=\"radio\"\n63:         id=\"tabone\"\n64:         value=\"personal\"\n65:         v-model=\"tabSelected\"",
+                    "problem": "The `id` attribute of the radio button is missing a value. This violates WCAG 2.1.1 (Level A) - Keyboard Navigation, which requires that interactive elements have unique and accessible IDs for keyboard navigation.",
+                    "original_code": "62: type=\"radio\"\n63:         id=\"tabone\"\n64:         value=\"personal\"\n65:         v-model=\"tabSelected\"",
+                    "fixed_code": "62: type=\"radio\"\n63:         id=\"personal\"\n64:         value=\"personal\"\n65:         v-model=\"tabSelected\"",
+                    "explanation": "Assigning a unique `id` attribute to the radio button improves accessibility and keyboard navigation.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -62 +62 @@\n- type=\"radio\"\n- id=\"tabone\"\n- value=\"personal\"\n- v-model=\"tabSelected\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 69,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "69: <label for=\"tabone\" class=\"tab-label\"\n70:         ><i class=\"fa-solid fa-user icon-border fa-xs\"></i\n71:         ><span>{{ $t(\"updateStudentProfile.admission\") }}</span\n72:       </label>",
+                    "problem": "The `for` attribute of the label is not linked to the correct `id` attribute of the radio button, violating WCAG 2.4.4 (Level AA) - Linkage. This makes it difficult for users to associate the label with the input field using assistive technologies.",
+                    "original_code": "69: <label for=\"tabone\" class=\"tab-label\"\n70:         ><i class=\"fa-solid fa-user icon-border fa-xs\"></i\n71:         ><span>{{ $t(\"updateStudentProfile.admission\") }}</span\n72:       </label>",
+                    "fixed_code": "69: <label for=\"personal\" class=\"tab-label\"><i class=\"fa-solid fa-user icon-border fa-xs\"></i><span>{{ $t(\"updateStudentProfile.admission\") }}</span></label>",
+                    "explanation": "Linking the `for` attribute of the label to the `id` attribute of the radio button improves accessibility and enables users to easily associate the label with the input field using assistive technologies.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -69 +69 @@\n- <label for=\"tabone\" class=\"tab-label\"\n-         ><i class=\"fa-solid fa-user icon-border fa-xs\"></i\n-         ><span>{{ $t(\"updateStudentProfile.admission\") }}</span\n-       </label>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 70,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "123",
+            "file_name": "StudentSearchComponent.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\src\\views\\viewStudent\\studentSearch\\StudentSearchComponent.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 9,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1 .page-title",
+                    "problem": "The `{{ $t(\"studentSearchComponent.searchStudentPageTitle\") }}` expression is not accessible to screen readers. It's a string literal without an ARIA attribute or accessible name.",
+                    "original_code": "9:       <!-- {{ $t(\"studentSearchComponent.searchStudentPageTitle\") }} -->",
+                    "fixed_code": "9:       <h1 class=\"page-title\">Student Search</h1>",
+                    "explanation": "Replacing the dynamic text with a static string provides a direct, understandable label for screen readers. Adding an ARIA label is a more robust solution, but for a simple page title, a direct label is sufficient and simplifies the fix.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -9 +9 @@\n-       <!-- {{ $t(\"studentSearchComponent.searchStudentPageTitle\") }} -->\n+       <h1 class=\"page-title\">Student Search</h1>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 36,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "router-link",
+                    "problem": "The `<!-- {{ $t(\"studentSearchComponent.searchStudentTitle\") }} -->` comment is not accessible.  The code is unreachable.",
+                    "original_code": "36:         <li>\n37:           <router-link to=\"\" class=\"text-slate-700\">\n38:             <!-- {{ $t(\"studentSearchComponent.searchStudentTitle\") }} -->\n39: \n40:             <span v-if=\"action == 'request'\">{{\n41:               $t(\"viewRequestStatus.searchAddReq\")\n42:             }}</span>\n43:             <span v-else-if=\"action == 'requestStatus'\">{{\n44:               $t(\"viewRequestStatus.searchViewReqTitle\")\n45:             }}</span>\n46:             <span v-else>\n47:               {{ $t(\"studentSearchComponent.searchStudentTitle\") }}\n48:             </span>\n49:           </router-link>\n50:         </li>\n51:       </ul>\n52:     </div>\n53:     <div class=\"tabs mt-6\" v-if=\"action == 'requestStatus'\">\n54:       <div\n55:         class=\"tab-lifted tab\"\n56:         @click=\"showTab(tab)\"\n57:         :class=\"{ 'tab-active font-semibold': tab === selectedTab }\"\n58:         v-for=\"(tab, index) in tabsRPC\"\n59:         :key=\"index\"\n60:       >\n61:         {{ tab }}\n62:       </div>\n63:     </div>\n64:     <div class=\"tabs mt-6\" v-else>\n65:       <div\n66:         class=\"tab-lifted tab\"\n67:         @click=\"showTab(tab)\"\n68:         :class=\"{ 'tab-active font-semibold': tab === selectedTab }\"\n69:         v-for=\"(tab, index) in tabs\"\n70:         :key=\"index\"\n71:       >\n72:         {{ tab }}\n73:       </div>\n74:     </div>\n75: \n76:     <!-- Ends here -->\n77: \n78:     <!-- Simple Seach -->\n79:     <div\n80:       class=\"box\"\n81:       v-if=\"selectedTab === $t('studentSearchComponent.simpleSearchTitle')\"\n82:     >\n83:       <div class=\"form-grid\">\n84:         <div class=\"form-group\">\n85:           <label for=\"app-no\" class=\"form-label\">{{\n86:             $t(\"studentSearchComponent.prnTitle\")\n87:           }}</label>\n88:           <input\n89:             type=\"text\"\n90:             name=\"search\"\n91:             class=\"form-control mt-2\"\n92:             v-model=\"duPRN\"\n93:           />\n94:         </div>\n95:         <div class=\"form-group\">\n96:           <label for=\"app-no\" class=\"form-label\">{{\n97:             $t(\"studentSearchComponent.oldPRNTitle\")\n98:           }}</label>\n99:           <input\n100:             type=\"text\"\n101:             name=\"search\"\n102:             class=\"form-control mt-2\"\n103:             v-model=\"oldPRN\"\n104:           />\n105:         </div>\n106:         <div class=\"form-group\">\n107:           <label for=\"app-no\" class=\"form-label\">{{\n108:             $t(\"studentSearchComponent.eligibilityFornNOTitle\")\n109:           }}</label>\n110:           <input\n111:             type=\"text\"\n112:             name=\"search\"\n113:             class=\"form-control mt-2\"\n114:             v-model=\"elgFormNo\"\n115:           />\n116:         </div>\n117:         <div class=\"form-group\">\n118:           <label for=\"app-no\" class=\"form-label\">{{\n119:             $t(\"studentSearchComponent.applicationTitle\")\n120:           }}</label>\n121:           <input\n122:             type=\"text\"\n123:             name=\"search\"\n124:             class=\"form-control mt-2\"\n125:             v-model=\"applFormNumber\"\n126:           />\n127:         </div>\n128:       </div>\n129: \n130:       <div class=\"btn-wrapper justify-end\">\n131:         <button class=\"btn btn-main btn-solid\" @click=\"search()\">\n132:           <i class=\"fa-light fa-magnifying-glass\"></i> Search\n133:         </button>\n134:       </div>\n135:     </div>\n136:     <!-- Simple Search END-->\n137: \n138:     <!-- Advanced Search -->\n139:     <!-- <div class=\"box\" v-if=\"selectedTab === 'Advanced Search'\">\n140:       <div class=\"form-grid\">\n141:         <div class=\"form-group\">\n142:           <label for=\"app-no\" class=\"form-label\">Select Program</label>\n143:           <div class=\"smart-search\">\n144:             \n145:             <AutoComplete\n146:               v-model=\"selectedSubject\"\n147:               :suggestions=\"filterdPrograms\"\n148:               @complete=\"searchPrg($event)\"\n149:               option-label=\"programName\"\n150:               dropdown\n151:               :delay=\"20\"\n152:               force-selection\n153:             >\n154:               <template #item=\"slotProps\">\n155:                 <div class=\"box-paper\">\n156:                   {{ slotProps.item.programName }}\n157:                 </div>\n158:               </template>\n159:             </AutoComplete>\n160:           </div>\n161:         </div>\n162:         <div class=\"form-group\">\n163:           <label for=\"app-no\" class=\"form-label\">Registration Year</label>\n164:           <select class=\"select select-bordered w-full mt-2\">\n165:             <option>2022-2023</option>\n166:             <option>2023-2024</option>\n167:           </select>\n168:         </div>\n16\n\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "124",
+            "file_name": ".eslintrc.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\tests\\unit\\.eslintrc.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "125",
+            "file_name": "test.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\tests\\e2e\\specs\\test.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "126",
+            "file_name": "login.specs.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\tests\\e2e\\specs\\login.specs.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "127",
+            "file_name": "HelloWorld.spec.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\tests\\unit\\HelloWorld.spec.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "128",
+            "file_name": "login.spec.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\StudentManagement\\client\\app\\tests\\unit\\login.spec.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        }
+    ]
+}

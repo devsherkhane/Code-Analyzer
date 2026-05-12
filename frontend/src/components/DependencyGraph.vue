@@ -253,6 +253,9 @@ import 'vis-network/styles/vis-network.css';
 
 export default {
   name: 'DependencyGraph',
+  props: {
+    selectedReportId: { type: String, default: null }
+  },
   data() {
     return {
       graphData: null,
@@ -271,6 +274,7 @@ export default {
       // Keep lists in data for computed filtering but use copies
       rawNodes: [],
       rawEdges: [],
+      componentError: null,
       
       options: {
         physics: {
@@ -332,6 +336,12 @@ export default {
   async mounted() {
     await this.fetchData();
   },
+  errorCaptured(err, instance, info) {
+    console.error('[DependencyGraph] Component error caught:', err, info);
+    this.componentError = `Architecture view encountered an error: ${err.message}`;
+    this.error = this.componentError;
+    return false;
+  },
   methods: {
     async fetchData() {
       this.loading = true;
@@ -339,10 +349,11 @@ export default {
       this.aiArchitectureError = null;
       
       try {
+        const reportQuery = this.selectedReportId ? `?id=${this.selectedReportId}&_t=${Date.now()}` : `?_t=${Date.now()}`;
         const [graphRes, aiRes, reportRes] = await Promise.allSettled([
-          axios.get('/dependency_graph?_t=' + Date.now()),
-          axios.get('/ai_architecture?_t=' + Date.now()),
-          axios.get('/ai_report?_t=' + Date.now())
+          axios.get('/dependency_graph' + reportQuery),
+          axios.get('/ai_architecture' + reportQuery),
+          axios.get('/ai_report' + reportQuery)
         ]);
         
         if (reportRes.status === 'fulfilled' && reportRes.value.data) {
@@ -366,12 +377,17 @@ export default {
               }
             }
           }
+        } else if (graphRes.status === 'rejected' && graphRes.reason?.response?.status === 404) {
+          this.error = 'Historical architecture data is not available for this run.';
         } else {
           this.error = 'Failed to fetch dependency graph. Connect to backend.';
         }
 
         if (aiRes.status === 'fulfilled' && aiRes.value.data && aiRes.value.data.project_overview) {
           this.aiArchitecture = aiRes.value.data;
+        } else if (aiRes.status === 'rejected' && aiRes.reason?.response?.status === 404) {
+          this.aiArchitectureError = 'Historical AI Architecture insights are not available for this run.';
+          this.viewMode = 'visual'; // Fallback
         } else {
           this.aiArchitectureError = 'AI Architecture insights not available yet for this project.';
           this.viewMode = 'visual'; // Fallback
@@ -850,13 +866,7 @@ export default {
   gap: 2px;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--border-default);
-  border-radius: 4px;
-}
+
 
 .empty-list {
   padding: 1rem;

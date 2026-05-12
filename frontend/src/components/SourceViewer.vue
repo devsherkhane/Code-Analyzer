@@ -8,7 +8,7 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
       <span>{{ error }}</span>
     </div>
-    <div v-else class="code-container" ref="codeContainer">
+    <div v-else class="code-container custom-scrollbar" ref="codeContainer">
       <div class="line-numbers">
         <div v-for="n in lineCount" :key="n" :id="'L'+n" class="line-number" :class="{ 'highlight-line': highlightedLines.includes(n) }">
           {{ n }}
@@ -18,7 +18,7 @@
         <div class="code-line-bgs" aria-hidden="true">
           <div v-for="n in lineCount" :key="'bg'+n" class="line-bg" :class="{ 'hl-bg': highlightedLines.includes(n) }"></div>
         </div>
-        <pre class="code-content"><code ref="codeBlock" :class="languageClass">{{ sourceCode }}</code></pre>
+        <pre class="code-content"><code ref="codeBlock" :class="languageClass" v-html="highlightedHtml"></code></pre>
       </div>
     </div>
   </div>
@@ -27,7 +27,6 @@
 <script>
 import axios from 'axios';
 import Prism from 'prismjs';
-import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-css';
@@ -60,6 +59,25 @@ export default {
         'json': 'language-json'
       };
       return map[ext] || 'language-javascript';
+    },
+    highlightedHtml() {
+      if (!this.sourceCode) return '';
+      const ext = this.filePath.split('.').pop().toLowerCase();
+      const map = {
+        'vue': 'markup',
+        'html': 'markup',
+        'js': 'javascript',
+        'ts': 'typescript',
+        'css': 'css',
+        'json': 'json'
+      };
+      const lang = map[ext] || 'javascript';
+      const grammar = Prism.languages[lang] || Prism.languages.javascript;
+      try {
+        return Prism.highlight(this.sourceCode, grammar, lang);
+      } catch (e) {
+        return this.sourceCode.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
     }
   },
   watch: {
@@ -81,12 +99,7 @@ export default {
         const res = await axios.get(`/file-content?path=${encodeURIComponent(this.filePath)}`);
         this.sourceCode = res.data;
         this.lineCount = this.sourceCode.split('\n').length;
-        this.$nextTick(() => {
-          if (this.$refs.codeBlock) {
-            Prism.highlightElement(this.$refs.codeBlock);
-            this.scrollToFirstHighlight();
-          }
-        });
+        this.scrollToFirstHighlight();
       } catch (err) {
         this.error = 'Failed to load file content.';
       } finally {
@@ -201,6 +214,10 @@ export default {
   margin: 0;
   padding: 1rem;
   flex: 1;
+}
+
+.code-content code {
+  color: var(--text-primary);
 }
 
 pre[class*="language-"] {

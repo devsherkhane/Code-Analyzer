@@ -1,0 +1,210 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260429_125609",
+    "timestamp": "2026-04-29T12:56:09.874287",
+    "files_analyzed": 17,
+    "total_issues": 6,
+    "total_real_issues": 6,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "3",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis crashed. File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [
+                {
+                    "line": 14,
+                    "wcag_rule": "1.1.1 Non-text Content",
+                    "severity": "critical",
+                    "element": "i \"fa-light fa-circle-arrow-left\"",
+                    "problem": "The icon is non-text content. Screen readers may not announce or interpret the icon correctly, leading to a poor experience for users who rely on assistive technologies. It also lacks alternative text.",
+                    "original_code": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                    "fixed_code": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold aria-label=\"Back\"",
+                    "explanation": "Adding `aria-label=\"Back\"` provides a text alternative for screen readers, enabling them to announce the icon's function. This satisfies WCAG 1.1.1 Non-text Content.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13,8 +13,8 @@\n 13:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n 14:         </div>\n 15:         <div>\n 16:           <span class=\"font-bold text-[#54519e]\">Exam Timetable</span\n 17:         </div>\n 18:       </div>\n 19:   ",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 71,
+                    "wcag_rule": "3.1.1 Resize text",
+                    "severity": "minor",
+                    "element": "iframe",
+                    "problem": "The iframe creates a new window, potentially overwhelming users who might resize their browser and need to quickly scroll through the content. Also, the iframe\u2019s content is not accessible within the parent component.",
+                    "original_code": "const iframe = document.createElement(\"iframe\");",
+                    "fixed_code": "const iframe = document.createElement(\"iframe\"); iframe.style.position = \"absolute\";",
+                    "explanation": "Creating a new iframe and inserting its content directly into the main document disrupts the component's rendering and introduces accessibility issues. It is better to render the content within the existing component\u2019s DOM tree, providing the parent component with access to the content.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -71,1 +71,1 @@\n -const iframe = document.createElement(\"iframe\");\n +const iframe = document.createElement(\"iframe\"); iframe.style.position = \"absolute\";",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 82,
+                    "wcag_rule": "3.1.4 Focus Visible",
+                    "severity": "minor",
+                    "element": "html",
+                    "problem": "The print dialog uses an iframe to render the content, which doesn't guarantee focus will be visible on the content for keyboard users. Printing directly does not guarantee focus is visible.",
+                    "original_code": "doc.write(`\n 82:             <html>\n 83:               <head>\n 84:                 <style>\n 85:                   body {\n 86:                   font-family: Arial, sans-serif;\n 87:                   margin: 20px;\n 88:                 }\n 89:                   .html-content {\n 90:                   border: 1px solid #e5e7eb;\n 91:                   padding: 20px;\n 92:                   border-radius: 8px;\n 93:                   background-color: #f9fafb;\n 94:                   overflow-x: auto;\n 95:                 }\n 96:                   .html-content table {\n 97:                   width: 100%;\n 98:                   border-collapse: collapse;\n 99:                 }\n 100:                   .html-content th, .html-content td {\n 101:                   border: 1px solid #ddd;\n 102:                   padding: 8px;\n 103:                 }\n 104:                   .html-content th {\n 105:                   background-color: #f4f4f4;\n 106:                   font-weight: bold;\n 107:                 }\n 108:                   .html-content tr:hover {\n 109:                   background-color: #f1f5f9;\n 110:                 }\n 111:               </style>\n 112:             </head>\n 113:             <body>\n 114:               ${content.outerHTML} <!-- Insert the HTML content to be printed -->\n 115:             </body>\n 116:           </html>\n 117:         `);",
+                    "fixed_code": "const content = document.querySelector(\".html-content\");\n\n        // Create a hidden iframe for printing\n        const iframe = document.createElement(\"iframe\");\n        iframe.style.position = \"absolute\";\n        iframe.style.width = \"0px\";\n        iframe.style.height = \"0px\";\n        iframe.style.border = \"none\";\n        document.body.appendChild(iframe);\n        const doc = iframe.contentWindow.document;",
+                    "explanation": "Using the print dialog directly with an iframe does not guarantee focus will be visible for keyboard users. Providing focus visibility in the print dialog is important for screen reader users and keyboard navigation.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -82,18 +82,18 @@\n 82:             <html>\n 83:               <head>\n 84:                 <style>\n 85:                   body {\n 86:                   font-family: Arial, sans-serif;\n 87:                   margin: 20px;\n 88:                 }\n 89:                   .html-content {\n 90:                   border: 1px solid #e5e7eb;\n 91:                   padding: 20px;\n 92:                   border-radius: 8px;\n 93:                   background-color: #f9fafb;\n 94:                   overflow-x: auto;\n 95:                 }\n 96:                   .html-content table {\n 97:                   width: 100%;\n 98:                   border-collapse: collapse;\n 99:                 }\n 100:                   .html-content th, .html-content td {\n 101:                   border: 1px solid #ddd;\n 102:                   padding: 8px;\n 103:                 }\n 104:                   .html-content th {\n 105:                   background-color: #f4f4f4;\n 106:                   font-weight: bold;\n 107:                 }\n 108:                   .html-content tr:hover {\n 109:                   background-color: #f1f5f9;\n 110:                 }\n 111:               </style>\n 112:             </head>\n 113:             <body>\n 114:               ${content.outerHTML} <!-- Insert the HTML content to be printed -->\n 115:             </body>\n 116:           </html>\n 117:         `);",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [
+                {
+                    "line": 12,
+                    "wcag_rule": "1.4.3 Non-text Content",
+                    "severity": "critical",
+                    "element": "<div class=\"box flex items-center gap-3 mb-6\">",
+                    "problem": "The tooltip element is using a Font Awesome icon. Font Awesome icons are inherently non-text content, and screen readers may not interpret them correctly. This violates WCAG 1.4.3 Non-text Content, which requires that non-text content be presented in a way that is equally accessible to users who do not have access to graphical content.",
+                    "original_code": "12:         <div class=\"box flex items-center gap-3 mb-6>\n13:             <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n14:                 <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n15:             </div>\n16:             <div\n17: ",
+                    "fixed_code": "12:         <div class=\"box flex items-center gap-3 mb-6>\n13:             <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n14:                 <span class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></span>\n15:             </div>\n16:             <div\n17: ",
+                    "explanation": "Replacing the Font Awesome icon with a plain span element ensures that the icon is treated as text by screen readers. This allows screen readers to announce the icon's purpose and functionality correctly.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n-                 <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n+                 <span class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></span>\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 17,
+                    "wcag_rule": "1.11.2 Color Contrast",
+                    "severity": "minor",
+                    "element": "<span>{{ fullProgramName }}</span",
+                    "problem": "The text color '#54519e' has insufficient contrast against the background. This could make the text difficult to read for users with low vision.  WCAG 1.11.2 requires text and background combinations to have a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text.",
+                    "original_code": "17:             </div>\n18:             <div class=\"font-bold text-[#54519e]\">{{ fullProgramName }}</span\n19:         </div>\n20:         <h1>Marksheet Details</h1\n21: ",
+                    "fixed_code": "17:             </div>\n18:             <div class=\"font-bold text-[#54519e]\">{{ fullProgramName }}</div>\n19:         </div>\n20:         <h1>Marksheet Details</h1\n21: ",
+                    "explanation": "While this doesn't fix the color itself, it highlights the need to verify the color contrast ratio for the `fullProgramName` text against its background.  The current code doesn't perform that check, so a developer should implement a check to ensure the color meets accessibility guidelines.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -18 +18 @@\n-             </div>\n+             </div>\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 61,
+                    "wcag_rule": "3.1.1 Error Identification, 3.2.3 Time Limits",
+                    "severity": "minor",
+                    "element": "Decryption(JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj)",
+                    "problem": "The code uses a custom `Decryption` function, which is not documented. This makes it difficult for developers and users to understand how the data is being processed and could create an accessibility issue if the decryption process introduces delays or errors.  The absence of a timeout or mechanism to handle errors within the decryption process also violates WCAG 3.2.3, Time Limits.",
+                    "original_code": "62:         this.userObj = Decryption(\n63:             JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n64:         )",
+                    "fixed_code": "62:         this.userObj = new Promise((resolve, reject) => {\n63:             try {\n64:                 const decryptedUserObj = JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj;\n65:                 resolve(decryptedUserObj);\n66:             } catch (error) {\n67:                 reject(error);\n68:             }\n69:         }).then(userObj => this.userObj = userObj)\n70:         ",
+                    "explanation": "Introducing a promise with a `try...catch` block enables proper error handling during decryption. The resolution of the promise will set the `userObj`.  This is a more robust approach and allows for easier auditing and debugging. The promise implementation also inherently introduces a small delay, which could be addressed with a timeout, and meets the requirements of 3.2.3.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -62 +62 @@\n-         this.userObj = Decryption(...)\n+         this.userObj = new Promise((resolve, reject) => {\n+             try {\n+                 const decryptedUserObj = JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj;\n+                 resolve(decryptedUserObj);\n+             } catch (error) {\n+                 reject(error);\n+             }\n+         }).then(userObj => this.userObj = userObj)\n+         ",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        }
+    ]
+}

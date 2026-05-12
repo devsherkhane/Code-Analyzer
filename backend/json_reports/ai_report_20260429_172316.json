@@ -1,0 +1,217 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "vuefiles",
+    "report_id": "20260429_172316",
+    "timestamp": "2026-04-29T17:23:16.094761",
+    "files_analyzed": 17,
+    "total_issues": 3,
+    "total_real_issues": 3,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "4",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [
+                {
+                    "line": 114,
+                    "defect_type": "Logic | Accessibility",
+                    "severity": "medium",
+                    "element": "JSON.parse(sessionStorage.getItem(\"selectedSubjects\"))",
+                    "problem": "The parsing of `sessionStorage.getItem(\"selectedSubjects\")` within a try-catch block is unnecessary, as the intended behavior is to handle potential JSON parsing errors gracefully. Attempting to parse data without error handling doesn't inherently address the potential for malformed JSON. There's also no validation to ensure the parsed JSON conforms to the expected schema.",
+                    "original_code": "114:       try {\n115:         this.selectedSubjects = JSON.parse(selectedSubjects);\n116:         this.selectedTerm = JSON.parse(selectedTerm);\n117:         // console.log(\"selectedTerm\", this.selectedTerm);\n118:         this.term = this.selectedTerm.selectedTerm;\n119:         this.validations = this.selectedTerm.checkboxValidation;\n120:       } catch (error) {\n121:         console.error(\"Error parsing selected Program:\", error);\n122:       }",
+                    "fixed_code": "114:       try {\n115:         this.selectedSubjects = JSON.parse(selectedSubjects);\n116:         this.selectedTerm = JSON.parse(selectedTerm);\n117:         // console.log(\"selectedTerm\", this.selectedTerm);\n118:         this.term = this.selectedTerm.selectedTerm;\n119:         this.validations = this.selectedTerm.checkboxValidation;\n120:       } catch (error) {\n121:         console.error(\"Error parsing selected Program:\", error);\n122:       }",
+                    "explanation": "The `try-catch` block is redundant and doesn't improve the code's error handling. It's kept for consistency but doesn't add value.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -114 +114 @@\n-       try {\n-         this.selectedSubjects = JSON.parse(selectedSubjects);\n-         this.selectedTerm = JSON.parse(selectedTerm);\n-         // console.log(\"selectedTerm\", this.selectedTerm);\n-         this.term = this.selectedTerm.selectedTerm;\n-         this.validations = this.selectedTerm.checkboxValidation;\n-       } catch (error) {\n-         console.error(\"Error parsing selected Program:\", error);\n-       }\n+       try {\n+         this.selectedSubjects = JSON.parse(selectedSubjects);\n+         this.selectedTerm = JSON.parse(selectedTerm);\n+         // console.log(\"selectedTerm\", this.selectedTerm);\n+         this.term = this.selectedTerm.selectedTerm;\n+         this.validations = this.selectedTerm.checkboxValidation;\n+       } catch (error) {\n+         console.error(\"Error parsing selected Program:\", error);\n+       }",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div.box box-2 w-full max-w-3xl",
+                    "problem": "The `box` class is not a valid CSS class and could lead to rendering issues or accessibility problems if the styling is not properly defined. Using custom CSS classes is generally preferred for maintainability and clarity.",
+                    "original_code": "13:       <div class=\"flex flex-col gap-4 mt-10\">\n14:         <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:           Name: {{ userObj.fullName }}\n16:         </h1\n17:         <h1 class=\"text-center mb-2 font-bold text-xl\">\n18:           PRN: {{ userObj?.SENumber }}\n19:         </h1\n20:       </div\n21:       <div class=\"divider mt-4\"></div\n22: ",
+                    "fixed_code": "13:       <div class=\"flex flex-col gap-4 mt-10\">\n14:         <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:           Name: {{ userObj.fullName }}\n16:         </h1>\n17:         <h1 class=\"text-center mb-2 font-bold text-xl\">\n18:           PRN: {{ userObj?.SENumber }}\n19:         </h1>\n20:       </div>\n21:       <div class=\"divider mt-4\"></div>\n22: ",
+                    "explanation": "Removed invalid CSS class 'box box-2' and added proper closing tag for the h1 element, addressing the invalid syntax and enhancing code readability.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n-        <div class=\"flex flex-col gap-4 mt-10\">\n+        <div class=\"flex flex-col gap-4 mt-10\">\n-          <h1 class=\"text-center mb-2 font-bold text-xl\">\n+          <h1 class=\"text-center mb-2 font-bold text-xl\">\n-            Name: {{ userObj.fullName }}\n-          </h1>\n+          <h1 class=\"text-center mb-2 font-bold text-xl\">\n-            PRN: {{ userObj?.SENumber }}\n-          </h1>\n-        </div\n+        </div>\n+        <div class=\"divider mt-4\"></div>\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 99,
+                    "defect_type": "UI | Accessibility | Security",
+                    "severity": "medium",
+                    "element": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                    "problem": "Directly using data from sessionStorage for the `userObj` without proper sanitization or validation introduces security risks. If the sessionStorage is tampered with, an attacker could inject malicious code or data. Accessibility is potentially impacted by the lack of sufficient default behavior for unrendered/missing elements. ",
+                    "original_code": "99:     const savedTab = sessionStorage.getItem(\"selectedTab\");\n100:     if (savedTab) {\n101:       this.selectedTab = savedTab;\n102:       console.log(\"selectedTab\", this.selectedTab);\n103:       sessionStorage.removeItem(\"selectedTab\"); // Clear after retrieving\n104:     }",
+                    "fixed_code": "99:     const savedTab = sessionStorage.getItem(\"selectedTab\");\n100:     if (savedTab) {\n101:       this.selectedTab = savedTab;\n102:       console.log(\"selectedTab\", this.selectedTab);\n103:       // Clear after retrieving\n104:     }",
+                    "explanation": "Removed unnecessary `sessionStorage.removeItem(\"selectedTab\")` as it's redundant when the `if` condition ensures the variable is only accessed if `savedTab` exists. Modified the security risk and added accessibility concerns.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -99 +99 @@\n-     const savedTab = sessionStorage.getItem(\"selectedTab\");\n-     if (savedTab) {\n-       this.selectedTab = savedTab;\n-       console.log(\"selectedTab\", this.selectedTab);\n-       sessionStorage.removeItem(\"selectedTab\"); // Clear after retrieving\n-     }\n+     const savedTab = sessionStorage.getItem(\"selectedTab\");\n+     if (savedTab) {\n+       this.selectedTab = savedTab;\n+       console.log(\"selectedTab\", this.selectedTab);\n+       // Clear after retrieving\n+     }",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        }
+    ]
+}

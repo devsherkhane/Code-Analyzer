@@ -1,0 +1,182 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "vuefiles",
+    "report_id": "20260430_150101",
+    "timestamp": "2026-04-30T15:01:01.335822",
+    "files_analyzed": 17,
+    "total_issues": 2,
+    "total_real_issues": 2,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div.box box-2 w-full max-w-3xl",
+                    "problem": "The nested div structure within the box creates excessive depth and can impact accessibility and screen reader navigation. A single parent element would be more semantic and accessible.",
+                    "original_code": "13:       <div class=\"flex flex-col gap-4 mt-10\">\n14:         <h1 class=\"text-center mb-2 font-bold text-xl\">\n14:           Name: {{ userObj.fullName }}\n14:         </h1\n15:         <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:           PRN: {{ userObj?.SENumber }}\n16:         </h1\n17:       </div\n18:       <div class=\"divider mt-4\"></div\n19: ",
+                    "fixed_code": "13:       <div class=\"flex gap-4 mt-10\">\n14:         <h1 class=\"text-center mb-2 font-bold text-xl\">Name: {{ userObj.fullName }}</h1>\n15:         <h1 class=\"text-center mb-2 font-bold text-xl\">PRN: {{ userObj?.SENumber }}</h1>\n16:       </div>\n17:       <div class=\"divider mt-4\"></div>\n18: ",
+                    "explanation": "Removing the nested flex container simplifies the layout and reduces the overall depth of the HTML structure.  This improves accessibility for screen readers and reduces potential styling issues.  The gap-4 replaces the flex-col and gap-4 within the div. The HTML is also formatted for improved readability.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n- <div class=\"flex flex-col gap-4 mt-10\">\n-   <h1 class=\"text-center mb-2 font-bold text-xl\">\n-     Name: {{ userObj.fullName }}\n-   </h1\n-   <h1 class=\"text-center mb-2 font-bold text-xl\">\n-     PRN: {{ userObj?.SENumber }}\n-   </h1\n- </div>\n- <div class=\"divider mt-4\"></div>\n+ <div class=\"flex gap-4 mt-10\">\n+   <h1 class=\"text-center mb-2 font-bold text-xl\">Name: {{ userObj.fullName }}</h1>\n+   <h1 class=\"text-center mb-2 font-bold text-xl\">PRN: {{ userObj?.SENumber }}</h1>\n+ </div>\n+ <div class=\"divider mt-4\"></div>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 24,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1.font-bold text-center mb-2 subject-info",
+                    "problem": "The label 'Selected courses for' is not visually distinct enough from the course names, making it harder for screen reader users to understand the context. Adding ARIA attributes to enhance the semantics and accessibility.",
+                    "original_code": "24:       <h1 class=\"font-bold text-center mb-2 subject-info\">\n25:         Selected courses for {{ selectedSubjects[0]?.applicationType }}\n26:       </h1\n27: ",
+                    "fixed_code": "24:       <h1 class=\"font-bold text-center mb-2 subject-info\" aria-label=\"Selected courses for {{ selectedSubjects[0]?.applicationType }}\"> \n25:         Selected courses for {{ selectedSubjects[0]?.applicationType }}\n26:       </h1\n27: ",
+                    "explanation": "The addition of `aria-label` provides a textual description for the heading, enhancing screen reader users' ability to understand the context. The improved readability is achieved through better semantic HTML.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -24 +24 @@\n- <h1 class=\"font-bold text-center mb-2 subject-info\">\n-   Selected courses for {{ selectedSubjects[0]?.applicationType }}\n- </h1>\n+ <h1 class=\"font-bold text-center mb-2 subject-info\" aria-label=\"Selected courses for {{ selectedSubjects[0]?.applicationType }}\">\n+   Selected courses for {{ selectedSubjects[0]?.applicationType }}\n+ </h1>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        }
+    ]
+}

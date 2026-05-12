@@ -1,0 +1,150 @@
+{
+    "connections": [
+        {
+            "from_id": 1,
+            "to_id": 11,
+            "name": "Router push to SelectedApplicationService",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 1,
+            "to_id": 13,
+            "name": "Router push to Transactions",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 4,
+            "to_id": 7,
+            "name": "Router push to iLikeCoursesNew",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 5,
+            "to_id": 6,
+            "name": "Router push to FeeDetails",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 5,
+            "to_id": 13,
+            "name": "Router push to Transactions",
+            "type": "route_navigation"
+        }
+    ],
+    "file_map": {
+        "1": {
+            "name": "ApplicationServices.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\ApplicationServices.vue",
+            "exports": []
+        },
+        "2": {
+            "name": "defaultLayout.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\defaultLayout.vue",
+            "exports": []
+        },
+        "3": {
+            "name": "HallTicketPage.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\HallTicketPage.vue",
+            "exports": []
+        },
+        "4": {
+            "name": "iLikeCourses.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCourses.vue",
+            "exports": []
+        },
+        "5": {
+            "name": "ExamFormSubmission.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\ExamFormSubmission.vue",
+            "exports": []
+        },
+        "6": {
+            "name": "FeeDetails.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\FeeDetails.vue",
+            "exports": []
+        },
+        "7": {
+            "name": "iLikeCoursesNew.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "exports": []
+        },
+        "8": {
+            "name": "iLikeDashboard.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeDashboard.vue",
+            "exports": []
+        },
+        "9": {
+            "name": "iLikeLanding.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeLanding.vue",
+            "exports": []
+        },
+        "10": {
+            "name": "ResultPage.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\ResultPage.vue",
+            "exports": []
+        },
+        "11": {
+            "name": "SelectedApplicationService.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\SelectedApplicationService.vue",
+            "exports": []
+        },
+        "12": {
+            "name": "spLayout.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "exports": []
+        },
+        "13": {
+            "name": "Transactions.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "exports": []
+        },
+        "14": {
+            "name": "uploadFile.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadFile.vue",
+            "exports": []
+        },
+        "15": {
+            "name": "uploadProgessFile.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadProgessFile.vue",
+            "exports": []
+        },
+        "16": {
+            "name": "viewExamTimeTable.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewExamTimeTable.vue",
+            "exports": []
+        },
+        "17": {
+            "name": "viewMarksheet.vue",
+            "path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewMarksheet.vue",
+            "exports": []
+        }
+    },
+    "impact_map": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [
+            5
+        ],
+        "7": [
+            4
+        ],
+        "8": [],
+        "9": [],
+        "10": [],
+        "11": [
+            1
+        ],
+        "12": [],
+        "13": [
+            1,
+            5
+        ],
+        "14": [],
+        "15": [],
+        "16": [],
+        "17": []
+    },
+    "cycles": []
+}

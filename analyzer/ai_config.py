@@ -23,6 +23,7 @@ else:
 # CONFIGURATION
 # ============================================================
 MIN_CALL_DELAY = 1
+USE_JSON_MODE = os.environ.get("USE_JSON_MODE", "false").lower() == "true"
 
 class RateLimiter:
     def __init__(self, min_delay=MIN_CALL_DELAY):
@@ -61,18 +62,81 @@ def get_client():
         
     print(f"  -> [AI] Using LLM Engine (Base: {base_url})", flush=True)
     try:
-        return OpenAI(api_key=api_key, base_url=base_url, timeout=120.0)
+        return OpenAI(api_key=api_key, base_url=base_url, timeout=300.0)
     except Exception as e:
         print(f"  -> [ERROR] Failed to initialize client: {e}", flush=True)
         return None
 
-def call_ai(client, prompt, json_mode=True, max_retries=3):
+def call_ai(client, prompt, json_mode=True, max_retries=5):
     """
-    Call the Gemma AI engine via OpenAI-compatible API.
-    Handles servers that don't support response_format by auto-retrying without it.
+    Call the AI engine via OpenAI-compatible API.
+    Handles messy responses from smaller models (gemma3 4.3B etc.)
+    with aggressive JSON extraction and repair strategies.
     """
+    import re
     model_name = os.environ.get("LLM_MODEL", "gemma2-9b")
     last_error = None
+
+    def _extract_json_robust(text):
+        """Multi-strategy JSON extraction — handles markdown, preamble, arrays, etc."""
+        if not text or not text.strip():
+            return None
+
+        t = text.strip()
+
+        # Strategy 1: Direct parse (best case)
+        try:
+            json.loads(t)
+            return t
+        except:
+            pass
+
+        # Strategy 2: Strip markdown code fences (```json ... ``` or ``` ... ```)
+        md_match = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', t)
+        if md_match:
+            candidate = md_match.group(1).strip()
+            try:
+                json.loads(candidate)
+                return candidate
+            except:
+                pass
+
+        # Strategy 3: Find outermost JSON object { ... }
+        brace_start = t.find('{')
+        brace_end = t.rfind('}')
+        if brace_start != -1 and brace_end > brace_start:
+            candidate = t[brace_start:brace_end + 1]
+            try:
+                json.loads(candidate)
+                return candidate
+            except:
+                pass
+
+        # Strategy 4: Find outermost JSON array [ ... ]
+        bracket_start = t.find('[')
+        bracket_end = t.rfind(']')
+        if bracket_start != -1 and bracket_end > bracket_start:
+            candidate = t[bracket_start:bracket_end + 1]
+            try:
+                json.loads(candidate)
+                return candidate
+            except:
+                pass
+
+        # Strategy 5: Try to repair common issues
+        # Remove trailing commas before } or ]
+        if brace_start != -1 and brace_end > brace_start:
+            candidate = t[brace_start:brace_end + 1]
+            candidate = re.sub(r',\s*([}\]])', r'\1', candidate)
+            # Fix single quotes to double quotes
+            candidate = candidate.replace("'", '"')
+            try:
+                json.loads(candidate)
+                return candidate
+            except:
+                pass
+
+        return None
 
     for attempt in range(max_retries + 1):
         rate_limiter.wait()
@@ -80,83 +144,64 @@ def call_ai(client, prompt, json_mode=True, max_retries=3):
             kwargs = {
                 "model": model_name,
                 "messages": [
-                    {"role": "system", "content": "You are an Elite Principal AI Software Architect. You provide deep, exhaustive, and highly technical architectural audits. Never be generic. Always reference specific line numbers and code patterns from the provided source. Be verbose and comprehensive in your descriptions and suggestions. Always respond with valid JSON only. Do not wrap your response in markdown code blocks."},
+                    {"role": "system", "content": "You are an expert code analyst. CRITICAL: You MUST respond with ONLY valid JSON. No text before or after the JSON. No markdown code fences. No explanations. Start your response with { and end with }. Every response must be parseable by JSON.parse()."},
                     {"role": "user", "content": prompt}
                 ],
-                "temperature": 0.5,
-                "max_tokens": 4096,
-                "top_p": 0.9,
+                "temperature": 0.3,
+                "max_tokens": 8192,
+                "top_p": 0.85,
             }
             
-            # Try with json_mode first, but be ready to fall back
-            use_json_format = json_mode and attempt == 0
-            if use_json_format:
+            # Only set response_format when the backend supports it (e.g., OpenAI).
+            # Ollama/Gemma returns 400 when json_object is requested.
+            if json_mode and USE_JSON_MODE:
                 kwargs["response_format"] = {"type": "json_object"}
 
             response = client.chat.completions.create(**kwargs)
             
             # Guard against None response (Open WebUI/Ollama can return this)
+            backoff = min(2 ** attempt, 30)
             if response is None:
-                print(f"  -> [GEMMA] Response was None (Attempt {attempt+1}), retrying...", flush=True)
-                time.sleep(2)
+                print(f"  -> [GEMMA] Response was None (Attempt {attempt+1}), retrying in {backoff}s...", flush=True)
+                time.sleep(backoff)
                 continue
             
             if not response.choices or len(response.choices) == 0:
-                print(f"  -> [GEMMA] Empty choices in response (Attempt {attempt+1}), retrying...", flush=True)
-                time.sleep(2)
+                print(f"  -> [GEMMA] Empty choices in response (Attempt {attempt+1}), retrying in {backoff}s...", flush=True)
+                time.sleep(backoff)
                 continue
 
             text = response.choices[0].message.content
             
             if not text or not text.strip():
-                print(f"  -> [GEMMA] Empty content in response (Attempt {attempt+1}), retrying...", flush=True)
-                time.sleep(2)
+                print(f"  -> [GEMMA] Empty content in response (Attempt {attempt+1}), retrying in {backoff}s...", flush=True)
+                time.sleep(backoff)
                 continue
             
-            # Robust JSON extraction
-            original_text = text.strip()
+            # Robust JSON extraction with multiple fallback strategies
+            extracted = _extract_json_robust(text)
             
-            def extract_json(t):
-                # Try finding the first '{' and last '}'
-                try:
-                    start_idx = t.find('{')
-                    end_idx = t.rfind('}')
-                    if start_idx != -1 and end_idx != -1:
-                        return t[start_idx:end_idx+1]
-                except: pass
-                return t
-
-            extracted = extract_json(original_text)
-            
-            # Try parsing to validate
-            try:
-                json.loads(extracted)
+            if extracted:
                 print(f"  -> [GEMMA OK] {model_name} responded ({len(extracted)} chars, attempt {attempt+1})", flush=True)
                 return extracted, model_name
-            except json.JSONDecodeError:
-                # If JSON parsing fails, try one more time to strip markdown fences if they are there
-                if "```" in original_text:
-                    import re
-                    match = re.search(r'```(?:json)?\s*(.*?)\s*```', original_text, re.DOTALL)
-                    if match:
-                        try:
-                            candidate = match.group(1).strip()
-                            json.loads(candidate)
-                            print(f"  -> [GEMMA OK] {model_name} responded (extracted from MD code block, attempt {attempt+1})", flush=True)
-                            return candidate, model_name
-                        except: pass
-                
-                # If it's a retry and it still failed, maybe it's just text
-                if attempt == max_retries:
-                    print(f"  -> [GEMMA] Final attempt failed to produce valid JSON.", flush=True)
-                    raise json.JSONDecodeError("Failed to parse AI response as JSON", extracted, 0)
-                
-                print(f"  -> [GEMMA] Invalid JSON on attempt {attempt+1}, retrying...", flush=True)
-                time.sleep(2)
-                continue
+            
+            # All extraction strategies failed
+            if attempt == max_retries:
+                # Log what the model actually returned for debugging
+                preview = text.strip()[:300].replace('\n', '\\n').encode('ascii', 'ignore').decode('ascii')
+                print(f"  -> [GEMMA] Final attempt failed. Model response preview: {preview}", flush=True)
+                raise json.JSONDecodeError("Failed to parse AI response as JSON", text[:200], 0)
+            
+            backoff_json = min(2 ** attempt, 30)
+            preview = text.strip()[:150].replace('\n', '\\n').encode('ascii', 'ignore').decode('ascii')
+            print(f"  -> [GEMMA] Invalid JSON on attempt {attempt+1} (preview: {preview}...), retrying in {backoff_json}s...", flush=True)
+            time.sleep(backoff_json)
+            continue
 
+        except json.JSONDecodeError:
+            raise  # Re-raise JSON errors from the final attempt
         except Exception as e:
-            error_str = str(e)
+            error_str = str(e).encode('ascii', 'ignore').decode('ascii')
             last_error = e
             print(f"  -> [GEMMA ATTEMPT] {model_name} failed (Attempt {attempt+1}): {error_str[:150]}", flush=True)
 
@@ -169,10 +214,12 @@ def call_ai(client, prompt, json_mode=True, max_retries=3):
                 time.sleep(wait)
                 continue
             
-            # For other errors, just retry with delay
-            time.sleep(2)
+            # For other errors, retry with exponential backoff
+            backoff_err = min(2 ** attempt, 30)
+            time.sleep(backoff_err)
 
     raise Exception(f"Gemma API exhausted after {max_retries+1} attempts. Last error: {last_error}")
+
 
 # Compat alias
 call_groq = call_ai

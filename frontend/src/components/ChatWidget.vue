@@ -1,19 +1,22 @@
 <template>
-  <div class="chat-widget">
-    <button class="chat-toggle btn btn-primary" @click="isOpen = !isOpen">
-      <svg v-if="!isOpen" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-      <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
-    
-    <div v-if="isOpen" class="chat-window">
+  <div class="chat-section">
+    <div class="chat-window">
       <div class="chat-header">
         <h4>AI Workspace Assistant</h4>
         
         <div class="context-toggle">
-          <label class="switch-label">Context:</label>
+          <button class="btn-ghost btn-sm" @click="clearHistory" title="Clear Chat History">
+             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6V20a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+             Clear
+          </button>
+          <label class="switch-label" style="margin-left: 10px;">Context:</label>
           <select v-model="contextType" class="modern-select">
             <option value="workspace">Entire Workspace</option>
-            <option value="file" :disabled="!activeFile">Current File ({{ activeFile ? activeFile.file_name : 'None Selected' }})</option>
+            <optgroup label="Files">
+              <option v-for="f in allFiles" :key="f.file_path" :value="f.file_path">
+                {{ f.file_name }}
+              </option>
+            </optgroup>
           </select>
         </div>
       </div>
@@ -50,11 +53,11 @@ export default {
   name: 'ChatWidget',
   props: {
     activeFile: { type: Object, default: null },
-    workspacePath: { type: String, default: '' }
+    workspacePath: { type: String, default: '' },
+    allFiles: { type: Array, default: () => [] }
   },
   data() {
     return {
-      isOpen: false,
       contextType: 'workspace',
       inputText: '',
       messages: [
@@ -63,17 +66,44 @@ export default {
       loading: false
     };
   },
+  mounted() {
+    this.loadHistory();
+  },
   watch: {
     activeFile: {
       handler(val) {
-        if (!val && this.contextType === 'file') {
+        if (val) {
+          this.contextType = val.file_path;
+        } else if (this.allFiles && this.allFiles.length === 0) {
           this.contextType = 'workspace';
         }
       },
+      immediate: true,
       deep: true
     }
   },
   methods: {
+    loadHistory() {
+      try {
+        const key = `uiux_chat_${this.workspacePath || 'global'}`;
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.length > 0) {
+            this.messages = parsed;
+            this.scrollToBottom();
+          }
+        }
+      } catch (e) {
+        console.warn("Could not load chat history");
+      }
+    },
+    saveHistory() {
+      try {
+        const key = `uiux_chat_${this.workspacePath || 'global'}`;
+        localStorage.setItem(key, JSON.stringify(this.messages));
+      } catch (e) {}
+    },
     renderMarkdown(text) {
       return marked.parse(text);
     },
@@ -82,29 +112,41 @@ export default {
       
       const userMsg = this.inputText.trim();
       this.messages.push({ role: 'user', content: userMsg });
+      this.saveHistory();
       this.inputText = '';
       this.loading = true;
       
       this.scrollToBottom();
       
       try {
+        const historyPayload = this.messages.slice(1, -1).map(m => ({ role: m.role, content: m.content }));
+        let activeFileName = '';
+        let activeContent = '';
+
+        if (this.contextType !== 'workspace') {
+           const selected = this.allFiles.find(f => f.file_path === this.contextType);
+           if (selected) {
+             activeFileName = selected.file_name;
+             const res = await axios.get(`http://127.0.0.1:8081/file-content?path=${encodeURIComponent(selected.file_path)}`);
+             activeContent = res.data;
+           }
+        }
+
         const payload = {
           message: userMsg,
-          contextType: this.contextType,
+          contextType: this.contextType === 'workspace' ? 'workspace' : 'file',
           workspacePath: this.workspacePath,
-          activeFileName: this.activeFile ? this.activeFile.file_name : '',
-          activeContent: ''
+          activeFileName: activeFileName,
+          activeContent: activeContent,
+          history: historyPayload
         };
-        
-        if (this.contextType === 'file' && this.activeFile) {
-           const res = await axios.get(`http://127.0.0.1:8081/file-content?path=${encodeURIComponent(this.activeFile.file_path)}`);
-           payload.activeContent = res.data;
-        }
 
         const response = await axios.post('http://127.0.0.1:7891/chat', payload);
         this.messages.push({ role: 'assistant', content: response.data.response });
+        this.saveHistory();
       } catch (e) {
         this.messages.push({ role: 'assistant', content: `**Error**: ${e.response?.data?.error || e.message}` });
+        this.saveHistory();
       } finally {
         this.loading = false;
         this.scrollToBottom();
@@ -116,60 +158,41 @@ export default {
            this.$refs.msgContainer.scrollTop = this.$refs.msgContainer.scrollHeight;
         }
       });
+    },
+    clearHistory() {
+      this.messages = [
+        { role: 'assistant', content: 'History cleared. How can I assist you now?' }
+      ];
+      this.saveHistory();
     }
   }
 };
 </script>
 
 <style scoped>
-.chat-widget {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 10000;
+.chat-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  width: 100%;
+  height: 100%;
   font-family: var(--font-primary);
-}
-
-.chat-toggle {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  background: var(--accent-primary);
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-.chat-toggle:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
+  box-sizing: border-box;
 }
 
 .chat-window {
-  width: 400px;
-  height: 550px;
+  flex: 1;
+  width: 100%;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   animation: slideUp 0.3s forwards cubic-bezier(0.16, 1, 0.3, 1);
-  transform-origin: bottom right;
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .chat-header {
@@ -231,8 +254,11 @@ export default {
 }
 .msg.user .msg-bubble {
   background: var(--accent-primary);
-  color: #fff;
+  color: #ffffff !important;
   border-bottom-right-radius: 4px;
+}
+.msg.user .msg-bubble :deep(*) {
+  color: #ffffff !important;
 }
 .msg.assistant .msg-bubble {
   background: var(--bg-inset);
@@ -252,11 +278,16 @@ export default {
     margin: 0.5rem 0;
 }
 .markdown-body :deep(code) {
-    background: var(--bg-surface);
+    background: var(--bg-inset) !important;
+    color: var(--text-primary) !important;
     padding: 0.1rem 0.3rem;
     border-radius: 3px;
     font-family: var(--font-mono);
     font-size: 0.9em;
+}
+.markdown-body :deep(pre code) {
+    background: transparent !important;
+    color: inherit !important;
 }
 .markdown-body :deep(p) { margin: 0 0 0.5rem 0; }
 .markdown-body :deep(p:last-child) { margin: 0; }

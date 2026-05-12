@@ -1,0 +1,425 @@
+{
+    "overall_score": 98,
+    "audit_status": "complete",
+    "project_name": "vuefiles",
+    "report_id": "20260505_115121",
+    "timestamp": "2026-05-05T11:51:21.832243",
+    "files_analyzed": 17,
+    "total_issues": 23,
+    "total_real_issues": 23,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "2",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "end_line": 13,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div[data-tip=\"Back\"]",
+                    "problem": "The tooltip class is not correctly applied. It should be `tooltip-right` for right-aligned tooltips, but currently it's just `tooltip`. This will cause the tooltip to appear on the wrong side.",
+                    "replacement_text": "       <div\n17:         data-tip=\"Back\"\n18:         class=\"tooltip tooltip-right cursor-pointer\"\n19:       >\n20:         <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n21:       </div\n22:     </div\n23:     <!-- Back button code end-->",
+                    "explanation": "Correcting the tooltip class to `tooltip-right` ensures the tooltip appears on the right side as intended. This improves usability and accessibility.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 42,
+                    "end_line": 42,
+                    "defect_type": "Performance | UI",
+                    "severity": "medium",
+                    "element": "div[v-if=\"cardList?.length > 0\"]",
+                    "problem": "The `v-if` directive is used without a fallback or conditional rendering for when `cardList` is empty. This can lead to rendering issues and a poor user experience.",
+                    "replacement_text": "42:       <div\n43:         class=\"box box-2\"\n44:         v-if=\"cardList?.length > 0\"\n45:       >\n46:         <div\n47:           class=\"hr-card arrow\"\n48:           v-for=\"(card, index) in cardList\"\n49:           :key=\"index\"\n50:           @click=\"selectProgram(card)\"\n51:         >\n52:           {{ card.fullProgramTerm }}\n53:         </div\n54:       </div\n55:     ",
+                    "explanation": "Adding a fallback mechanism (e.g., a message like 'No programs available') when `cardList` is empty improves the user experience and prevents potential rendering issues.  It also addresses a possible missing-element scenario.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 58,
+                    "end_line": 58,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "div[v-else]",
+                    "problem": "The `v-else` block lacks styling and visual feedback to indicate that no programs are available. This can make it harder for users to understand the situation.",
+                    "replacement_text": "58:         <div\n59:           v-else\n60:           class=\"box box-2 col-span-3 text-center p-6\"\n61:           >    ",
+                    "explanation": "Adding some styling to the `v-else` block (e.g., a subtle background color, an icon, or a helpful message) improves the visual clarity and accessibility of the 'no programs available' state.  This informs the user about the situation.",
+                    "confidence": "medium",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 87,
+                    "end_line": 87,
+                    "defect_type": "Logic | UI",
+                    "severity": "medium",
+                    "element": "v-if=\"userObj?.studentLoginCrMode === 1 && Number(selectedProgram?.appearanceType) === 2\"",
+                    "problem": "The condition for showing the checkbox is complex and might be difficult for users to understand. The use of `Number()` to cast `selectedProgram?.appearanceType` to a number is not ideal. It's better to use a direct comparison.",
+                    "replacement_text": "87:                 <input\n88:                   v-if=\"userObj?.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2\"\n89:                   type=\"checkbox\"\n90:                   v-model=\"selectedSubjects\"\n91:                   :value=\"{\n92:     programTermUId: subject.programTermUId,\n93:     termCourseAMATUId: subject.termCourseAMATUId,\n94:     termCourseGroupAMATUId: subject.termCourseGroupUId\n95:   }\"\n96:                   class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n97:                   @click.stop\n98:                 />",
+                    "explanation": "Simplifying the condition and avoiding the unnecessary use of `Number()` improves readability and maintainability. A direct comparison is easier to understand and less prone to errors.  Also, adding `.stop` to the `@click` prevents the click from bubbling up to the parent element.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 121,
+                    "end_line": 121,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "div[class=\"checkbox-wrapper\"]",
+                    "problem": "The code uses a custom checkbox-wrapper class that isn't defined. This will cause the styling for this element to fail.",
+                    "replacement_text": "121:               <div class=\"checkbox-wrapper\">\n122:               ",
+                    "explanation": "The issue is resolved by simply adding the required class name",
+                    "confidence": "high",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 1,
+                    "end_line": 1,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "<template>",
+                    "problem": "The `div` with class 'p-8 selection-container' does not have a semantic HTML5 element. Using a `div` for the entire container is not semantically correct and can impact accessibility and maintainability.",
+                    "replacement_text": "<template>\n  <div class=\"p-8 selection-container\">\n    <!-- Content -->\n  </div>\n</template>",
+                    "explanation": "Replacing the `div` with a more semantically appropriate element like a `<section>` or `<article>` improves accessibility by providing a clear structure for screen readers and search engines. It also enhances the code's maintainability.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 9,
+                    "end_line": 9,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "        <OverlayPanel ref=\"courseName\">",
+                    "problem": "The `OverlayPanel` element is used without providing any ARIA attributes or role. This is important for screen readers to understand the purpose and context of the element and may cause accessibility issues.",
+                    "replacement_text": "        <OverlayPanel ref=\"courseName\" :aria-label=\"'Course Details'\">",
+                    "explanation": "Adding the `aria-label` attribute provides a descriptive label for the panel, improving accessibility for screen reader users.  This helps screen readers understand the purpose of the panel and its content.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 26,
+                    "end_line": 26,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": " <template #item=\"slotProps\">",
+                    "problem": "The template item slot does not have ARIA attributes for accessibility. This means screen readers will not understand the context of the item being rendered.",
+                    "replacement_text": " <template #item=\"slotProps\" :aria-label=\"`Course ${slotProps.data.track}`\">",
+                    "explanation": "Adding `aria-label` to the template item slot helps screen readers understand the content and context of each course item, improving the user experience for screen reader users. This ensures that users understand what each item represents.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 29,
+                    "end_line": 29,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "               {{ slotProps.data.track }}\n",
+                    "problem": "The `track` attribute is a string and doesn't offer any semantic meaning to screen readers. It's important to use more descriptive text or ARIA attributes to improve accessibility.",
+                    "replacement_text": "               <span :aria-label=\"`Course: ${slotProps.data.track}`\">{{ slotProps.data.track }}</span>",
+                    "explanation": "Wrapping the `track` text in a `span` element allows for the addition of `aria-label` which provides more context to screen readers. The `aria-label` attribute makes it clear that this text represents the course track.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 96,
+                    "end_line": 96,
+                    "defect_type": "UI | Accessibility | Performance",
+                    "severity": "low",
+                    "element": "<Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" />",
+                    "problem": "The Vue3Lottie component is rendered when no course is selected. This can lead to unnecessary rendering and potentially impact performance. Also, the Lottie animations are not accessible.",
+                    "replacement_text": "// Consider replacing the empty Lottie with an accessible message, or a simpler visual indicator.  Example:\n  <div class=\"empty-state\">\n    <div class=\"es-title\">Course not selected</div>\n    <div class=\"es-desc\">Please select a course to proceed</div>\n  </div>",
+                    "explanation": "Removing the Lottie animation when no course is selected improves performance.  Accessibility has been improved by using a textual message in its place.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 116,
+                    "end_line": 116,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "        <button class=\"btn btn-main btn-outline\" @click=\"prevTab\" :disabled=\"currentTabIndex === 0\">\n",
+                    "problem": "The button is missing an aria-label, which is required for screen readers to understand its function.",
+                    "replacement_text": "        <button class=\"btn btn-main btn-outline\" @click=\"prevTab\" :disabled=\"currentTabIndex === 0\" :aria-label=\"'Previous Tab'\">",
+                    "explanation": "Adding `aria-label` to the button makes it accessible to screen readers. The `aria-label` text clearly explains the purpose of the button.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 117,
+                    "end_line": 117,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "        <button class=\"btn btn-main btn-solid\" @click=\"nextOrSubmit\">\n",
+                    "problem": "The button is missing an aria-label, which is required for screen readers to understand its function.",
+                    "replacement_text": "        <button class=\"btn btn-main btn-solid\" @click=\"nextOrSubmit\" :aria-label=\"'Next or Submit'\">",
+                    "explanation": "Adding `aria-label` to the button makes it accessible to screen readers. The `aria-label` text clearly explains the purpose of the button.",
+                    "confidence": "high",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 65,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [
+                {
+                    "line": 30,
+                    "defect_type": "Accessibility | Logic",
+                    "severity": "high",
+                    "element": "div.subject-card > div.subject-left",
+                    "problem": "The `v-for` loop iterates over `selectedSubjects`. If `selectedSubjects` is empty, the loop will not render any content, potentially confusing the user.  Also, the code does not handle potential errors if the `selectedSubjects` array is not what is expected. It is crucial to have a fallback rendering.",
+                    "original_code": "   <div\n29:         class=\"subject-card\"\n30:         v-for=\"(subject, index) in selectedSubjects\"\n31:         :key=\"index\"\n32:       >\n33:         <div class=\"subject-left\">\n34:           <div class=\"subject-number\">\n35:             {{ index + 1 }}\n36:           </div\n",
+                    "fixed_code": "   <div\n29:         class=\"subject-card\"\n30:         v-for=\"(subject, index) in selectedSubjects\"\n31:         :key=\"index\"\n32:       >\n33:         <div class=\"subject-left\">\n34:           <div class=\"subject-number\">\n35:             {{ index + 1 }}\n36:           </div>\n",
+                    "explanation": "This fix adds a closing tag to the div element. The primary issue is the lack of a check for an empty `selectedSubjects` array. A fallback rendering should be implemented when `selectedSubjects` is empty to avoid a blank state. Also, using a key with the index is not always the best practice.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -30 +30 @@\n-         v-for=\"(subject, index) in selectedSubjects\"\n+         v-for=\"(subject, index) in selectedSubjects\"\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 146,
+                    "defect_type": "Logic | Accessibility",
+                    "severity": "high",
+                    "element": "const isDuplicate = this.selectedSubjects.some((selected) => { ... });",
+                    "problem": "The logic for determining if an application is a duplicate is complex and not immediately clear to screen readers. The use of `some` can also be performance-intensive if `selectedSubjects` is large.  Furthermore, the code relies on string splitting and array methods that aren't immediately accessible to assistive technologies.",
+                    "original_code": "   const isDuplicate = this.selectedSubjects.some((selected) => {\n146:         return this.existingApplicationData.some((existing) => { ... });\n147:       });\n",
+                    "fixed_code": "   const isDuplicate = this.selectedSubjects.some((selected) => {\n146:         return this.existingApplicationData.some((existing) => { ... });\n147:       });\n",
+                    "explanation": "The code itself doesn't need to be changed. However, the explanation clarifies the complexity, potential performance issues, and accessibility concerns associated with the duplicate detection logic.  A more accessible and efficient implementation might involve using a more structured data representation or a different algorithm for duplicate detection.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -146 +146 @@\n-         return this.existingApplicationData.some((existing) => { ... });\n+         return this.existingApplicationData.some((existing) => { ... });\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 15,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div.box box-2 w-full max-w-3xl > div.flex flex-col gap-4 mt-10 > h1.text-center mb-2 font-bold text-xl",
+                    "problem": "The `userObj.fullName` is rendered directly. If `fullName` is a complex string, it may not be accessible to screen readers. Using a more structured approach for displaying user information enhances accessibility.",
+                    "original_code": "   <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:     Name: {{ userObj.fullName }}\n16:   </h1\n",
+                    "fixed_code": "   <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:     Name: {{ userObj.fullName }}\n16:   </h1>\n",
+                    "explanation": "This fix adds a closing tag to the h1 element, ensuring valid HTML. More importantly, the explanation highlights the accessibility concern.  A more robust solution would use a span to wrap the text, allowing for ARIA attributes to be added for screen reader support.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 @@\n-   <h1 class=\"text-center mb-2 font-bold text-xl\">\n+   <h1 class=\"text-center mb-2 font-bold text-xl\">\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 18,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div.box box-2 w-full max-w-3xl > div.flex flex-col gap-4 mt-10 > h1.text-center mb-2 font-bold text-xl",
+                    "problem": "Similar to the `fullName` rendering, `userObj.SENumber` is rendered directly. This can be inaccessible for screen readers.",
+                    "original_code": "   <h1 class=\"text-center mb-2 font-bold text-xl\">\n18:     PRN: {{ userObj?.SENumber }}\n19:   </h1\n",
+                    "fixed_code": "   <h1 class=\"text-center mb-2 font-bold text-xl\">\n18:     PRN: {{ userObj?.SENumber }}\n19:   </h1>\n",
+                    "explanation": "This fix adds a closing tag to the h1 element.  As with the `fullName`, ARIA attributes should be added to improve accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -18 +18 @@\n-   <h1 class=\"text-center mb-2 font-bold text-xl\">\n+   <h1 class=\"text-center mb-2 font-bold text-xl\">\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 24,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1.font-bold text-center mb-2 subject-info > div.subject-info > h1.text-center mb-2 subject-info",
+                    "problem": "The text rendered in this h1 is long and complex, potentially overwhelming the user and making it difficult to read with assistive technologies. It also doesn't provide clear structure for screen readers.",
+                    "original_code": "   <h1 class=\"font-bold text-center mb-2 subject-info\">\n24:     Selected courses for {{ selectedSubjects[0]?.applicationType }}\n25:   </h1\n",
+                    "fixed_code": "   <h1 class=\"font-bold text-center mb-2 subject-info\">\n24:     Selected courses for {{ selectedSubjects[0]?.applicationType }}\n25:   </h1>\n",
+                    "explanation": "This fix adds a closing tag to the h1 element.  The issue is in the content of the h1 itself, not the HTML structure. The content should be split into smaller, more manageable components with appropriate semantic HTML. Consider using lists or tables to present this information clearly.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -24 +24 @@\n-   <h1 class=\"font-bold text-center mb-2 subject-info\">\n+   <h1 class=\"font-bold text-center mb-2 subject-info\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "ai_analysis": [
+                {
+                    "line": 91,
+                    "end_line": 91,
+                    "defect_type": "Logic",
+                    "severity": "medium",
+                    "element": "{{ $t(\"transaction.verify\") }}\n",
+                    "problem": "The text content of the button is hardcoded.  This makes the component difficult to translate and maintain. It should use a Vue-specific localization mechanism ($t).",
+                    "replacement_text": "{{ $t('transaction.verify') }}\n",
+                    "confidence": "high",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "end_line": 14,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "ul class=\"list-disc pl-5 text-gray-700 font-semibold\">",
+                    "problem": "The `ul` element has no closing tag, violating HTML standards and potentially causing rendering issues and accessibility problems for screen readers.",
+                    "replacement_text": "ul class=\"list-disc pl-5 text-gray-700 font-semibold\"></ul\n",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 18,
+                    "end_line": 18,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "li\n        You can verify only transactions from the last\n",
+                    "problem": "The `li` element is not closed, creating a potential rendering issue. It's also difficult to style or manipulate.",
+                    "replacement_text": "li\n        You can verify only transactions from the last\n</li\n",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 22,
+                    "end_line": 22,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "button\n        class=\"absolute right-4 top-4 bg-blue-600 text-white py-1 px-3 rounded hover:bg-blue-700\"\n",
+                    "problem": "The `button` element is missing a closing tag. This will lead to unexpected behavior and potentially cause issues with styling and accessibility.",
+                    "replacement_text": "button\n        class=\"absolute right-4 top-4 bg-blue-600 text-white py-1 px-3 rounded hover:bg-blue-700\"\n</button\n",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 86,
+                    "end_line": 86,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "button\n        class=\"text-blue-600 hover:underline cursor-pointer hover:text-blue-700 bg-blue-600\"\n",
+                    "problem": "The button's `class` attribute contains `hover:underline` without a corresponding `underline` style defined in the CSS.  This creates a visual inconsistency and could negatively impact accessibility for users who rely on visual cues.",
+                    "replacement_text": "button\n        class=\"text-blue-600 hover:underline cursor-pointer hover:text-blue-700 bg-blue-600\"\n</button\n",
+                    "confidence": "high",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 92,
+                    "end_line": 92,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "div>\n",
+                    "problem": "This is a syntax error that should be fixed.",
+                    "replacement_text": "div>\n",
+                    "confidence": "high",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 70,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        }
+    ]
+}

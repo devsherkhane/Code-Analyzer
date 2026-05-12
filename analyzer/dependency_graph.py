@@ -35,7 +35,7 @@ def build_dependency_graph(files_table, project_root):
     Returns a unified graph structure.
     """
     graph = {
-        "connections": [], # List of {from_id, to_id, imported_names}
+        "connections": [], # List of {from_id, to_id, type, name, names}
         "file_map": {},    # Map of ID to file info
         "impact_map": {}   # Map of ID to list of dependent IDs (who depends on me)
     }
@@ -59,7 +59,7 @@ def build_dependency_graph(files_table, project_root):
         imports = f.get("imports", [])
         
         # Track unique connections from this file
-        seen_targets = set()
+        seen_targets = {}
 
         for imp in imports:
             try:
@@ -70,17 +70,30 @@ def build_dependency_graph(files_table, project_root):
                     target_id = path_to_id[resolved_abs_path]
                     
                     if target_id != current_id:
-                        graph["connections"].append({
-                            "from_id": current_id,
-                            "to_id": target_id,
-                            "name": imp["name"],
-                            "type": imp["type"]
-                        })
+                        if target_id not in seen_targets:
+                            seen_targets[target_id] = {
+                                "from_id": current_id,
+                                "to_id": target_id,
+                                "type": "import",
+                                "name": "",
+                                "names": [],
+                            }
+                        
+                        if imp.get("name") and imp["name"] not in seen_targets[target_id]["names"]:
+                            seen_targets[target_id]["names"].append(imp["name"])
                         
                         if current_id not in graph["impact_map"][target_id]:
                             graph["impact_map"][target_id].append(current_id)
             except Exception as e:
                 print(f"  -> [RESOLVE ERROR] Could not resolve {imp.get('source')} in {f['file_name']}: {e}")
+                
+        for target_id, conn in seen_targets.items():
+            imported = [n for n in conn.get("names", []) if n]
+            if imported:
+                conn["name"] = f"Imports {', '.join(imported[:6])}" + ("…" if len(imported) > 6 else "")
+            else:
+                conn["name"] = "Imports module"
+        graph["connections"].extend(list(seen_targets.values()))
 
     # 3. Detect Circular Dependencies (DFS)
     def find_cycles(adj):

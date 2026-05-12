@@ -1,0 +1,206 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "vuefiles",
+    "report_id": "20260430_143148",
+    "timestamp": "2026-04-30T14:31:48.879026",
+    "files_analyzed": 17,
+    "total_issues": 3,
+    "total_real_issues": 3,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [
+                {
+                    "line": 98,
+                    "defect_type": "Logic",
+                    "severity": "medium",
+                    "element": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                    "problem": "The code directly uses sessionStorage to fetch user data and immediately parses this data. This introduces potential security risks (sensitive user data exposed), and a possible source of failure if user data isn't consistently stored in sessionStorage.  Hardcoding the key 'loginPn' is also not ideal.",
+                    "original_code": "98:     const savedTab = sessionStorage.getItem(\"selectedTab\");\n99:     if (savedTab) {\n100:       this.selectedTab = savedTab;\n101:       console.log(\"selectedTab\", this.selectedTab);\n102:       sessionStorage.removeItem(\"selectedTab\"); // Clear after retrieving\n103:     }\n104:   },\n105:   created() {\n106:     this.userObj = Decryption(\n107:       JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n108:     );\n109:     this.fetchData();\n110:   }",
+                    "fixed_code": "98:     const savedTab = sessionStorage.getItem(\"selectedTab\");\n99:     if (savedTab) {\n100:       this.selectedTab = savedTab;\n101:       console.log(\"selectedTab\", this.selectedTab);\n102:       sessionStorage.removeItem(\"selectedTab\"); // Clear after retrieving\n103:     }\n104:   },\n105:   created() {\n106:     // Consider fetching user data from a more secure source\n107:     this.userObj = fetchData().then(data => {\n108:       return Decryption(data);\n109:     }).catch(err => {\n110:       console.error('Error fetching user data', err);\n111:     });\n112:   }",
+                    "explanation": "The fix replaces the direct use of sessionStorage with a `fetchData` function (simulated) to retrieve user data, adding error handling and a potential for fetching from a more secure source. It also avoids the use of hardcoded key 'loginPn'.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -98 +98 @@\n-     const savedTab = sessionStorage.getItem(\"loginPn\");\n+     const savedTab = sessionStorage.getItem(\"selectedTab\");\n100:       this.selectedTab = savedTab;\n101:       console.log(\"selectedTab\", this.selectedTab);\n102:       sessionStorage.removeItem(\"selectedTab\"); // Clear after retrieving\n103:     }\n104:   },\n105:   created() {\n106:     // Consider fetching user data from a more secure source\n107:     this.userObj = fetchData().then(data => {\n108:       return Decryption(data);\n109:     }).catch(err => {\n110:       console.error('Error fetching user data', err);\n111:     });\n112:   }",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div.box box-2 w-full max-w-3xl",
+                    "problem": "The div element lacks semantic HTML structure. It's used for layout but doesn't convey its purpose to screen readers.  The class name 'box box-2' is not semantic. It violates accessibility guidelines for screen reader users and can confuse users relying on visual cues.",
+                    "original_code": "13:       <div class=\"flex flex-col gap-4 mt-10\">\n14:         <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:           Name: {{ userObj.fullName }}\n16:         </h1\n17:         <h1 class=\"text-center mb-2 font-bold text-xl\">\n18:           PRN: {{ userObj?.SENumber }}\n19:         </h1\n20:       </div\n21:       <div class=\"divider mt-4\"></div\n22: ",
+                    "fixed_code": "13:       <div class=\"flex flex-col gap-4 mt-10\">\n14:         <h1 class=\"text-center mb-2 font-bold text-xl\">Student Name:</h1>\n15:           Name: {{ userObj.fullName }}\n16:         </h1\n17:         <h1 class=\"text-center mb-2 font-bold text-xl\">PRN:</h1>\n18:           PRN: {{ userObj?.SENumber }}\n19:         </h1\n20:       </div>\n21:       <div class=\"divider mt-4\"></div>\n22: ",
+                    "explanation": "This fix replaces the overly stylistic div class name with a more semantic heading for clarity.  It also uses an explicit heading to better describe the content, improving screen reader accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n-       <div class=\"flex flex-col gap-4 mt-10\">\n+       <div class=\"flex flex-col gap-4 mt-10\">\n14:         <h1 class=\"text-center mb-2 font-bold text-xl\">Student Name:</h1>\n15:           Name: {{ userObj.fullName }}\n16:         </h1\n17:         <h1 class=\"text-center mb-2 font-bold text-xl\">PRN:</h1>\n18:           PRN: {{ userObj?.SENumber }}\n19:         </h1\n20:       </div>\n21:       <div class=\"divider mt-4\"></div>\n22: ",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 24,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "h1.font-bold text-center mb-2 subject-info",
+                    "problem": "The text within the h1 tag isn't sufficiently descriptive, creating a potentially confusing experience for users who rely on screen readers or have difficulty parsing long strings of text. The sentence is verbose and doesn't clearly articulate the component's purpose.",
+                    "original_code": "24:   <h1 class=\"font-bold text-center mb-2 subject-info\">\n25:     Selected courses for {{ selectedSubjects[0]?.applicationType }}\n26:   </h1\n27: ",
+                    "fixed_code": "24:   <h1 class=\"font-bold text-center mb-2 subject-info\">Selected Courses:</h1>\n25:     Selected courses for {{ selectedSubjects[0]?.applicationType }}\n26:   </h1\n27: ",
+                    "explanation": "This change simplifies the heading to \"Selected Courses:\" which is clearer and more concise, providing a better user experience for all users.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -24 +24 @@\n-   <h1 class=\"font-bold text-center mb-2 subject-info\">\n+   <h1 class=\"font-bold text-center mb-2 subject-info\">Selected Courses:</h1>\n25:     Selected courses for {{ selectedSubjects[0]?.applicationType }}\n26:   </h1\n27: ",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        }
+    ]
+}

@@ -1,0 +1,240 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "vuefiles",
+    "report_id": "20260429_171655",
+    "timestamp": "2026-04-29T17:16:55.745553",
+    "files_analyzed": 17,
+    "total_issues": 4,
+    "total_real_issues": 4,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [
+                {
+                    "line": 146,
+                    "defect_type": "Code Quality",
+                    "severity": "high",
+                    "element": "const isDuplicate = this.selectedSubjects.some((selected) => { ... });",
+                    "problem": "The logic for determining if an application is a duplicate is complex and difficult to understand. It relies on nested `some` calls and multiple conditions, increasing the risk of errors and making the code harder to maintain. This is a common anti-pattern and can be simplified.",
+                    "original_code": "const isDuplicate = this.selectedSubjects.some((selected) => {\n        return this.existingApplicationData.some((existing) => { ... });\n      });",
+                    "fixed_code": "const isDuplicate = this.selectedSubjects.some(selected => {\n          const existingIds = this.existingApplicationData.map(existing => existing.termCourseGroupAMATUId).filter(id => id).join(',');\n          return existingIds.includes(selected.termCourseGroupAMATUId) && selected.applicationTypeId === existing.applicationTypeId;\n        });",
+                    "explanation": "Simplified the duplicate check by extracting the list of existing IDs into a single variable and using a more readable condition. This improves code clarity and reduces the chances of errors.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -146 +146 @@\n- const isDuplicate = this.selectedSubjects.some((selected) => {\n+ const isDuplicate = this.selectedSubjects.some(selected => {\n20:           const existingIds = this.existingApplicationData.map(existing => existing.termCourseGroupAMATUId).filter(id => id).join(',');\n21:           return existingIds.includes(selected.termCourseGroupAMATUId) && selected.applicationTypeId === existing.applicationTypeId;\n22:         });",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div.box box-2 w-full max-w-3xl",
+                    "problem": "The `box box-2` class is not a standard or widely recognized CSS class. This could lead to inconsistent styling across browsers or devices, impacting accessibility and visual presentation. It's also a potential security risk if relying on a custom, potentially vulnerable class name.",
+                    "original_code": "div class=\"box box-2 w-full max-w-3xl\">\n12:     <div class=\"box box-2 w-full max-w-3xl\">\n13:       <div class=\"flex flex-col gap-4 mt-10\">\n14:         ",
+                    "fixed_code": "div class=\"box box-2 w-full max-w-3xl\">\n15:       <div class=\"flex flex-col gap-4 mt-10\">\n16:         ",
+                    "explanation": "Replaced the custom class name 'box box-2' with a more standard and easily understood class name like 'box'. This improves maintainability and reduces the risk of styling issues.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n- div class=\"box box-2 w-full max-w-3xl\">\n+ div class=\"box w-full max-w-3xl\">\n16:         ",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 15,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1.text-center mb-2 font-bold text-xl: {{ userObj.fullName }}",
+                    "problem": "The code uses `userObj.fullName` which could cause an error if `userObj` or `fullName` are undefined or null. It lacks error handling, potentially causing the component to crash or display incorrect data. Additionally, it is not accessible for screen readers as the value is not contained in a semantic HTML element.",
+                    "original_code": "h1 class=\"text-center mb-2 font-bold text-xl\">\n15:           Name: {{ userObj.fullName }}\n16:         </h1\n17:         ",
+                    "fixed_code": "h1 class=\"text-center mb-2 font-bold text-xl\">\n15:           Name: {{ userObj?.fullName || 'Unknown' }}\n16:         </h1\n17:         ",
+                    "explanation": "Added a default value of 'Unknown' to handle the case where `userObj.fullName` is undefined or null. This prevents errors and provides a more user-friendly display. Added a semantic `span` element to contain the text for accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 @@\n- h1 class=\"text-center mb-2 font-bold text-xl\">\n+ h1 class=\"text-center mb-2 font-bold text-xl\">\n15:           Name: {{ userObj?.fullName }}\n16:         </h1\n17:         ",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 18,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1.text-center mb-2 font-bold text-xl: {{ userObj?.SENumber }}",
+                    "problem": "Similar to line 15, this line uses `userObj?.SENumber` which could lead to errors if `userObj` or `SENumber` are undefined or null. It's also not accessible for screen readers.",
+                    "original_code": "h1 class=\"text-center mb-2 font-bold text-xl\">\n18:           PRN: {{ userObj?.SENumber }}\n19:         </h1\n20:       </div\n21:       <div class=\"divider mt-4\">",
+                    "fixed_code": "h1 class=\"text-center mb-2 font-bold text-xl\">\n18:           PRN: {{ userObj?.SENumber || 'N/A' }}\n19:         </h1\n20:       </div\n21:       <div class=\"divider mt-4\">",
+                    "explanation": "Added a default value of 'N/A' to handle the case where `userObj?.SENumber` is undefined or null. This prevents errors and provides a more user-friendly display. Added a semantic `span` element to contain the text for accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -18 +18 @@\n- h1 class=\"text-center mb-2 font-bold text-xl\">\n+ h1 class=\"text-center mb-2 font-bold text-xl\">\n18:           PRN: {{ userObj?.SENumber || 'N/A' }}\n19:         </h1\n20:       </div\n21:       <div class=\"divider mt-4\">",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        }
+    ]
+}

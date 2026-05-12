@@ -1,0 +1,302 @@
+{
+    "overall_score": 99,
+    "audit_status": "complete",
+    "project_name": "vuefiles",
+    "report_id": "20260429_144616",
+    "timestamp": "2026-04-29T14:46:16.248508",
+    "files_analyzed": 17,
+    "total_issues": 10,
+    "total_real_issues": 10,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "3",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "14:           <h1 class=\"text-center mb-2 font-bold text-xl\">\n25:             Selected courses for {{ selectedSubjects[0]?.applicationType }}\n26:           </h1>",
+                    "problem": "The use of `selectedSubjects[0]?.applicationType` without checking if `selectedSubjects[0]` exists could lead to errors if `selectedSubjects` is empty, and potentially inaccessible to screen readers if `applicationType` is not properly labelled.",
+                    "original_code": "14:           <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:             Name: {{ userObj.fullName }}\n16:           </h1>\n17:           <h1 class=\"text-center mb-2 font-bold text-xl\">\n18:             PRN: {{ userObj?.SENumber }}\n19:           </h1\n",
+                    "fixed_code": "14:           <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:             Name: {{ userObj?.fullName || 'N/A' }}\n16:           </h1>\n17:           <h1 class=\"text-center mb-2 font-bold text-xl\">\n18:             PRN: {{ userObj?.SENumber || 'N/A' }}\n19:           </h1\n",
+                    "explanation": "The fix uses the nullish coalescing operator (`|| 'N/A'`) to provide a default value if `userObj.fullName` or `userObj.SENumber` is null or undefined. This prevents errors when accessing potentially missing properties and enhances accessibility by providing a descriptive label for empty fields.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14,8 +14,8 @@\n14:           <h1 class=\"text-center mb-2 font-bold text-xl\">\n15:             Name: {{ userObj.fullName }}\n16:           </h1>\n17:           <h1 class=\"text-center mb-2 font-bold text-xl\">\n18:             PRN: {{ userObj?.SENumber }}\n19:           </h1\n20:         </div\n21:       </div\n22: \n23:       <div class=\"divider mt-4\">,\n24: \n25:       <h1 class=\"font-bold text-center mb-2 subject-info\">\n26:         Selected courses for {{ selectedSubjects[0]?.applicationType }}\n27:       </h1\n28: \n29:       <div class=\"subject-grid\">\n30:         <div\n31:           class=\"subject-card\"\n32:           v-for=\"(subject, index) in selectedSubjects\"\n33:           :key=\"index\"\n34:         >\n35:           <div class=\"subject-left\">\n36:             <div class=\"subject-number\">\n37:               {{ index + 1 }}\n38:             </div\n39:             <div class=\"subject-text\">\n40:               <div class=\"subject-info\">\n41:                 <div class=\"label\">Course Name:</div>\n42:                 <div class=\"value\">{{ subject.courseName }}</div\n43:               </div>\n44:               <div class=\"subject-info\">\n45:                 <div class=\"label\">Marks:</div>\n46:                 <div class=\"value\">{{ subject.marksObtained }}</div\n47:               </div>\n48:             </div>\n49:           </div>\n50:         </div\n51:       </div\n52: \n53:       <div class=\"divider mt-4\">,\n54: \n55:       <div class=\"font-bold text-2xl text-center mb-2 subject-info\">\n56:         Total Amount : {{ finalFee }}\n57:       </div\n58: \n59:       <div class=\"divider mt-4\">,\n60: \n61:       <div class=\"flex flex-col gap-4 mt-10\">\n62:         <button class=\"btn btn-main btn-solid\" @click=\"Submit\">\n63:           Submit Application\n64:         </button>\n65:         <button class=\"btn btn-main btn-outline\" @click=\"goBack\">Back</button>\n66:       </div\n67:     </div>\n68:     <Dialog\n69:       v-model:visible=\"showDeclarationModel\"\n70:       modal\n71:       header=\"Declaration From Student\"\n72:       :style=\"{ width: '60rem' }\"\n73:     >\n74:       <p>\n75:         I hereby declare that I will abide to the rules and regulations of University for examinations.\n76:       </p\n77: \n78:       <div class=\"btn-wrapper center\">\n79:         <button class=\"btn btn-main btn-outline\" @click=\"cancelDeclaration()\">\n80:           Cancel\n81:         </button>\n82:         <button class=\"btn btn-main btn-solid\" @click=\"confirmDeclaration()\">\n83:           Pay\n84:         </button>\n85:       </div\n86:     </Dialog\n87:   },\n88:   methods: {",
+                    "accessibility_considerations": "This change directly addresses potential accessibility issues by providing default values when user data might be missing, improving screen reader compatibility.",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [
+                {
+                    "line": 88,
+                    "defect_type": "Code | Potential Error",
+                    "severity": "low",
+                    "element": "\"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"\n89: \t\t\t\t\t</div>\n90: \t\t\t\t\t</li>\n91: \t\t\t\t\t\t<div class=\"divider divide-slate-100\"></div>",
+                    "problem": "The JSON file path is hardcoded and might not be suitable for all environments. This makes it difficult to change the file location in different deployments.",
+                    "original_code": "88: \t\t\t\t\t\t<div class=\"w-90 break-all\t\">\n89: \t\t\t\t\t\t\t\"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"\n90: \t\t\t\t\t\t\t</div>\n91: \t\t\t\t\t\t</li>",
+                    "new_code": "88: \t\t\t\t\t\t<div class=\"w-90 break-all\t\">\n89: \t\t\t\t\t\t\t\"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"\n90: \t\t\t\t\t\t\t</div>\n91: \t\t\t\t\t\t</li>",
+                    "fix": "Use a variable to store the path to the JSON file, allowing easier modification.",
+                    "recommendation": "Avoid hardcoding file paths and use environment variables or configuration files.",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "<input type=\"text\" v-model=\"upload.cdnBaseUrl\" class=\"p-inputtext p-component w-100\"\n        :class=\"upload.cdnBaseUrl ? 'p-filled' : ''\" id=\"cdnBaseUrl\">",
+                    "problem": "The input field lacks a `label` element associated with the `cdnBaseUrl` field, violating WCAG 1.3.1 (Info and Contrast) and potentially confusing users, especially those using screen readers. It also doesn't adhere to best practices for form labeling.",
+                    "original_code": "13: <input type=\"text\" v-model=\"upload.cdnBaseUrl\" class=\"p-inputtext p-component w-100\"\n14:                   :class=\"upload.cdnBaseUrl ? 'p-filled' : ''\" id=\"cdnBaseUrl\">\n15:                 <label for=\"cdnBaseUrl\">CDN Base Url</label>\n16:               </div>\n17:             </div>\n18:             <div class=\"field\">\n19:               <div class=\"p-float-label\">",
+                    "new_code": "13: <input type=\"text\" v-model=\"upload.cdnBaseUrl\" class=\"p-inputtext p-component w-100\"\n14:                   :class=\"upload.cdnBaseUrl ? 'p-filled' : ''\" id=\"cdnBaseUrl\"\n15:                   label=\"CDN Base Url\">",
+                    "fix": "Add a `<label>` element with the `for` attribute set to the `id` of the input field.",
+                    "recommendation": "Always use `<label>` elements to associate with form controls for accessibility.",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 62,
+                    "defect_type": "UI | Style",
+                    "severity": "low",
+                    "element": "btn btn-neutral': true,\n63: \t\t\t\t\t'px-8': true,\n64: \t\t\t\t\t'py-2': true,\n65: \t\t\t\t\t'rounded-lg': true,\n66: \t\t\t\t\t'text-white': true,\n67: \t\t\t\t\t'font-semibold': true,\n68: \t\t\t\t\t'mt-4': true,\n69: \t\t\t\t}",
+                    "problem": "The CSS styles defined for the button element are excessive and potentially unnecessary.  This can lead to inconsistent styling and increased file size. While not directly impacting accessibility, it's a styling best practice to avoid over-styling.",
+                    "original_code": "62: \t\t\t\t\t'btn btn-neutral': true,\n63: \t\t\t\t\t'px-8': true,\n64: \t\t\t\t\t'py-2': true,\n65: \t\t\t\t\t'rounded-lg': true,\n66: \t\t\t\t\t'text-white': true,\n67: \t\t\t\t\t'font-semibold': true,\n68: \t\t\t\t\t'mt-4': true,\n69: \t\t\t\t}",
+                    "new_code": "62: \t\t\t\t\t'btn btn-neutral': true,\n63: \t\t\t\t\t'px-8': true,\n64: \t\t\t\t\t'py-2': true,\n65: \t\t\t\t\t'rounded-lg': true,\n66: \t\t\t\t\t'text-white': true,\n67: \t\t\t\t\t'font-semibold': true,\n68: \t\t\t\t\t'mt-4': true",
+                    "fix": "Simplify the CSS styles for the button element. Remove unnecessary properties.",
+                    "recommendation": "Keep CSS concise and only include necessary styles.",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [
+                {
+                    "line": 71,
+                    "defect_type": "Performance | Architecture",
+                    "severity": "high",
+                    "element": "iframe.style.position = \"absolute\";",
+                    "problem": "Creating a new iframe for printing is a significant performance bottleneck, particularly if this component is used frequently or on slower devices. It creates a costly DOM manipulation.",
+                    "original_code": "  aria-label=\"Back\"",
+                    "fixed_code": "  aria-label=\"Back\"",
+                    "explanation": "This line does not introduce any performance issues.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14:11 +14:11 @@\n- text-[#54519e] font-bold\n+ text-[#54519e] font-bold aria-label=\"Back\"",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Accessibility | UI | Architecture",
+                    "severity": "medium",
+                    "element": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                    "problem": "The icon is used without appropriate ARIA attributes or accessible description, making it difficult for screen reader users to understand its function. Also, inconsistent color usage.",
+                    "original_code": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                    "fixed_code": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold aria-label=\"Back\"",
+                    "explanation": "Adding `aria-label=\"Back\"` provides a text alternative for the icon, enhancing accessibility for screen reader users. Color should be managed consistently throughout the application.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13:14 +13:14 @@\n- text-[#54519e] font-bold\n+ text-[#54519e] font-bold aria-label=\"Back\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 11,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "high",
+                    "element": "div.card p-card p-component",
+                    "problem": "The commented-out div containing the form elements is still present in the DOM, creating potential confusion for users and may negatively impact performance. It also adds visual clutter.",
+                    "original_code": "<!-- <div class=\"p-card p-component\">\n11:                     <div class=\"field\">\n12:                       <div class=\"p-float-label\">\n13:                         <input type=\"text\" v-model=\"uploadId\" class=\"p-inputtext p-component\" :class=\"uploadId ? 'p-filled' : ''\" id=\"uploadId\">\n14:                         <label for=\"uploadId\">Upload Id</label\n15:                       </div>\n16:                     </div>\n17:                     <div class=\"btn-wrapper\">\n18:                         <button class=\"btn btn-submit\" @click.prevent=\"checkUploadProgress\">\n19:                             <i class=\"isax isax-bold-tick-circle\"></i\n20:                           Check Progress\n21:                         </button>\n22:                     </div>\n23:                     <div class=\"field mt-4\">\n24:                       <h3>Result</h3>\n25:                       <json-viewer :value=\"progressResult\" boxed :expanded=\"true\"></json-viewer>\n26:                     </div>\n27:                 </div> -->",
+                    "fixed_code": " <FormKit\n29:             type=\"form\"\n30:             id=\"registration-example\"\n31:             :form-class=\"submitted ? 'hide' : 'show'\"\n32:             submit-label=\"Upload\"\n33:             @submit=\"checkUploadProgress\"\n34:             :actions=\"false\"\n35:             #default=\"{ value }\"\n36:           >\n37:             <FormKit\n38:               type=\"text\"\n39:               name=\"sessionName\"\n40:               label=\"Upload Id\"\n41:               v-model=\"uploadId\"\n42:               placeholder=\"Upload Id\"\n43:               help=\"Enter Upload Id\"\n44:               validation=\"required\"\n45:               :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n46:               outer-class=\"$reset mx-auto\"\n47:             />\n48:             <FormKit\n49:               type=\"submit\"\n50:               label=\"Check Progress\"\n51:               :wrapper-class=\"{ $reset: true, 'text-center': true }\"\n52:               :classes=\"{\n53:                 input: {\n54:                   $reset: true,\n55:                   'btn btn-neutral': true,\n56:                   'px-8': true,\n57:                   'py-2': true,\n58:                   'rounded-lg': true,\n59:                   'text-white': true,\n60:                   'font-semibold': true,\n61:                   'my-4': true,\n62:                 },\n63:               }\"\n64:             />\n65:           </FormKit>\n66: \t\t  <h3 class=\"text-med font-semibold\">Result</h3>\n67: \t\t  <json-viewer\n68: \t\t\t:value=\"progressResult\"\n69: \t\t\tboxed\n70: \t\t\t:expanded=\"true\"\n71: \t\t  ></json-viewer>\n72:         </div>\n73:       </div>\n74:     </div>\n75:   </div>\n76: </template>\n77: \n78: <script>\n79: import MQL from \"@/plugins/mql.js\";\n80: import jsonViewer from \"vue-json-viewer\";\n81: export default {\n82:   data() {\n83:     return {\n84:       uploadId: \"\",\n85:       progressResult: \"\",\n86:     };\n87:   },\n88:   components: {\n89:     jsonViewer,\n90:   },\n91:   methods: {\n92:     checkUploadProgress() {\n93:       new MQL()\n94:         .setActivity(\"o.[CheckUploadedFileProgress]\")\n95:         .setData({ uploadFileId: this.uploadId })\n96:         .fetch()\n97:         .then((rs) => {\n98:           let res = rs.getActivity(\"CheckUploadedFileProgress\", true);\n99:           if (rs.isValid(\"CheckUploadedFileProgress\")) {\n100:             if (res && res.result) {\n101:               this.progressResult = res.result;\n102:               this.uploadId = \"\";\n103:               this.$toast.success(\"File Uploaded Successfully\");\n104:             } else {\n105:               this.$toast.success(\"File Upload Failed\");\n106:             }\n107:           } else {\n108:             rs.showErrorToast(\"CheckUploadedFileProgress\");\n109:           }\n110:         });\n111:     },\n112:   },\n113: };\n114: </script>",
+                    "explanation": "Removing the commented-out code block significantly improves the user experience by removing visual clutter and a potential source of confusion.  It also addresses the potential performance impact of rendering unused DOM elements.",
+                    "fix_diff": "--- original\n+++ original\n@@ -11 -27 +11 +27 @@\n- <div class=\"p-card p-component\">\n-   <div class=\"field\">\n-     <div class=\"p-float-label\">\n-       <input type=\"text\" v-model=\"uploadId\" class=\"p-inputtext p-component\" :class=\"uploadId ? 'p-filled' : ''\" id=\"uploadId\">\n-       <label for=\"uploadId\">Upload Id</label\n-     </div>\n-     <div class=\"btn-wrapper\">\n-       <button class=\"btn btn-submit\" @click.prevent=\"checkUploadProgress\">\n-         <i class=\"isax isax-bold-tick-circle\"></i>\n-         Check Progress\n-       </button>\n-     </div>\n-     <div class=\"field mt-4\">\n-       <h3>Result</h3>\n-       <json-viewer :value=\"progressResult\" boxed :expanded=\"true\"></json-viewer>\n-     </div>\n-   </div>\n- </div>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is cleaner and more focused on the core form elements. Removing the commented-out code significantly improves visual clarity.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Remove commented-out code.",
+                    "Consider accessibility auditing for form elements."
+                ]
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [
+                {
+                    "line": 61,
+                    "defect_type": "Logic | Security",
+                    "severity": "high",
+                    "element": "Decryption(JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj)",
+                    "problem": "Directly using `sessionStorage.getItem('loginPn')` to retrieve user data and subsequently decrypting it exposes a significant security vulnerability. `sessionStorage` is accessible to any script running on the same domain, making it a prime target for cross-site scripting (XSS) attacks.  Also, relying solely on decryption without proper input validation and sanitization is dangerous. It should be validated before being passed to Decryption.",
+                    "original_code": "this.userObj = Decryption(\n20:             JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n21:         );",
+                    "fixed_code": "const userObjFromSession = sessionStorage.getItem(\"loginPn\");\n20:         if(userObjFromSession){\n21:            try{\n22:                this.userObj = Decryption(JSON.parse(userObjFromSession));\n23:            }catch(e){\n24:                console.error(\"Decryption Error: \", e);\n25:                this.$toast.error(\"Decryption failed. Please try again.\");\n26:            }\n27:         }else{\n28:            this.userObj = {}; // Or handle the case where the key is not found\n29:         }",
+                    "explanation": "This fixes the code by first retrieving the user object from `sessionStorage`. The code now includes a check to see if the `userObjFromSession` is valid before attempting to decrypt it. The code also includes error handling if decryption fails, and handles the case where the `loginPn` key isn't present in `sessionStorage`. Input validation is crucial.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -61,7 +61,29 @@\n62:         // Fetch the details for the marksheet based on route params\n63:         this.userObj = Decryption(\n64:             JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n65:         );\n66:         this.FetchBaseUrlForJson();\n67:         this.GetStudentProgramName();\n68:         this.GetDetailsToGenerateMarksheet();\n69:     },\n70:     methods: {\n71:         async FetchBaseUrlForJson() {\n72:             const payload = {\n73:                 clientId: this.userObj.clientId, // Ensure clientId is part of userObj\n74:             };\n75: \n76:             try {\n77:                 const rs = await new MQL()\n78:                     .setActivity(\"r.[FetchBaseUrlForJson]\")\n79:                     .setData(payload)\n80:                     .fetch();\n81: \n82:                 const res = rs.getActivity(\"FetchBaseUrlForJson\", true);\n83: \n84:                 if (rs.isValid(\"FetchBaseUrlForJson\")) {\n85:                     console.log(\"RES WALA JSON: \", res);\n86:                     let baseUrl = res.result.baseUrl; // Assuming the API returns baseUrl\n87:                     if (baseUrl) {\n88:                         // Remove any trailing `#` in the base URL\n89:                         this.baseUrl = baseUrl.replace(/#$/, \"\");\n90:                         console.log(\"Fetched and Cleaned Base URL for JSON:\", baseUrl);\n91:                         return baseUrl;\n92:                     } else {\n93:                         throw new Error(\"Base URL not found in the response.\");\n94:                     }\n95:                 } else {\n96:                     rs.showErrorToast(\"FetchBaseUrlForJson\");\n97:                     throw new Error(\"Invalid response from FetchBaseUrlForJson.\");\n98:                 }\n99:             } catch (error) {\n100:                 console.error(\"Error fetching base URL for JSON:\", error);\n101:                 this.$toast.error(\"Error fetching base URL.\");\n102:             }\n103:         }",
+                    "accessibility_issues": [
+                        "Vulnerable to XSS attacks.",
+                        "Lack of input validation makes it susceptible to other security vulnerabilities."
+                    ],
+                    "is_real_issue": true
+                },
+                {
+                    "line": 110,
+                    "defect_type": "Logic",
+                    "severity": "low",
+                    "element": "new MQL().setActivity('r.[GetStudentProgramName]').setData(payload).fetch()",
+                    "problem": "The code makes several calls to MQL with potentially high overhead, especially if this function is called frequently. This could negatively impact performance. It might also be worth investigating if the 'r.' prefix is necessary (it's generally good practice to avoid prefixes unless they're specifically required by the MQL library).",
+                    "original_code": "new MQL().setActivity('r.[GetStudentProgramName]').setData(payload).fetch()",
+                    "fixed_code": "new MQL().setActivity('GetStudentProgramName').setData(payload).fetch()",
+                    "explanation": "The fix removes the 'r.' prefix from the activity name. This prefix is likely only needed if MQL is configured to use a specific routing system, and removing it simplifies the code and reduces unnecessary overhead.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -115,7 +115,7 @@\n116:                 .setData(payload)\n117:                 .fetch()\n118:                 .then((rs) => { ... });\n119:         },\n120:     ",
+                    "accessibility_issues": [],
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI | Security",
+                    "severity": "medium",
+                    "element": "div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"",
+                    "problem": "The tooltip's `data-tip` attribute is using the text 'Back' which might not be discoverable by screen readers if the tooltip itself doesn't have accessible ARIA attributes to describe its function. Additionally, using click directly on the div doesn't provide a clear indication of the back button functionality to assistive technologies.",
+                    "original_code": "div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n                    <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i\n                </div\n            ",
+                    "fixed_code": "div data-tip=\"Back\" role=\"button\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n                    <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n                </div\n            ",
+                    "explanation": "Adding `role=\"button\"` makes the div a button in the DOM, which is more recognizable to screen readers.  The use of an `i` tag with a font icon should be replaced with a more accessible button. The tooltip itself should have `aria-label` or `title` attributes to explain its function.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13,11 +13,11 @@\n                     <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i\n                 </div\n             </div\n         </div\n+        <div role=\"button\" data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i></div>\n     ",
+                    "accessibility_issues": [
+                        "Missing ARIA attributes for the tooltip.",
+                        "Screen readers may not easily identify the button's functionality."
+                    ],
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        }
+    ]
+}

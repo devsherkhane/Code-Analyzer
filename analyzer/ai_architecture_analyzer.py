@@ -40,11 +40,13 @@ def run_ai_architecture_analyzer():
 
     # LOAD AI REPORT for finding summary
     report_summary = []
+    report_id = None
     report_path = os.path.normpath(os.path.join(CACHE_DIR, "..", "ai_report.json"))
     if os.path.exists(report_path):
         try:
             with open(report_path, "r", encoding="utf-8") as f:
                 full_report = json.load(f)
+                report_id = full_report.get("report_id")
                 files = full_report.get("files", [])
                 for file in files:
                     issues = (file.get("ai_analysis", []) + file.get("ui_accessibility_analysis", []))
@@ -66,11 +68,18 @@ def run_ai_architecture_analyzer():
     prompt = f"""
 You are an Elite Enterprise Architect. Analyze the following project dependency graph and individual file metadata to perform a "Core Structural Audit".
 
+DEPENDENCY & ISSUE DATA:
+{json.dumps(payload, indent=2)}
+
+---
+
 AUDIT GOALS:
-1. CROSS-LAYER CONTAMINATION: Identify if low-level utilities are importing high-level Views (Architectural Inversion).
-2. STATE MANAGEMENT FRAGILITY: Look for deep prop-drilling or inconsistent state patterns (e.g., mixing Vuex/Pinia with heavy local state without clear boundaries).
-3. CIRCULAR VULNERABILITIES: Locate circular dependency chains that could lead to memory leaks or initialization errors.
-4. CENTRALIZED FRAGILITY (God Files): Identify files that are "Architectural Hubs" (heavily depended upon) but also have high complexity issues in the report.
+1. CROSS-LAYER CONTAMINATION: Identify if low-level utilities are importing high-level Views.
+2. STATE MANAGEMENT FRAGILITY: Look for deep prop-drilling or inconsistent state patterns.
+3. CIRCULAR VULNERABILITIES: Locate circular dependency chains.
+4. CENTRALIZED FRAGILITY: Identify "God Files".
+
+CRITICAL INSTRUCTION: You MUST format your response as a valid JSON object matching the EXACT schema below. Do NOT output a list of edges. Do NOT output markdown.
 
 RESPONSE SCHEMA (Strict JSON):
 {{
@@ -78,42 +87,64 @@ RESPONSE SCHEMA (Strict JSON):
   "architectural_health_score": 0,
   "layers": [
     {{
-      "layer_name": "Calculated Layer Name",
-      "description": "Technical role in the codebase.",
-      "file_names": ["List of files"]
+      "layer_name": "Layer Name",
+      "description": "Technical role.",
+      "file_names": ["file1.js", "file2.js"]
     }}
   ],
   "macro_trends": [
     {{
-      "title": "Clear, distinct trend title",
-      "trend_type": "STRUCTURAL | QUALITY | STABILITY",
-      "severity": "HIGH | MEDIUM | LOW",
-      "description": "Evidence-backed explanation of the trend.",
-      "affected_areas": ["Layers or specific directories impacted"]
+      "title": "Trend title",
+      "trend_type": "STRUCTURAL",
+      "severity": "HIGH",
+      "description": "Explanation.",
+      "affected_areas": ["directory/"]
     }}
   ],
   "key_workflows": [
     {{
       "name": "Critical path name",
-      "description": "Trace the dependency flow and explain why it is vital."
+      "description": "Dependency flow explanation."
     }}
   ]
 }}
-
-DEPENDENCY & ISSUE DATA:
-{json.dumps(payload, indent=2)}
 """
 
     print("  -> [AI] Analyzing structural patterns and cross-file dependencies...")
     try:
-        response_text, model_used = call_ai(client, prompt, json_mode=True, max_retries=2)
+        response_text, model_used = call_ai(client, prompt, json_mode=True, max_retries=4)
         print(f"  -> [AI ENGINE] Model: {model_used}")
         
         parsed_result = json.loads(response_text)
         
+        if "project_overview" not in parsed_result:
+            print("  -> [WARNING] Model did not return project_overview. Using fallback schema.")
+            parsed_result = {
+                "project_overview": "AI analysis completed, but the model failed to follow the strict architectural schema. Detailed insights are limited.",
+                "architectural_health_score": 50,
+                "layers": [
+                    {
+                        "layer_name": "General Structure",
+                        "description": "The project graph was analyzed but layer separation couldn't be cleanly determined by the AI.",
+                        "file_names": []
+                    }
+                ],
+                "macro_trends": [],
+                "key_workflows": [],
+                "raw_output": parsed_result
+            }
+        
         out_path = os.path.normpath(os.path.join(CACHE_DIR, "..", "ai_architecture.json"))
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(parsed_result, f, indent=4)
+            
+        if report_id:
+            hist_out_path = os.path.normpath(os.path.join(CACHE_DIR, f"ai_architecture_{report_id}.json"))
+            try:
+                with open(hist_out_path, "w", encoding="utf-8") as f:
+                    json.dump(parsed_result, f, indent=4)
+            except Exception as e:
+                print(f"  -> [WARNING] Failed to save historical AI Architecture Map: {e}")
             
         print(f"  -> [SUCCESS] AI Architecture Map generated successfully at {out_path}")
         

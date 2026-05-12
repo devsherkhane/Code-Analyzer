@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VueAnalyzer — Design System v3 (Professional)
+   PrismAI — Design System v3 (Professional)
    Inspired by: SonarQube, Snyk, Code Climate, Datadog, Linear
    ========================================================================== */
 
@@ -95,6 +95,10 @@
 
   --gradient-subtle: linear-gradient(135deg, rgba(99,102,241,0.04), rgba(236,72,153,0.04));
   --gradient-surface: linear-gradient(180deg, var(--bg-surface), var(--bg-raised));
+  
+  /* Legacy compatibility variables */
+  --surface-2: #1e1e2a;
+  --border-color: rgba(255, 255, 255, 0.06);
 }
 
 /* ── Light theme ────────────────────────────────────────────────────── */
@@ -149,6 +153,10 @@
 
   --gradient-subtle: linear-gradient(135deg, rgba(79,70,229,0.03), rgba(219,39,119,0.03));
   --gradient-surface: linear-gradient(180deg, var(--bg-surface), var(--bg-raised));
+
+  /* Legacy compatibility variables */
+  --surface-2: #f3f4f8;
+  --border-color: rgba(0, 0, 0, 0.06);
 
   --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
@@ -601,7 +609,7 @@ code {
   line-height: 1.6;
 }
 .code-block code {
-  color: var(--code-text);
+  color: inherit;
 }
 
 /* ── Inline code ────────────────────────────────────────────────────── */
@@ -617,10 +625,31 @@ code {
 /* ── Scrollbar ──────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
 
-/* ── Animations ─────────────────────────────────────────────────────── */
+/* Custom Scrollbar Utility */
+.custom-scrollbar {
+  overflow-y: auto;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+  background-clip: padding-box;
+}
+
+/* ── Prism Animations ───────────────────────────────────────────────── */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity var(--duration-slow) var(--ease-out),
@@ -679,6 +708,105 @@ code {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.text-mono {
-  font-family: var(--font-mono);
+
+/* ── Code Highlighting (PrismJS Overrides) ─────────────────────────── */
+[data-theme='dark'] code, 
+[data-theme='dark'] pre {
+  color: #e2e8f0 !important; /* Off-white/Light Slate */
+  background-color: transparent !important; /* Force transparent to prevent white bars */
+  text-shadow: none !important;
+  font-family: var(--font-mono) !important;
+}
+
+[data-theme='light'] code, 
+[data-theme='light'] pre {
+  color: #0f172a !important; /* Slate-900 (Dark) */
+  background-color: transparent !important;
+  text-shadow: none !important;
+  font-family: var(--font-mono) !important;
+}
+
+/* Prevent white bars in code blocks by forcing pre-contained code to inherit background */
+[data-theme='dark'] pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+/* Ensure code blocks have a consistent background */
+.code-block, .ws-source-v2, .source-viewer {
+  background: var(--code-bg) !important;
+}
+
+/* PrismJS Syntax Highlighting for Dark Mode */
+[data-theme='dark'] .token.keyword,
+[data-theme='dark'] .token.operator,
+[data-theme='dark'] .token.punctuation,
+[data-theme='dark'] .token.selector {
+  color: #f8f8f2 !important; /* Bright White/Pinkish */
+}
+
+[data-theme='dark'] .token.string,
+[data-theme='dark'] .token.attr-value {
+  color: #e6db74 !important; /* Soft Yellow */
+}
+
+[data-theme='dark'] .token.function,
+[data-theme='dark'] .token.class-name {
+  color: #a6e22e !important; /* Vibrant Green */
+}
+
+[data-theme='dark'] .token.comment,
+[data-theme='dark'] .token.prolog,
+[data-theme='dark'] .token.doctype,
+[data-theme='dark'] .token.cdata {
+  color: #828bb8 !important; /* Muted Blue/Grey for comments */
+}
+
+[data-theme='dark'] .token.namespace { opacity: .7; }
+
+[data-theme='dark'] .token.regex,
+[data-theme='dark'] .token.important,
+[data-theme='dark'] .token.variable { color: #fbbf24 !important; }
+
+/* PrismJS Syntax Highlighting for Light Mode (minimal) */
+[data-theme='light'] .token.keyword,
+[data-theme='light'] .token.operator,
+[data-theme='light'] .token.punctuation,
+[data-theme='light'] .token.selector {
+  color: #0f172a !important; /* Slate-900 */
+}
+
+[data-theme='light'] .token.string,
+[data-theme='light'] .token.attr-value {
+  color: #0f766e !important; /* Teal-700 */
+}
+
+[data-theme='light'] .token.function,
+[data-theme='light'] .token.class-name {
+  color: #1d4ed8 !important; /* Blue-700 */
+}
+
+[data-theme='light'] .token.comment,
+[data-theme='light'] .token.prolog,
+[data-theme='light'] .token.doctype,
+[data-theme='light'] .token.cdata {
+  color: #64748b !important; /* Slate-500 */
+}
+
+/* Highlighted lines in SourceViewer */
+.line-number.highlight-line {
+  background: var(--accent-danger-subtle) !important;
+  color: var(--accent-danger) !important;
+  border-left: 3px solid var(--accent-danger);
+}
+.line-bg.hl-bg {
+  background: var(--accent-danger-subtle) !important;
+}
+
+/* Overview Page Labels & Contrast Fixes */
+[data-theme='dark'] .quality-gate-label,
+[data-theme='dark'] .section-label,
+[data-theme='dark'] .text-muted,
+[data-theme='dark'] .text-slate-500 {
+  color: #94a3b8 !important; /* Brighter slate for readability */
 }

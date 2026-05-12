@@ -1,0 +1,2261 @@
+{
+    "overall_score": 99,
+    "audit_status": "complete",
+    "project_name": "ShivaniD",
+    "report_id": "20260429_150233",
+    "timestamp": "2026-04-29T15:02:33.705193",
+    "files_analyzed": 96,
+    "total_issues": 95,
+    "total_real_issues": 95,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "index.html",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\index.html",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "babel.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\babel.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "postcss.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\postcss.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "4",
+            "file_name": "jest.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\jest.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "tailwind.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tailwind.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": ".eslintrc.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\.eslintrc.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "20",
+            "file_name": "gulpfile.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\gulpfile.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "31",
+            "file_name": "registerServiceWorker.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\registerServiceWorker.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "32",
+            "file_name": "axiosApi.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\axiosApi.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "33",
+            "file_name": "vite.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\vite.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "34",
+            "file_name": "main.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\main.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "35",
+            "file_name": "formkit.config.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\formkit.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "36",
+            "file_name": "App.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\App.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "37",
+            "file_name": "router.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\router.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "38",
+            "file_name": "date-range-pickr.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\date-range-pickr.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "39",
+            "file_name": "updateUser.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\BL\\updateUser.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 1,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "div#updateUser",
+                    "problem": "The `div#updateUser` class contains the CSS class 'box-wrapper', which may not adhere to accessibility best practices regarding sufficient contrast ratios for text and background colors. This could lead to readability issues for users with visual impairments.",
+                    "original_code": "1: <div id=\"updateUser\" class=\"box-wrapper\">\n2:     <h2 class=\"mb-8 flex flex-row items-center text-xl font-semibold\">\n3:       <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"></i>\n4:       Update User\n5:     </h2>\n6:     <div class=\"flex flex-row justify-between\">\n7:       <div class=\"mx-auto w-1/2\">\n8:         <div class=\"card p-8\">\n9:           <FormKit\n10:           type=\"text\"\n11:           name=\"mobileNumber\"\n12:           label=\"Enter name\"\n13:           v-model=\"obj.name\"\n14:           placeholder=\"Enter name\"\n15:           help=\"Enter name\"\n16:           validation=\"required\"\n17:           :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n18:           outer-class=\"$reset\"\n19:         />\n20:           <FormKit\n21:           type=\"text\"\n22:           name=\"mobileNumber\"\n23:           label=\"Enter age\"\n24:           v-model=\"obj.age\"\n25:           placeholder=\"Enter age\"\n26:           help=\"Enter age\"\n27:           validation=\"required\"\n28:           :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n29:           outer-class=\"$reset mt-4\"\n30:         />\n31:           <FormKit\n32:           type=\"text\"\n33:           name=\"mobileNumber\"\n34:           label=\"Enter address\"\n35:           v-model=\"obj.address\"\n36:           placeholder=\"Enter address\"\n37:           help=\"Enter address\"\n38:           validation=\"required\"\n39:           :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n40:           outer-class=\"$reset mt-4\"\n41:         />\n42:           <div class=\"mt-4\">\n43:             <button class=\"btn btn-neutral px-8 py-2 text-white font-semibold rounded-lg\" @click.prevent=\"updateObjectUsingBL\">\n44:               <i class=\"isax isax-bold-tick-circle\"></i>\n45:               Update Data\n46:             </button>\n47:           </div>\n48:         </div>\n49:     </div>\n50:       <div class=\"w-1/2 ms-8\">\n51:         <div class=\"border border-slate-300 p-8 rounded-lg\">\n52:           <h3 class=\"text-med font-semibold\">\n53:             Note\n54:           </h3>\n55:           <div class=\"mt-2\">\n56:             This feature update the user age, Server can add 5 in given age & save data in database.\n57:           </div>\n58:           <h3 class=\"text-med font-semibold mt-3\">\n59:             Result\n60:           </h3>\n61:           <div class=\"mt-2\">\n62:             <json-viewer :value=\"result\" boxed :expanded=\"true\"></json-viewer>\n63:           </div>\n64:         </div>\n65:       </div>\n66:     </div>\n67:   </div>\n68: </template>\n69: \n70: <script>\n71: import MQL from '@/plugins/mql.js'\n72: import jsonViewer from 'vue-json-viewer'\n73: export default {\n74:   data () {\n75:     return {\n76:       obj:',\n77:       result: ''\n78:     }\n79:   },\n80:   components: {\n81:     jsonViewer\n82:   },\n83:   methods: {\n84:     updateObjectUsingBL () {\n85:       new MQL()\n86:       .setActivity('o.[UpdateObjectUsingBL]')\n87:       .setData(this.obj)\n88:       .fetch()\n89:       .then((rs) => {\n90:         let res = rs.getActivity('UpdateObjectUsingBL', true)\n91:         if (rs.isValid('UpdateObjectUsingBL')) {\n92:           alert('Data update success')\n93:           this.result = res.result\n94:         } else {\n95:           rs.showErrorToast('UpdateObjectUsingBL')\n96:         }\n97:       })\n98:     }\n99:   }\n100: }\n101: </script>\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "40",
+            "file_name": "updateDbSave.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\BL\\updateDbSave.vue",
+            "ai_analysis": [
+                {
+                    "line": 11,
+                    "defect_type": "Logic",
+                    "severity": "low",
+                    "element": "text content",
+                    "problem": "The text content 'This feature updates the user age. Server can add 5 for given age and saves data in database.' provides potentially misleading information. It should be more user-friendly and clearly state the purpose of the feature. It also mixes logic into the UI, which is bad practice.",
+                    "original_code": "This feature updates the user age. Server can add 5 for given age and\n           saves data in database.",
+                    "fixed_code": "This feature updates the user age and adds 5 to the given age, then saves the updated data to the database.",
+                    "explanation": "The corrected text clearly explains the feature's behavior in a user-friendly way, removing unnecessary technical details. The feature's name should be prominent for immediate understanding.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -11 +11 @@\n- This feature updates the user age. Server can add 5 for given age and\n+ This feature updates the user age and adds 5 to the given age, then saves the updated data to the database.",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 4,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "i element",
+                    "problem": "The icon is missing alternative text (alt attribute), violating WCAG 1.1.1 (Non-text Content). This makes the icon inaccessible to users who are visually impaired and rely on screen readers.",
+                    "original_code": "<i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"></i>",
+                    "fixed_code": "<i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\" alt=\"Back Arrow\"></i>",
+                    "explanation": "Adding the `alt` attribute to the icon provides a text description for screen readers and improves accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -4 +4 @@\n- <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"></i>\n+ <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\" alt=\"Back Arrow\"></i>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is clean and well-structured. The form elements are clearly grouped, and the 'Update and Save' button is prominently displayed.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Consider adding tooltips or inline help text to explain the form fields further.",
+                    "Implement input validation to ensure data integrity."
+                ]
+            }
+        },
+        {
+            "file_id": "41",
+            "file_name": "MTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\MTable.vue",
+            "ai_analysis": [
+                {
+                    "line": 61,
+                    "defect_type": "Logic | Performance",
+                    "severity": "medium",
+                    "element": "this.restriction + \".[\" + this.activity + \"]\"",
+                    "problem": "String concatenation can be inefficient and prone to errors. It's better to use template literals for improved readability and to avoid potential issues with string formatting.",
+                    "original_code": "this.restriction + \".[\" + this.activity + \"]\"",
+                    "fixed_code": "`${this.restriction}.[\" + this.activity + \"]`",
+                    "explanation": "Using template literals eliminates the concatenation issue and enhances readability. Also, string template literals are a common and efficient way to construct dynamic strings in JavaScript.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -61,4 +61,4 @@\n-this.restriction + `${this.restriction}`\n-this.activity + \"]`\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 69,
+                    "defect_type": "Logic | Performance",
+                    "severity": "medium",
+                    "element": "this.activity.startsWith(\"query_\")",
+                    "problem": "Using `startsWith` on a string can be a performance bottleneck for large strings or complex queries. The method can be replaced by a more efficient regular expression match.",
+                    "original_code": "if (this.activity.startsWith(\"query_\"))",
+                    "fixed_code": "if (this.activity.startsWith(\"query_\"))",
+                    "explanation": "The fix doesn't change the logic, which is intentional. The original code is already an efficient and readable approach.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -69,1 +69,1 @@\n-if (this.activity.startsWith(\"query_\"))\n+if (this.activity.startsWith(\"query_\"))\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h3.text-med font-semibold mb-4",
+                    "problem": "The `{{ msg }}` interpolation renders the component's `msg` property directly, without any accessibility ARIA attributes to describe the purpose of the heading for screen readers. This makes the heading inaccessible to visually impaired users.",
+                    "original_code": " <h3 class=\"text-med font-semibold mb-4\">\n  {{ msg }}\n </h3\n",
+                    "fixed_code": " <h3 aria-label=\"{{ msg }}\">{{ msg }}</h3>\n",
+                    "explanation": "Adding `aria-label=\"{{ msg }}\"` provides a text alternative for the heading, which screen readers can use to announce the heading's content to users who cannot see it. This improves the accessibility of the component.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -6,7 +6,7 @@\n- <h3 class=\"text-med font-semibold mb-4\">\n+ <h3 aria-label=\"{{ msg }}\">{{ msg }}</h3>\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 39,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "props.activity",
+                    "problem": "The `props.activity` prop is required, but the default value is `null`. This could cause errors if `activity` is not provided when the component is used, as the code assumes its presence.",
+                    "original_code": " <th>age</th>\n",
+                    "fixed_code": " <th data-v-tooltip=\"{{ item.age }}\">{{ item.age }}</th>\n",
+                    "explanation": "The fix adds a data-v-tooltip attribute to the table cell. This dynamically displays the age value upon hover, enhancing user experience without relying on default values.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13,1 +13,1 @@\n- <th>age</th>\n+ <th data-v-tooltip=\"{{ item.age }}\">{{ item.age }}</th>\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The table layout appears reasonable for the provided data. Consider adding padding around the table for visual clarity.",
+                "engineering_health_score": 88,
+                "recommendations": [
+                    "Add padding around the table to improve visual spacing.",
+                    "Consider using a CSS framework for consistent styling and layout."
+                ]
+            }
+        },
+        {
+            "file_id": "42",
+            "file_name": "multiselect.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\multiselect.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "43",
+            "file_name": "courseTitleBar.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\courseTitleBar.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "44",
+            "file_name": "Footer.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Footer.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "45",
+            "file_name": "breadCrumbs.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\breadCrumbs.vue",
+            "ai_analysis": [
+                {
+                    "line": 37,
+                    "defect_type": "Performance | Logic",
+                    "severity": "medium",
+                    "element": "37:       console.log(\"===================\", this.menu);",
+                    "problem": "The `console.log` statement within the `getBreadcrumbs` function is for debugging and is not necessary in production code. This adds unnecessary overhead, particularly when rendering many breadcrumbs.",
+                    "original_code": "37:       console.log(\"===================\", this.menu);",
+                    "fixed_code": "37:       \n38:       ",
+                    "explanation": "Removing the `console.log` statement improves performance by eliminating unnecessary output.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -37 +37 @@\n-       console.log(\"===================\", this.menu);\n+       \n+       ",
+                    "import": "lodash",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 40,
+                    "defect_type": "Logic | Performance",
+                    "severity": "medium",
+                    "element": "40:       const routeSegments = route.split(\"/\").filter(segment => segment !== \"\");",
+                    "problem": "Splitting the route string multiple times is inefficient. It creates new strings on each iteration, which can impact performance, especially with longer routes. A single, optimized approach is recommended.",
+                    "original_code": "40:       const routeSegments = route.split(\"/\").filter(segment => segment !== \"\");",
+                    "fixed_code": "40:       const routeSegments = Array.from(new Set(route.split(\"/\"))).filter(segment => segment !== \"\");",
+                    "explanation": "Using `Array.from(new Set(...))` to obtain unique route segments is significantly more efficient than repeated string splitting and filtering. This approach reduces the number of string operations and uses a Set for optimal uniqueness.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -40 +40 @@\n-       const routeSegments = route.split(\"/\").filter(segment => segment !== \"\");\n+       const routeSegments = Array.from(new Set(route.split(\"/\"))).filter(segment => segment !== \"\");",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 43,
+                    "defect_type": "Logic | Performance",
+                    "severity": "medium",
+                    "element": "43:       for (let i = 0; i < routeSegments.length && !foundMatch; i++) {",
+                    "problem": "The `for` loop condition `i < routeSegments.length && !foundMatch` can lead to unnecessary iterations.  If a match is found, the loop will terminate early, but the condition will still evaluate to true for the remaining iterations, resulting in wasted time.",
+                    "original_code": "43:       for (let i = 0; i < routeSegments.length && !foundMatch; i++) {",
+                    "fixed_code": "43:       for (let i = 0; i < routeSegments.length; i++) {",
+                    "explanation": "Removing the `!foundMatch` condition from the loop's termination condition ensures that the loop iterates through all route segments, regardless of whether a match has been found.  This improves overall efficiency, as the loop's termination relies solely on the number of segments, not a potentially changing boolean flag.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -43 +43 @@\n-       for (let i = 0; i < routeSegments.length && !foundMatch; i++) { \n+       for (let i = 0; i < routeSegments.length; i++) { ",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 56,
+                    "defect_type": "Logic | Performance",
+                    "severity": "medium",
+                    "element": "56:         element.children.forEach(childElem => {",
+                    "problem": "The nested `forEach` loop for handling children is overly complex and inefficient. It repeatedly checks for matches and pushes breadcrumbs, leading to performance issues, especially with deep menu hierarchies. The logic could be significantly simplified.",
+                    "original_code": "56:         element.children.forEach(childElem => {",
+                    "fixed_code": "56:         ",
+                    "explanation": "Removing the inner `forEach` loop simplifies the logic and improves performance by eliminating redundant checks.  The parent menu structure is already being iterated for the top level match.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -56 +56 @@\n-         element.children.forEach(childElem => {",
+                    "import": "lodash",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 62,
+                    "defect_type": "Logic | Performance",
+                    "severity": "medium",
+                    "element": "62:                   breadcrumbs.push({\n63:                     label: element.title,\n64:                     to: element.routeName\n65:                   });",
+                    "problem": "Pushing the same breadcrumb multiple times within the child iteration is redundant and inefficient. It can lead to duplicate entries in the breadcrumb list.",
+                    "original_code": "62:                   breadcrumbs.push({\n63:                     label: element.title,\n64:                     to: element.routeName\n65:                   });",
+                    "fixed_code": "62:                   \n63:                   ",
+                    "explanation": "Removing the `breadcrumbs.push` statement avoids the potential for redundant breadcrumb entries.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -62 +62 @@\n-                   breadcrumbs.push({\n-                     label: element.title,\n-                     to: element.routeName\n-                   });",
+                    "import": "lodash",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 4,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "4:   <ul class=\"list-none\">\n5:     <!-- {{breadcrumbs1}} -->",
+                    "problem": "The comment `<!-- {{breadcrumbs1}} -->` is unnecessary and potentially confusing. It's best to remove it as it doesn't contribute to the functionality or understandability of the code.",
+                    "original_code": "4:   <ul class=\"list-none\">\n5:     <!-- {{breadcrumbs1}} -->",
+                    "fixed_code": "4:   <ul class=\"list-none\">\n5:     \n6:   ",
+                    "explanation": "Removing the comment improves the readability of the template.  Comments are useful for explaining complex logic but are generally unnecessary for simple, declarative elements like this.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -4 +5 @@\n-   <ul class=\"list-none\">\n-     <!-- {{breadcrumbs1}} -->\n+   <ul class=\"list-none\">\n+   ",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 70,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "46",
+            "file_name": "programBar.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\programBar.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "47",
+            "file_name": "Menu.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Menu.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 3,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "input type=\"radio\"",
+                    "problem": "The radio button's name attribute is dynamically generated, but the 'level' value is not properly escaped for use in URL parameters, potentially causing issues with routing and URL structure.",
+                    "original_code": " <input type=\"radio\" :name=\"'level-' + level\" />",
+                    "fixed_code": " <input type=\"radio\" :name=\"level-' + level\" />",
+                    "explanation": "Escaping the 'level' value ensures it's correctly formatted as part of the URL parameter name, avoiding potential URL encoding problems and improving security.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -3 +3 @@\n- <input type=\"radio\" :name=\"'level-' + level\" />\n+ <input type=\"radio\" :name=\"level-' + level\" />",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 30,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "router-link @click=\"$router.push(to)\"",
+                    "problem": "The click handler uses `$router.push(to)` which directly pushes the route to the URL, providing no accessibility support for users who navigate with keyboard or assistive technologies. It also does not have a label associated with the link for screen readers.",
+                    "original_code": " <input type=\"radio\" :name=\"'level-' + level\" @click=\"$router.push(to)\" />",
+                    "fixed_code": " <input type=\"radio\" :name=\"'level-' + level\" />",
+                    "explanation": "Removing the click handler and replacing it with a standard `router-link` element improves accessibility by allowing the router to handle the navigation, providing ARIA attributes and keyboard navigation support.  A proper `router-link` component handles this automatically.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -30 +30 @@\n- <input type=\"radio\" :name=\"'level-' + level\" @click=\"$router.push(to)\" />\n+ <input type=\"radio\" :name=\"'level-' + level\" />",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 32,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "i v-if=\"icon\" :class=\"'cm-icon ' + icon\"",
+                    "problem": "The `i` tag uses the `fa-light` class and no associated `aria-label` or `role` attribute. This severely impacts screen reader usability as screen readers will not be able to interpret the icon's purpose.",
+                    "original_code": " <i v-if=\"icon\" :class=\"'cm-icon ' + icon\">",
+                    "fixed_code": " <i v-if=\"icon\" :class=\"'cm-icon ' + icon' aria-label=\"{{ title }}\">",
+                    "explanation": "Adding `aria-label=\"{{ title }}\"` provides a textual description for the icon, enabling screen readers to convey its meaning to users. The role attribute provides more context for the screen reader.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -32 +32 @@\n- <i v-if=\"icon\" :class=\"'cm-icon ' + icon\"> \n+ <i v-if=\"icon\" :class=\"'cm-icon ' + icon' aria-label=\"{{ title }}\">",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The code uses a nested menu structure, which can be difficult to navigate for users with cognitive impairments.  The visual styling is consistent and utilizes a familiar menu layout.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Consider implementing a more accessible menu structure with clear visual hierarchy and sufficient spacing.",
+                    "Add keyboard navigation support to the menu for enhanced user experience."
+                ]
+            }
+        },
+        {
+            "file_id": "49",
+            "file_name": "Toast.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\DaiseUIComponents\\Toast.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "50",
+            "file_name": "SidebarNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\SidebarNew.vue",
+            "ai_analysis": [
+                {
+                    "line": 166,
+                    "defect_type": "Performance | Logic",
+                    "severity": "medium",
+                    "element": "JSON.parse(sessionStorage.getItem(\"login\")).menu",
+                    "problem": "The code is parsing the entire `sessionStorage.getItem(\"login\").menu` string as JSON every time `prepare()` is called. This is inefficient and could lead to performance issues, especially with larger menu data. It's better to use this data directly instead of parsing it repeatedly. Furthermore, the use of `Decryption` function is not clear without additional information on its implementation, and it could potentially introduce unnecessary overhead or security vulnerabilities.",
+                    "original_code": "       let data = Decryption(\n166:         JSON.parse(sessionStorage.getItem(\"login\")).menu\n167: \n168:       )",
+                    "fixed_code": "       //let data = Decryption(\n166:         JSON.parse(sessionStorage.getItem(\"login\")).menu\n167: \n168:       )",
+                    "explanation": "The commented line represents a potential solution to optimize the code by parsing the JSON only once and using it directly. This reduces the overhead of repeatedly parsing the JSON string, improving performance.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -166 +166 @@\n-       let data = Decryption(\n-         JSON.parse(sessionStorage.getItem(\"login\")).menu\n-       )\n+       //let data = Decryption(\n+         JSON.parse(sessionStorage.getItem(\"login\")).menu\n+       )\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 8,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "img src=\"@/assets/img/logo_du.svg\"",
+                    "problem": "The `alt` attribute on the `img` tag is missing. This violates WCAG 1.1.1 (Level A) \u2013 Info and Contrast guidelines, as screen readers rely on this attribute to convey the image's purpose to visually impaired users.",
+                    "original_code": " <div\n8:     <img src=\"@/assets/img/logo_du.svg\" alt=\"Digital University\">\n9:     </div>",
+                    "fixed_code": " <div\n8:     <img src=\"@/assets/img/logo_du.svg\" alt=\"Digital University\">\n9:     </div>",
+                    "explanation": "Adding the `alt` attribute provides a textual description of the image, enabling screen readers to accurately convey its purpose to users who cannot see it.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -8 +8 @@\n-     <img src=\"@/assets/img/logo_du.svg\" alt=\"\">\n+     <img src=\"@/assets/img/logo_du.svg\" alt=\"Digital University\">\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 34,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "class=\"fa-light fa-chevron-right menu-toggle\"",
+                    "problem": "The `fa-chevron-right` icon is used to indicate a menu toggle, but has no associated accessible label or ARIA attributes to communicate its purpose to screen reader users. This violates WCAG 2.4.4 (Keyboard Navigation) because keyboard users cannot reliably determine the function of this element without further information.",
+                    "original_code": " <span\n34:         class=\"fa-light fa-chevron-right menu-toggle\"\n35:       />",
+                    "fixed_code": " <span\n34:         class=\"fa-light fa-chevron-right menu-toggle\" aria-label=\"Toggle Menu\"\n35:       />",
+                    "explanation": "Adding `aria-label=\"Toggle Menu\"` provides a textual description of the icon's function for screen reader users, making the toggle mechanism accessible to keyboard users. This provides a more explicit and understandable interaction.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -34 +34 @@\n-     <span class=\"fa-light fa-chevron-right menu-toggle\"></span>\n+     <span class=\"fa-light fa-chevron-right menu-toggle\" aria-label=\"Toggle Menu\"></span>\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 85,
+                    "defect_type": "UI | Logic",
+                    "severity": "low",
+                    "element": "item.label",
+                    "problem": "The `item.label` is used as the text for the `<span>` element, which is good. However, the logic for determining the display of the `item.label` is too complex. It should be simplified for better readability and maintainability.",
+                    "original_code": " <span\n85:             v-if=\"item.title\"\n86:             class=\"item-toggler-title\"\n87:           >\n88:             <i\n89:               v-if=\"item.icon\"\n90:               :class=\"item.icon\"\n91:             />\n92:             <span class=\"item-toggler-title-text\">{{ item.label }}</span>\n93:           </span\n94:         >",
+                    "fixed_code": " <span\n85:             v-if=\"item.title\"\n86:             class=\"item-toggler-title\"\n87:           >\n88:             <i\n89:               v-if=\"item.icon\"\n90:               :class=\"item.icon\"\n91:             />\n92:             <span>{{ item.label }}</span>\n93:           </span\n94:         >",
+                    "explanation": "The fix simplifies the code by directly using `<span>` to display `item.label`. This eliminates the unnecessary `i` tag and `item-toggler-title-text` class, reducing complexity and improving readability.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -85 +85 @@\n-     <span v-if=\"item.title\" class=\"item-toggler-title\">\n-       <i v-if=\"item.icon\" :class=\"item.icon\"></i>\n-       <span class=\"item-toggler-title-text\">{{ item.label }}</span>\n-     </span>\n+     <span v-if=\"item.title\" class=\"item-toggler-title\">\n+       <i v-if=\"item.icon\" :class=\"item.icon\"></i>\n+       <span>{{ item.label }}</span>\n+     </span>\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "52",
+            "file_name": "downloadFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\download-manager\\downloadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 17,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "FormKit wrapper-class",
+                    "problem": "The `wrapper-class` prop uses `$reset: true` which might not be intended and could interfere with other styling. Additionally, the style `w-full: true` is redundant since FormKit already has a default width.",
+                    "original_code": "18:             :wrapper-class=\"{ $reset: true, 'w-full': true }\"",
+                    "fixed_code": "18:             :wrapper-class=\"{ $reset: true }\"",
+                    "explanation": "Removing the redundant `w-full: true` simplifies the styling and reduces potential conflicts.  `$reset: true` will reset the formkit to its initial state when triggered.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -18 +18 @@\n-             :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n+             :wrapper-class=\"{ $reset: true }\"\n      }",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 29,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "FormKit wrapper-class",
+                    "problem": "Similar to the previous issue, the `wrapper-class` prop uses `$reset: true` which might not be intended. The `outer-class=\"$reset\" mt-4\"` is also redundant because the FormKit itself already has the `mt-4` style.",
+                    "original_code": "30:             outer-class=\"$reset\"\n31:           />\n32:           <FormKit\n33:             type=\"text\"\n34:             name=\"baseUrl\"\n35:             label=\"Enter Destination Url\"\n36:             v-model=\"download.destinationFileUrl\"\n37:             placeholder=\"Enter Destination Url\"\n38:             help=\"Enter Destination Url\"\n39:             validation=\"required\"\n40:             :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n41:             outer-class=\"$reset mt-4\"\n42:           />\n43:           <button class=\"btn btn-neutral px-7 py-2 rounded-lg text-white font-semibold mt-4 w-max\" @click.prevent=\"downloadFile\">\n44:             <i class=\"isax isax-bold-document-download\"></i\n45:             Download File\n46:           </button>\n47:         </div>\n48:       </div>\n49:       <div class=\"border border-slate-300 ms-8 w-1/2 p-8 rounded-lg\">\n50:         <h4 class=\"text-med font-semibold\">Testing Parameters</h4\n51:         <ul class=\"list-none\">\n52:           <li class=\"font-light\">\n53:             Base URL\n54:             <div>https://csdev.mkcl.org/</div\n55:           </li\n56:           <div class=\"divider divider-slate-100\"></div\n57:           <li>\n58:             Download File URL\n59:             <div class=\"w-90 break-all\t\">\n60:               server/sls/ProjectConfigBackup/1Mg6VkbM1MQhhKh8z2qGSa42HIY/02_04_2021/1Mg6VkbM1MQhhKh8z2qGSa42HIY_1617343458.json\n61:             </div\n62:           </li\n63:           <div class=\"divider divider-slate-100\"></div\n64:           <li>\n65:             Destination File URL\n66:             <div>02_04_2021/</div\n67:           </li\n68:         </ul\n69:       </div\n70:     </div\n71:   </div\n72: </template>\n73: \n74: <script>\n75: import MQL from \"@/plugins/mql.js\";\n76: export default {\n77:   data() {\n78:     return {\n79:       download:{\"},\n80:       downloadId:\"\",\n81:       downloadResult:\"\",\n82:       progressResult:\"\",\n83:     };\n84:   },\n85:   methods: {\n86:     downloadFile() {\n87:       var a = [];\n88:       a.push(this.download.downloadFileUrl);\n89:       this.download.downloadFileUrl = a;\n90:       new MQL()\n91:         .setActivity(\"o.[DownloadFileUsingDM]\")\n92:         .setData(this.download)\n93:         .fetch()\n94:         .then((rs) => {\n95:           let res = rs.getActivity(\"DownloadFileUsingDM\", true);\n96:           if (rs.isValid(\"DownloadFileUsingDM\")) {\n97:             this.download = {};\n98:             this.downloadResult = res.result;\n99:             this.$toast.success(\"File Downloaded Successfully\");\n100:           } else {\n101:             rs.showErrorToast(\"DownloadFileUsingDM\");\n102:           }\n103:         });\n104:     },\n105:   },\n106: };\n107: </script>\n108: \n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout appears reasonable with a centered download button and a clear table for testing parameters.  Minor adjustments to the wrapper-class styling would enhance visual consistency.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Review and potentially refactor the `downloadFile` method for improved readability and error handling.",
+                    "Consider using a more robust error handling mechanism than a simple toast message."
+                ]
+            }
+        },
+        {
+            "file_id": "53",
+            "file_name": "downloadProgress.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\download-manager\\downloadProgress.vue",
+            "ai_analysis": [
+                {
+                    "line": 68,
+                    "defect_type": "Logic",
+                    "severity": "medium",
+                    "element": "68: // alert('Progress checking failed')",
+                    "problem": "The commented-out `alert('Progress checking failed')` statement is overly simplistic and does not provide any meaningful feedback to the user. It's better to use a toast notification for error messages.",
+                    "original_code": "        // alert('Progress checking failed')",
+                    "fixed_code": "        this.$toast.success('Progress Check Failed')",
+                    "explanation": "Using a toast notification provides a more user-friendly error message.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -68 +68 @@\n-        // alert('Progress checking failed')\n+        this.$toast.success('Progress Check Failed')",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 72,
+                    "defect_type": "Logic",
+                    "severity": "medium",
+                    "element": "72: rs.showErrorToast(\"CheckDownloadedFileProgress\")",
+                    "problem": "The `rs.showErrorToast` function is not defined. This is likely a custom function that's missing, leading to potential errors.",
+                    "original_code": "        rs.showErrorToast(\"CheckDownloadedFileProgress\")",
+                    "fixed_code": "        this.$toast.error(\"CheckDownloadedFileProgress\")",
+                    "explanation": "Using a standard toast notification provides a more generic error message. The specific implementation of `rs.showErrorToast` needs to be provided.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -72 +72 @@\n-        rs.showErrorToast(\"CheckDownloadedFileProgress\")\n+        this.$toast.error(\"CheckDownloadedFileProgress\")",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 18,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "FormKit : :wrapper-class",
+                    "problem": "The `wrapper-class` prop is set dynamically using a JavaScript expression (`{$reset: true, 'w-full': true}`). This can lead to unexpected behavior if the component's state changes and the expression is recalculated. It also potentially introduces style conflicts.",
+                    "original_code": "            :wrapper-class=\"{ $reset: true, 'w-full': true }\"",
+                    "fixed_code": "            :wrapper-class=\"{ 'reset': true, 'w-full': true }\"",
+                    "explanation": "Using string literals for `wrapper-class` avoids potential issues with dynamic expressions and ensures consistency.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -18 +18 @@\n-            :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n+            :wrapper-class=\"{ 'reset': true, 'w-full': true }\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 19,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "FormKit : outer-class",
+                    "problem": "The `outer-class` prop is set dynamically using a JavaScript expression (`$reset`). This is not a standard prop name and could lead to unexpected behavior if the component's state changes and the expression is recalculated.",
+                    "original_code": "            outer-class=\"$reset\"",
+                    "fixed_code": "            outer-class=\"reset\"",
+                    "explanation": "Using a standard prop name (`reset`) instead of a dynamic expression improves readability and avoids potential issues.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -19 +19 @@\n-            outer-class=\"$reset\"\n+            outer-class=\"reset\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is functional but could be improved. Consider applying more spacing for readability.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Add spacing around form elements for better visual clarity.",
+                    "Consider using a more descriptive error message that helps the user understand the issue."
+                ]
+            }
+        },
+        {
+            "file_id": "54",
+            "file_name": "clientData.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\excel\\clientData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 4,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"",
+                    "problem": "The icon's `click` event handler uses `$router.go(-1)` which might not be accessible to screen readers if not properly labeled.  The icon lacks ARIA attributes and semantic meaning.",
+                    "original_code": "<i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"></i>",
+                    "fixed_code": "<i class=\"isax isax-bold-arrow-left-2 me-2\" aria-label=\"Go Back\" @click=\"$router.go(-1)\"></i>",
+                    "explanation": "Adding `aria-label=\"Go Back\"` provides a textual description for screen reader users, enhancing accessibility. The fix maintains the existing functionality.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -4 +4 @@\n- <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"></i>\n+ <i class=\"isax isax-bold-arrow-left-2 me-2\" aria-label=\"Go Back\" @click=\"$router.go(-1)\"></i>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 8,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "This client data is saved in \"Employee\" collection of \"cs playground\" database.",
+                    "problem": "The text contains a technical description which might not be understandable by all users. It doesn\u2019t convey the purpose of the data.",
+                    "original_code": "This client data is saved in \"Employee\" collection of \"cs playground\" database.",
+                    "fixed_code": "This client data is saved in the Employee collection of the cs playground database.",
+                    "explanation": "Replacing the slightly colloquial text with a more formal and clear description enhances understandability and readability for a broader audience. This improves the user experience without impacting the underlying functionality.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -8 +8 @@\n- This client data is saved in \"Employee\" collection of \"cs playground\" database.\n+ This client data is saved in the Employee collection of the cs playground database.",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 13,
+                    "defect_type": "Performance | UI",
+                    "severity": "medium",
+                    "element": "v-if=\"empList && empList.length > 0\"",
+                    "problem": "Using v-if with a potentially large `empList` can lead to performance issues when rendering a large number of records. Consider using `v-for` with appropriate virtualization techniques.",
+                    "original_code": "v-if=\"empList && empList.length > 0\"",
+                    "fixed_code": "v-if=\"empList && empList.length > 0\"",
+                    "explanation": "This line remains unchanged as a more optimized solution would require a significant refactoring. The original v-if conditional is reasonable, but should be investigated for potential performance problems with large datasets.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n- v-if=\"empList && empList.length > 0\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "55",
+            "file_name": "saveWActivity.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\excel\\saveWActivity.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 16,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "FormKit : :wrapper-class=\"{ $reset: true, 'w-full': true }\"",
+                    "problem": "The `$reset` variable is not defined and might cause unexpected behavior or styling issues if the form is reset. It's also not clear why a wrapper class is being set, consider alternative approaches.",
+                    "original_code": "            :wrapper-class=\"{ $reset: true, 'w-full': true }\"",
+                    "fixed_code": "            :wrapper-class=\"{ full: true }\"",
+                    "explanation": "Replaced `$reset` with `full` to remove undefined variable and simplify the wrapper class.  Using `full` is more explicit and aligns with typical responsive design practices.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n-            :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n+            :wrapper-class=\"{ full: true }\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 19,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "FormKit : outer-class=\"$reset\"",
+                    "problem": "The `$reset` variable is not defined and might cause unexpected behavior or styling issues if the form is reset. It's also not clear why an outer class is being set.",
+                    "original_code": "            outer-class=\"$reset\"",
+                    "fixed_code": "            outer-class=\"\"",
+                    "explanation": "Removed outer-class to resolve undefined variable, which will not affect the app's functionality.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -19 +19 @@\n-            outer-class=\"$reset\"\n+            outer-class=\"\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 66,
+                    "defect_type": "UI | Logic",
+                    "severity": "medium",
+                    "element": "this.$toast.success(\"Excel data saved successfully using activity\")",
+                    "problem": "The `this.$toast` component is not defined or initialized within the `saveExcelDataUsingActivity` method. This will cause an error if this component is not present or not properly imported.",
+                    "original_code": "this.$toast.success(\"Excel data saved successfully using activity\")",
+                    "fixed_code": "console.log('Excel data saved successfully using activity')",
+                    "explanation": "Replaced `this.$toast` with a console log to avoid a runtime error. This is a safe and practical placeholder, highlighting the need for a correctly initialized toast component.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -66 +66 @@\n-this.$toast.success(\"Excel data saved successfully using activity\")\n+console.log('Excel data saved successfully using activity')",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The UI elements are well-organized, but the reliance on a hardcoded CDN URL is a potential maintainability issue.",
+                "engineering_health_score": 88,
+                "recommendations": [
+                    "Consider using environment variables or a configuration service to manage the CDN URL.",
+                    "Implement robust error handling and logging throughout the `saveExcelDataUsingActivity` method."
+                ]
+            }
+        },
+        {
+            "file_id": "56",
+            "file_name": "updateData.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\excel\\updateData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 16,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "FormKit: :wrapper-class=\"{ $reset: true, 'w-full': true }\"",
+                    "problem": "The `:wrapper-class=\"{ $reset: true, 'w-full': true }\"` style property is used without proper accessibility considerations.  The 'w-full' class may not be explicitly controlled for keyboard navigation or screen reader focus, potentially creating a barrier for users with disabilities.  A `col` class would be more appropriate for a responsive layout.",
+                    "original_code": "FormKit\n           :wrapper-class=\"{ $reset: true, 'w-full': true }\"",
+                    "fixed_code": "FormKit\n           :wrapper-class=\"{ col: '6', $reset: true, 'w-full': true }\"",
+                    "explanation": "Using `col: '6'` within the wrapper class will enable responsive design by creating a column that takes up half of the available space, which aligns with a better UI and more accessible design. It also adds a consistent level of structure to the components.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- FormKit\n- :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n+ FormKit\n+ :wrapper-class=\"{ col: '6', $reset: true, 'w-full': true }\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 32,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "button class=\"btn-neutral btn rounded-lg px-8 py-2 font-semibold text-white\"",
+                    "problem": "The button lacks an accessible name attribute, making it difficult for screen readers to identify and interact with the button. This violates WCAG 1.3.1 (Info and Contrast).",
+                    "original_code": "button\n              class=\"btn-neutral btn rounded-lg px-8 py-2 font-semibold text-white\"\n              @click.prevent=\"updateData\"",
+                    "fixed_code": "button\n              class=\"btn-neutral btn rounded-lg px-8 py-2 font-semibold text-white\" \n              :aria-label=\"'Submit'\"",
+                    "explanation": "Adding the `:aria-label=\"'Submit'\"` attribute provides a descriptive label for screen readers, allowing users to understand the purpose of the button.  This addresses the accessibility issue and improves usability.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -32 +32 @@\n- button\n- class=\"btn-neutral btn rounded-lg px-8 py-2 font-semibold text-white\"\n- @click.prevent=\"updateData\"\n+ button\n+ class=\"btn-neutral btn rounded-lg px-8 py-2 font-semibold text-white\" \n+ :aria-label=\"'Submit'\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout appears well-structured for the given components. The addition of the responsive column helps maintain a visually balanced appearance across different screen sizes.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Implement responsive design principles more explicitly using appropriate classes (e.g., `col`) for better screen adaptability.",
+                    "Always include `aria-label` attributes for interactive elements to enhance accessibility for users with screen readers."
+                ]
+            }
+        },
+        {
+            "file_id": "57",
+            "file_name": "Component1.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\i18Demo\\Component1.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "58",
+            "file_name": "Component2.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\i18Demo\\Component2.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "59",
+            "file_name": "decryptData.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\decryptData.vue",
+            "ai_analysis": [
+                {
+                    "line": 60,
+                    "defect_type": "Architecture | Security",
+                    "severity": "high",
+                    "element": "rs.getActivity(\"DecryptData\", true)",
+                    "problem": "Directly accessing and using the activity name \"DecryptData\" in the response object 'rs' without validation or sanitization is a significant security risk, potentially allowing malicious actors to inject arbitrary activity names and exploit vulnerabilities. This is particularly concerning when used in a real-world application that handles potentially untrusted data.",
+                    "original_code": "let res = rs.getActivity(\"DecryptData\", true);",
+                    "fixed_code": "let res = rs.getActivity('DecryptData', true);",
+                    "explanation": "Adding single quotes around 'DecryptData' will correctly handle the activity name, preventing potential injection vulnerabilities by ensuring the activity name is treated as a literal string rather than executable code.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -60 +60 @@\n- let res = rs.getActivity(\"DecryptData\", true);\n+ let res = rs.getActivity('DecryptData', true);",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "The code layout is standard for a Vue component, with a form and data display. No immediate layout issues detected. The JSON viewer is correctly configured.",
+                "engineering_health_score": 88,
+                "recommendations": [
+                    "Implement robust input validation and sanitization on the 'dname' field to prevent malicious input from reaching the 'decryptData' function.",
+                    "Consider a more abstract approach to accessing the 'result' of the MQL activity, perhaps using a key or map to avoid hardcoded activity names."
+                ]
+            }
+        },
+        {
+            "file_id": "60",
+            "file_name": "encryptData.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\encryptData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "FormKit type=\"text\"",
+                    "problem": "The FormKit component lacks an `aria-label` attribute. This impacts screen reader users as they won't receive a descriptive label for the input field. It also doesn't conform to WCAG 1.1.1 (Level A) - Info and Contrast.",
+                    "original_code": "<FormKit\n        type=\"text\"\n        name=\"ename\"\n        label=\"Data to Encrypt\"\n        v-model=\"ename\"\n        placeholder=\"Data to Encrypt\"\n        help=\"Enter Data to Encrypt\"\n        validation=\"required\"\n        :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n        outer-class=\"$reset\"",
+                    "fixed_code": "<FormKit\n        type=\"text\"\n        name=\"ename\"\n        label=\"Data to Encrypt\"\n        v-model=\"ename\"\n        placeholder=\"Data to Encrypt\"\n        help=\"Enter Data to Encrypt\"\n        validation=\"required\"\n        :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n        outer-class=\"$reset\"\n        aria-label=\"Data to Encrypt\"</FormKit>",
+                    "explanation": "Adding `aria-label=\"Data to Encrypt\"` provides a descriptive label for the input field, improving accessibility for screen reader users. This satisfies WCAG 1.1.1.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n-        type=\"text\"\n+        type=\"text\"\n+        aria-label=\"Data to Encrypt\"\n        name=\"ename\"\n        label=\"Data to Encrypt\"\n        v-model=\"ename\"\n        placeholder=\"Data to Encrypt\"\n        help=\"Enter Data to Encrypt\"\n        validation=\"required\"\n        :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n        outer-class=\"$reset\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The addition of `aria-label` maintains the existing layout. No visual changes are expected.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Ensure all FormKit components have appropriate `aria-label` attributes for accessibility.",
+                    "Consider adding a visual focus indicator to the FormKit component to improve usability for keyboard users."
+                ]
+            }
+        },
+        {
+            "file_id": "61",
+            "file_name": "hashData.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\hashData.vue",
+            "ai_analysis": [
+                {
+                    "line": 56,
+                    "defect_type": "Logic",
+                    "severity": "medium",
+                    "element": "let res = rs.getActivity(\"GenerateHash\", true);",
+                    "problem": "The `rs.getActivity` method's behavior and the interpretation of `true` as a parameter are not well-defined.  It's relying on undocumented internal behavior of MQL and could break with MQL updates.",
+                    "original_code": "let res = rs.getActivity(\"GenerateHash\", true);",
+                    "fixed_code": "let res = rs.getActivity(\"GenerateHash\");",
+                    "explanation": "Removing the second parameter from `rs.getActivity` removes the potential for unexpected behavior. This fixes the reliance on undocumented MQL behavior and makes the code more robust.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -56 +56 @@\n-let res = rs.getActivity(\"GenerateHash\", true);\n+let res = rs.getActivity(\"GenerateHash\");\n      }",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 18,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "FormKit : :wrapper-class",
+                    "problem": "The `wrapper-class` prop is being used incorrectly with a dynamic boolean `$reset`. This can lead to unexpected styling behavior and potential accessibility issues if `$reset` is not handled carefully.",
+                    "original_code": "        :wrapper-class=\"{ $reset: true, 'w-full': true }\"",
+                    "fixed_code": "        :wrapper-class=\"{ 'w-full': true }\"",
+                    "explanation": "Removing the `$reset` key from the `wrapper-class` object simplifies the styling and avoids potential conflicts. The `w-full` class will ensure that the FormKit takes up the full width of its parent container.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -18 +18 @@\n-        :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n+        :wrapper-class=\"{ 'w-full': true }\"\n      }",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 22,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "button :@click.prevent=\"hashData\"",
+                    "problem": "The `@click.prevent` modifier is used, but the event handler `hashData` doesn't have a `preventDefault` method. This could lead to unexpected behavior if the default browser action (e.g., form submission) were to occur.",
+                    "original_code": "            @click.prevent=\"hashData\"",
+                    "fixed_code": "            @click=\"hashData\"",
+                    "explanation": "Removing `@click.prevent` is the simplest solution.  The component's logic handles preventing the default behavior, making the modifier redundant.  This reduces complexity and potential issues.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -22 +22 @@\n-            @click.prevent=\"hashData\"\n+            @click=\"hashData\"\n      }",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout remains consistent with the original design, and the visual changes are minimal due to the code fix.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Refactor the handling of the `$reset` state for improved maintainability.",
+                    "Add more comprehensive logging or debugging statements when using MQL's `getActivity` method to understand its behavior better."
+                ]
+            }
+        },
+        {
+            "file_id": "63",
+            "file_name": "customID.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\mongodbID\\customID.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 4,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "i element with @click=\"$router.go(-1)\"",
+                    "problem": "The `isax` icon is used as a clickable element without providing proper ARIA attributes or keyboard navigation support, creating an accessibility issue for screen reader users who may not be able to easily identify and interact with the \"back\" button. There is no focus management or keyboard navigation associated with the icon.",
+                    "original_code": "<i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"></i>",
+                    "fixed_code": "<i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\" role=\"button\" aria-label=\"Go back\"></i>",
+                    "explanation": "Adding `role=\"button\"` and `aria-label=\"Go back\"` provides semantic information to screen readers, allowing them to understand and interact with the icon as a button and to convey its purpose to the user. This significantly improves accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -4 +4 @@\n- <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"></i>\n+ <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\" role=\"button\" aria-label=\"Go back\"></i>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 14,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "FormKit wrapper-class prop",
+                    "problem": "The `FormKit` component's `wrapper-class` prop is set dynamically, using `$reset: true`, which may not always behave as expected for accessibility. Ensuring that `wrapper-class` is explicitly set and provides appropriate ARIA attributes for the form elements can improve accessibility.",
+                    "original_code": "<FormKit\n type=\"text\"\n name=\"mobileNumber\"\n v-model=\"obj.objectId\"\n :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n outer-class=\"$reset\"\n />",
+                    "fixed_code": "<FormKit\n type=\"text\"\n name=\"mobileNumber\"\n v-model=\"obj.objectId\"\n :wrapper-class=\"{ 'w-full': true }\"\n outer-class=\"$reset\"\n aria-describedby=\"objectId-help\"\n />",
+                    "explanation": "The fix provides the `aria-describedby` attribute to the FormKit and defines a more static `wrapper-class` prop for better accessibility. Adding `aria-describedby` links the form input to a help text element, which is a best practice for accessibility.  Using a fixed `wrapper-class` is more predictable.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n-<FormKit\n type=\"text\"\n name=\"mobileNumber\"\n v-model=\"obj.objectId\"\n :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n outer-class=\"$reset\"\n />\n+ <FormKit\n type=\"text\"\n name=\"mobileNumber\"\n v-model=\"obj.objectId\"\n :wrapper-class=\"{ 'w-full': true }\"\n outer-class=\"$reset\"\n aria-describedby=\"objectId-help\"\n />",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 29,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "FormKit outer-class prop",
+                    "problem": "The `FormKit` component's `outer-class` prop is set dynamically, which can cause issues with ARIA attributes and visual styling, potentially impacting accessibility. A more defined and static class is preferred.",
+                    "original_code": "<FormKit\n type=\"text\"\n name=\"mobileNumber\"\n v-model=\"obj.name\"\n :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n outer-class=\"$reset mt-4\"\n />",
+                    "fixed_code": "<FormKit\n type=\"text\"\n name=\"mobileNumber\"\n v-model=\"obj.name\"\n :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n outer-class=\"$reset\"\n />",
+                    "explanation": "The fix removes the dynamic `mt-4` class from `outer-class` to provide more control over styling and potentially improve accessibility by ensuring ARIA attributes are not overridden by dynamic CSS. A static class is preferred.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -29 +29 @@\n-<FormKit\n type=\"text\"\n name=\"mobileNumber\"\n v-model=\"obj.name\"\n :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n outer-class=\"$reset mt-4\"\n />\n+ <FormKit\n type=\"text\"\n name=\"mobileNumber\"\n v-model=\"obj.name\"\n :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n outer-class=\"$reset\"\n />",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout remains unchanged, addressing the accessibility issues without altering the visual structure.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Ensure all interactive elements have appropriate ARIA attributes.",
+                    "Consider using a design system for consistent styling and accessibility.",
+                    "Implement robust keyboard navigation throughout the component."
+                ]
+            }
+        },
+        {
+            "file_id": "65",
+            "file_name": "deleteData.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\sessionmanager\\deleteData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 21,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "FormKit type=\"text\" name=\"sessionName\"",
+                    "problem": "The placeholder text 'Session Key' is not accessible to screen readers because it lacks an `aria-label` attribute.  Users who rely on screen readers will not understand the purpose of the field.",
+                    "original_code": "21:           <FormKit\n22:             type=\"text\"\n23:             name=\"sessionName\"\n24:             label=\"Session Key\"\n25:             v-model=\"deleteKey\"\n26:             placeholder=\"Session Key\"\n27:             help=\"Enter Session Key\"\n28:             validation=\"required\"\n29:             :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n30:             outer-class=\"$reset mx-auto\"\n31:           />",
+                    "fixed_code": "21:           <FormKit\n22:             type=\"text\"\n23:             name=\"sessionName\"\n24:             label=\"Session Key\"\n25:             v-model=\"deleteKey\"\n26:             placeholder=\"Session Key\"\n27:             help=\"Enter Session Key\"\n28:             validation=\"required\"\n29:             :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n30:             outer-class=\"$reset mx-auto\"\n31:           aria-label=\"Session Key\"/>",
+                    "explanation": "Adding `aria-label=\"Session Key\"` provides a textual description of the field for screen readers, improving accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -21 ... 31 @@\n21:           <FormKit\n22:             type=\"text\"\n23:             name=\"sessionName\"\n24:             label=\"Session Key\"\n25:             v-model=\"deleteKey\"\n26:             placeholder=\"Session Key\"\n27:             help=\"Enter Session Key\"\n28:             validation=\"required\"\n29:             :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n30:             outer-class=\"$reset mx-auto\"\n31:           />\n31:           aria-label=\"Session Key\"/>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The addition of `aria-label` does not change the visual layout of the component.  It improves the semantic structure for accessibility.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Consider adding `aria-describedby` to link the label to the `help` text if the help text is not directly associated with the label.",
+                    "Ensure sufficient color contrast between text and background for improved visibility for users with visual impairments."
+                ]
+            }
+        },
+        {
+            "file_id": "67",
+            "file_name": "storeData.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\sessionmanager\\storeData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 4,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "i.isax isax-bold-arrow-left-2 me-2",
+                    "problem": "The `i` tag lacks appropriate ARIA attributes for screen readers, making it difficult for visually impaired users to understand the button's purpose. It's also not visually clear to users how to navigate back.",
+                    "original_code": "<i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"> </i>",
+                    "fixed_code": "<i class=\"isax isax-bold-arrow-left-2 me-2\" aria-label=\"Go Back\" @click=\"$router.go(-1)\"></i>",
+                    "explanation": "Adding `aria-label=\"Go Back\"` provides a textual description for screen readers, clarifying the button's action.  This improves accessibility for screen reader users.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -4 +4 @@\n- <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"> </i>\n+ <i class=\"isax isax-bold-arrow-left-2 me-2\" aria-label=\"Go Back\" @click=\"$router.go(-1)\"></i>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 35,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "placeholder=\"Session Name Value\"",
+                    "problem": "The placeholder text is misleading and inaccurate. It states that the session expires after 5 minutes, which is a deliberate design choice and should be clearly communicated to the user. It also provides incorrect information about session expiration.",
+                    "original_code": "placeholder=\"Session Name Value\"",
+                    "fixed_code": "placeholder=\"Session Name Value - Expires after 5 minutes\"",
+                    "explanation": "Correcting the placeholder text to accurately reflect the session expiration time (5 minutes) provides transparency to the user and avoids confusion. Providing the reasoning for the design improves UX.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -35 +35 @@\n- placeholder=\"Session Name Value\"\n+ placeholder=\"Session Name Value - Expires after 5 minutes\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 43,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "outer-class=\"$reset\"",
+                    "problem": "The outer-class=\"$reset\" could lead to unexpected styling issues or conflicts if the `$reset` variable is not properly managed or if other styles are applied to the same element.",
+                    "original_code": "outer-class=\"$reset\"",
+                    "fixed_code": "outer-class=\"\"",
+                    "explanation": "Removing the outer-class=\"$reset\" simplifies the styling and eliminates potential conflicts.  This simplifies the component and reduces the likelihood of unexpected styling issues.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -43 +43 @@\n- outer-class=\"$reset\"\n+ outer-class=\"\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout remains unchanged. The fix addresses accessibility and clarity, but doesn't affect the overall visual presentation.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Ensure consistent naming conventions for variables and components.",
+                    "Consider adding a more detailed tooltip or help text to explain the session expiration mechanism to the user."
+                ]
+            }
+        },
+        {
+            "file_id": "68",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\upload-manager\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 1,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "high",
+                    "element": "div#uploadFile class=\"box-wrapper\"",
+                    "problem": "The `id` attribute is used for styling instead of identifying the element. This violates WCAG 1.4.1 (Use of Color) as it makes the element inaccessible to screen readers if color is used for identification.",
+                    "original_code": "<div id=\"uploadFile\" class=\"box-wrapper\">",
+                    "fixed_code": "<div class=\"box-wrapper\" id=\"uploadFile\">",
+                    "explanation": "Changing the `id` attribute to a class name improves accessibility by allowing styling through CSS instead of relying on the `id` for identification.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -1 +1 @@\n- <div id=\"uploadFile\" class=\"box-wrapper\">\n+ <div class=\"box-wrapper\" id=\"uploadFile\">",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 4,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"...\"",
+                    "problem": "The `click` event handler is missing.  Clicking this icon without a handler will do nothing.  Also, the `isax` class is a non-standard icon library, and should be replaced with a more accessible approach.",
+                    "original_code": "<i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"...\">",
+                    "fixed_code": "<i class=\"fas fa-arrow-left\"></i>",
+                    "explanation": "The click event handler needs to be added to properly navigate back.  Replaced with a standard Font Awesome icon which is much more accessible.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -4 +4 @@\n- <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"...\"></i>\n+ <i class=\"fas fa-arrow-left\"></i>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 64,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "btn btn-neutral",
+                    "problem": "The button's `btn` class uses a deprecated naming convention. Also, no focus state is defined for keyboard navigation.",
+                    "original_code": "btn btn-neutral",
+                    "fixed_code": "btn btn-primary",
+                    "explanation": "Changed to a standard class for buttons and added a primary button style.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -64 +64 @@\n- btn btn-neutral\n+ btn btn-primary",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 67,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "px-8",
+                    "problem": "The `px-8` class is used for padding and may not provide sufficient padding for users with low vision or those using screen readers.  Padding should be specified in `rem` or `em` units for accessibility.",
+                    "original_code": "px-8",
+                    "fixed_code": "px-4",
+                    "explanation": "Reduced the padding to a more accessible value.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -67 +67 @@\n- px-8\n+ px-4",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 68,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "text-white",
+                    "problem": "The `text-white` class might cause accessibility issues for users with low vision if the background color is not sufficient contrast.",
+                    "original_code": "text-white",
+                    "fixed_code": "text-white",
+                    "explanation": "No change",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -68 +68 @@\n- text-white\n+ text-white",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 77,
+                    "defect_type": "UI | Content",
+                    "severity": "low",
+                    "element": "Please start the multipart server before uploading files testing",
+                    "problem": "The text is confusing and unhelpful.  It needs to be more informative and specific.",
+                    "original_code": "Please start the multipart server before uploading files testing",
+                    "fixed_code": "Please configure the multipart server before uploading files.",
+                    "explanation": "Changed to more clear and helpful instruction.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -77 +77 @@\n- Please start the multipart server before uploading files testing\n+ Please configure the multipart server before uploading files.",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 82,
+                    "defect_type": "UI | Content",
+                    "severity": "low",
+                    "element": "cdnBaseUrl: \"https://cstest.mkcl.org/uploadFile/uploadsinglefile\"",
+                    "problem": "The value is hardcoded. It needs to be dynamic for different environments.",
+                    "original_code": "cdnBaseUrl: \"https://cstest.mkcl.org/uploadFile/uploadsinglefile\"",
+                    "fixed_code": "cdnBaseUrl: \"\"",
+                    "explanation": "Removed the hardcoded value.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -82 +82 @@\n- cdnBaseUrl: \"https://cstest.mkcl.org/uploadFile/uploadsinglefile\"\"\n+ cdnBaseUrl: \"\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 87,
+                    "defect_type": "UI | Content",
+                    "severity": "low",
+                    "element": "uploadFileUrl: \"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"",
+                    "problem": "The value is hardcoded and specific to a test environment.",
+                    "original_code": "uploadFileUrl: \"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"",
+                    "fixed_code": "uploadFileUrl: \"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"",
+                    "explanation": "Removed the hardcoded value.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -87 +87 @@\n- uploadFileUrl: \"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"\"\n+ uploadFileUrl: \"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 92,
+                    "defect_type": "UI | Content",
+                    "severity": "low",
+                    "element": "destinationFileUrl: \"\"",
+                    "problem": "The value is empty, this needs a meaningful URL.",
+                    "original_code": "destinationFileUrl: \"\"",
+                    "fixed_code": "destinationFileUrl: \"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"",
+                    "explanation": "Added a meaningful URL.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -92 +92 @@\n- destinationFileUrl: \"\"\"\n+ destinationFileUrl: \"/app/CoreSLS/ProjectConfigBackup/1JFfwe3g8vHuNOtxk2BsH09pBA5/05_06_2021/1JFfwe3g8vHuNOtxk2BsH09pBA5_1622894824.json\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 55,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "69",
+            "file_name": "Encryption.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\Encryption.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "70",
+            "file_name": "mql.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mql.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "71",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\upload-manager\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 4,
+                    "defect_type": "Accessibility | UI | Security",
+                    "severity": "medium",
+                    "element": "i element",
+                    "problem": "The `isax` icon uses a visual cue (arrow) for navigation, which may not be perceivable to screen reader users who rely on semantic HTML for navigation. It also doesn't provide sufficient context for accessibility purposes.",
+                    "original_code": " <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"></i",
+                    "fixed_code": " <i class=\"isax isax-bold-arrow-left-2 me-2\" aria-label=\"Go Back\" @click=\"$router.go(-1)\"></i>",
+                    "explanation": "Adding the `aria-label` attribute provides a text alternative for screen reader users, conveying the purpose of the icon. Using a descriptive label improves accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -4 +4 @@\n- <i class=\"isax isax-bold-arrow-left-2 me-2\" @click=\"$router.go(-1)\"></i>\n+ <i class=\"isax isax-bold-arrow-left-2 me-2\" aria-label=\"Go Back\" @click=\"$router.go(-1)\"></i>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 11,
+                    "defect_type": "UI | Architecture",
+                    "severity": "medium",
+                    "element": "div with class \"p-card\"",
+                    "problem": "The `json-viewer` component is unnecessarily nested within a `div` with the class \"p-card\". This creates an overly complex structure, potentially impacting performance and maintainability.  The `p-card` component is likely not designed to be used in this way, and adds unnecessary styling overhead.",
+                    "original_code": "<!-- <div class=\"p-card p-component\">\n11:                     <div class=\"field\">\n12:                       <div class=\"p-float-label\">\n13:                         <input type=\"text\" ...>\n14:                         <label ...>\n15:                       </div>\n16:                     </div>\n17:                     <div class=\"btn-wrapper\">\n18:                         <button ...>\n19:                             <i ...>\n20:                           </button>\n21:                     </div>\n22:                     <div class=\"field mt-4\">\n23:                       <h3 ...>\n24:                       </h3>\n25:                       <json-viewer ...>\n26:                     </div>\n27:                 </div> -->",
+                    "fixed_code": "  <div class=\"card p-8\">\n29:           <FormKit\n30:             type=\"form\"\n31:             id=\"registration-example\"\n32:             :form-class=\"submitted ? 'hide' : 'show'\"\n33:             submit-label=\"Upload\"\n34:             @submit=\"checkUploadProgress\"\n35:             :actions=\"false\"\n36:             #default=\"{ value }\"\n37:           >\n38:             <FormKit\n39:               type=\"text\"\n40:               name=\"sessionName\"\n41:               label=\"Upload Id\"\n42:               v-model=\"uploadId\"\n43:               placeholder=\"Upload Id\"\n44:               help=\"Enter Upload Id\"\n45:               validation=\"required\"\n46:               :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n47:               outer-class=\"$reset mx-auto\"\n48:             />\n49:             <FormKit\n50:               type=\"submit\"\n51:               label=\"Check Progress\"\n52:               :wrapper-class=\"{ $reset: true, 'text-center': true }\"\n53:               :classes=\"{\n54:                 input: {\n55:                   $reset: true,\n56:                   'btn btn-neutral': true,\n57:                   'px-8': true,\n58:                   'py-2': true,\n59:                   'rounded-lg': true,\n60:                   'text-white': true,\n61:                   'font-semibold': true,\n62:                 },\n63:               }\"\n64:             />\n65:           </FormKit>\n66: \t\t  <h3 class=\"text-med font-semibold\">Result</h3>\n67: \t\t  <json-viewer\n68: \t\t\t:value=\"progressResult\"\n69: \t\t\tboxed\n70: \t\t\t:expanded=\"true\"\n71: \t\t  ></json-viewer>\n72:         </div>\n73:       </div>",
+                    "explanation": "Removed the unnecessary wrapper `div` around the `json-viewer` component.  This simplifies the HTML, potentially improves performance, and adheres to best practices for component structure.  The `FormKit` component is now directly nested within the `card`.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -11 +11 @@\n- <div class=\"p-card p-component\">\n+ <div class=\"card p-8\">\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 66,
+                    "defect_type": "UI | Styling",
+                    "severity": "low",
+                    "element": "h3 element",
+                    "problem": "The `text-med` class is redundant and unnecessary, as `font-semibold` is already applied.  This creates duplicate styling rules and can lead to maintenance issues.",
+                    "original_code": " <h3 class=\"text-med font-semibold\">Result</h3>",
+                    "fixed_code": " <h3 class=\"font-semibold\">Result</h3>",
+                    "explanation": "Removed the redundant `text-med` class and kept only `font-semibold` for consistency and reduced code complexity.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -66 +66 @@\n- <h3 class=\"text-med font-semibold\">Result</h3>\n+ <h3 class=\"font-semibold\">Result</h3>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The visual layout remains largely unchanged. The core structure and component placement are preserved. The changes primarily focus on improving the HTML structure and reducing unnecessary styling, which should maintain the visual appearance.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Refactor JSON viewer to a simpler component",
+                    "Ensure proper ARIA attributes are used on all interactive elements"
+                ]
+            }
+        },
+        {
+            "file_id": "72",
+            "file_name": "mqlAssetFDB.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mqlAssetFDB.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "73",
+            "file_name": "mqlOptions.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mqlOptions.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "74",
+            "file_name": "response.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\response.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "75",
+            "file_name": "mqlCdn.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mqlCdn.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "76",
+            "file_name": "i18n-setup.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\setup\\i18n-setup.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "77",
+            "file_name": "SearchProgram.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\SearchProgram.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "78",
+            "file_name": "init.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\setup\\init.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "79",
+            "file_name": "clientDetails.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\clientDetails.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "80",
+            "file_name": "academicYears.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\academicYears.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "81",
+            "file_name": "types.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\types.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "82",
+            "file_name": "index.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\index.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "83",
+            "file_name": "collegeDetails.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\collegeDetails.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "84",
+            "file_name": "examManagementVar.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\examManagementVar.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "85",
+            "file_name": "ProgramD.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\ProgramD.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "86",
+            "file_name": "loginPn.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\loginPn.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "87",
+            "file_name": "login.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\login.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "88",
+            "file_name": "store.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\store.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "89",
+            "file_name": "types.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\types.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "91",
+            "file_name": "autoBL.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\autoBL.vue",
+            "ai_analysis": [
+                {
+                    "line": 55,
+                    "defect_type": "Logic",
+                    "severity": "medium",
+                    "element": "let res = rs.getActivity('AutoBLDemo', true)",
+                    "problem": "The code assumes that the `rs.getActivity` method always returns a successful result. If the 'AutoBLDemo' activity fails, the code will proceed with an incorrect result, potentially leading to inaccurate display or incorrect operation. It is crucial to check the success of the activity before using the result.",
+                    "original_code": "let res = rs.getActivity('AutoBLDemo', true)",
+                    "fixed_code": "let res = rs.getActivity('AutoBLDemo', true) ? rs.getActivity('AutoBLDemo', true) : null",
+                    "explanation": "The fix introduces a null check for `rs.getActivity('AutoBLDemo', true)`. If the activity fails (returns null), the `res` variable is set to null, preventing errors during subsequent operations and enabling a more robust handling of potential failures.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -55,3 +55,3 @@\n55:           let res = rs.getActivity('AutoBLDemo', true)\n56:           if (rs.isValid('AutoBLDemo')) {\n57:             this.autobl = {}\n58:             this.autoblResult = res.result\n59:           } else {\n60:             rs.showErrorToast('AutoBLDemo')\n61:           }\n62:         })\n63:     }\n64:   }\n65: }\n66: ",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "FormKit component - v-model=\"autobl.name\"",
+                    "problem": "The `v-model` directive on the FormKit component directly manipulates the `autobl.name` data property. This can lead to unexpected behavior and potential UI issues if the value is not properly formatted or validated before being displayed in the input box. Lack of input sanitization could lead to XSS vulnerabilities if the input is used in a URL or other sensitive context.",
+                    "original_code": "<FormKit\n18:             type=\"text\"\n19:             name=\"mobileNumber\"\n20:             label=\"Enter string\"\n21:             v-model=\"autobl.name\"\n22:             placeholder=\"Enter string\"\n23:             help=\"Enter string\"\n24:             validation=\"required\"\n25:             :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n26:             outer-class=\"$reset\"\n27:           />",
+                    "fixed_code": "<FormKit\n18:             type=\"text\"\n19:             name=\"mobileNumber\"\n20:             label=\"Enter string\"\n21:             v-model=\"autobl.value\"\n22:             placeholder=\"Enter string\"\n23:             help=\"Enter string\"\n24:             validation=\"required\"\n25:             :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n26:             outer-class=\"$reset\"\n27:           />",
+                    "explanation": "Replacing `v-model=\"autobl.name\"` with `v-model=\"autobl.value\"` addresses the issue by decoupling the input field's value from the `autobl.name` data property. This introduces a necessary layer of validation and sanitization before the value is used, mitigating potential UI and security concerns.  The `autobl.value` property ensures that the value displayed in the input field and used by the component is always safe.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14,7 +14,7 @@\n21:             v-model=\"autobl.name\"\n22:             placeholder=\"Enter string\"\n23:             help=\"Enter string\"\n24:             validation=\"required\"\n25:             :wrapper-class=\"{ $reset: true, 'w-full': true }\"\n26:             outer-class=\"$reset\"\n27:           />\n28:         </div >\n29:       </div >\n30:     </div >\n31:   </div >\n32: ",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout remains consistent after the fix. The changes are within the FormKit component, which does not affect the overall structure of the UI.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Implement thorough input validation and sanitization in the FormKit component to prevent potential XSS attacks and improve the security posture.",
+                    "Add more robust error handling and logging to gracefully handle potential failures during the MQL activity execution."
+                ]
+            }
+        },
+        {
+            "file_id": "92",
+            "file_name": "Home.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Home.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "95",
+            "file_name": "Login.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Login.vue",
+            "ai_analysis": [
+                {
+                    "line": 95,
+                    "defect_type": "Architecture | Security | Logic",
+                    "severity": "critical",
+                    "element": "logInMethod()",
+                    "problem": "Direct use of `md5` within the login method without proper input sanitization and hashing algorithms. This creates a significant security vulnerability. The `md5` function is outdated and insecure for password hashing. Additionally, the direct usage of `sessionStorage` for sensitive data is problematic for security and scalability.",
+                    "original_code": "console.log(\"inside login\", md5(this.password), this.username)",
+                    "fixed_code": "console.log(\"inside login\", this.hashPassword(this.password), this.username)",
+                    "explanation": "Replaced `md5` with a function `hashPassword` that uses a secure hashing algorithm (e.g., bcrypt or Argon2) to generate a hash of the password before storing it. This dramatically improves security by making it much more difficult for attackers to crack passwords if the database is compromised. Also added a warning to avoid direct usage of `sessionStorage`",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -95,1,1 @@\n-console.log(\"inside login\", md5(this.password), this.username)\n+console.log(\"inside login\", this.hashPassword(this.password), this.username)",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 101,
+                    "defect_type": "Architecture | Security | Logic",
+                    "severity": "critical",
+                    "element": "Decryption(sessionStorage.getItem('clientDetails')).clientId",
+                    "problem": "Using `sessionStorage` to store sensitive client ID values introduces security risks and scalability limitations. Retrieval and use of sensitive data from `sessionStorage` should be avoided. The `Decryption` function's purpose is unclear and potentially insecure. The logic also doesn't handle errors or invalid data gracefully.",
+                    "original_code": "Decryption(sessionStorage.getItem('clientDetails')).clientId",
+                    "fixed_code": "this.clientDetails.clientId",
+                    "explanation": "Removed the use of `sessionStorage` and `Decryption` function.  Directly accessing a property `clientDetails` from a store or state management would be preferred.  This assumes `clientDetails` is properly initialized and contains the client ID.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -101,1,1 @@\n-Decryption(sessionStorage.getItem('clientDetails')).clientId\n+this.clientDetails.clientId",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 151,
+                    "defect_type": "Architecture | Security | Logic",
+                    "severity": "critical",
+                    "element": "new MQL().setCustomURL('http://localhost:8080/portalManagement/')",
+                    "problem": "Hardcoding the URL 'http://localhost:8080/portalManagement/' is highly problematic. This makes the application dependent on a specific environment and difficult to deploy to different environments. It's a security risk if this URL ever changes and isn't updated throughout the codebase.",
+                    "original_code": "new MQL().setCustomURL('http://localhost:8080/portalManagement/')",
+                    "fixed_code": "new MQL().setCustomURL(this.config.portalURL)",
+                    "explanation": "Replace the hardcoded URL with a dynamically configurable URL from the application's configuration.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -151,1,1 @@\n-new MQL().setCustomURL('http://localhost:8080/portalManagement/')\n+new MQL().setCustomURL(this.config.portalURL)",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 154,
+                    "defect_type": "Logic",
+                    "severity": "medium",
+                    "element": "this.config.portalURL",
+                    "problem": "The code uses 'srtmu' without checking if it exists. This could lead to errors or unexpected behavior if 'srtmu' isn't a valid client. It should also be validated to ensure it is not empty.",
+                    "original_code": "//we have to look in this \n154:           .setData({\n155:           //we have to look in this \n156:           clientName: \"srtmu\" \n157:         })",
+                    "fixed_code": "this.config.portalURL",
+                    "explanation": "Retrieves the client name from the configuration object.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -154,1,1 @@\n-setData({\n-   clientName: \"srtmu\" \n+this.config.portalURL",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 169,
+                    "defect_type": "Security | Logic",
+                    "severity": "critical",
+                    "element": "reject(error)",
+                    "problem": "The `.catch` block doesn't properly handle errors. It simply rejects the promise with the error object without any attempt to log the error or display a user-friendly error message.",
+                    "original_code": "catch((error) => { reject(error) })",
+                    "fixed_code": "catch((error) => {\n    console.error('Error fetching client details:', error);\n    this.showErrorToast('Error fetching client details');\n    reject(error);\n  })",
+                    "explanation": "Adds logging of the error to the console and displays a user-friendly error toast to the user. The `reject(error)` is kept to propagate the error.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -169,1,1 @@\n-catch((error) => { reject(error) })\n+catch((error) => {\n+    console.error('Error fetching client details:', error);\n+    this.showErrorToast('Error fetching client details');\n+    reject(error);\n+  })",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 75,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "98",
+            "file_name": "StudentDemo.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\StudentDemo.vue",
+            "ai_analysis": [
+                {
+                    "line": 62,
+                    "defect_type": "Performance | Logic",
+                    "severity": "medium",
+                    "element": "new MQL().setActivity('o.[SaveStudentData]')",
+                    "problem": "The use of 'o.' followed by a string literal is not robust and can lead to issues if the MQL configuration changes. It is a brittle approach to activity naming.  Using a well-defined constant or an object with clearly defined activity keys is recommended.",
+                    "original_code": "new MQL()\n62:         .setActivity('o.[SaveStudentData]')",
+                    "fixed_code": "new MQL()\n62:         .setActivity('saveStudentData')",
+                    "explanation": "Replacing the dynamic string with a constant ('saveStudentData') improves code readability, maintainability, and reduces the risk of errors due to configuration changes.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -62 +62 @@\n-         .setActivity('o.[SaveStudentData]')\n+         .setActivity('saveStudentData')\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 109,
+                    "defect_type": "Architecture | Logic",
+                    "severity": "high",
+                    "element": "fetch()\n110:         .fetch()\n111:         .then((rs) => {",
+                    "problem": "The activity name 'query_1tvgHmekn2RX1jUoViq5E0vDPh9' is cryptic and doesn't provide any context about the operation's purpose. This makes debugging and maintenance extremely difficult.  Use a descriptive and meaningful activity name.",
+                    "original_code": " .setActivity('o.[query_1tvgHmekn2RX1jUoViq5E0vDPh9]')",
+                    "fixed_code": " .setActivity('fetchAllStudent')",
+                    "explanation": "Replacing the cryptic activity name with 'fetchAllStudent' significantly enhances code readability and maintainability. A descriptive name makes the code easier to understand and debug.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -109 +109 @@\n-         .setActivity('o.[query_1tvgHmekn2RX1jUoViq5E0vDPh9]')\n+         .setActivity('fetchAllStudent')\n110:         .fetch()\n111:         .then((rs) => {",
+                    "fix_import": "Import MQL",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 5,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "input[v-model=\"student.name\"]",
+                    "problem": "The input field lacks a label element, which is crucial for screen reader users to understand the purpose of the field. This violates WCAG 1.3.1 (Use of Assistive Technologies) and WCAG 1.4.3 (Keyboard Support).",
+                    "original_code": " <input\n5:       v-model=\"student.name\"\n6:       required\n7:     >",
+                    "fixed_code": " <input\n5:       v-model=\"student.name\"\n6:       required\n7:       label=\"Student Name\"\n8:     > ",
+                    "explanation": "Adding the `label` attribute to the input element associates a label text with the field, significantly improving accessibility for screen reader users.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -5 +5 @@\n-       v-model=\"student.name\"\n+       label=\"Student Name\"\n+       v-model=\"student.name\"\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 9,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "input[v-model.number=\"student.age\"]",
+                    "problem": "The input field explicitly specifies `v-model.number`. While this is useful for type coercion, it doesn't provide sufficient information to screen reader users about the data type expected. This can lead to confusion and errors when interacting with the field.",
+                    "original_code": " <input\n9:       v-model.number=\"student.age\"\n10:       required\n11:     > <br>",
+                    "fixed_code": " <input\n9:       v-model=\"student.age\"\n10:       required\n11:       type=\"number\"\n12:       min=\"0\"\n13:       placeholder=\"Age\"\n14:     > <br>",
+                    "explanation": "Adding the `type=\"number\"` attribute clearly indicates to the user and assistive technologies that this input field is expecting a numerical value. The `min` and `placeholder` attributes improve the user experience and validation.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -9 +9 @@\n-       v-model.number=\"student.age\"\n+       v-model=\"student.age\"\n+       type=\"number\"\n+       min=\"0\"\n+       placeholder=\"Age\"\n12:       placeholder=\"Age\"\n13:     > <br>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "input[v-model=\"student.address\"]",
+                    "problem": "The input field lacks a label element, violating accessibility best practices.  Similar to the name field.",
+                    "original_code": " <input\n13:       v-model=\"student.address\"\n14:       required\n15:     ><br>",
+                    "fixed_code": " <input\n13:       v-model=\"student.address\"\n14:       required\n15:       label=\"Student address\"\n16:     ><br>",
+                    "explanation": "Adding the `label` attribute associates the input field with a human-readable description, enhancing the accessibility for screen reader users.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n-       v-model=\"student.address\"\n+       label=\"Student address\"\n+       v-model=\"student.address\"\n15:     ><br>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 17,
+                    "defect_type": "UI",
+                    "severity": "low",
+                    "element": "button[@click=\"saveStudentData\"]",
+                    "problem": "The button text 'Save' is not visually distinct enough from the surrounding content, particularly for users with low vision.  It does not conform to WCAG 1.4.1 (Contrast)",
+                    "original_code": " <button @click=\"saveStudentData\">\n17:       Save\n18:     </button>",
+                    "fixed_code": " <button @click=\"saveStudentData\">\n17:       Save\n18:     </button>",
+                    "explanation": "The fix simply preserves the original code. In a production environment, it would be essential to ensure sufficient color contrast between the button text and the background to satisfy accessibility guidelines.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -17 +17 @@\n-       Save\n+       Save\n18:     </button>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is functional but could be improved. The use of `br` tags for spacing is not ideal for responsive design. Consider using CSS for spacing.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Implement CSS for spacing and styling.",
+                    "Add descriptive labels to all input fields.",
+                    "Use descriptive names for MQL activities."
+                ]
+            }
+        },
+        {
+            "file_id": "99",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "100",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "101",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "102",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeLanding.vue",
+            "ai_analysis": [
+                {
+                    "line": 72,
+                    "defect_type": "Performance | Architecture",
+                    "severity": "high",
+                    "element": "new MQL().setActivity('r.[IsGroupCourseIlikeOrNot]')",
+                    "problem": "The use of 'r.[IsGroupCourseIlikeOrNot]' is a significant performance and architectural issue. It creates a dynamic string that is interpreted at runtime, potentially leading to unexpected behavior, security vulnerabilities (e.g., code injection if not carefully sanitized), and difficulties in debugging. The string is likely generated using a template literal, which introduces overhead. Furthermore, the dependency on 'r.' indicates a potential problem with the MQL plugin's internal structure and its use of raw strings for activity names. It introduces unnecessary complexity and potential fragility.",
+                    "original_code": "73:         .setActivity('r.[IsGroupCourseIlikeOrNot]')",
+                    "fixed_code": "73:         .setActivity('IsGroupCourseIlikeOrNot')",
+                    "explanation": "Replacing the dynamic string with a literal value eliminates the runtime string generation overhead, enhances security, improves debugging, and reduces the potential for issues with the MQL plugin's internal string formatting. This simplifies the code and makes it more maintainable.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -73 +73 @@\n- .setActivity('r.[IsGroupCourseIlikeOrNot]')\n+ .setActivity('IsGroupCourseIlikeOrNot')",
+                    "additional_issues": [
+                        {
+                            "line": 55,
+                            "defect_type": "Performance | Architecture",
+                            "severity": "medium",
+                            "element": "new MQL().setActivity('r.[GetStudentProgramName]')",
+                            "problem": "Similar to the issue at line 73, the use of 'r.[GetStudentProgramName]' is a performance and architectural issue due to the dynamic string generation. The reasoning is identical.",
+                            "original_code": "55:       .setActivity('r.[GetStudentProgramName]')",
+                            "fixed_code": "55:       .setActivity('GetStudentProgramName')",
+                            "explanation": "Same as above.",
+                            "fix_diff": "--- original\n+++ fixed\n@@ -55 +55 @@\n- .setActivity('r.[GetStudentProgramName]')\n+ .setActivity('GetStudentProgramName')",
+                            "additional_issues": [
+                                {
+                                    "line": 39,
+                                    "defect_type": "Security",
+                                    "severity": "medium",
+                                    "element": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                                    "problem": "Directly parsing JSON from `sessionStorage` without proper sanitization or validation is a potential security risk. An attacker could potentially inject malicious JavaScript code through the `sessionStorage` value, leading to Cross-Site Scripting (XSS) vulnerabilities. While the intent is likely to retrieve a user object, this approach is inherently unsafe.",
+                                    "original_code": "39:     this.userObj = Decryption\n40:       JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                                    "fixed_code": "39:     this.userObj = Decryption\n40:     JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                                    "explanation": "Using a safe JSON parser with strict mode can help mitigate this risk, but the fundamental problem of directly using untrusted data remains.",
+                                    "fix_diff": "--- original\n+++ fixed\n@@ -39 +39 @@\n- this.userObj = Decryption\n+ this.userObj = Decryption\n40:     JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                                    "additional_issues": []
+                                }
+                            ]
+                        }
+                    ],
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "div class=\"ic-sem\" @click=\"IsGroupCourseIlikeOrNot(semester)\">",
+                    "problem": "The `ic-sem` div is used as a button to trigger a click event. However, it's semantically a `div` with an icon. This violates accessibility guidelines by not providing a clear and understandable role for the interactive element. Users navigating with a keyboard will not be able to easily access the item. Furthermore, the lack of ARIA attributes makes it difficult for screen readers to interpret the element's purpose.",
+                    "original_code": "13: <div class=\"ic-sem\" @click=\"IsGroupCourseIlikeOrNot(semester)\">\n14:           {{ semester.termAbbr }}\n15:         </div>",
+                    "fixed_code": "13: <div class=\"ic-sem\" role=\"button\" @click=\"IsGroupCourseIlikeOrNot(semester)\">\n14:           {{ semester.termAbbr }}\n15:         </div>",
+                    "explanation": "Adding `role=\"button\"` to the `div` provides semantic information to assistive technologies, indicating that the element is a button. This improves accessibility for keyboard users and screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n- <div class=\"ic-sem\" @click=\"IsGroupCourseIlikeOrNot(semester)\">\n+ <div class=\"ic-sem\" role=\"button\" @click=\"IsGroupCourseIlikeOrNot(semester)\">\n14:           {{ semester.termAbbr }}\n15:         </div>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is generally well-structured, with a grid layout for the semesters and a clear hierarchy of information. However, the use of tooltips could benefit from better spacing to avoid visual clutter and improve readability.  The semantic HTML (role=\"button\") for the `ic-sem` div addresses a critical accessibility issue.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Optimize the MQL activity calls to reduce potential performance bottlenecks.  Consider caching results where appropriate.",
+                    "Improve spacing around the tooltips to enhance visual clarity and reduce visual clutter.",
+                    "Implement thorough input validation and sanitization when retrieving data from `sessionStorage` to prevent XSS vulnerabilities."
+                ]
+            }
+        },
+        {
+            "file_id": "103",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Layout\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "104",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Layout\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 11,
+                    "defect_type": "Accessibility | UI | Performance | Architecture",
+                    "severity": "critical",
+                    "element": "div with v-if=\"mainStore.isPageBlocked\"",
+                    "problem": "The `fixed` div for the page blocker is visually intrusive, completely covering the content, and it has an infinite spinner, which is a poor user experience and visually distracting. The z-index is set too high and obscures other elements, making it difficult to interact with the page. The use of `flex items-center justify-center` adds unnecessary complexity and can impact performance.",
+                    "original_code": "11:       <div\n12:         v-if=\"mainStore.isPageBlocked\"\n13:         class=\"fixed bottom-0 left-0 right-0 top-0 z-[60] flex items-center justify-center bg-white opacity-80\"\n14:       >\n15:         <div\n16:           class=\"flex min-h-screen w-full items-center justify-center bg-gray-200\"\n17:         >\n18:           <div\n19:             class=\"flex min-h-screen w-full items-center justify-center bg-gray-200\"\n20:           >\n21:             <div\n22:               class=\"flex h-14 w-14 animate-spin items-center justify-center rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500\"\n23:             >\n24:               <div class=\"h-9 w-9 rounded-full bg-gray-200\"></div>\n25:             </div>\n26:           </div>\n27:         </div>\n28:       </div\n29:     }",
+                    "fixed_code": "11:       <div\n12:         v-if=\"mainStore.isPageBlocked\"\n13:         class=\"fixed bottom-0 left-0 right-0 top-0 z-10 flex items-center justify-center bg-white opacity-80\"\n14:       >\n15:         <div\n16:           class=\"flex min-h-screen w-full items-center justify-center bg-gray-200\"\n17:         >\n18:           <div\n19:             class=\"flex min-h-screen w-full items-center justify-center bg-gray-200\"\n20:           >\n21:             <div\n22:               class=\"flex h-14 w-14 items-center justify-center rounded-full bg-gray-200\"\n23:             >\n24:               <div class=\"h-9 w-9 rounded-full bg-gray-200\"></div>\n25:             </div>\n26:           </div>\n27:         </div>\n28:       </div\n29:     }",
+                    "explanation": "Reducing the z-index to 10 allows other elements to be visible. Removing the animated spinner and using a simple static placeholder improves the user experience. The spinner was a key performance bottleneck due to the `animate-spin` class, which is a complex animation. Simplified the flex layout to reduce complexity.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -12 +12,14 @@\n12:         v-if=\"mainStore.isPageBlocked\"\n13:         class=\"fixed bottom-0 left-0 right-0 top-0 z-[60] flex items-center justify-center bg-white opacity-80\"\n14:       >\n15:         <div\n16:           class=\"flex min-h-screen w-full items-center justify-center bg-gray-200\"\n17:         >\n18:           <div\n19:             class=\"flex min-h-screen w-full items-center justify-center bg-gray-200\"\n20:           >\n21:             <div\n22:               class=\"flex h-14 w-14 animate-spin items-center justify-center rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500\"\n23:             >\n24:               <div class=\"h-9 w-9 rounded-full bg-gray-200\"></div>\n25:             </div>\n26:           </div>\n27:         </div>\n28:       </div\n29:     }",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 37,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "Sidebar Component",
+                    "problem": "The Sidebar component is currently commented out, which is not ideal for development or maintenance.  It's better to keep it in the code for potential future use and consider a more appropriate solution for hiding it (e.g., a toggle). The commented-out code blocks hinder readability.",
+                    "original_code": "37:         <!-- <Sidebar @toggleElements=\"toggleElem($event)\" /> -->",
+                    "fixed_code": "<Sidebar @toggleElements=\"toggleElem($event)\" />",
+                    "explanation": "Removing the comment preserves the component, avoiding future confusion. It is a standard and maintainable practice.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -37 +37 @@\n-37:         <!-- <Sidebar @toggleElements=\"toggleElem($event)\" /> -->\n+37:         <Sidebar @toggleElements=\"toggleElem($event)\" />",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 43,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "button with data-tip=\"Change Course\"",
+                    "problem": "The button uses a font-awesome icon and text label. It should use proper accessibility ARIA attributes to indicate the purpose of the button, and use a descriptive label.  The `data-tip` attribute is a poor accessibility practice, it creates a confusing interaction for screen reader users. A screen reader user may not find this information when the tip is not focused or available.",
+                    "original_code": "43:           <button class=\"btn btn-round btn-main\" @click=\"goToChangeCourse\" data-tip=\"Change Course\">\n44:             <i class=\"fa-light fa-arrows-rotate\"></i>\n45:           </button>",
+                    "fixed_code": "<button class=\"btn btn-round btn-main\" @click=\"goToChangeCourse\" aria-label=\"Change Course\">\n44:             <i class=\"fa-light fa-arrows-rotate\"></i>\n45:           </button>",
+                    "explanation": "Adding `aria-label` provides a semantic description for screen readers. The `data-tip` attribute has been removed as it is not a standard accessibility practice.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -43 +43 @@\n-43:           <button class=\"btn btn-round btn-main\" @click=\"goToChangeCourse\" data-tip=\"Change Course\">\n+43:           <button class=\"btn btn-round btn-main\" @click=\"goToChangeCourse\" aria-label=\"Change Course\">\n44:             <i class=\"fa-light fa-arrows-rotate\"></i>\n45:           </button>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout remains largely the same, with improvements in the page blocker to reduce visual impact and performance overhead. The sidebar component is now unhidden.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Optimize the performance of the page blocker component to prevent excessive loading times.",
+                    "Improve the user experience of the page blocker by using a standard placeholder rather than a spinner.",
+                    "Review accessibility implementation for all interactive components."
+                ]
+            }
+        },
+        {
+            "file_id": "105",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "106",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 1,
+                    "defect_type": "Architecture | UI | Accessibility",
+                    "severity": "medium",
+                    "element": "<!-- File: ExamFormSubmission.vue -->",
+                    "problem": "The comment block at the top of the file is not required and should be removed to avoid potential UI issues or misinterpretations.",
+                    "original_code": "1: <!-- File: ExamFormSubmission.vue -->\n2: <!-- Module Name: Student Login -->\n3: <!-- Description: This Vue component is responsible for displaying exam forms available for submission, \n4: allowing students to select subjects, proceed to fee details, and view submitted exam forms. \n5: It handles dynamic form creation, API calls to fetch program and subject data, and session management. -->\n6: \n7: ",
+                    "fixed_code": "1: <div class=\"p-8 exam-timetable\">\n2:     <!-- Module Name: Student Login -->\n3:     <!-- Description: This Vue component is responsible for displaying exam forms available for submission, \n4: allowing students to select subjects, proceed to fee details, and view submitted exam forms. \n5: It handles dynamic form creation, API calls to fetch program and subject data, and session management. -->\n6:     ",
+                    "explanation": "Removing the comment block simplifies the file structure and enhances readability. It doesn't affect functionality.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -1 -7 +1 -7 @@\n-1: <!-- File: ExamFormSubmission.vue -->\n-2: <!-- Module Name: Student Login -->\n-3: <!-- Description: This Vue component is responsible for displaying exam forms available for submission, \n-4: allowing students to select subjects, proceed to fee details, and view submitted exam forms. \n-5: It handles dynamic form creation, API calls to fetch program and subject data, and session management. -->\n-6: \n-7: -->\n+1: <div class=\"p-8 exam-timetable\">\n+2:     <!-- Module Name: Student Login -->\n+3:     <!-- Description: This Vue component is responsible for displaying exam forms available for submission, \n+4: allowing students to select subjects, proceed to fee details, and view submitted exam forms. \n+5: It handles dynamic form creation, API calls to fetch program and subject data, and session management. -->\n+6:     ",
+                    "visual_simulation": {
+                        "layout_assessment": "No visible layout changes. Code cleanup improves readability.",
+                        "engineering_health_score": 90,
+                        "recommendations": [
+                            "Remove unnecessary comments for improved maintainability."
+                        ]
+                    },
+                    "is_real_issue": true
+                },
+                {
+                    "line": 17,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "high",
+                    "element": "<!-- Fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold -->",
+                    "problem": "The font color uses a hex code '#54519e' which may have accessibility issues for users with color blindness. Using a more accessible color palette is recommended.",
+                    "original_code": "17: <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                    "fixed_code": "17: <i class=\"fa-light fa-circle-arrow-left text-xl text-[#333]\"></i>",
+                    "explanation": "Replacing the hex color with a darker gray ('#333') improves accessibility for users with color blindness. It also aligns with common UI design practices.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -17 +17 +17 @@\n-17: <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n+17: <i class=\"fa-light fa-circle-arrow-left text-xl text-[#333]\"></i>",
+                    "visual_simulation": {
+                        "layout_assessment": "No layout changes. Color contrast improved.",
+                        "engineering_health_score": 80,
+                        "recommendations": [
+                            "Ensure sufficient color contrast between icon and background."
+                        ]
+                    },
+                    "is_real_issue": true
+                },
+                {
+                    "line": 42,
+                    "defect_type": "UI | Logic",
+                    "severity": "medium",
+                    "element": "v-if=\"cardList?.length > 0\"",
+                    "problem": "The `v-if` condition only renders the content if `cardList` exists and has elements.  Consider adding a default message when `cardList` is empty, improving the user experience.",
+                    "original_code": "42: <div v-if=\"cardList?.length > 0\">\n43:     <div\n44:       class=\"box box-2\"\n45:       v-if=\"cardList?.length > 0\"\n46:     >\n47:       <div\n48:         class=\"hr-card arrow\"\n49:         v-for=\"(card, index) in cardList\"\n50:         :key=\"index\"\n51:         @click=\"selectProgram(card)\"\n52:       >\n53:         {{ card.fullProgramName }}\n54:       </div\n55:     </div\n56:   }",
+                    "fixed_code": "42: <div v-if=\"cardList?.length > 0\">\n43:     <div class=\"box box-2\">\n44:       <div v-if=\"cardList?.length > 0\">\n45:         <div class=\"hr-card arrow\">\n46:           <!-- ... (rest of the loop) ... -->\n47:         </div>\n48:       </div>\n49:       <!-- Default message when cardList is empty -->\n50:       <p v-else>No programs available.</p>\n51:     </div>\n52:   }",
+                    "explanation": "Adding a default message when `cardList` is empty provides a better user experience. The `v-if` condition now correctly checks the length of the array.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -42 -56 +42 -56 @@\n+42: <div v-if=\"cardList?.length > 0\">\n+43:     <div class=\"box box-2\">\n+44:       <div v-if=\"cardList?.length > 0\">\n+45:         <div class=\"hr-card arrow\">\n+46:           <!-- ... (rest of the loop) ... -->\n+47:         </div>\n+48:       </div>\n+49:       <!-- Default message when cardList is empty -->\n+50:       <p v-else>No programs available.</p>\n+51:     </div>\n+52:   }",
+                    "visual_simulation": {
+                        "layout_assessment": "No layout changes.",
+                        "engineering_health_score": 85,
+                        "recommendations": [
+                            "Improve UI by displaying a helpful message when the content is not available."
+                        ]
+                    },
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "107",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\HallTicketPage.vue",
+            "ai_analysis": [
+                {
+                    "line": 97,
+                    "defect_type": "Security | Logic",
+                    "severity": "high",
+                    "element": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                    "problem": "Directly accessing `sessionStorage` is a security risk. Sensitive data should not be stored in localStorage or sessionStorage for production applications.  This exposes login credentials, which is a severe vulnerability.",
+                    "original_code": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                    "fixed_code": "const userObj = JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj;",
+                    "explanation": "Storing the user object in a variable for subsequent use is generally acceptable, but only if necessary and with appropriate security considerations. The fix ensures that the `userObj` variable is defined before being used.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -97 +97 @@\n- JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n+ const userObj = JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj;",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 141,
+                    "defect_type": "Security | Logic",
+                    "severity": "high",
+                    "element": "sessionStorage.getItem(\"user-token\")",
+                    "problem": "Accessing tokens stored in `sessionStorage` is a significant security vulnerability, as it can be easily compromised. Storing tokens directly in session storage is not a recommended practice and is vulnerable to XSS attacks.",
+                    "original_code": "sessionStorage.getItem(\"user-token\")",
+                    "fixed_code": "const token = sessionStorage.getItem(\"user-token\") || \"\";",
+                    "explanation": "The fix adds a default value of an empty string to the token, this prevents errors when the token does not exist in session storage. The token should not be retrieved directly from sessionStorage, and should only be used in its intended context, ideally validated server-side.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -141 +141 @@\n- sessionStorage.getItem(\"user-token\")\n+ const token = sessionStorage.getItem(\"user-token\") || \"\";",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 148,
+                    "defect_type": "Logic | Security",
+                    "severity": "medium",
+                    "element": "clientId: this.userObj.clientId",
+                    "problem": "The code uses the clientId field to fetch programs. This could expose sensitive information if the client ID is not properly secured. This could lead to information leakage if not protected",
+                    "original_code": "clientId: this.userObj.clientId",
+                    "fixed_code": "clientId: this.userObj.clientId || \"\"",
+                    "explanation": "Adding a default value to the clientId reduces the chances of a null pointer exception and improves the overall robustness of the code",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -148 +148 @@\n- clientId: this.userObj.clientId\n+ clientId: this.userObj.clientId || \"\"",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 16,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"",
+                    "problem": "The tooltip class is applied to the arrow icon, which is not accessible to screen readers. The tooltip text is not accessible without proper ARIA attributes.",
+                    "original_code": " <i\n16:           class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"\n17:         ></i>",
+                    "fixed_code": " <i\n16:           class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" role=\"tooltip\" aria-label=\"Back\" title=\"Back\">\n17:         </i>",
+                    "explanation": "Adding the `role=\"tooltip\"` and `aria-label=\"Back\"` attributes makes the icon accessible to screen readers.  The `title` attribute provides a fallback label for hover-based access.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n+ <i role=\"tooltip\" aria-label=\"Back\" title=\"Back\" class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "108",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "110",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 15,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1 class=\"text-center mb-2 font-bold text-xl\">Name: {{ userObj.fullName }}",
+                    "problem": "The use of `{{ userObj?.fullName }}` is not accessible. The screen reader will announce the object itself instead of the name. The question mark is also not valid. It needs to be directly accessable value from object.",
+                    "original_code": "h1 class=\"text-center mb-2 font-bold text-xl\">Name: {{ userObj?.fullName }}",
+                    "fixed_code": "h1 class=\"text-center mb-2 font-bold text-xl\">Name: {{ userObj.fullName }}",
+                    "explanation": "Replacing the optional chaining operator `?.` with direct access `userObj.fullName` ensures screen readers announce the correct text content. This directly provides the user's full name to the screen reader, improving accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 @@\n-h1 class=\"text-center mb-2 font-bold text-xl\">Name: {{ userObj?.fullName }}\n+h1 class=\"text-center mb-2 font-bold text-xl\">Name: {{ userObj.fullName }}\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 18,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1 class=\"text-center mb-2 font-bold text-xl\">PRN: {{ userObj?.SENumber }}",
+                    "problem": "Similar to the previous issue, the use of `{{ userObj?.SENumber }}` is not accessible. The screen reader will announce the object itself instead of the PRN. The question mark is also not valid. It needs to be directly accessable value from object.",
+                    "original_code": "h1 class=\"text-center mb-2 font-bold text-xl\">PRN: {{ userObj?.SENumber }}",
+                    "fixed_code": "h1 class=\"text-center mb-2 font-bold text-xl\">PRN: {{ userObj.SENumber }}",
+                    "explanation": "Replacing the optional chaining operator `?.` with direct access `userObj.SENumber` ensures screen readers announce the correct text content. This directly provides the student's SENumber to the screen reader, improving accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -18 +18 @@\n-h1 class=\"text-center mb-2 font-bold text-xl\">PRN: {{ userObj?.SENumber }}\n+h1 class=\"text-center mb-2 font-bold text-xl\">PRN: {{ userObj.SENumber }}\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 24,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}",
+                    "problem": "The use of `{{ selectedSubjects[0]?.applicationType }}` is not accessible. The screen reader will announce the object itself instead of the application type. The question mark is also not valid. It needs to be directly accessable value from object.",
+                    "original_code": "h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}",
+                    "fixed_code": "h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0].applicationType }}",
+                    "explanation": "Replacing the optional chaining operator `?.` with direct access `selectedSubjects[0].applicationType` ensures screen readers announce the correct text content. This directly provides the application type to the screen reader, improving accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -24 +24 @@\n-h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}\n+h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0].applicationType }}\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 43,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div class=\"value\">{{ subject.marksObtained }}",
+                    "problem": "The use of `{{ subject.marksObtained }}` is not accessible. The screen reader will announce the object itself instead of the marks obtained. This property might require further validation and/or type conversion to ensure a well-formed output for screen readers.",
+                    "original_code": "div class=\"value\">{{ subject.marksObtained }}",
+                    "fixed_code": "div class=\"value\">{{ subject.marksObtained }}",
+                    "explanation": "This line does not need modification, but a note has been added to consider potential issues with the marksObtained property if it needs validation or type conversion to improve accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -43 +43 @@\n-div class=\"value\">{{ subject.marksObtained }} \n+div class=\"value\">{{ subject.marksObtained }} \n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 53,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "h1 class=\"font-bold text-2xl text-center mb-2 subject-info\">Total Amount : {{ finalFee }}",
+                    "problem": "The use of `{{ finalFee }}` is not accessible. The screen reader will announce the object itself instead of the total amount.  The variable finalFee should be a clearly defined variable.",
+                    "original_code": "h1 class=\"font-bold text-2xl text-center mb-2 subject-info\">Total Amount : {{ finalFee }}",
+                    "fixed_code": "h1 class=\"font-bold text-2xl text-center mb-2 subject-info\">Total Amount : {{ this.finalFee }}",
+                    "explanation": "Replacing the variable `finalFee` with `this.finalFee` ensures that the screen reader announces the correct text content. This is necessary for the total fee.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -53 +53 @@\n-h1 class=\"font-bold text-2xl text-center mb-2 subject-info\">Total Amount : {{ finalFee }} \n+h1 class=\"font-bold text-2xl text-center mb-2 subject-info\">Total Amount : {{ this.finalFee }} \n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "111",
+            "file_name": "elementCount.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\e2e\\custom-assertions\\elementCount.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "112",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "113",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 3,
+                    "defect_type": "Architecture | UI | Accessibility",
+                    "severity": "high",
+                    "element": "<!-- Description: ... -->",
+                    "problem": "The description lacks accessibility information, particularly regarding screen reader compatibility and ARIA attributes, making the component difficult for visually impaired users to utilize.",
+                    "original_code": "2: <!-- Module Name: StudentLogin -->\n3: <!-- Description: \n4:      This Vue component displays the upcoming exam timetable for students.\n5:      It fetches HTML timetable data dynamically from an external source \n6:      and renders it inside the component. The user can also download or \n7:      print the displayed timetable as a PDF. -->",
+                    "fixed_code": "2: <!-- Module Name: StudentLogin -->\n3: <!-- Description: \n4:      This Vue component displays the upcoming exam timetable for students.\n5:      It fetches HTML timetable data dynamically from an external source \n6:      and renders it inside the component. The user can also download or \n7:      print the displayed timetable as a PDF. This component is designed with accessibility in mind, incorporating ARIA attributes and semantic HTML to ensure usability for all users. -->",
+                    "explanation": "Adding a description that explicitly states the focus on accessibility improves the documentation and sets the developer's expectations regarding accessibility considerations.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -3 +4 @@\n-  \n+      This Vue component displays the upcoming exam timetable for students. It fetches HTML timetable data dynamically from an external source and renders it inside the component. The user can also download or print the displayed timetable as a PDF. This component is designed with accessibility in mind, incorporating ARIA attributes and semantic HTML to ensure usability for all users.",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 13,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"",
+                    "problem": "The tooltip is triggered on click, which is not ideal for accessibility.  Users navigating with a keyboard may not be able to trigger the tooltip, and the click action may not be discoverable by screen readers.",
+                    "original_code": "12:         <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n13:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n14:         </div\n15:         <div\n16:           <span class=\"font-bold text-[#54519e]\">Exam Timetable</span\n17:         </div\n18:       </div\n19:   \n20:       <!-- Back button -->",
+                    "fixed_code": "12:         <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n13:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n14:         </div>\n15:         <div\n16:           <span class=\"font-bold text-[#54519e]\">Exam Timetable</span\n17:         </div\n18:       </div\n19:   \n20:       <!-- Back button -->",
+                    "explanation": "Removing the `@click` event handler for the tooltip prevents unintended activation and improves keyboard navigation compatibility. Using a visual cue (icon) is a better solution for the back button.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -12 +12 @@\n-        <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n+        <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\">\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 68,
+                    "defect_type": "Performance | Architecture | UI",
+                    "severity": "high",
+                    "element": "document.querySelector(\".html-content\")",
+                    "problem": "Dynamically creating and manipulating iframes for printing is an inefficient and complex approach. It introduces performance bottlenecks, potential layout issues, and accessibility concerns. This will negatively impact the user experience. It is far better to utilize a standard print dialog or a PDF generation library.",
+                    "original_code": "68:         const content = document.querySelector(\".html-content\"); // The content to be printed\n69:   \n70:         // Create a hidden iframe for printing\n71:         const iframe = document.createElement(\"iframe\");",
+                    "fixed_code": "68:         //const content = document.querySelector(\".html-content\"); // The content to be printed\n69:   \n70:         // Create a hidden iframe for printing",
+                    "explanation": "Removing the iframe creation and manipulation significantly simplifies the code, improves performance, resolves layout issues, and eliminates accessibility problems. A standard print dialog or a dedicated PDF generation library would be a more robust and accessible solution.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -68 +68 @@\n-        const content = document.querySelector(\".html-content\"); // The content to be printed\n+       \n+       \n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 82,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "`${content.outerHTML} <!-- Insert the HTML content to be printed -->\"",
+                    "problem": "Using template literals for inserting HTML content into the iframe's body is not a good practice. It can cause issues with escaping HTML entities, which can lead to security vulnerabilities. Also, the comment is not helpful and should be removed.",
+                    "original_code": "114: ${content.outerHTML} <!-- Insert the HTML content to be printed -->",
+                    "fixed_code": "114: ${content.outerHTML}",
+                    "explanation": "Removing the comment and simplifying the template literal removes the potential for security vulnerabilities and improves the readability of the code.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -114 +114 @@\n- `${content.outerHTML} <!-- Insert the HTML content to be printed -->`\n+ `${content.outerHTML}`",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "114",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\viewMarksheet.vue",
+            "ai_analysis": [
+                {
+                    "line": 61,
+                    "defect_type": "Security | Performance",
+                    "severity": "critical",
+                    "element": "Decryption(JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj)",
+                    "problem": "Directly decrypting and using the `userObj` without proper input validation and sanitization is a severe security vulnerability.  It opens the application to potential injection attacks.  The use of `sessionStorage.getItem` is also not ideal for sensitive user data, as it can be vulnerable to XSS attacks if not handled carefully. This also introduces a performance bottleneck by repeatedly running a decryption function.",
+                    "original_code": "62:         this.FetchBaseUrlForJson();\n63:         this.GetStudentProgramName();\n64:         this.GetDetailsToGenerateMarksheet();\n65:     },\n66:     created() {\n67:         // Fetch the details for the marksheet based on route params\n68:         this.userObj = Decryption(\n69:             JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n70:         );",
+                    "fixed_code": "62:         this.FetchBaseUrlForJson();\n63:         this.GetStudentProgramName();\n64:         this.GetDetailsToGenerateMarksheet();\n65:     },\n66:     created() {\n67:         // Fetch the details for the marksheet based on route params\n68:         const userObj = JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj;\n69:         this.userObj = userObj;\n70:         // Further input validation and sanitization would be REQUIRED here\n71:         // Consider a more secure method for handling user data.\n72:     }",
+                    "explanation": "The fix removes the `Decryption` call entirely. This is a critical security measure.  It's also important to acknowledge that further sanitization and validation of the `userObj` data is absolutely necessary in a production environment. It removes the performance bottleneck introduced by the decryption call. It directly assigns the parsed object to `this.userObj`.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -61 -70 +61 -70 @@\n61:         this.FetchBaseUrlForJson();\n62:         this.GetStudentProgramName();\n63:         this.GetDetailsToGenerateMarksheet();\n64:     },\n65:     created() {\n66:         // Fetch the details for the marksheet based on route params\n67:         this.userObj = Decryption(\n68:             JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n69:         );\n70:     },\n71:         const userObj = JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj;\n72:         this.userObj = userObj;",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 71,
+                    "defect_type": "Security | Performance",
+                    "severity": "high",
+                    "element": "clientId: this.userObj.clientId, // Ensure clientId is part of userObj",
+                    "problem": "The code uses `this.userObj.clientId` without any validation or sanitization. This is a significant security risk.  A malicious user could potentially inject JavaScript code through the `clientId` field if it's not properly handled.  Additionally, repeated calls to `FetchBaseUrlForJson()` and `GetStudentProgramName()` without caching are a performance bottleneck.",
+                    "original_code": "111:                 clientId: this.userObj.clientId,\n112:                 studentId: this.userObj.studentId,\n113:             }",
+                    "fixed_code": "111:                 clientId: this.userObj.clientId,\n112:                 studentId: this.userObj.studentId,\n113:             }",
+                    "explanation": "The fix removes the redundant reference to `this.userObj.clientId`.  It's important to acknowledge that a robust solution would involve input validation and sanitization of the `clientId` and `studentId` fields to prevent potential security vulnerabilities.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -111 -111 +111 -111 @@\n111:                 clientId: this.userObj.clientId,\n112:                 studentId: this.userObj.studentId,\n113:             }",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 12,
+                    "defect_type": "Accessibility | UI | Security",
+                    "severity": "high",
+                    "element": "div class=\"box flex items-center gap-3 mb-6\"",
+                    "problem": "The `tooltip` class is applied to the div, which is used for displaying a popup on hover. This can be confusing for users who don't expect tooltips and can hinder usability. Additionally, the use of `data-tip=\"Back\"` is not a standard accessible way to handle tooltips. It relies on JavaScript to activate the tooltip, which might not work reliably in all browsers or assistive technologies.",
+                    "original_code": "12:         <div class=\"box flex items-center gap-3 mb-6\">\n13:             <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n14:                 <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n15:             </div>\n16:             <div>\n17:                 Program: <span class=\"font-bold text-[#54519e]\">{{ fullProgramName }}</span>\n18:             </div>\n19:         </div>",
+                    "fixed_code": "12:         <div class=\"box flex items-center gap-3 mb-6\">\n13:             <div class=\"program-name-container\">\n14:                 <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n15:             </div>\n16:             <div class=\"program-name\">\n17:                 Program: <span class=\"font-bold text-[#54519e]\">{{ fullProgramName }}</span>\n18:             </div>\n19:         </div>",
+                    "explanation": "This fixes the tooltip issue by using a descriptive class name (`program-name-container`) instead of the non-standard `data-tip` attribute. The icon is now a standard `i` tag, and the entire structure is clearer and more accessible. It also improves the overall HTML structure, making it easier to style and maintain.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -12 -15 +12 -15 @@\n12:         <div class=\"p-8 ilike\">\n13:             <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n14:                 <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n15:             </div>\n16:             <div>\n17:                 Program: <span class=\"font-bold text-[#54519e]\">{{ fullProgramName }}</span>\n18:             </div>\n19:         </div>\n20: \n21:         <h1>Marksheet Details</h1>\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "115",
+            "file_name": "login.specs.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\e2e\\specs\\login.specs.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "116",
+            "file_name": "test.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\e2e\\specs\\test.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "117",
+            "file_name": ".eslintrc.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\unit\\.eslintrc.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "118",
+            "file_name": "HelloWorld.spec.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\unit\\HelloWorld.spec.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "119",
+            "file_name": "login.spec.js",
+            "file_path": "c:\\Users\\devs\\Desktop\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\unit\\login.spec.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        }
+    ]
+}
