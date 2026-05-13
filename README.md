@@ -436,19 +436,16 @@ The future roadmap includes:
 
 Large organizations can continuously monitor accessibility and UI quality across multiple projects.
 
----
 
 ## AI-Assisted Development
 
 Developers can accelerate frontend development using intelligent AI-generated fixes.
 
----
 
 ## Educational Platforms
 
 Students can learn better frontend practices with real-time guidance.
 
----
 
 ## Open Source Maintenance
 
