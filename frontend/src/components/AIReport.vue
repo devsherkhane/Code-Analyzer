@@ -225,10 +225,16 @@
                                 <pre><code>{{ issue.fixed_code_snippet || issue.fixed_code }}</code></pre>
                               </div>
                             </div>
-                            <button class="btn-ghost btn-sm" @click="inspectCode(issue)">
-                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                              View in Code
-                            </button>
+                            <div style="display:flex; gap:0.5rem; margin-top:0.75rem;">
+                              <button class="btn-ghost btn-sm" @click="inspectCode(issue)">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                View in Code
+                              </button>
+                              <button class="btn-discuss btn-sm" @click.stop="discussWithAI(issue)">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                Discuss with AI
+                              </button>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -341,7 +347,7 @@
                           </div>
                           
                           <!-- VS Code Actions -->
-                          <div class="ws-issue-actions" style="display:flex; gap:0.75rem; margin-top:1rem; padding-top:1rem; border-top:1px dashed var(--border-default);">
+                          <div class="ws-issue-actions" style="display:flex; gap:0.75rem; margin-top:1rem; padding-top:1rem; border-top:1px dashed var(--border-default); flex-wrap:wrap;">
                             <button class="btn btn-secondary btn-sm" @click.stop="openInVsCode(issue)">
                               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                               Open in Editor
@@ -350,6 +356,10 @@
                               <svg v-if="!fixApplying" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                               <span v-if="fixApplying" class="btn-spinner"></span>
                               {{ fixApplying ? 'Applying...' : 'Apply AI Fix' }}
+                            </button>
+                            <button class="btn-discuss btn-sm" @click.stop="discussWithAI({ ...issue, _fileName: selectedFile?.file_name })">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                              Discuss with AI
                             </button>
                           </div>
 
@@ -400,7 +410,7 @@
       </div>
 
       <div v-else-if="activeView === 'chat'" class="view-chat" style="animation:fadeIn .3s var(--ease-out); height: 100%; display: flex; flex-direction: column;">
-        <ChatWidget :activeFile="selectedFile" :workspacePath="workspacePath" :allFiles="reportData.files" />
+        <ChatWidget :activeFile="selectedFile" :workspacePath="workspacePath" :allFiles="reportData.files" :injectedIssue="chatIssue" :allIssues="confirmedIssues" />
       </div>
 
     </div>
@@ -418,9 +428,10 @@ export default {
   components: { SourceViewer, FileTree, ChatWidget },
   props: { 
     activeView: { type: String, default: 'overview' },
-    selectedReportId: { type: String, default: null } 
+    selectedReportId: { type: String, default: null },
+    chatIssue: { type: Object, default: null }
   },
-  emits: ['navigate'],
+  emits: ['navigate', 'discuss-issue'],
   data() {
     return { 
       reportData: null, 
@@ -790,6 +801,10 @@ export default {
       } catch (err) {
         console.error('Failed to copy', err);
       }
+    },
+    discussWithAI(issue) {
+      // Emit upward to App.vue so the issue survives the component re-key
+      this.$emit('discuss-issue', issue);
     }
   }
 };
@@ -1001,6 +1016,32 @@ export default {
 .severity-dot-accessibility, .severity-dot-low { background: #3b82f6; }
 
 .ws-clean-badge { display: flex; align-items: center; gap: 0.6rem; padding: 1rem 1.25rem; margin-top: 1rem; border-radius: var(--radius-md); background: var(--accent-success-subtle, rgba(34,197,94,0.08)); color: var(--accent-success, #22c55e); font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(34,197,94,0.15); }
+
+/* ── Discuss with AI Button ──────────────────────── */
+.btn-discuss {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(99, 102, 241, 0.12));
+  color: #a78bfa;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: var(--radius-md, 8px);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.btn-discuss:hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(99, 102, 241, 0.22));
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #c4b5fd;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+}
+.btn-discuss svg { opacity: 0.85; }
+.btn-discuss:hover svg { opacity: 1; }
 
 .rich-content strong { color:var(--text-primary); font-weight:700; }
 .rich-content .inline-code { background:var(--bg-inset); padding:0.1em 0.35em; border-radius:4px; font-family:var(--font-mono); font-size:0.84em; color:var(--accent-primary); }

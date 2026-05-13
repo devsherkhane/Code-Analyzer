@@ -30,14 +30,54 @@
         </div>
       </div>
       
+      <!-- Attached Issue Context Card -->
+      <transition name="slide-fade">
+        <div v-if="attachedIssue" class="attached-issue-card">
+          <div class="aic-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span>Issue Attached</span>
+            <button class="aic-dismiss" @click="dismissAttachedIssue" title="Remove attached issue">&times;</button>
+          </div>
+          <div class="aic-body">
+            <span class="aic-type">{{ attachedIssue.defect_type || attachedIssue.problem || 'Issue' }}</span>
+            <span class="aic-file" v-if="attachedIssue._fileName">in {{ attachedIssue._fileName }}</span>
+          </div>
+        </div>
+      </transition>
+
+      <!-- Issue Picker Dropdown -->
+      <transition name="slide-fade">
+        <div v-if="issuePickerOpen" class="issue-picker" v-click-outside="closeIssuePicker">
+          <div class="picker-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" v-model="issuePickerSearch" placeholder="Search issues..." class="picker-search" ref="pickerSearch" />
+          </div>
+          <div class="picker-list">
+            <div v-if="filteredPickerIssues.length === 0" class="picker-empty">No issues found</div>
+            <template v-for="(issues, fileName) in groupedPickerIssues" :key="fileName">
+              <div class="picker-group-label">{{ fileName }}</div>
+              <div v-for="(issue, idx) in issues" :key="fileName + idx" class="picker-item" @click="attachIssueFromPicker(issue)">
+                <span class="picker-sev" :class="'sev-' + (issue._severity || 'medium')"></span>
+                <span class="picker-issue-text">{{ issue.defect_type || issue.problem || 'Issue' }}</span>
+                <span class="picker-source">{{ issue._source }}</span>
+              </div>
+            </template>
+          </div>
+        </div>
+      </transition>
+
       <div class="chat-input-area">
+        <button class="attach-btn" @click="toggleIssuePicker" title="Attach an issue">
+          <span style="font-size: 28px; line-height: 1; font-weight: 400; color: inherit; display: inline-block; transform: translateY(-1px);">+</span>
+        </button>
         <input 
           v-model="inputText" 
           @keyup.enter="sendMessage"
-          placeholder="Ask about your code..."
+          :placeholder="attachedIssue ? 'Ask about this issue or press Enter to discuss...' : 'Ask about your code...'"
           type="text"
+          ref="chatInput"
         />
-        <button class="send-btn" @click="sendMessage" :disabled="loading || !inputText.trim()">
+        <button class="send-btn" @click="sendMessage" :disabled="loading || (!inputText.trim() && !attachedIssue)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
         </button>
       </div>
@@ -51,10 +91,27 @@ import { marked } from 'marked';
 
 export default {
   name: 'ChatWidget',
+  directives: {
+    'click-outside': {
+      mounted(el, binding) {
+        el._clickOutside = (e) => {
+          if (!el.contains(e.target) && !e.target.closest('.attach-btn')) {
+            binding.value();
+          }
+        };
+        document.addEventListener('click', el._clickOutside);
+      },
+      unmounted(el) {
+        document.removeEventListener('click', el._clickOutside);
+      }
+    }
+  },
   props: {
     activeFile: { type: Object, default: null },
     workspacePath: { type: String, default: '' },
-    allFiles: { type: Array, default: () => [] }
+    allFiles: { type: Array, default: () => [] },
+    injectedIssue: { type: Object, default: null },
+    allIssues: { type: Array, default: () => [] }
   },
   data() {
     return {
@@ -63,7 +120,10 @@ export default {
       messages: [
         { role: 'assistant', content: 'Hello! I am your AI architect. Ask me anything about your project or currently opened file.' }
       ],
-      loading: false
+      loading: false,
+      attachedIssue: null,
+      issuePickerOpen: false,
+      issuePickerSearch: ''
     };
   },
   mounted() {
@@ -80,6 +140,46 @@ export default {
       },
       immediate: true,
       deep: true
+    },
+    injectedIssue: {
+      handler(issue) {
+        if (issue) {
+          this.attachedIssue = { ...issue };
+          // Set context to the file containing the issue
+          if (issue._fileName) {
+            const matchedFile = this.allFiles.find(f => f.file_name === issue._fileName);
+            if (matchedFile) this.contextType = matchedFile.file_path;
+          }
+          // Auto-send the issue discussion prompt
+          this.$nextTick(() => {
+            this.sendIssueToChat(issue);
+          });
+        }
+      },
+      immediate: true,
+      deep: true
+    }
+  },
+  computed: {
+    filteredPickerIssues() {
+      if (!this.allIssues) return [];
+      const q = this.issuePickerSearch.toLowerCase().trim();
+      if (!q) return this.allIssues;
+      return this.allIssues.filter(i =>
+        (i.defect_type || '').toLowerCase().includes(q) ||
+        (i.problem || '').toLowerCase().includes(q) ||
+        (i._fileName || '').toLowerCase().includes(q) ||
+        (i._source || '').toLowerCase().includes(q)
+      );
+    },
+    groupedPickerIssues() {
+      const groups = {};
+      this.filteredPickerIssues.forEach(i => {
+        const fn = i._fileName || 'Unknown';
+        if (!groups[fn]) groups[fn] = [];
+        groups[fn].push(i);
+      });
+      return groups;
     }
   },
   methods: {
@@ -108,7 +208,13 @@ export default {
       return marked.parse(text);
     },
     async sendMessage() {
-      if (!this.inputText.trim()) return;
+      // Allow sending with attached issue even if input is empty
+      if (!this.inputText.trim() && !this.attachedIssue) return;
+      
+      // If there's an attached issue and no custom text, build a default prompt
+      if (!this.inputText.trim() && this.attachedIssue) {
+        this.inputText = 'Can you explain this issue in detail and suggest the best way to fix it?';
+      }
       
       const userMsg = this.inputText.trim();
       this.messages.push({ role: 'user', content: userMsg });
@@ -163,7 +269,56 @@ export default {
       this.messages = [
         { role: 'assistant', content: 'History cleared. How can I assist you now?' }
       ];
+      this.attachedIssue = null;
       this.saveHistory();
+    },
+    dismissAttachedIssue() {
+      this.attachedIssue = null;
+    },
+    toggleIssuePicker() {
+      this.issuePickerOpen = !this.issuePickerOpen;
+      if (this.issuePickerOpen) {
+        this.issuePickerSearch = '';
+        this.$nextTick(() => {
+          if (this.$refs.pickerSearch) this.$refs.pickerSearch.focus();
+        });
+      }
+    },
+    closeIssuePicker() {
+      this.issuePickerOpen = false;
+    },
+    attachIssueFromPicker(issue) {
+      this.attachedIssue = { ...issue };
+      this.issuePickerOpen = false;
+      // Set context to the file containing the issue
+      if (issue._fileName) {
+        const matchedFile = this.allFiles.find(f => f.file_name === issue._fileName);
+        if (matchedFile) this.contextType = matchedFile.file_path;
+      }
+      // Auto-send the issue prompt — same as "Discuss with AI"
+      this.$nextTick(() => {
+        this.sendIssueToChat(issue);
+      });
+    },
+    buildIssuePrompt(issue) {
+      let prompt = `I found this issue in my code and need help understanding and fixing it:\n\n`;
+      prompt += `**Issue Type:** ${issue.defect_type || issue.problem || 'Unknown'}\n`;
+      if (issue._fileName) prompt += `**File:** ${issue._fileName}\n`;
+      if (issue.line_number || issue.line) prompt += `**Line:** ${issue.line_number || issue.line}\n`;
+      if (issue.wcag_rule) prompt += `**WCAG Rule:** ${issue.wcag_rule}\n`;
+      if (issue._source) prompt += `**Detected By:** ${issue._source}\n`;
+      if (issue.rationale) prompt += `\n**AI Rationale:** ${issue.rationale}\n`;
+      if (issue.suggestion || issue.explanation) prompt += `\n**Suggested Fix:** ${issue.suggestion || issue.explanation}\n`;
+      if (issue.original_code_snippet || issue.original_code) prompt += `\n**Original Code:**\n\`\`\`\n${issue.original_code_snippet || issue.original_code}\n\`\`\`\n`;
+      if (issue.fixed_code_snippet || issue.fixed_code) prompt += `\n**Proposed Fix:**\n\`\`\`\n${issue.fixed_code_snippet || issue.fixed_code}\n\`\`\`\n`;
+      prompt += `\nPlease explain this issue in detail, why it matters, and provide the best approach to fix it.`;
+      return prompt;
+    },
+    async sendIssueToChat(issue) {
+      const prompt = this.buildIssuePrompt(issue);
+      this.inputText = prompt;
+      await this.$nextTick();
+      this.sendMessage();
     }
   }
 };
@@ -187,6 +342,7 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
   animation: slideUp 0.3s forwards cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -356,5 +512,181 @@ export default {
 @keyframes bounce {
   0%, 80%, 100% { transform: scale(0); }
   40% { transform: scale(1); }
+}
+
+/* ── Attached Issue Card ─────────────────────────── */
+.attached-issue-card {
+  margin: 0 1rem;
+  padding: 0.65rem 0.85rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(59, 130, 246, 0.08));
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: var(--radius-md, 8px);
+  animation: slideUp 0.3s forwards cubic-bezier(0.16, 1, 0.3, 1);
+}
+.aic-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #a78bfa;
+  margin-bottom: 0.3rem;
+}
+.aic-dismiss {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 0.2rem;
+  transition: color 0.2s;
+}
+.aic-dismiss:hover { color: var(--accent-danger, #ef4444); }
+.aic-body {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.aic-type {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.aic-file {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono, monospace);
+}
+
+/* Transition for attached card */
+.slide-fade-enter-active { transition: all 0.3s ease; }
+.slide-fade-leave-active { transition: all 0.2s ease; }
+.slide-fade-enter-from { opacity: 0; transform: translateY(8px); }
+.slide-fade-leave-to { opacity: 0; transform: translateY(-4px); }
+
+/* ── Attach Button (+) ──────────────────────────── */
+.attach-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-inset);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.attach-btn:hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.15));
+  border-color: rgba(139, 92, 246, 0.4);
+  color: #a78bfa;
+  transform: scale(1.08);
+}
+
+/* ── Issue Picker Dropdown ──────────────────────── */
+.issue-picker {
+  position: absolute;
+  bottom: 70px;
+  left: 1rem;
+  right: 1rem;
+  background: var(--bg-surface, #1e1e2e);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  max-height: 340px;
+  overflow: hidden;
+}
+.picker-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+.picker-search {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+.picker-search::placeholder { color: var(--text-tertiary); }
+.picker-list {
+  overflow-y: auto;
+  padding: 0.4rem;
+}
+.picker-empty {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 0.82rem;
+}
+.picker-group-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  padding: 0.5rem 0.75rem 0.25rem;
+  font-family: var(--font-mono, monospace);
+}
+.picker-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+.picker-item:hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(59, 130, 246, 0.08));
+  border-color: rgba(139, 92, 246, 0.2);
+}
+.picker-sev {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.picker-sev.sev-critical { background: #ef4444; }
+.picker-sev.sev-high { background: #f97316; }
+.picker-sev.sev-medium { background: #eab308; }
+.picker-sev.sev-low { background: #3b82f6; }
+.picker-issue-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.picker-source {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  padding: 0.1rem 0.4rem;
+  background: var(--bg-inset);
+  border-radius: 4px;
 }
 </style>

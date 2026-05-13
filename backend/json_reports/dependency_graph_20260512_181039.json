@@ -1,0 +1,1119 @@
+{
+    "connections": [
+        {
+            "from_id": 35,
+            "to_id": 31,
+            "type": "import",
+            "name": "Imports App",
+            "names": [
+                "App"
+            ]
+        },
+        {
+            "from_id": 35,
+            "to_id": 37,
+            "type": "import",
+            "name": "Imports router",
+            "names": [
+                "router"
+            ]
+        },
+        {
+            "from_id": 35,
+            "to_id": 74,
+            "type": "import",
+            "name": "Imports mqlOptions",
+            "names": [
+                "mqlOptions"
+            ]
+        },
+        {
+            "from_id": 35,
+            "to_id": 77,
+            "type": "import",
+            "name": "Imports loadLanguageAsync, i18n",
+            "names": [
+                "loadLanguageAsync",
+                "i18n"
+            ]
+        },
+        {
+            "from_id": 35,
+            "to_id": 33,
+            "type": "import",
+            "name": "Imports formKitConfig",
+            "names": [
+                "formKitConfig"
+            ]
+        },
+        {
+            "from_id": 49,
+            "to_id": 85,
+            "type": "import",
+            "name": "Imports login",
+            "names": [
+                "login"
+            ]
+        },
+        {
+            "from_id": 71,
+            "to_id": 79,
+            "type": "import",
+            "name": "Imports main",
+            "names": [
+                "main"
+            ]
+        },
+        {
+            "from_id": 72,
+            "to_id": 79,
+            "type": "import",
+            "name": "Imports main",
+            "names": [
+                "main"
+            ]
+        },
+        {
+            "from_id": 73,
+            "to_id": 79,
+            "type": "import",
+            "name": "Imports main",
+            "names": [
+                "main"
+            ]
+        },
+        {
+            "from_id": 85,
+            "to_id": 37,
+            "type": "import",
+            "name": "Imports router",
+            "names": [
+                "router"
+            ]
+        },
+        {
+            "from_id": 86,
+            "to_id": 37,
+            "type": "import",
+            "name": "Imports router",
+            "names": [
+                "router"
+            ]
+        },
+        {
+            "from_id": 88,
+            "to_id": 80,
+            "type": "import",
+            "name": "Imports types",
+            "names": [
+                "types"
+            ]
+        },
+        {
+            "from_id": 90,
+            "to_id": 77,
+            "type": "import",
+            "name": "Imports loadLanguageAsync, i18n",
+            "names": [
+                "loadLanguageAsync",
+                "i18n"
+            ]
+        },
+        {
+            "from_id": 90,
+            "to_id": 82,
+            "type": "import",
+            "name": "Imports clientDetails",
+            "names": [
+                "clientDetails"
+            ]
+        },
+        {
+            "from_id": 90,
+            "to_id": 86,
+            "type": "import",
+            "name": "Imports loginPn",
+            "names": [
+                "loginPn"
+            ]
+        },
+        {
+            "from_id": 90,
+            "to_id": 85,
+            "type": "import",
+            "name": "Imports login",
+            "names": [
+                "login"
+            ]
+        },
+        {
+            "from_id": 90,
+            "to_id": 81,
+            "type": "import",
+            "name": "Imports academicYears",
+            "names": [
+                "academicYears"
+            ]
+        },
+        {
+            "from_id": 99,
+            "to_id": 32,
+            "type": "import",
+            "name": "Imports registerLearner",
+            "names": [
+                "registerLearner"
+            ]
+        },
+        {
+            "from_id": 103,
+            "to_id": 79,
+            "type": "import",
+            "name": "Imports main",
+            "names": [
+                "main"
+            ]
+        },
+        {
+            "from_id": 37,
+            "to_id": 94,
+            "name": "Router push to Login",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 90,
+            "name": "Router push to adminLogin",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 96,
+            "name": "Router push to StudentData",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 101,
+            "name": "Router push to iLikeDashboard",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 102,
+            "name": "Router push to iLikeLanding",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 109,
+            "name": "Router push to ResultPage",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 108,
+            "name": "Router push to HallTicketPage",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 106,
+            "name": "Router push to ExamFormSubmission",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 107,
+            "name": "Router push to FeeDetails",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 111,
+            "name": "Router push to Transactions",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 105,
+            "name": "Router push to ApplicationServices",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 110,
+            "name": "Router push to SelectedApplicationService",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 113,
+            "name": "Router push to viewMarksheet",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 112,
+            "name": "Router push to viewExamTimeTable",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 99,
+            "name": "Router push to iLikeCourses",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 100,
+            "name": "Router push to iLikeCoursesNew",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 37,
+            "to_id": 93,
+            "name": "Router push to Home",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 85,
+            "to_id": 94,
+            "name": "Router push to login",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 86,
+            "to_id": 94,
+            "name": "Router push to login",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 90,
+            "to_id": 94,
+            "name": "Router push to Login",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 99,
+            "to_id": 100,
+            "name": "Router push to iLikeCoursesNew",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 105,
+            "to_id": 110,
+            "name": "Router push to SelectedApplicationService",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 105,
+            "to_id": 111,
+            "name": "Router push to Transactions",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 106,
+            "to_id": 107,
+            "name": "Router push to FeeDetails",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 106,
+            "to_id": 111,
+            "name": "Router push to Transactions",
+            "type": "route_navigation"
+        }
+    ],
+    "file_map": {
+        "1": {
+            "name": ".eslintrc.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\.eslintrc.js",
+            "exports": []
+        },
+        "2": {
+            "name": "babel.config.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\babel.config.js",
+            "exports": []
+        },
+        "3": {
+            "name": "gulpfile.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\gulpfile.js",
+            "exports": []
+        },
+        "4": {
+            "name": "index.html",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\index.html",
+            "exports": []
+        },
+        "5": {
+            "name": "jest.config.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\jest.config.js",
+            "exports": []
+        },
+        "6": {
+            "name": "postcss.config.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\postcss.config.js",
+            "exports": []
+        },
+        "7": {
+            "name": "tailwind.config.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tailwind.config.js",
+            "exports": []
+        },
+        "8": {
+            "name": "vite.config.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\vite.config.js",
+            "exports": []
+        },
+        "9": {
+            "name": "fontawesome.min.css",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\icons\\fontawesome.min.css",
+            "exports": []
+        },
+        "10": {
+            "name": "light.min.css",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\icons\\light.min.css",
+            "exports": []
+        },
+        "11": {
+            "name": "template.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\template.scss",
+            "exports": []
+        },
+        "12": {
+            "name": "_variables.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\_variables.scss",
+            "exports": []
+        },
+        "13": {
+            "name": "_header.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\common\\_header.scss",
+            "exports": []
+        },
+        "14": {
+            "name": "_menu.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\common\\_menu.scss",
+            "exports": []
+        },
+        "15": {
+            "name": "_buttons.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\components\\_buttons.scss",
+            "exports": []
+        },
+        "16": {
+            "name": "_cards.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\components\\_cards.scss",
+            "exports": []
+        },
+        "17": {
+            "name": "_forms.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\components\\_forms.scss",
+            "exports": []
+        },
+        "18": {
+            "name": "_modal.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\components\\_modal.scss",
+            "exports": []
+        },
+        "19": {
+            "name": "_ui.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\components\\_ui.scss",
+            "exports": []
+        },
+        "20": {
+            "name": "_eventSelection.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\pages\\_eventSelection.scss",
+            "exports": []
+        },
+        "21": {
+            "name": "_login.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\pages\\_login.scss",
+            "exports": []
+        },
+        "22": {
+            "name": "_page.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\pages\\_page.scss",
+            "exports": []
+        },
+        "23": {
+            "name": "_autocomplete.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\plugins\\_autocomplete.scss",
+            "exports": []
+        },
+        "24": {
+            "name": "_calendar.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\plugins\\_calendar.scss",
+            "exports": []
+        },
+        "25": {
+            "name": "_carousel.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\plugins\\_carousel.scss",
+            "exports": []
+        },
+        "26": {
+            "name": "_datatable.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\plugins\\_datatable.scss",
+            "exports": []
+        },
+        "27": {
+            "name": "_dialog.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\plugins\\_dialog.scss",
+            "exports": []
+        },
+        "28": {
+            "name": "_overlayPanel.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\plugins\\_overlayPanel.scss",
+            "exports": []
+        },
+        "29": {
+            "name": "_primeTabs.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\plugins\\_primeTabs.scss",
+            "exports": []
+        },
+        "30": {
+            "name": "_tree.scss",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\assets\\styles\\plugins\\_tree.scss",
+            "exports": []
+        },
+        "31": {
+            "name": "App.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\App.vue",
+            "exports": []
+        },
+        "32": {
+            "name": "axiosApi.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\axiosApi.js",
+            "exports": []
+        },
+        "33": {
+            "name": "formkit.config.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\formkit.config.js",
+            "exports": []
+        },
+        "34": {
+            "name": "index.css",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\index.css",
+            "exports": []
+        },
+        "35": {
+            "name": "main.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\main.js",
+            "exports": []
+        },
+        "36": {
+            "name": "registerServiceWorker.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\registerServiceWorker.js",
+            "exports": []
+        },
+        "37": {
+            "name": "router.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\router.js",
+            "exports": []
+        },
+        "38": {
+            "name": "date-range-pickr.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\date-range-pickr.vue",
+            "exports": []
+        },
+        "39": {
+            "name": "MTable.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\MTable.vue",
+            "exports": []
+        },
+        "40": {
+            "name": "multiselect.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\multiselect.vue",
+            "exports": []
+        },
+        "41": {
+            "name": "updateDbSave.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\BL\\updateDbSave.vue",
+            "exports": []
+        },
+        "42": {
+            "name": "updateUser.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\BL\\updateUser.vue",
+            "exports": []
+        },
+        "43": {
+            "name": "breadCrumbs.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\breadCrumbs.vue",
+            "exports": []
+        },
+        "44": {
+            "name": "courseTitleBar.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\courseTitleBar.vue",
+            "exports": []
+        },
+        "45": {
+            "name": "Footer.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Footer.vue",
+            "exports": []
+        },
+        "46": {
+            "name": "Header.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Header.vue",
+            "exports": []
+        },
+        "47": {
+            "name": "Menu.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Menu.vue",
+            "exports": []
+        },
+        "48": {
+            "name": "programBar.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\programBar.vue",
+            "exports": []
+        },
+        "49": {
+            "name": "Sidebar.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Sidebar.vue",
+            "exports": []
+        },
+        "50": {
+            "name": "SidebarNew.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\SidebarNew.vue",
+            "exports": []
+        },
+        "51": {
+            "name": "Toast.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\DaiseUIComponents\\Toast.vue",
+            "exports": []
+        },
+        "52": {
+            "name": "downloadFile.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\download-manager\\downloadFile.vue",
+            "exports": []
+        },
+        "53": {
+            "name": "downloadProgress.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\download-manager\\downloadProgress.vue",
+            "exports": []
+        },
+        "54": {
+            "name": "clientData.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\excel\\clientData.vue",
+            "exports": []
+        },
+        "55": {
+            "name": "saveWActivity.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\excel\\saveWActivity.vue",
+            "exports": []
+        },
+        "56": {
+            "name": "updateData.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\excel\\updateData.vue",
+            "exports": []
+        },
+        "57": {
+            "name": "Component1.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\i18Demo\\Component1.vue",
+            "exports": []
+        },
+        "58": {
+            "name": "Component2.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\i18Demo\\Component2.vue",
+            "exports": []
+        },
+        "59": {
+            "name": "decryptData.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\decryptData.vue",
+            "exports": []
+        },
+        "60": {
+            "name": "encryptData.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\encryptData.vue",
+            "exports": []
+        },
+        "61": {
+            "name": "hashData.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\hashData.vue",
+            "exports": []
+        },
+        "62": {
+            "name": "hashSalt.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\hashSalt.vue",
+            "exports": []
+        },
+        "63": {
+            "name": "customID.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\mongodbID\\customID.vue",
+            "exports": []
+        },
+        "64": {
+            "name": "hexID.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\mongodbID\\hexID.vue",
+            "exports": []
+        },
+        "65": {
+            "name": "deleteData.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\sessionmanager\\deleteData.vue",
+            "exports": []
+        },
+        "66": {
+            "name": "fetchData.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\sessionmanager\\fetchData.vue",
+            "exports": []
+        },
+        "67": {
+            "name": "storeData.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\sessionmanager\\storeData.vue",
+            "exports": []
+        },
+        "68": {
+            "name": "uploadFile.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\upload-manager\\uploadFile.vue",
+            "exports": []
+        },
+        "69": {
+            "name": "uploadProgessFile.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\upload-manager\\uploadProgessFile.vue",
+            "exports": []
+        },
+        "70": {
+            "name": "Encryption.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\Encryption.js",
+            "exports": []
+        },
+        "71": {
+            "name": "mql.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mql.js",
+            "exports": []
+        },
+        "72": {
+            "name": "mqlAssetFDB.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mqlAssetFDB.js",
+            "exports": []
+        },
+        "73": {
+            "name": "mqlCdn.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mqlCdn.js",
+            "exports": []
+        },
+        "74": {
+            "name": "mqlOptions.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mqlOptions.js",
+            "exports": []
+        },
+        "75": {
+            "name": "response.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\response.js",
+            "exports": []
+        },
+        "76": {
+            "name": "SearchProgram.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\SearchProgram.js",
+            "exports": []
+        },
+        "77": {
+            "name": "i18n-setup.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\setup\\i18n-setup.js",
+            "exports": []
+        },
+        "78": {
+            "name": "init.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\setup\\init.js",
+            "exports": []
+        },
+        "79": {
+            "name": "index.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\index.js",
+            "exports": []
+        },
+        "80": {
+            "name": "types.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\types.js",
+            "exports": []
+        },
+        "81": {
+            "name": "academicYears.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\academicYears.js",
+            "exports": []
+        },
+        "82": {
+            "name": "clientDetails.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\clientDetails.js",
+            "exports": []
+        },
+        "83": {
+            "name": "collegeDetails.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\collegeDetails.js",
+            "exports": []
+        },
+        "84": {
+            "name": "examManagementVar.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\examManagementVar.js",
+            "exports": []
+        },
+        "85": {
+            "name": "login.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\login.js",
+            "exports": []
+        },
+        "86": {
+            "name": "loginPn.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\loginPn.js",
+            "exports": []
+        },
+        "87": {
+            "name": "ProgramD.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\ProgramD.js",
+            "exports": []
+        },
+        "88": {
+            "name": "store.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\store.js",
+            "exports": []
+        },
+        "89": {
+            "name": "types.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\types.js",
+            "exports": []
+        },
+        "90": {
+            "name": "adminLogin.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\adminLogin.vue",
+            "exports": []
+        },
+        "91": {
+            "name": "autoBL.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\autoBL.vue",
+            "exports": []
+        },
+        "92": {
+            "name": "CdnUpload.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\CdnUpload.vue",
+            "exports": []
+        },
+        "93": {
+            "name": "Home.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Home.vue",
+            "exports": []
+        },
+        "94": {
+            "name": "Login.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Login.vue",
+            "exports": []
+        },
+        "95": {
+            "name": "SessionManager.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\SessionManager.vue",
+            "exports": []
+        },
+        "96": {
+            "name": "StudentData.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\StudentData.vue",
+            "exports": []
+        },
+        "97": {
+            "name": "StudentDemo.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\StudentDemo.vue",
+            "exports": []
+        },
+        "98": {
+            "name": "Validator.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Validator.vue",
+            "exports": []
+        },
+        "99": {
+            "name": "iLikeCourses.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeCourses.vue",
+            "exports": []
+        },
+        "100": {
+            "name": "iLikeCoursesNew.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeCoursesNew.vue",
+            "exports": []
+        },
+        "101": {
+            "name": "iLikeDashboard.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeDashboard.vue",
+            "exports": []
+        },
+        "102": {
+            "name": "iLikeLanding.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeLanding.vue",
+            "exports": []
+        },
+        "103": {
+            "name": "defaultLayout.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Layout\\defaultLayout.vue",
+            "exports": []
+        },
+        "104": {
+            "name": "spLayout.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Layout\\spLayout.vue",
+            "exports": []
+        },
+        "105": {
+            "name": "ApplicationServices.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\ApplicationServices.vue",
+            "exports": []
+        },
+        "106": {
+            "name": "ExamFormSubmission.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\ExamFormSubmission.vue",
+            "exports": []
+        },
+        "107": {
+            "name": "FeeDetails.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\FeeDetails.vue",
+            "exports": []
+        },
+        "108": {
+            "name": "HallTicketPage.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\HallTicketPage.vue",
+            "exports": []
+        },
+        "109": {
+            "name": "ResultPage.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\ResultPage.vue",
+            "exports": []
+        },
+        "110": {
+            "name": "SelectedApplicationService.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\SelectedApplicationService.vue",
+            "exports": []
+        },
+        "111": {
+            "name": "Transactions.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\Transactions.vue",
+            "exports": []
+        },
+        "112": {
+            "name": "viewExamTimeTable.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\viewExamTimeTable.vue",
+            "exports": []
+        },
+        "113": {
+            "name": "viewMarksheet.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\viewMarksheet.vue",
+            "exports": []
+        },
+        "114": {
+            "name": "elementCount.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\e2e\\custom-assertions\\elementCount.js",
+            "exports": []
+        },
+        "115": {
+            "name": "login.specs.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\e2e\\specs\\login.specs.js",
+            "exports": []
+        },
+        "116": {
+            "name": "test.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\e2e\\specs\\test.js",
+            "exports": []
+        },
+        "117": {
+            "name": ".eslintrc.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\unit\\.eslintrc.js",
+            "exports": []
+        },
+        "118": {
+            "name": "HelloWorld.spec.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\unit\\HelloWorld.spec.js",
+            "exports": []
+        },
+        "119": {
+            "name": "login.spec.js",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\unit\\login.spec.js",
+            "exports": []
+        }
+    },
+    "impact_map": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": [],
+        "10": [],
+        "11": [],
+        "12": [],
+        "13": [],
+        "14": [],
+        "15": [],
+        "16": [],
+        "17": [],
+        "18": [],
+        "19": [],
+        "20": [],
+        "21": [],
+        "22": [],
+        "23": [],
+        "24": [],
+        "25": [],
+        "26": [],
+        "27": [],
+        "28": [],
+        "29": [],
+        "30": [],
+        "31": [
+            35
+        ],
+        "32": [
+            99
+        ],
+        "33": [
+            35
+        ],
+        "34": [],
+        "35": [],
+        "36": [],
+        "37": [
+            35,
+            85,
+            86
+        ],
+        "38": [],
+        "39": [],
+        "40": [],
+        "41": [],
+        "42": [],
+        "43": [],
+        "44": [],
+        "45": [],
+        "46": [],
+        "47": [],
+        "48": [],
+        "49": [],
+        "50": [],
+        "51": [],
+        "52": [],
+        "53": [],
+        "54": [],
+        "55": [],
+        "56": [],
+        "57": [],
+        "58": [],
+        "59": [],
+        "60": [],
+        "61": [],
+        "62": [],
+        "63": [],
+        "64": [],
+        "65": [],
+        "66": [],
+        "67": [],
+        "68": [],
+        "69": [],
+        "70": [],
+        "71": [],
+        "72": [],
+        "73": [],
+        "74": [
+            35
+        ],
+        "75": [],
+        "76": [],
+        "77": [
+            35,
+            90
+        ],
+        "78": [],
+        "79": [
+            71,
+            72,
+            73,
+            103
+        ],
+        "80": [
+            88
+        ],
+        "81": [
+            90
+        ],
+        "82": [
+            90
+        ],
+        "83": [],
+        "84": [],
+        "85": [
+            49,
+            90
+        ],
+        "86": [
+            90
+        ],
+        "87": [],
+        "88": [],
+        "89": [],
+        "90": [
+            37
+        ],
+        "91": [],
+        "92": [],
+        "93": [
+            37
+        ],
+        "94": [
+            37,
+            85,
+            86,
+            90
+        ],
+        "95": [],
+        "96": [
+            37
+        ],
+        "97": [],
+        "98": [],
+        "99": [
+            37
+        ],
+        "100": [
+            37,
+            99
+        ],
+        "101": [
+            37
+        ],
+        "102": [
+            37
+        ],
+        "103": [],
+        "104": [],
+        "105": [
+            37
+        ],
+        "106": [
+            37
+        ],
+        "107": [
+            37,
+            106
+        ],
+        "108": [
+            37
+        ],
+        "109": [
+            37
+        ],
+        "110": [
+            37,
+            105
+        ],
+        "111": [
+            37,
+            105,
+            106
+        ],
+        "112": [
+            37
+        ],
+        "113": [
+            37
+        ],
+        "114": [],
+        "115": [],
+        "116": [],
+        "117": [],
+        "118": [],
+        "119": []
+    },
+    "cycles": []
+}

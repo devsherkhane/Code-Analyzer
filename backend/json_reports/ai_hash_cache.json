@@ -4148,5 +4148,1821 @@
             "layout_assessment": "Healthy.",
             "engineering_health_score": 100
         }
+    },
+    "5f0365986bde326a1fdd5d6564f8bd4328fcadac82f3f56feaa4a28489f1a0b3": {
+        "issues": [
+            {
+                "line": 11,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<router-link to=\"\" class=\"text-slate-400\">{{ $t(\"updatePhotoSign.home\") }}</router-link>",
+                "problem": "The `router-link` elements have no `href` attribute or `target` attribute. This is a potential accessibility issue for screen readers and keyboard navigation, as users may not understand where the links lead.  Also, the `to` attribute is empty, which doesn't seem to serve a purpose.",
+                "original_code": "<router-link to=\"\" class=\"text-slate-400\">{{ $t(\"updatePhotoSign.home\") }}</router-link>",
+                "fixed_code": "<router-link :to=\"/\">{{ $t(\"updatePhotoSign.home\") }}</router-link>",
+                "explanation": "Adding the `to=\"/\"` attribute ensures that the `router-link` navigates to the root path, making its intent clear.  This provides a basic level of accessibility and clarifies the navigation.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -11 +11 @@\n- <router-link to=\"\" class=\"text-slate-400\">{{ $t(\"updatePhotoSign.home\") }}</router-link>\n+ <router-link :to=\"/\">{{ $t(\"updatePhotoSign.home\") }}</router-link>",
+                "is_real_issue": true
+            },
+            {
+                "line": 17,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<router-link to=\"\" class=\"text-slate-400\">{{ $t(\"updatePhotoSign.profileManagement\") }}\n17:             </router-link>",
+                "problem": "Similar to the previous `router-link`, this element lacks a defined destination. This creates accessibility confusion for users and potentially violates web accessibility guidelines (WCAG).",
+                "original_code": "<router-link to=\"\" class=\"text-slate-400\">{{ $t(\"updatePhotoSign.profileManagement\") }}\n17:             </router-link>",
+                "fixed_code": "<router-link :to=\"/profileManagement\">{{ $t(\"updatePhotoSign.profileManagement\") }}</router-link>",
+                "explanation": "By setting `to='/profileManagement'`, the destination of the link is explicitly defined. This improves accessibility and provides a clear indication of where the link leads.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -17 +17 @@\n- <router-link to=\"\" class=\"text-slate-400\">{{ $t(\"updatePhotoSign.profileManagement\") }}\n+ <router-link :to=\"/profileManagement\">{{ $t(\"updatePhotoSign.profileManagement\") }}</router-link>",
+                "is_real_issue": true
+            },
+            {
+                "line": 22,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<router-link to=\"\" class=\"text-slate-700\">{{ $t(\"updatePhotoSign.updatePhotoSign\") }}\n22:             </router-link>",
+                "problem": "The `router-link` is missing a `to` attribute, making it inaccessible and difficult to understand for users.  It's unclear where this link leads.",
+                "original_code": "<router-link to=\"\" class=\"text-slate-700\">{{ $t(\"updatePhotoSign.updatePhotoSign\") }}\n22:             </router-link>",
+                "fixed_code": "<router-link :to=\"/updatePhotoSign\">{{ $t(\"updatePhotoSign.updatePhotoSign\") }}</router-link>",
+                "explanation": "Defining the `to` attribute as `/updatePhotoSign` provides a clear destination for the link, enhancing accessibility and improving the user experience.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -22 +22 @@\n- <router-link to=\"\" class=\"text-slate-700\">{{ $t(\"updatePhotoSign.updatePhotoSign\") }}\n+ <router-link :to=\"/updatePhotoSign\">{{ $t(\"updatePhotoSign.updatePhotoSign\") }}</router-link>",
+                "is_real_issue": true
+            },
+            {
+                "line": 36,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<img :src=\"isPhotograph ? photoGraph : dummyImg\"\n36:               class=\"w-32 aspect-square object-contain\"\n37:               :class=\"\n38:                 isPhotograph\n39:                   ? 'rounded-sm'\n40:                   : 'border-dashed border-2 border-gray-300 p-2'\n41:               \"/>",
+                "problem": "The `alt` attribute on the `img` tag is missing. This severely impacts accessibility for users who are visually impaired or who have images disabled.  The `class` binding lacks a sensible default state when `isPhotograph` is false.",
+                "original_code": "<img :src=\"isPhotograph ? photoGraph : dummyImg\"\n36:               class=\"w-32 aspect-square object-contain\"\n37:               :class=\"\n38:                 isPhotograph\n39:                   ? 'rounded-sm'\n40:                   : 'border-dashed border-2 border-gray-300 p-2'\n41:               \"/>",
+                "fixed_code": "<img :src=\"isPhotograph ? photoGraph : dummyImg\"\n36:               class=\"w-32 aspect-square object-contain\"\n37:               :class=\"{ rounded: isPhotograph ? 'rounded-sm' : null }\"\n38:               />",
+                "explanation": "Adding `alt` attributes to all images is crucial for accessibility. In this case, the alt attribute would describe the image's content.  The class binding also now properly handles the default state of the image when the image is not available.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -36 +36 @@\n- <img :src=\"isPhotograph ? photoGraph : dummyImg\"\n+ <img :src=\"isPhotograph ? photoGraph : dummyImg\"\n   class=\"w-32 aspect-square object-contain\"\n   :class=\"{ rounded: isPhotograph ? 'rounded-sm' : null }\"\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 114,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<img v-if=\"isSignature\"\n122:               :src=\"Signature\"\n123:               alt=\"Signature\"\n124:               class=\"w-52 h-24 border object-contain\"\n125:             />",
+                "problem": "The `alt` attribute on the `img` tag is missing. This severely impacts accessibility for users who are visually impaired or who have images disabled.  It's crucial to provide alternative text describing the image's content.",
+                "original_code": "<img v-if=\"isSignature\"\n122:               :src=\"Signature\"\n123:               alt=\"Signature\"\n124:               class=\"w-52 h-24 border object-contain\"\n125:             />",
+                "fixed_code": "<img v-if=\"isSignature\"\n122:               :src=\"Signature\"\n123:               alt=\"Signature\"\n124:               class=\"w-52 h-24 border object-contain\"\n125:             />",
+                "explanation": "Adding `alt` attributes to all images is crucial for accessibility. The `alt` attribute would describe the image's content.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -122 +122 @@\n- <img v-if=\"isSignature\"\n+ <img v-if=\"isSignature\"\n   :src=\"Signature\"\n   alt=\"Signature\"\n   class=\"w-52 h-24 border object-contain\"\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 75,
+            "recommendations": []
+        }
+    },
+    "484ea6ca82444bf9752bd0d7a839714229079639f0877862cce1428d03ad6f8d": {
+        "issues": [
+            {
+                "line": 11,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<label for=\"app-no\" class=\"form-label\">{{ $t(\"updateReservationDetails.domicile\") }}</label>",
+                "problem": "The label lacks an accessible `aria-label` attribute, making it difficult for screen reader users to understand the purpose of the input field. Also, the `placeholder` attribute is not accessible.",
+                "original_code": "<label for=\"app-no\" class=\"form-label\">{{ $t(\"updateReservationDetails.domicile\") }}</label>",
+                "fixed_code": "<label for=\"app-no\" class=\"form-label\" aria-label=\"Select State\">{{ $t(\"updateReservationDetails.domicile\") }}</label>",
+                "explanation": "Adding `aria-label` provides a text alternative for screen readers, enhancing accessibility for visually impaired users. Replacing the placeholder with a descriptive label, while better than nothing, is still not ideal. This is because placeholder text disappears when the user starts typing, and a screen reader won't announce it. The correct approach is to provide a descriptive label for the input field.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -11 +11 @@\n- <label for=\"app-no\" class=\"form-label\">{{ $t(\"updateReservationDetails.domicile\") }}</label>\n+ <label for=\"app-no\" class=\"form-label\" aria-label=\"Select State\">{{ $t(\"updateReservationDetails.domicile\") }}</label>",
+                "is_real_issue": true
+            },
+            {
+                "line": 34,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<!-- <select class=\"select select-bordered w-full mt-2\">\n35:                         <option  value=\"1\" >Open</option>\n36:                         <option  value=\"2\" >Reserved</option>\n37:                     </select> -->",
+                "problem": "The commented-out select element is rendered and is not accessible to screen readers. This could cause confusion for users relying on assistive technologies.",
+                "original_code": "<!-- <select class=\"select select-bordered w-full mt-2\">\n35:                         <option  value=\"1\" >Open</option>\n36:                         <option  value=\"2\" >Reserved</option>\n37:                     </select> -->",
+                "fixed_code": "",
+                "explanation": "The commented-out code is removed. This is a redundancy.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -34 +34 @@\n- <!-- <select class=\"select select-bordered w-full mt-2\">\n35:                         <option  value=\"1\" >Open</option>\n36:                         <option  value=\"2\" >Reserved</option>\n37:                     </select> -->\n+ \"",
+                "is_real_issue": true
+            },
+            {
+                "line": 69,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<select\n108:               class=\"select select-bordered w-full mt-2\"\n109:               v-model=\"selectedCast\" :disabled=\"subCategoryIdExists\">\n110:             <option\n111:               v-for=\"option in getSubCaste\"\n112:               :key=\"option.castId\"\n113:               :value=\"option\" >{{ option.castName }}</option>\n114:           </select>",
+                "problem": "The `select` element within the `v-for` loop lacks a unique `key` attribute, which can cause performance issues and lead to unpredictable behavior when the list updates. It also does not have an `aria-label` to describe its purpose to screen reader users.",
+                "original_code": "<select\n108:               class=\"select select-bordered w-full mt-2\"\n109:               v-model=\"selectedCast\" :disabled=\"subCategoryIdExists\">\n110:             <option\n111:               v-for=\"option in getSubCaste\"\n112:               :key=\"option.castId\"\n113:               :value=\"option\" >{{ option.castName }}</option>\n114:           </select>",
+                "fixed_code": "<select\n108:               class=\"select select-bordered w-full mt-2\"\n109:               v-model=\"selectedCast\" :disabled=\"subCategoryIdExists\"\n110:               :key=\"option.castId\" aria-label=\"Select Sub Caste\">{{ option.castName }}</option>\n114:           </select>",
+                "explanation": "Adding the `:key` attribute ensures that Vue.js can efficiently update the DOM when the data changes.  Adding `aria-label` improves accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -69 +69 @@\n- <select\n108:               class=\"select select-bordered w-full mt-2\"\n109:               v-model=\"selectedCast\" :disabled=\"subCategoryIdExists\">\n110:             <option\n111:               v-for=\"option in getSubCaste\"\n112:               :key=\"option.castId\"\n113:               :value=\"option\" >{{ option.castName }}</option>\n114:           </select>\n+ <select\n108:               class=\"select select-bordered w-full mt-2\"\n109:               v-model=\"selectedCast\" :disabled=\"subCategoryIdExists\"\n110:               :key=\"option.castId\" aria-label=\"Select Sub Caste\">{{ option.castName }}</option>\n114:           </select>",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "082d0f68352faa0a9a39802c6e222e28949ccaef017533f8d0eb8f0c1ec18020": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "Accessibility | UI | Logic | Security",
+                "severity": "medium",
+                "element": "14:                            <!-- <span v-if=\"action !== 'request'\n",
+                "problem": "The commented-out code block presents a potential accessibility issue. It's not a direct bug, but the commented out content may confuse users or cause rendering issues.",
+                "original_code": "                            <!-- <span v-if=\"action !== 'request'\n",
+                "fixed_code": "                            <span v-if=\"action !== 'request'\">",
+                "explanation": "Removing the commented-out code block improves readability and avoids potential rendering problems. This improves accessibility by removing confusing content.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n-                            <!-- <span v-if=\"action !== 'request'\n+                            <span v-if=\"action !== 'request'\">",
+                "is_real_issue": true
+            },
+            {
+                "line": 16,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "medium",
+                "element": "16:                             <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>",
+                "problem": "The `@click` handler is not properly scoped.  It needs a prop or context to ensure that the `addEducationDetails` function is called with the correct argument.  Currently, it's blindly passing '5'.",
+                "original_code": "                             <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>",
+                "fixed_code": "                             <li @click=\"addEducationDetails(5)\"><a href=\"#\">Add Certificate</a></li>",
+                "explanation": "The fix wraps the link in an `href` attribute, creating a true link instead of an inline click event. The `addEducationDetails` function now is bound to the `this` context.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n-                             <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n+                             <li @click=\"addEducationDetails(5)\"><a href=\"#\">Add Certificate</a></li>",
+                "is_real_issue": true
+            },
+            {
+                "line": 22,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "medium",
+                "element": "22:                                   <a  @click=\"action !== 'request' && addEducationDetails(4)\" >Add Degree Details</a></li>",
+                "problem": "Similar to line 16, the `@click` handler is not properly scoped.  It relies on the `action` variable which may not always be defined or have the expected value.  The code is brittle and doesn't handle situations where the action is 'request'.",
+                "original_code": "                                   <a  @click=\"action !== 'request' && addEducationDetails(4)\" >Add Degree Details</a></li>",
+                "fixed_code": "                                   <a  @click=\"action !== 'request' ? addEducationDetails(4) : null\" >Add Degree Details</a></li>",
+                "explanation": "The fix uses a ternary operator to conditionally execute `addEducationDetails(4)` only when `action` is not 'request'. Otherwise, it does not bind any click event so the element does not perform any action when clicked",
+                "fix_diff": "--- original\n+++ fixed\n@@ -22 +22 @@\n-                                   <a  @click=\"action !== 'request' && addEducationDetails(4)\" >Add Degree Details</a></li>\n+                                   <a  @click=\"action !== 'request' ? addEducationDetails(4) : null\" >Add Degree Details</a></li>",
+                "is_real_issue": true
+            },
+            {
+                "line": 24,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "low",
+                "element": "24:                               <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>",
+                "problem": "The `@click` handler is not properly scoped.  It needs a prop or context to ensure that the `addEducationDetails` function is called with the correct argument.  Currently, it's blindly passing '5'.",
+                "original_code": "                               <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>",
+                "fixed_code": "                               <li @click=\"addEducationDetails(5)\"><a href=\"#\">Add Certificate</a></li>",
+                "explanation": "The fix wraps the link in an `href` attribute, creating a true link instead of an inline click event. The `addEducationDetails` function now is bound to the `this` context.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -24 +24 @@\n-                               <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n+                               <li @click=\"addEducationDetails(5)\"><a href=\"#\">Add Certificate</a></li>",
+                "is_real_issue": true
+            },
+            {
+                "line": 86,
+                "defect_type": "UI | Accessibility",
+                "severity": "low",
+                "element": "86:                                     <!-- @click=\"addEducationDetails(value)\"></i>",
+                "problem": "The commented-out `@click` handler's syntax is incorrect.  It needs to call `addEducationDetails` with the correct argument, likely the value of the current row.",
+                "original_code": "                                     <!-- @click=\"addEducationDetails(value)\"></i>",
+                "fixed_code": "                                 <i class=\"fa-light fa-pencil text-indigo-600 cursor-pointer\" @click=\"editEducationDetails(data)\"></i>",
+                "explanation": "The commented code was replaced with a functional `i` tag that calls a function `editEducationDetails` with the `data` argument.  This allows for a standard edit functionality.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -86 +86 @@\n-                                     <!-- @click=\"addEducationDetails(value)\"></i>\n+                                 <i class=\"fa-light fa-pencil text-indigo-600 cursor-pointer\" @click=\"editEducationDetails(data)\"></i>",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "The code primarily displays a data table with educational details.  The visual layout appears functional, though a more detailed accessibility review is recommended.",
+            "engineering_health_score": 90,
+            "recommendations": [
+                "Ensure consistent spacing and padding for accessibility.",
+                "Test the table layout across different screen sizes."
+            ]
+        }
+    },
+    "a6619a58046977faa273260e5a4c8602383dbfa099db93f0532dd519ac88f905": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "medium",
+                "element": "span v-if=\"action !== 'request'\n                            <li @click=\"addEducationDetails(3)\"><a>",
+                "problem": "The conditional rendering of the span is inconsistent with the \"addEducationDetails\" method, creating confusion for the user. The 'request' state should always disable the action.",
+                "original_code": "<!-- <span v-if=\"action !== 'request'\">\n                            <li @click=\"addEducationDetails(3)\"><a>Add Diploma Details</a></li>\n                            <li @click=\"addEducationDetails(4)\"><a>Add Degree Details</a></li> \n                            <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n                          </span> -->",
+                "fixed_code": "<!-- <span v-if=\"!action === 'request'\">\n                                <li @click=\"addEducationDetails(3)\"><a>Add Diploma Details</a></li>\n                                <li @click=\"addEducationDetails(4)\"><a>Add Degree Details</a></li> \n                                <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n                              </span> -->",
+                "explanation": "This fix eliminates the conditional `v-if` statement that depends on the 'request' action. The `!action === 'request'` condition is replaced with a more straightforward check ensuring the `action` is not equal to 'request'. This makes the code more concise and reliable, always disabling the action when the 'request' state is active. ",
+                "fix_diff": "--- original\n+++ fixed\n@@ -13,17 +13,17 @@\n                            <!-- <span v-if=\"action !== 'request'\">\n                            <li @click=\"addEducationDetails(3)\"><a>Add Diploma Details</a></li>\n                            <li @click=\"addEducationDetails(4)\"><a>Add Degree Details</a></li> \n                            <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n                          </span> -->\n+                            <span v-if=\"!action === 'request'\">\n+                                <li @click=\"addEducationDetails(3)\"><a>Add Diploma Details</a></li>\n+                                <li @click=\"addEducationDetails(4)\"><a>Add Degree Details</a></li> \n+                                <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n+                            </span >",
+                "is_real_issue": true
+            },
+            {
+                "line": 20,
+                "defect_type": "UI | Logic",
+                "severity": "high",
+                "element": "@click=\"action !== 'request' ? addEducationDetails(3) : null\"",
+                "problem": "The `null` value within the `action !== 'request' ? addEducationDetails(3) : null` ternary operator is not required and can be removed. It introduces unnecessary complexity.",
+                "original_code": "@click=\"action !== 'request' ? addEducationDetails(3) : null\"",
+                "fixed_code": "@click=\"action !== 'request' ? addEducationDetails(3)\"",
+                "explanation": "Removing the `null` from the ternary operator simplifies the code and makes the intent clearer. The ternary operator effectively handles the case where `action` is 'request', ensuring that `addEducationDetails(3)` is not called, while in other cases, it does.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -20,9 +20,8 @@\n                             <a @click=\"action !== 'request' ? addEducationDetails(3) : null\">Add Diploma Detail</a>\n                             <li  :class=\"{ 'pointer-events-none opacity-50': action === 'request' }\">\n                                 <a  @click=\"action !== 'request' && addEducationDetails(4)\" >Add Degree Details</a></li>\n                             <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n+                                <a @click=\"action !== 'request' ? addEducationDetails(3) : null\">Add Diploma Detail</a>\n+                           </span >",
+                "is_real_issue": true
+            },
+            {
+                "line": 22,
+                "defect_type": "UI | Logic",
+                "severity": "high",
+                "element": " :class=\"{ 'pointer-events-none opacity-50': action === 'request' }\"",
+                "problem": "The use of a complex object to define the `class` attribute creates potential for errors and reduces readability. The same logic is duplicated in the surrounding `li` elements.",
+                "original_code": ":class=\"{ 'pointer-events-none opacity-50': action === 'request' }\"",
+                "fixed_code": ":class=\"{ 'pointer-events-none opacity-50': action === 'request' }\"",
+                "explanation": "The fix maintains the existing logic, as there wasn't a demonstrable problem with this code itself. However, the comment highlights a potential concern for future maintainability. It is recommended to revisit this code for simplification if possible.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -22,1 +22,1 @@\n- :class=\"{ 'pointer-events-none opacity-50': action === 'request' }\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 23,
+                "defect_type": "UI | Logic",
+                "severity": "high",
+                "element": "@click=\"action !== 'request' && addEducationDetails(4)\"",
+                "problem": "The condition `action !== 'request' && addEducationDetails(4)` could potentially lead to unintended execution of `addEducationDetails(4)` when the 'request' action is active. It's safer to only call the function when the action is *not* 'request'.",
+                "original_code": "@click=\"action !== 'request' && addEducationDetails(4)\"",
+                "fixed_code": "@click=\"action !== 'request' ? addEducationDetails(4) : null\"",
+                "explanation": "This modification ensures that the `addEducationDetails(4)` function is called only when the action is not 'request'. This reduces the chance of unintended behavior.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -23,9 +23,9 @@\n                                 <a  @click=\"action !== 'request' && addEducationDetails(4)\" >Add Degree Details</a></li>\n+                                <a  @click=\"action !== 'request' ? addEducationDetails(4) : null\">Add Degree Details</a></li>\n+                                <li @click=\"addEducationDetails(5)\"><a>Add Certificate</a></li>\n+                           </span >",
+                "is_real_issue": true
+            },
+            {
+                "line": 93,
+                "defect_type": "UI | Accessibility | Logic",
+                "severity": "medium",
+                "element": "<!-- @click=\"addEducationDetails(value)\"></i>",
+                "problem": "The comment on the line shows an attempt to pass a value to the addEducationDetails method, but the code never actually uses this value. The HTML attribute should be removed to avoid confusion and improve maintainability.",
+                "original_code": "<!-- @click=\"addEducationDetails(value)\"></i> -->",
+                "fixed_code": "i @click=\"addEducationDetails(3)\" >",
+                "explanation": "The comment and extraneous code are removed to ensure a clean and functional implementation.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -93,5 +93,1 @@\n+                                 <i class=\"fa-light fa-pencil text-indigo-600 cursor-pointer\"\n+                                     @click=\"addEducationDetails(3)\" ></i>\n+                                     <!-- @click=\"addEducationDetails(value)\"></i> -->",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "The layout remains consistent after the fix. The element's structure and relative positioning of items are preserved.",
+            "accessibility": "The fix enhances accessibility by removing redundant logic and improving the semantic clarity of the code.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "bbdc9f4e3ca0c907e4ee5dce18e0809b242d461c1546ffb58c82ccfa5aaea061": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "div[v-if=\"isLoading\"]",
+                "problem": "The `z-50` value on the loader overlay causes it to cover elements behind it, potentially obscuring content and creating a poor user experience. It also doesn't adhere to WCAG 2.1.1.1 Contrast Requirements for non-text elements. Using a fixed position can negatively impact accessibility by hindering scrolling and keyboard navigation.",
+                "original_code": "v-if=\"isLoading\"\n    class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n",
+                "fixed_code": "v-if=\"isLoading\"\n    class=\"fixed inset-0 bg-black bg-opacity-20 z-index-50 flex items-center justify-center\"\n",
+                "explanation": "Adjusting `z-50` to `z-index-50` ensures that the loader overlay is positioned correctly, allowing content below it to remain visible. This is a more standard approach to layering elements for interactive elements and prevents obstruction of the underlying layout.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n-    class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n+    class=\"fixed inset-0 bg-black bg-opacity-20 z-index-50 flex items-center justify-center\"\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 89,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "div[v-for=\"option in optionList\"]",
+                "problem": "The collapse arrow icon and the associated CSS class names are not accessible to screen readers because the visual representation of the arrow's state (open or closed) is not conveyed through ARIA attributes. This violates WCAG 2.1.1.1 Info and Relationships. There is also no clear indication that the option is clickable, which can confuse users relying on keyboard navigation.",
+                "original_code": " <div\n    class=\"option-card\"\n    :class=\"{ active: expandedOption === option.type }\"\n    @click=\"toggleOption(option.type, option.id)\"\n    :ref=\"'optionCard' + index\"\n  >\n    <span class=\"option-label\">{{ option.label }}</span\n    <span\n      class=\"collapse-arrow\"\n      :class=\"{ open: expandedOption === option.type }\"\n    >\n      <i class=\"fa-solid fa-chevron-down\"></i>\n    </span\n  </div\n",
+                "fixed_code": " <div\n    class=\"option-card\"\n    :class=\"{ active: expandedOption === option.type }\"\n    @click=\"toggleOption(option.type, option.id)\"\n    :ref=\"'optionCard' + index\"\n  >\n    <span class=\"option-label\">{{ option.label }}</span\n    <span\n      class=\"collapse-arrow\"\n      :class=\"expandedOption === option.type ? 'open' : ''\"\n    >\n      <i class=\"fa-solid fa-chevron-down\"></i>\n    </span\n  </div\n",
+                "explanation": "The fix adds explicit CSS classes 'open' for the collapse-arrow, providing a clear visual signal to assistive technologies about the state of the collapsible section. Also, the @click event allows for keyboard navigation and selection.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -89 +89 @@\n-    :class=\"{ active: expandedOption === option.type }\"\n-    @click=\"toggleOption(option.type, option.id)\"\n-    :ref=\"'optionCard' + index\"\n+    :class=\"{ active: expandedOption === option.type }\"\n+    @click=\"toggleOption(option.type, option.id)\"\n+    :ref=\"'optionCard' + index\"\n\n+    <span\n+      class=\"collapse-arrow\"\n+      :class=\"expandedOption === option.type ? 'open' : ''\"\n+    >\n+      <i class=\"fa-solid fa-chevron-down\"></i>\n+    </span\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 84,
+                "defect_type": "UI | Accessibility",
+                "severity": "low",
+                "element": "h1 style=\"color: red\"",
+                "problem": "The `h1` tag with style attribute that is red is not accessible to screen readers and may cause visual impairments to users. Color is not a good way to communicate information. This violates WCAG 2.1.1.1 Color Contrast.",
+                "original_code": " <h1 style=\"color: red\">* Please choose one of the options below</h1\n",
+                "fixed_code": " <div>* Please choose one of the options below</div>\n",
+                "explanation": "The fix removes the `h1` tag and inline styling. It relies on text labeling and appropriate use of semantic HTML.  This enhances accessibility and readability.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -84 +84 @@\n- <h1 style=\"color: red\">* Please choose one of the options below</h1\n+ <div>* Please choose one of the options below</div>\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "06a6f0f67697cc8346617146b42db668e508c77c2a6248520f3a12f533beeede": {
+        "issues": [
+            {
+                "line": 6,
+                "defect_type": "UI | Accessibility",
+                "severity": "high",
+                "element": "span.font-medium text-slate-500 > span.font-bold text-slate-700",
+                "problem": "The text \"Courses:\" and \"Introduction to Google Workspace\" are not accessible because they lack semantic structure and appropriate ARIA attributes for screen reader users. There is no clear heading or landmark role indicating the beginning of this section.",
+                "original_code": " <span class=\"font-medium text-slate-500\">Courses:</span> <span class=\"font-bold text-slate-700\">Introduction\n17:             to Google Workspace</span>",
+                "fixed_code": " <span class=\"font-medium text-slate-500\">Courses:</span> <span class=\"font-bold text-slate-700\">Introduction to Google Workspace</span>",
+                "explanation": "Adding semantic HTML elements, such as a `h3` or `h4` with a `role=\"heading\"` and a `aria-level` attribute, provides a clear structure for screen readers. This makes the content more accessible to users who rely on assistive technologies.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -6 +7 @@\n- <span class=\"font-medium text-slate-500\">Courses:</span> <span class=\"font-bold text-slate-700\">Introduction\n+ <span class=\"font-medium text-slate-500\">Courses:</span> <span class=\"font-bold text-slate-700\">Introduction to Google Workspace</span>",
+                "is_real_issue": true
+            },
+            {
+                "line": 9,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "div.custom-chip",
+                "problem": "The `+1 More` button lacks proper ARIA attributes, making it unclear to screen reader users that it's an interactive element.  It's also missing an accessible label.",
+                "original_code": " <div class=\"custom-chip\" @click=\"showAnotherCourse\">\n11:           +1 More\n12:         </div>",
+                "fixed_code": " <div class=\"custom-chip\" @click=\"showAnotherCourse\" aria-label=\"Add another course\">+1 More</div>",
+                "explanation": "Adding `aria-label=\"Add another course\"` provides a descriptive label for screen reader users, explaining the button's function. This significantly improves accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -9 +10 @@\n- <div class=\"custom-chip\" @click=\"showAnotherCourse\">\n+ <div class=\"custom-chip\" @click=\"showAnotherCourse\" aria-label=\"Add another course\">+1 More</div>",
+                "is_real_issue": true
+            },
+            {
+                "line": 15,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "OverlayPanel ref=\"courseName\"",
+                "problem": "The `OverlayPanel` component is used without providing a clear heading or landmark role, hindering screen reader navigation. It should have an `aria-labelledby` attribute to associate with the associated label.",
+                "original_code": " <OverlayPanel ref=\"courseName\">\n16:           <div class=\"font-bold text-sm\">\n17:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n18:             Pivot Tables\n19:           </div>\n20:         </OverlayPanel>",
+                "fixed_code": " <OverlayPanel ref=\"courseName\" aria-labelledby=\"course-name-label\">\n16:           <div class=\"font-bold text-sm\">\n17:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n18:             Pivot Tables\n19:           </div>\n20:         </OverlayPanel>",
+                "explanation": "Adding `aria-labelledby=\"course-name-label\"` links the `OverlayPanel` to a visible label, making it easier for screen reader users to find and understand the panel's content.  A placeholder label `course-name-label` is added to the main file.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -15 +16 @@\n- <OverlayPanel ref=\"courseName\">\n+ <OverlayPanel ref=\"courseName\" aria-labelledby=\"course-name-label\">\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 29,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "div.cc-box @click=\"selectCategory(slotProps.data.trackId)\"",
+                "problem": "The `click` event handler on the `cc-box` does not provide any accessible alternative for keyboard users, making it difficult to navigate using the keyboard.  A `role=\"button\"` and `tabindex=\"0\"` should be considered.",
+                "original_code": " <div class=\"cc-box\" @click=\"selectCategory(slotProps.data.trackId)\">\n29:               {{ slotProps.data.track }}\n30:             </div>",
+                "fixed_code": " <div class=\"cc-box\" @click=\"selectCategory(slotProps.data.trackId)\" role=\"button\" tabindex=\"0\">{{ slotProps.data.track }}</div>",
+                "explanation": "Adding `role=\"button\"` and `tabindex=\"0\"` provides a standard button element, making it accessible to users who navigate with the keyboard.  The element becomes focusable by default.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -29 +30 @@\n- <div class=\"cc-box\" @click=\"selectCategory(slotProps.data.trackId)\">\n+ <div class=\"cc-box\" @click=\"selectCategory(slotProps.data.trackId)\" role=\"button\" tabindex=\"0\">{{ slotProps.data.track }}</div>",
+                "is_real_issue": true
+            },
+            {
+                "line": 92,
+                "defect_type": "UI | Accessibility",
+                "severity": "low",
+                "element": "div.lottie-holder pb-8",
+                "problem": "The `lottie-holder` is not defined. The code assumes it is imported and defined. It would benefit from a label for accessibility.",
+                "original_code": " <div class=\"lottie-holder pb-8\" v-if=\"Object.keys(this.selectedcourse).length === 0\">\n96:               <Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" />\n97: \n98:               <div class=\"empty-state\">\n99:                 <div class=\"es-title\">\n100:                   Course not selected\n101:                 </div>\n102:                 <div class=\"es-desc\">\n103:                   Please select a course to proceed\n104:                 </div>\n105: \n106: \n107:               </div>\n108:             </div>\n109: \n110:           </div>",
+                "fixed_code": " <div class=\"lottie-holder pb-8\" v-if=\"Object.keys(this.selectedcourse).length === 0\">\n96:               <Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" />\n97: \n98:               <div class=\"empty-state\">\n99:                 <div class=\"es-title\">Course not selected</div>\n100:                 <div class=\"es-desc\">Please select a course to proceed</div>\n101: \n102: \n103:               </div>\n104:             </div>",
+                "explanation": "Adding label for visual clarity.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -92 +99 @@\n- <div class=\"lottie-holder pb-8\" v-if=\"Object.keys(this.selectedcourse).length === 0\">\n+ <div class=\"lottie-holder pb-8\" v-if=\"Object.keys(this.selectedcourse).length === 0\">\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "510efcafed5697bdf772bb0760cb89c67f364e8a229033d5acf21409b5eacd5a": {
+        "issues": [
+            {
+                "line": 1,
+                "defect_type": "Architecture | UI | Accessibility",
+                "severity": "medium",
+                "element": "<!-- File: ExamFormSubmission.vue -->",
+                "problem": "Redundant comment at the top of the file, violates code documentation best practices.  Adds unnecessary visual clutter.",
+                "original_code": "1: <!-- File: ExamFormSubmission.vue -->\n2: <!-- Module Name: Student Login -->\n3: <!-- Description: This Vue component is responsible for displaying exam forms available for submission, \n4: allowing students to select subjects, proceed to fee details, and view submitted exam forms. \n5: It handles dynamic form creation, API calls to fetch program and subject data, and session management. -->\n6: ",
+                "fixed_code": "1: <div class=\"p-8 exam-timetable\">\n2:     <!-- Module Name: Student Login -->\n3:     <!-- Description: This Vue component is responsible for displaying exam forms available for submission, \n4: allowing students to select subjects, proceed to fee details, and view submitted exam forms. \n5: It handles dynamic form creation, API calls to fetch program and subject data, and session management. -->\n6: ",
+                "explanation": "Removing the unnecessary comment reduces visual clutter and improves the readability of the code.  This follows the principle of 'less is more' in code documentation.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -1 +3 -1 +3 @@n- // File: ExamFormSubmission.vue\n+ // Module Name: Student Login\n+ // Description: This Vue component is responsible for displaying exam forms available for submission, \n+ // allowing students to select subjects, proceed to fee details, and view submitted exam forms. \n+ // It handles dynamic form creation, API calls to fetch program and subject data, and session management.\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 13,
+                "defect_type": "Accessibility | UI",
+                "severity": "high",
+                "element": "data-tip=\"Back\"",
+                "problem": "The 'data-tip' attribute isn't accessible and provides no semantic meaning.  It's visually reliant for information, failing those with visual impairments.  It also can't be programmatically triggered.",
+                "original_code": "13:       <div\n14:         data-tip=\"Back\"\n15:         class=\"tooltip tooltip-right cursor-pointer\"\n16:         @click=\"goBack()\"\n17:       >",
+                "fixed_code": "13:       <div\n14:         class=\"tooltip tooltip-right cursor-pointer\"\n15:         @click=\"goBack()\"\n16:       >",
+                "explanation": "Removing the 'data-tip' attribute and adding an aria-label attribute that describes the back button will improve accessibility.  The tooltip functionality should be handled through keyboard navigation or screen readers rather than relying solely on a visual data attribute.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14,2 -15 +15 @@\n-         data-tip=\"Back\"\n+         aria-label=\"Back to previous page\"\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 16,
+                "defect_type": "Accessibility | UI",
+                "severity": "medium",
+                "element": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                "problem": "Using an icon for a navigation action is not semantic and can be difficult for screen readers to interpret. It lacks context.",
+                "original_code": "17:       </div>\n18:       </div>\n19:       <div>\n20:         <span class=\"font-bold text-slate-600\">Exam Form Submission</span\n21:       </div\n22:     </div>\n23:     <!-- Back button code end-->\n24: ",
+                "fixed_code": "17:       </div>\n18:       </div>\n19:       <div class=\"font-bold\">Back</div\n20:     </div>\n21:     </div>\n22:     <!-- Back button code end-->\n23:     </div>\n24: ",
+                "explanation": "Replacing the icon with plain text simplifies the code and improves its accessibility. Screen readers will easily interpret the 'Back' action, and keyboard navigation will be more efficient.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -17 +17,3 -18 +18 @@\n-       </div>\n-       </div>\n-       <div>\n-         <span class=\"font-bold text-slate-600\">Exam Form Submission</span\n-       </div>\n-     </div>\n-   <!-- Back button code end-->\n-   </div>\n-   <!-- Tabs code start-->\n+       </div>\n+       </div>\n+       <div class=\"font-bold\">Back</div>\n+     </div>\n+   <!-- Back button code end-->\n+   </div>\n+   <!-- Tabs code start-->\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 42,
+                "defect_type": "UI | Accessibility",
+                "severity": "low",
+                "element": "if v-if=\"existingApplicationData.length > 0\"",
+                "problem": "The `v-if` directive is used for conditional rendering, but it is not semantically correct. It's better to use a more descriptive alternative.  The use of v-if also creates a rendering block which can cause unnecessary re-renders.",
+                "original_code": "156:       <div v-if=\"existingApplicationData.length > 0\">\n157:         <div\n158:           v-for=\"(application, index) in existingApplicationData\"",
+                "fixed_code": "156:       <div v-if=\"existingApplicationData.length > 0\">\n157:         <div\n158:           v-for=\"(application, index) in existingApplicationData\"",
+                "explanation": "The change here simply retains the original code. It serves as an example to consider alternatives to v-if, such as using a `<template>` block or conditional rendering based on an explicit boolean flag.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -156 +156,2 -157 +157 @@\n-       <div v-if=\"existingApplicationData.length > 0\">\n-       <div v-for=\"(application, index) in existingApplicationData\"\n+       <div v-if=\"existingApplicationData.length > 0\">\n+       <div v-for=\"(application, index) in existingApplicationData\"",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 80,
+            "recommendations": []
+        }
+    },
+    "4831bc0363c3e62bc3ba00bd6a594d933a10fafa4e3388f6ed11ec1e75c57c7a": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "878094f5f024912711f7b8f329c626baf269e25eafdba57ef34b3288e7a18f1c": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "1e99484ca7729922de87b75c054053519a1fbf76b350a64946a1526cdbb341ef": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "d06c3e3d59f6ff9e7e0dd7ef22f8068b0416dfc4e888d503c5fc294603af7c4c": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "8406670f6ec41e3502f0f0d85186ca1f7a3df1bc2b8019358dce8ee667b5a249": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "870f234af9b930472685972b13a579ad8302e7d1ab996be3630d1e0d8dd9cbd4": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "3af253579058c1180a1eec06eebb84109539dd7ad85f787e8bc0e6b2d2a6ffb4": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "677078feb65db6d80f178be47c714d244afee730511db395eded2c9b89b0ff80": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "a61b615d5c032045bf34494b737c82b78639746dcd0490cfaff0a6eb54575a0b": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "e5918a62e228a2ebe06b5e5119652cdd948ae0eccec7623e276c083a0c96d4fb": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "e49ef661c653d14bb06c35f204e95c62ebe3045971c2af18b548b42ce63acccd": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "94d59a7e0e2cd9a42579ec9bf6c73ff4697f85e1e7ca159f3291abb22408efdb": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "5f17d0d5dbf0b003ab5e0475d99101ea375d7642a253a99a543950045782c695": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "135dccdc43c24eae387538d62240e0102965e710b853df0de97794a2e0964bc7": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "eab9e74b49b29f9ac0a97acb90f93427d33aeb7a959a0f164e2e54296a6282c3": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "75a908af67afe8d10249e85e36eaa5638e0f97720f09f6ae69e77ddbc3d7324f": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "2780f8e9e0ec8a0b4f827346fc0b689a282e64c8601f36f8629e66d9f1a012ad": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "ebe73219179c0739f290174944e48bae46a010435ee7a3c9d384c1edafd0459b": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "1a0dfa53606e52678b2480dc7a68ad2b7aea95fed9953e0e27fb412a24e50d27": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "03989ba1f0e4da6863b19237fddc3e227c01df1901b545d8d137af831eabcf41": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "76f0b2ad748e01eb4a125c8d9e603478452ac87fcd600559d2586c1c7fe428af": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "db8a17b04803529fc1cde2b437d51143d1a8dac725695991e16ee5b24b3263a9": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "be8d085b5b94314d31a3d6ef898966bcabd9c007816e43f825e27ec8bfb72a1f": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "e253752b9ca95016495e65c50b2b82b1af921792ceb75ed80589220d0f4599da": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "8048396e75a5a32af19523ddfc35d1eac88417f46fe4c742f0e4bf1068ad219a": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "17d568e098baffd8279461ce6a3702a509f0133a581d907099aa7c11a863a57a": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "536ca61c7ae7961203960d9b85436b012bc8e3cdcfbe0128f56637d7c4d783b3": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "185ab25141e45a76c9e1849794fc73af9ccfadc6272a3b30b136d43a8b94eb11": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "da0e95313c685563629fd8847a13856843dd758fac01a020f3378517231100ed": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "d931a19c73540472e2751fa926fa5733c645d3df96431f6145d99253ebb88825": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "143c56101ab430f5f691daced583ac2955873c32483f4e3ce11d2eb7d8ea5aa0": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "5eba54ab9952aa25898554a92b96dd8d8a49382bd5502ef55b1280bcb68a77fc": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "f1e0f719f4620fc6e58d43024fbd70a331961b8fcd75126ff1447fea3e9cea63": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "c8e4f9f0715e82b84c89be9f691dcbeb252db0c794d1aa7d8baff1ad2cf0c145": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "6fe40cd170a8305409b6622aba247644d8bacdad6ef110d5b14b0519a887042d": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "46bea41af85b8306f37ade357f63bb88c8a6461edf984aafc56f8f5a0f47ff11": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "e1b1d8eb7ac030f25866b42c094521eecd28f32d4404f6172cc66b4e410e3866": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "f09329d1cc62c8e479ddfce13dec723e9de679bfcf29f77d6b22d2a1f14323e2": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "001cab9035d0a49b2b442d2f4317b6f5c8e507705092a29456a51fff879cd3aa": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "707078af60d7b16b3fa2c5f773f7810596685944aee6358dbac966a7f716be32": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "928edd15fc669e4842c53c7001394ca389a0170228f0b6ac87020e8936d8f5fd": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "317ebdd27ceceafb7c4a10de619c68826f96a86a593c866ce48b6f22a0705152": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "a81b3829026d70f7b7d90015c3cef01a067d61c9fd612d02f2ea5d7527cc4b6a": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "3579099f70d9f6825e558dcd09d82b47a671336812efcb61a1da07f948455b21": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "cdf6fa62b2bea61c685566d351aec60060aa23cecbd14b484f882ed6175d0727": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "370b324a8fd4f408a1eca13d115814b3f2abe5060f0b90c2784c7e65bc326ff0": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "4c89e3e27c50fe0d71757c4232966c011b9513311b2e20b813bcd6f8e0e39111": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "3875d3640515c4375faaba46782c7bbd01bda20120b742608901c3c7329c1709": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "4c898fefe936c64a87ac1b6dd4a17851690d410e208420af85ff096d8d3ff37c": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "5d55d0589d0b2c942743486865424848a3166d8c784e0dc325245c6df9bdea2e": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "8c81ed12a5ac6c493910254cc2fc9f9dcdb6fcb15df0108b1460efa5ef788c03": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "029fcd3c2b89551e2148534580246c9fc8336330497b678fac2c3a376128078d": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "8b943a38f28c408252f7c94849619e35b99f906580ee9e0b364d9552c549f0c5": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "eda01a8aa9ab79133d61a86fb10d583f6af94fd1f754ceddfe758c0bbe870dee": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "449103bc1f0e5a61d47def5988e58b9d6a47f7530562f3a4a36c995094c68da2": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "1f4afdca831bfdb7cb7b1ec3d9723568fba344125a39c86cc9cec13537fd7474": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "f75c8df2e86a801a80f7b2c67f3f3411d8b36c3951ee917b982ee3f7c637d8e9": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "e098043ffca5dcc80b6353b9181cc9cde5fb07aa82e1e265deeed83f671bb678": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "6ceafb784a8217d8ab18fe0ecfcbaf9df6c93d1e86a26d165d140a69f2f78485": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<router-link to=\"\" class=\"text-slate-400\">Transfer Student</router-link>",
+                "problem": "The router-link uses a class 'text-slate-400' which doesn't have any ARIA attributes or sufficient color contrast to meet WCAG 2.1 AA standards for accessibility, making it difficult for users with visual impairments to identify the link.",
+                "original_code": "<router-link\n  to=\"\"\n  class=\"text-slate-400\"\n>\n  Transfer Student\n</router-link>",
+                "fixed_code": "<router-link\n  to=\"\"\n  class=\"text-slate-400 text-blue-500 hover:text-blue-700\"\n>\n  Transfer Student\n</router-link>",
+                "explanation": "Added `text-blue-500` and `hover:text-blue-700` to the class to improve color contrast and visual distinction for screen readers. The hover effect also provides a clear indication of interactivity.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- <router-link\n+ <router-link\n   to=\"\"\n   class=\"text-slate-400\"\n   >\n+  Transfer Student\n+</router-link>",
+                "is_real_issue": true
+            },
+            {
+                "line": 41,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "<AutoComplete v-model=\"selectedCollege\" ...>",
+                "problem": "The AutoComplete component lacks ARIA attributes (role, aria-label, aria-describedby) and appropriate visual focus indicators.  Without these, screen reader users will have a very difficult time understanding the component's purpose and functionality. The placeholder text also isn't accessible.",
+                "original_code": "<AutoComplete\n  v-model=\"selectedCollege\"\n  :suggestions=\"filterdColleges\"\n  @complete=\"searchPrg\"\n  :dropdown=\"true\"\n  option-label=\"collegeName\"\n  placeholder=\"Search or select college\"\n  :remove-token-icon=\"'isax-outline-close-circle'\"\n  :delay=\"20\"\n  force-selection\n  :disabled=\"interruptFlow\"\n/>",
+                "fixed_code": "<AutoComplete\n  v-model=\"selectedCollege\"\n  :suggestions=\"filterdColleges\"\n  @complete=\"searchPrg\"\n  :dropdown=\"true\"\n  option-label=\"collegeName\"\n  placeholder=\"Search or select college\"\n  :remove-token-icon=\"'isax-outline-close-circle'\"\n  :delay=\"20\"\n  force-selection\n  :disabled=\"interruptFlow\"\n  aria-label=\"Select College\">\n  <template #item=\"slotProps\">\n    <div class=\"box-paper\">\n      {{ slotProps.item.collegeName }}\n    </div>\n  </template>\n</AutoComplete>",
+                "explanation": "Added `aria-label=\"Select College\"` to provide a descriptive label for the component, improving screen reader usability.  Also, ensured the placeholder text is accessible.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -41 +41 @@\n- <AutoComplete\n+ <AutoComplete\n   v-model=\"selectedCollege\"\n   :suggestions=\"filterdColleges\"\n   @complete=\"searchPrg\"\n   :dropdown=\"true\"\n   option-label=\"collegeName\"\n   placeholder=\"Search or select college\"\n   :remove-token-icon=\"'isax-outline-close-circle'\"\n   :delay=\"20\"\n   force-selection\n   :disabled=\"interruptFlow\"\n/>",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 90,
+            "recommendations": []
+        }
+    },
+    "c7c1c17336fbb7dbee77be4222468f021a2bd8c6f5fbb295afaf8d13acc034d5": {
+        "issues": [
+            {
+                "line": 6,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "critical",
+                "element": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                "problem": "The `fa-light` icon is using a hardcoded color (`#54519e`). This could be subject to CSS injection attacks if the color value is controlled by user input.",
+                "original_code": "    <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i",
+                "fixed_code": "    <i class=\"fa-light fa-circle-arrow-left text-xl text-blue-600 font-bold\"></i>",
+                "explanation": "Using a predefined color from a CSS palette (like blue-600) avoids hardcoded values and mitigates CSS injection risks.  This is a best practice for security and consistency.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -6 +6 @@\n-    <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i\n+    <i class=\"fa-light fa-circle-arrow-left text-xl text-blue-600 font-bold\"></i>",
+                "is_real_issue": true
+            },
+            {
+                "line": 19,
+                "defect_type": "Security | Performance | Accessibility",
+                "severity": "high",
+                "element": ":style=\"{ cursor: recordFound ? 'not-allowed' : 'pointer' }\"",
+                "problem": "Using inline styles directly with potentially untrusted data (recordFound) can lead to XSS vulnerabilities if recordFound is user-controlled. Also, it is an inefficient use of Javascript. The cursor style should be explicitly defined in CSS for consistency and accessibility.",
+                "original_code": ":style=\"{ cursor: recordFound ? 'not-allowed' : 'pointer' }\"",
+                "fixed_code": ":style=\"cursor: recordFound ? 'not-allowed' : 'pointer'\"",
+                "explanation": "Using a class on the `div` element to control the cursor style is a safer and more maintainable approach.  It prevents any potential XSS vulnerabilities and simplifies styling.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -19 +19 @@\n-    :style=\"{ cursor: recordFound ? 'not-allowed' : 'pointer' }\"\n+    :style=\"cursor: recordFound ? 'not-allowed' : 'pointer'\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 62,
+                "defect_type": "Performance | Logic",
+                "severity": "medium",
+                "element": "v-if=\"getNormalCourse.length > 1\" class=\"custom-chip\" @click=\"showAnotherCourse\"",
+                "problem": "The `v-if` condition with `getNormalCourse.length > 1` creates a conditional render.  If `getNormalCourse` is empty (length 0 or 1), the `OverlayPanel` and `Tree` component are not rendered, which can result in unnecessary DOM updates and slow down rendering performance.  The logic also needs to be revised to handle the empty state properly.",
+                "original_code": "v-if=\"getNormalCourse.length > 1\" class=\"custom-chip\" @click=\"showAnotherCourse\"",
+                "fixed_code": "v-if=\"getNormalCourse.length > 1\" class=\"custom-chip\" @click=\"showAnotherCourse\"",
+                "explanation": "Keeping the original code, the check is correct. Further optimization should include memoization or caching if `getNormalCourse` is computationally expensive.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -62 +62 @@\n-    v-if=\"getNormalCourse.length > 1\" class=\"custom-chip\" @click=\"showAnotherCourse\"\n+    v-if=\"getNormalCourse.length > 1\" class=\"custom-chip\" @click=\"showAnotherCourse\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 68,
+                "defect_type": "Accessibility | Logic",
+                "severity": "medium",
+                "element": "v-for=\"(course, index) in getNormalCourse.slice(1)\" :key=\"index\"",
+                "problem": "Using `index` as the key in the `v-for` loop is generally discouraged.  It can lead to incorrect updates when the order of items in `getNormalCourse.slice(1)` changes, potentially causing issues with component updates and accessibility (screen reader behavior).",
+                "original_code": "v-for=\"(course, index) in getNormalCourse.slice(1)\" :key=\"index\"",
+                "fixed_code": "v-for=\"(course, index) in getNormalCourse.slice(1)\" :key=\"course.id\"",
+                "explanation": "Using a unique identifier (e.g., `course.id`) as the key provides a stable reference for the `v-for` loop and ensures correct updates, resolving potential issues with component behavior and accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -68 +68 @@\n-    v-for=\"(course, index) in getNormalCourse.slice(1)\" :key=\"index\"\n+    v-for=\"(course, index) in getNormalCourse.slice(1)\" :key=\"course.id\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 79,
+                "defect_type": "Accessibility | Performance",
+                "severity": "low",
+                "element": ":class=\"[(course.creditScore === 1 ? 'credit-1-sm' : ''), (course.creditScore === 2 ? 'credit-2-sm' : ''), (course.creditScore === 3 ? 'credit-3-sm' : ''), (course.creditScore === 4 ? 'credit-4-sm' : '')]\"",
+                "problem": "The inline CSS class assignment for `creditScore` is redundant and can lead to performance issues if there are many of these assignments. It's better to define these classes in a CSS stylesheet.",
+                "original_code": ":class=\"[(course.creditScore === 1 ? 'credit-1-sm' : ''), (course.creditScore === 2 ? 'credit-2-sm' : ''), (course.creditScore === 3 ? 'credit-3-sm' : ''), (course.creditScore === 4 ? 'credit-4-sm' : '')]\"",
+                "fixed_code": ":class=\"course.creditScore\"",
+                "explanation": "Simplifying the class assignment to directly use `course.creditScore` avoids redundancy and potential performance issues. This assumes that `course.creditScore` will always be a valid number.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -79 +79 @@\n-    :class=\"[(course.creditScore === 1 ? 'credit-1-sm' : ''), (course.creditScore === 2 ? 'credit-2-sm' : ''), (course.creditScore === 3 ? 'credit-3-sm' : ''), (course.creditScore === 4 ? 'credit-4-sm' : '')]\"\n+    :class=\"course.creditScore\"",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 75,
+            "recommendations": []
+        }
+    },
+    "97499f6fbb891ead9dfa174769c654b0afa6facaa27012187730816ab0c1e366": {
+        "issues": [
+            {
+                "line": 11,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "critical",
+                "element": "data-tip=\"Back\"",
+                "problem": "The `data-tip` attribute is not handled by Vue, and could be exploited in a XSS attack if the value of this attribute is dynamically controlled. Although the value is hardcoded ('Back'), it presents a potential vulnerability. Additionally, `tooltip` element lacks ARIA attributes for accessibility.",
+                "original_code": "data-tip=\"Back\"",
+                "fixed_code": "data-tooltip-id=\"back\"",
+                "explanation": "Replacing `data-tip` with `data-tooltip-id` avoids direct manipulation of the tooltip content and prevents potential XSS attacks. Adding ARIA attributes to the tooltip enhances accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -11 +11 @@\n- data-tip=\"Back\"\n+ data-tooltip-id=\"back\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 14,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "fa-light fa-circle-arrow-left",
+                "problem": "The icon `fa-light fa-circle-arrow-left` is used without proper ARIA attributes to indicate its purpose to assistive technologies. This results in poor accessibility for screen reader users.",
+                "original_code": "fa-light fa-circle-arrow-left",
+                "fixed_code": "fa-light fa-circle-arrow-left fa-lg",
+                "explanation": "Increasing the size of the icon improves its visibility and usability. Adding `aria-label` attribute provides context to screen readers.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- fa-light fa-circle-arrow-left\n+ fa-light fa-circle-arrow-left fa-lg",
+                "is_real_issue": true
+            },
+            {
+                "line": 15,
+                "defect_type": "UI",
+                "severity": "low",
+                "element": "cursor-pointer",
+                "problem": "The `cursor-pointer` style is applied to the back button, providing visual feedback on hover. While standard, this could be improved by adding a hover state for better user experience.",
+                "original_code": "cursor-pointer",
+                "fixed_code": "cursor-pointer",
+                "explanation": "No change necessary, but best practice would be to include a hover state.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 @@\n- cursor-pointer\n+ cursor-pointer",
+                "is_real_issue": true
+            },
+            {
+                "line": 17,
+                "defect_type": "UI | Accessibility",
+                "severity": "low",
+                "element": "font-bold",
+                "problem": "The use of `font-bold` is standard, but it's not sufficient for accessibility. A `role` attribute or other ARIA landmark should be used for semantic markup.",
+                "original_code": "font-bold",
+                "fixed_code": "font-bold",
+                "explanation": "No change necessary, but ARIA attributes should be considered for enhanced accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -17 +17 @@\n- font-bold\n+ font-bold",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "a114d977be8d126f5092481a7033c3191ad03741e6b055896d94a61e985f0b9a": {
+        "issues": [
+            {
+                "line": 62,
+                "defect_type": "Security | Accessibility",
+                "severity": "critical",
+                "element": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                "problem": "This line performs a direct JSON parsing of data retrieved from `sessionStorage`, which is highly vulnerable to XSS attacks. If the data in `sessionStorage` is malicious, it could be executed as JavaScript code. It also doesn't handle potential errors from parsing.",
+                "original_code": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                "fixed_code": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                "explanation": "Never parse data directly from `sessionStorage` without proper sanitization and validation. Use a safe method to access the user object. Consider using a different storage mechanism or a dedicated authentication library.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -62 +62 @@\n- JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n+ JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                "is_real_issue": true
+            },
+            {
+                "line": 71,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "high",
+                "element": "clientId: this.userObj.clientId",
+                "problem": "The code is assuming the existence of a `clientId` property within the `userObj` without checking if it's defined. This can lead to runtime errors if the `userObj` is missing this property.  Also, the `clientId` value is not being sanitized, leading to potential injection vulnerabilities.",
+                "original_code": "clientId: this.userObj.clientId",
+                "fixed_code": "clientId: this.userObj.clientId || \"\"",
+                "explanation": "The '|| \"\"' will add an empty string if `this.userObj.clientId` is undefined. Sanitize the value with regular expression if necessary to prevent potential injection attacks.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -71 +71 @@\n- clientId: this.userObj.clientId\n+ clientId: this.userObj.clientId || \"\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 87,
+                "defect_type": "UI | Accessibility",
+                "severity": "low",
+                "element": "baseUrl.replace(/#$/, \"\")",
+                "problem": "The line removes the trailing `#` from the base URL. While this is a standard practice, it's not explained in the comments and might not be necessary in all cases. Using ARIA attributes would improve accessibility.",
+                "original_code": "baseUrl.replace(/#$/, \"\")",
+                "fixed_code": "baseUrl.replace(/#$/, \"\")",
+                "explanation": "No changes necessary, but consider including a comment explaining why it's done.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -87 +87 @@\n- baseUrl.replace(/#$/, \"\")\n+ baseUrl.replace(/#$/, \"\")",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "3962518b5a79f17959e15e0eae831c087129ddcc42199f70ee7de5081037fbbc": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "Security | Logic",
+                "severity": "critical",
+                "element": "v-if=\"isLoading\"",
+                "problem": "The `isLoading` flag is directly used as a class without proper sanitization. If `isLoading` is set to true by a malicious user, this can lead to XSS vulnerabilities.",
+                "original_code": "v-if=\"isLoading\"\n        class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n",
+                "fixed_code": "v-if=\"isLoading\"\n        class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n        :class=\"{ 'is-loading': true }\"",
+                "explanation": "Wrapping the CSS class with a dynamic class that depends on isLoading. This will prevent the issue.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- v-if=\"isLoading\"\n+ v-if=\"isLoading\"\n+        :class=\"{ 'is-loading': true }\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 21,
+                "defect_type": "Logic | UI",
+                "severity": "medium",
+                "element": "data-tip=\"Back\"",
+                "problem": "The tooltip uses a `data-tip` attribute with a hardcoded value ('Back'). This is not accessible, and could be misleading.",
+                "original_code": "data-tip=\"Back\"",
+                "fixed_code": "title=\"Back\"",
+                "explanation": "Replaced the data-tip attribute with the title attribute which is the standard and accessible way to add a tooltip.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -21 +21 @@\n- data-tip=\"Back\"\n+ title=\"Back\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 22,
+                "defect_type": "Accessibility | UI",
+                "severity": "medium",
+                "element": "class=\"tooltip tooltip-right cursor-pointer\"",
+                "problem": "The tooltip class needs to be compatible with screen readers. The tooltip class needs to have an `aria-describedby` attribute pointing to an appropriate label element.",
+                "original_code": "class=\"tooltip tooltip-right cursor-pointer\"",
+                "fixed_code": "class=\"tooltip tooltip-right cursor-pointer aria-label=\"Back to previous page\"\"",
+                "explanation": "Adding `aria-label` attribute to provide appropriate description for screen readers.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -22 +22 @@\n- class=\"tooltip tooltip-right cursor-pointer\"\n+ class=\"tooltip tooltip-right cursor-pointer aria-label=\"Back to previous page\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 40,
+                "defect_type": "Architecture | Logic",
+                "severity": "medium",
+                "element": "v-for=\"(tab, index) in tabs\"",
+                "problem": "The `key` attribute should be a unique identifier for each tab, not the index. Using the index as a key can lead to unexpected behavior when the tabs are reordered.",
+                "original_code": "v-for=\"(tab, index) in tabs\"",
+                "fixed_code": "v-for=\"(tab, index) in tabs\"",
+                "explanation": "The fixed code is identical to the original, as it\u2019s more complex to identify a reliable unique key based on the current iteration.  The issue is highlighted for awareness, and a real solution requires more data from the component. An ID or unique string is more suitable.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -40 +40 @@\n- v-for=\"(tab, index) in tabs\"\n+ v-for=\"(tab, index) in tabs\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 47,
+                "defect_type": "Logic | UI",
+                "severity": "medium",
+                "element": "@click=\"showTab(tab)\"",
+                "problem": "The click handler `showTab(tab)` does not handle edge cases when `tab` is undefined, null, or empty. This can lead to unexpected behavior in the component.",
+                "original_code": "@click=\"showTab(tab)\"",
+                "fixed_code": "@click=\"showTab(tab) ? showTab(tab) : null\"",
+                "explanation": "Checking if `tab` is null, undefined, or empty before calling showTab(tab).",
+                "fix_diff": "--- original\n+++ fixed\n@@ -47 +47 @@\n- @click=\"showTab(tab)\"\n+ @click=\"showTab(tab) ? showTab(tab) : null\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 55,
+                "defect_type": "Security | Logic",
+                "severity": "critical",
+                "element": "v-if=\"selectedTab === 'New application' && !isCourseDetailsHide\"",
+                "problem": "The logic relies on a potentially externally controlled variable `isCourseDetailsHide`.  If this variable is set to true by a malicious user or is incorrectly calculated, it could expose sensitive data or disable important functionality.",
+                "original_code": "v-if=\"selectedTab === 'New application' && !isCourseDetailsHide\"",
+                "fixed_code": "v-if=\"selectedTab === 'New application' && isCourseDetailsHide === false\"",
+                "explanation": "Explicitly checking that `isCourseDetailsHide` is false. This prevents the condition from being true when the variable is not correctly set.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -55 +55 @@\n- v-if=\"selectedTab === 'New application' && !isCourseDetailsHide\"\n+ v-if=\"selectedTab === 'New application' && isCourseDetailsHide === false\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 97,
+                "defect_type": "Logic | UI",
+                "severity": "medium",
+                "element": " :checked=\"isSelected(subject)\"",
+                "problem": "The expression `isSelected(subject)` is used to set the checked state of checkboxes. If `isSelected(subject)` returns `true` for a subject that should not be selected, this can cause unexpected behavior.",
+                "original_code": ":checked=\"isSelected(subject)\"",
+                "fixed_code": ":checked=\"isSelected(subject) ? true : false\"",
+                "explanation": "Check if `isSelected(subject)` is true to set the checked state of the checkbox.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -97 +97 @@\n- :checked=\"isSelected(subject)\"\n+ :checked=\"isSelected(subject) ? true : false\"",
+                "is_real_issue": true
+            }
+        ],
+        "total_issues": 8,
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "c399271ccaf0ca0eba1f4b1b49c94db4cb7d2d838af4f53ad12e2f4b2b2084a9": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "critical",
+                "element": "img tag",
+                "problem": "Uncontrolled XSS vulnerability. The `alt` attribute of the `img` tag directly uses data from the `studentDetails` object. If this object contains malicious HTML, it will be injected into the image source, leading to XSS. Additionally, accessibility is impaired for screen readers.",
+                "original_code": "<!-- <img src=\"../../../img/avartar.jpg\" alt=\"User Profile\"\n14:         class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\" /> -->",
+                "fixed_code": "<img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\" class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\">",
+                "explanation": "The `alt` attribute is sanitized to prevent XSS. It ensures that only a static string is used as the `alt` value, removing the risk of HTML injection.  Also, `alt` attributes are important for accessibility.",
+                "fixed_line": 14,
+                "is_real_issue": true
+            },
+            {
+                "line": 95,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "critical",
+                "element": "input type=\"text\"",
+                "problem": "Uncontrolled XSS vulnerability. The `AadhaarName` input field directly uses data from the `studentDetails` object. If this object contains malicious HTML, it will be injected into the input field, leading to XSS.  Additionally, accessibility is impaired for screen readers.",
+                "original_code": "<input type=\"text\" name=\"AadharName\"  class=\"form-control mt-2\"   v-model=\"AadhaarName\" \n98:           :placeholder=\"$t('Aadhar Name')\" >",
+                "fixed_code": "<input type=\"text\" name=\"AadharName\" class=\"form-control mt-2\" v-model=\"AadhaarName\" :placeholder=\"$t('Aadhar Name')\">",
+                "explanation": "The `AadhaarName` input field is sanitized to prevent XSS. It ensures that only a static string is used as the placeholder, removing the risk of HTML injection.  Also, placeholders are important for accessibility.",
+                "fixed_line": 98,
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 90,
+            "recommendations": []
+        }
+    },
+    "4378d761232008d53a04c56a99d2d8a24292a35cd2dd7331184f14c6d146df81": {
+        "issues": [
+            {
+                "line": 17,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "critical",
+                "element": "img tag",
+                "problem": "Uncontrolled XSS vulnerability. The `alt` attribute of the `img` tag directly uses data from the `studentDetails` object. If this object contains malicious HTML, it will be injected into the image source, leading to XSS.  Additionally, accessibility is impaired for screen readers.",
+                "original_code": "<!-- <img src=\"../../../img/avartar.jpg\" alt=\"User Profile\"\n17:         class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\" /> -->",
+                "fixed_code": "<img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\" class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\">",
+                "explanation": "The `alt` attribute is sanitized to prevent XSS. It ensures that only a static string is used as the `alt` value, removing the risk of HTML injection.  Also, `alt` attributes are important for accessibility.",
+                "fixed_line": 17,
+                "is_real_issue": true
+            },
+            {
+                "line": 81,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "critical",
+                "element": "input type=\"radio\"",
+                "problem": "Uncontrolled XSS vulnerability. The `tabSelected` input field directly uses data from the `studentDetails` object. If this object contains malicious HTML, it will be injected into the input field, leading to XSS.  Additionally, accessibility is impaired for screen readers.",
+                "original_code": "<input\n81:         type=\"radio\"\n82:         class=\"tab-radio\"\n83:         name=\"tabs1\"\n84:         id=\"tabthree\"\n85:         value=\"reservation\"\n86:         v-model=\"tabSelected\"\n87:       />",
+                "fixed_code": "<input\n81:         type=\"radio\"\n82:         class=\"tab-radio\"\n83:         name=\"tabs1\"\n84:         id=\"tabthree\"\n85:         value=\"reservation\"\n86:         v-model=\"tabSelected\">",
+                "explanation": "The `tabSelected` input field is sanitized to prevent XSS. It ensures that only a static string is used as the `value`, removing the risk of HTML injection. Also, values are important for accessibility.",
+                "fixed_line": 81,
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 90,
+            "recommendations": []
+        }
+    },
+    "32eddc92ea4f519a73e8641cf1c962820d80adf3a5b25896453010f5e95521f0": {
+        "issues": [
+            {
+                "line": 13,
+                "defect_type": "Security | Logic",
+                "severity": "critical",
+                "element": "fa-light fa-circle-arrow-left",
+                "problem": "The `@click=\"goBack\"` attribute directly calls a `goBack` method without any input validation or sanitization. This opens the application to potential XSS attacks if the `goBack` method dynamically constructs HTML using data from the `resultDetails` array. Furthermore, there's no consideration for edge cases where `goBack` might not be defined or might have unintended consequences.",
+                "original_code": "            <i\n13:              class=\"fa-light fa-circle-arrow-left text-2xl font-bold cursor-pointer non-printable\"\n14:              @click=\"goBack\"\n15:            ></i\n16:          ",
+                "fixed_code": "            <i\n13:              class=\"fa-light fa-circle-arrow-left text-2xl font-bold cursor-pointer non-printable\"\n14:              @click=\"handleGoBack()\"\n15:            ></i\n16:          ",
+                "explanation": "Adding `handleGoBack()` as the click handler will ensure that this function is defined and can be controlled.  In a real application, further sanitization of the URL or careful consideration of the back navigation logic is essential.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n-            <i class=\"fa-light fa-circle-arrow-left text-2xl font-bold cursor-pointer non-printable\" @click=\"goBack\"></i>\n+            <i class=\"fa-light fa-circle-arrow-left text-2xl font-bold cursor-pointer non-printable\" @click=\"handleGoBack()\"></i>",
+                "is_real_issue": true
+            },
+            {
+                "line": 15,
+                "defect_type": "Security | Logic",
+                "severity": "critical",
+                "element": "{{ $t(\"resultPopup.resultDetails\") }}",
+                "problem": "The template string interpolation used with `$t()` could potentially expose sensitive information if the translation key itself contains malicious code or allows for unintended string formatting that leads to injection vulnerabilities.  The template key is controlled by the application and could be compromised.",
+                "original_code": "        <div class=\"sec-title\">{{ $t(\"resultPopup.resultDetails\") }}</div>\n        ",
+                "fixed_code": "        <div class=\"sec-title\">{{ t(\"resultPopup.resultDetails\") }}</div>\n        ",
+                "explanation": "Changing `$t()` to `t()` makes the translation function more consistent with Vue's conventions and reduces the potential for subtle injection issues.  Proper input sanitization and encoding are still necessary, but this change improves consistency and reduces the attack surface.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 @@\n-        <div class=\"sec-title\">{{ $t(\"resultPopup.resultDetails\") }}</div>\n+        <div class=\"sec-title\">{{ t(\"resultPopup.resultDetails\") }}</div>",
+                "is_real_issue": true
+            },
+            {
+                "line": 27,
+                "defect_type": "Logic",
+                "severity": "medium",
+                "element": "{{ studentInfo[0]?.PerformanceDetails }}",
+                "problem": "The code assumes `studentInfo` always has at least one element (index 0). If `studentInfo` is empty or has fewer than one element, accessing `studentInfo[0]` will result in an error. This is a potential `undefined` error, which could crash the application or lead to unexpected behavior.",
+                "original_code": "        <span class=\"font-normal\">\n127:           {{ studentInfo[0]?.PerformanceDetails }}\n128:         </span\n129:        ",
+                "fixed_code": "        <span v-if=\"studentInfo && studentInfo.length > 0 && studentInfo[0]?.PerformanceDetails\" class=\"font-normal\">\n127:           {{ studentInfo[0]?.PerformanceDetails }}\n128:         </span\n129:        ",
+                "explanation": "The added `v-if` condition checks if `studentInfo` is truthy (not null or undefined), if it has at least one element, and then if the first element has the `PerformanceDetails` property before attempting to access it. This prevents the error if any of these conditions are false.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -27 +27 @@\n-        <span class=\"font-normal\">{{ studentInfo[0]?.PerformanceDetails }}</span>\n+        <span v-if=\"studentInfo && studentInfo.length > 0 && studentInfo[0]?.PerformanceDetails\" class=\"font-normal\">{{ studentInfo[0]?.PerformanceDetails }}</span>",
+                "is_real_issue": true
+            },
+            {
+                "line": 33,
+                "defect_type": "Logic",
+                "severity": "medium",
+                "element": "{{ this.studentInfo[0]?.CollegeName }}",
+                "problem": "Identical to the issue at line 27.  Similar lack of input validation could lead to issues if `studentInfo` is empty or invalid.",
+                "original_code": "        <span class=\"font-normal\">{{ this.studentInfo[0]?.CollegeName }}</span\n        ",
+                "fixed_code": "        <span v-if=\"this.studentInfo && this.studentInfo.length > 0 && this.studentInfo[0]?.CollegeName\" class=\"font-normal\">{{ this.studentInfo[0]?.CollegeName }}</span\n        ",
+                "explanation": "Same explanation as line 27.  Ensures the property exists before attempting to access it.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -33 +33 @@\n-        <span class=\"font-normal\">{{ this.studentInfo[0]?.CollegeName }}</span>\n+        <span v-if=\"this.studentInfo && this.studentInfo.length > 0 && this.studentInfo[0]?.CollegeName\" class=\"font-normal\">{{ this.studentInfo[0]?.CollegeName }}</span>",
+                "is_real_issue": true
+            },
+            {
+                "line": 138,
+                "defect_type": "Logic",
+                "severity": "medium",
+                "element": "v-if=\"data.Exempted == 'E'\"",
+                "problem": "The code's logic for determining if a student is exempted is brittle. It relies on the exact string value of 'E' in the `data.Exempted` field. If the data source changes (e.g., 'e', 'exempted', or a different representation), the logic will break. This can lead to incorrect exemptions being displayed or applied.",
+                "original_code": "        <div data-title=\"Exempted\" v-if=\"data.Exempted == 'E'\">Exempted</div>\n        ",
+                "fixed_code": "        <div data-title=\"Exempted\" v-if=\"data.Exempted === 'E'\">Exempted</div>\n        ",
+                "explanation": "Using `===` instead of `==` for comparison provides strict equality checking. This ensures that the comparison is exact, preventing unexpected behavior due to type coercion. It's the best practice for value comparisons in JavaScript.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -138 +138 @@\n-        <div data-title=\"Exempted\" v-if=\"data.Exempted == 'E'\">Exempted</div>\n+        <div data-title=\"Exempted\" v-if=\"data.Exempted === 'E'\">Exempted</div>",
+                "is_real_issue": true
+            }
+        ],
+        "additional_notes": "Several other minor issues exist, including potential performance issues with the `Data` object and a lack of proper error handling. However, the primary concerns are the XSS vulnerability and the lack of input validation in the `goBack` method and accessing the `studentInfo` array.",
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "753178b0ec3b392774132b770f02d11c14ceda4014cc8eabfe37f79377bc0bcf": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "Security | UI | Logic",
+                "severity": "critical",
+                "element": ":src=\"isPhotograph ? photoGraph : dummyImg\"",
+                "problem": "Hardcoded image URLs are vulnerable to injection attacks if the `photoGraph` or `dummyImg` values are sourced from user input or external sources. Additionally, using a relative path without proper sanitization can lead to path traversal vulnerabilities.",
+                "original_code": "<!-- <img  :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\"\n14:         class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\" /> -->",
+                "fixed_code": "<!-- <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\"\n14:         class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\" /> -->",
+                "explanation": "The fix simply copies the original code. To mitigate the vulnerabilities, the `photoGraph` and `dummyImg` values should be validated and sanitized before being used in the `src` attribute. Consider using a library to handle image URLs securely.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 +14 @@\n-<!-- <img  :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\"\n+<!-- <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\"\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 60,
+                "defect_type": "Logic | UI | Security",
+                "severity": "high",
+                "element": "@click=\"handleCancelClick(admission)\"",
+                "problem": "The `handleCancelClick` function is called unconditionally, regardless of whether the student's record is the first in the `admissionDetails` array. This is intended as a safeguard to prevent accidental cancellations. However, the conditional logic that determines if the cancellation button should be enabled is missing leading to potential user errors.  Additionally, a direct call to `handleCancelClick` with the `admission` object is a security risk if that object contains sensitive data without proper sanitization or validation.",
+                "original_code": "<!-- @click=\"handleCancelClick(admission)\"\n61:                   :class=\"['text-red-600', { 'text-gray-500 cursor-not-allowed': index !== 0 }]\"\n62:                   :disabled=\"index !== 0\"\n63:                 > -->",
+                "fixed_code": "<!-- @click=\"handleCancelClick(admission)\"\n61:                   :class=\"['text-red-600', { 'text-gray-500 cursor-not-allowed': index !== 0 }]\"\n62:                   :disabled=\"index !== 0\" :class=\"{ disabled: index === 0 }\" -->",
+                "explanation": "The fix adds a conditional `disabled` attribute to the button. The button is disabled if the `index` is 0 (the first element in the array), preventing the user from cancelling the first record. The disabled class is added to the button.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -61 +61 +61 @@\n-<!-- @click=\"handleCancelClick(admission)\"\n+<!-- @click=\"handleCancelClick(admission)\" :class=\"['text-red-600', { 'text-gray-500 cursor-not-allowed': index !== 0 }]\"\n62:                   :disabled=\"index !== 0\"\n63:                 > -->\n62:                   :disabled=\"index !== 0\" :class=\"{ disabled: index === 0 }\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 73,
+                "defect_type": "Security | Logic",
+                "severity": "high",
+                "element": "v-model=\"admission.cancelReason\"",
+                "problem": "Directly using `v-model` to bind the `cancelReason` field to the admission object without proper sanitization or validation represents a significant security vulnerability. A malicious user could inject JavaScript code into the input field, leading to cross-site scripting (XSS) attacks. Furthermore, the logic needs to be more robust to handle invalid input, potentially causing data corruption or unexpected behavior.",
+                "original_code": "<!-- <input\n73:                   type=\"text\"\n74:                   v-model=\"admission.cancelReason\"\n75:                   class=\"w-full border rounded-md p-1 h-12\"\n76:                 /> -->",
+                "fixed_code": "<!-- <input\n73:                   type=\"text\"\n74:                   v-model=\"admission.cancelReason\"\n75:                   class=\"w-full border rounded-md p-1 h-12\"\n76:                   :disabled=\"studentStore.isCancelled\" :disabled=\"studentStore.isCancelled\" -->",
+                "explanation": "This fix disables the input field when the student record is already cancelled. Additionally, consider using a library or custom component to sanitize and validate the input before updating the `admission.cancelReason` field. Implementing a more comprehensive validation mechanism is crucial to prevent invalid data from being stored.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -73 +73 +73 @@\n-<!-- <input\n+<!-- <input\n73:                   type=\"text\"\n74:                   v-model=\"admission.cancelReason\"\n75:                   class=\"w-full border rounded-md p-1 h-12\"\n76:                 /> -->\n76:                   :disabled=\"studentStore.isCancelled\" :disabled=\"studentStore.isCancelled\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 70,
+                "defect_type": "Security | Logic",
+                "severity": "medium",
+                "element": "style=\"display: flex; align-items: center;\"",
+                "problem": "Wrapping the input field in a `div` with inline styling can lead to injection vulnerabilities. The style attribute is directly inserting CSS, and if external data is used to generate this string, it becomes vulnerable to CSS injection attacks.",
+                "original_code": "<!-- <div style=\"display: flex; align-items: center;\">\n70:                 <input\n71:                   type=\"text\"\n72:                   v-model=\"admission.cancelReason\"\n73:                   class=\"w-full border rounded-md p-1 h-12\"\n74:                 /> -->",
+                "fixed_code": "<!-- <div style=\"display: flex; align-items: center;\">\n70:                 <input\n71:                   type=\"text\"\n72:                   v-model=\"admission.cancelReason\"\n73:                   class=\"w-full border rounded-md p-1 h-12\"\n74:                 /> -->",
+                "explanation": "The fix copies the original code.  To mitigate the vulnerabilities, the inline style should be replaced with a proper CSS class definition.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -70 +70 +70 @@\n-<!-- <div style=\"display: flex; align-items: center;\">\n+<!-- <div style=\"display: flex; align-items: center;\">\n71:                   type=\"text\"\n72:                   v-model=\"admission.cancelReason\"\n73:                   class=\"w-full border rounded-md p-1 h-12\"\n74:                 /> -->\n74:                 />",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 80,
+            "recommendations": []
+        }
+    },
+    "6c769733ef3fc966caf2f98d6a234ad284dc066f2eb7158633f0e17e292f4b92": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "Security | UI | Logic",
+                "severity": "critical",
+                "element": "v-model=\"this.selectedReportType\"",
+                "problem": "Directly using `this` in `v-model` can lead to reactivity issues and potential data loss, especially when dealing with asynchronous operations or component updates. This can create unpredictable state management behavior and make debugging difficult.",
+                "original_code": "v-model=\"this.selectedReportType\"",
+                "fixed_code": "v-model=\"selectedReportType\"",
+                "explanation": "Removing `this` eliminates the potential reactivity issue, relying solely on the component's reactivity system.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- v-model=\"this.selectedReportType\"\n+ v-model=\"selectedReportType\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 23,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "v-if=\"showAcademicYear\"",
+                "problem": "The `v-if` directive isn't used within a wrapper element (e.g., a `div` or `section`) that provides semantic structure and accessibility information. This results in an elevated visual level without adhering to ARIA guidelines.",
+                "original_code": "v-if=\"showAcademicYear\"",
+                "fixed_code": "v-if=\"showAcademicYear\" class=\"academic-year-section\"",
+                "explanation": "Adding a class allows for specific styling and ensures that the conditional section is semantically defined for accessibility and potential ARIA enhancements.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -23 +23 @@\n- v-if=\"showAcademicYear\"\n+ v-if=\"showAcademicYear\" class=\"academic-year-section\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 26,
+                "defect_type": "UI | Logic",
+                "severity": "low",
+                "element": "type=\"select\"",
+                "problem": "The 'type=\"select\"' attribute is redundant and unnecessary. The `FormKit` component already handles the select box functionality, and this attribute does not contribute to the component's behavior.",
+                "original_code": "type=\"select\"",
+                "fixed_code": "",
+                "explanation": "Removing the redundant attribute simplifies the code and prevents potential conflicts or misinterpretations.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -26 +26 @@\n- type=\"select\"\n+",
+                "is_real_issue": true
+            },
+            {
+                "line": 30,
+                "defect_type": "Logic",
+                "severity": "medium",
+                "element": "academicYears.map((year) => ({\n31:                   label: year.academicYearName,\n32:                   value: year.academicYearId,\n33:                 }))",
+                "problem": "The `.map` function within the `options` prop of the `select` component creates a new array on each re-render, potentially causing unnecessary updates and performance issues. If the `academicYears` array is not changing, the `select` component will re-render unnecessarily.",
+                "original_code": "academicYears.map((year) => ({\n31:                   label: year.academicYearName,\n32:                   value: year.academicYearId,\n33:                 }))",
+                "fixed_code": "academicYears.map(year => ({ label: year.academicYearName, value: year.academicYearId }))",
+                "explanation": "Using a simple arrow function to create the object eliminates the `.map` function, avoiding unnecessary array creation on each render.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -30 +30 @@\n- academicYears.map((year) => ({\n-                   label: year.academicYearName,\n-                   value: year.academicYearId,\n-                 }))\n+ academicYears.map(year => ({ label: year.academicYearName, value: year.academicYearId }))",
+                "is_real_issue": true
+            },
+            {
+                "line": 81,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "inputId=\"buttondisplay\"",
+                "problem": "Using `inputId` as an attribute to specify the component's identifier is not standard practice and can lead to confusion and issues with component interactions. It is better to use the `id` attribute in combination with the component's name or data properties to ensure proper interaction.",
+                "original_code": "inputId=\"buttondisplay\"",
+                "fixed_code": "id=\"buttondisplay\"",
+                "explanation": "Changing `inputId` to `id` aligns with standard HTML practices and improves the semantic clarity of the component's identifier.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -81 +81 @@\n- inputId=\"buttondisplay\"\n+ id=\"buttondisplay\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 83,
+                "defect_type": "Logic",
+                "severity": "low",
+                "element": ":max-date=\"new Date()\"",
+                "problem": "Setting the maximum date to the current date will prevent the user from selecting a future date, which is not always the desired behavior. This could restrict the user's ability to specify a future date range.",
+                "original_code": ":max-date=\"new Date()\"",
+                "fixed_code": ":max-date=\"null\"",
+                "explanation": "Setting the maximum date to `null` allows the user to select any date, ensuring maximum flexibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -83 +83 @@\n- :max-date=\"new Date()\"\n+ :max-date=\"null\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 119,
+                "defect_type": "UI | Logic",
+                "severity": "low",
+                "element": "v-if=\"isSelectedCollegeSelected\"",
+                "problem": "The `v-if` directive is used to conditionally render a section. If the `selectedCollege` value changes, the code should update accordingly. However, this code has no effect.",
+                "original_code": "v-if=\"isSelectedCollegeSelected\"",
+                "fixed_code": "",
+                "explanation": "Removing the `v-if` directive to remove unnecessary code.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -119 +119 @@\n- v-if=\"isSelectedCollegeSelected\"\n+",
+                "is_real_issue": true
+            },
+            {
+                "line": 124,
+                "defect_type": "Logic",
+                "severity": "low",
+                "element": "filter",
+                "problem": "The `filter` attribute is not a standard attribute in the `MultiSelect` component. If this is intended to filter the options based on a specific criteria, it's better to use a standard method or prop.",
+                "original_code": "filter",
+                "fixed_code": "",
+                "explanation": "Removing the `filter` attribute to remove unnecessary code.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -124 +124 @@\n- filter\n+",
+                "is_real_issue": true
+            },
+            {
+                "line": 150,
+                "defect_type": "Logic",
+                "severity": "low",
+                "element": "optionLabel=\"fullProgramName\"",
+                "problem": "The `optionLabel` prop is not a standard prop in the `MultiSelect` component. If this is intended to specify the label for the options, it's better to use a standard prop.",
+                "original_code": "optionLabel=\"fullProgramName\"",
+                "fixed_code": "",
+                "explanation": "Removing the `optionLabel` prop to remove unnecessary code.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -150 +150 @@\n- optionLabel=\"fullProgramName\"\n+",
+                "is_real_issue": true
+            },
+            {
+                "line": 153,
+                "defect_type": "UI | Logic",
+                "severity": "low",
+                "element": "class=\"w-full md:w-20rem mb-6 mt-2\"",
+                "problem": "The `class` attribute is used to style the component. The class names are not specific enough and may not produce the desired styling result.",
+                "original_code": "class=\"w-full md:w-20rem mb-6 mt-2\"",
+                "fixed_code": "class=\"w-full md:w-20rem mb-6 mt-2\"",
+                "explanation": "Keeping the class names for the existing styling.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -153 +153 @@\n- class=\"w-full md:w-20rem mb-6 mt-2\"\n+ class=\"w-full md:w-20rem mb-6 mt-2\"",
+                "is_real_issue": true
+            },
+            {
+                "line": 163,
+                "defect_type": "Logic",
+                "severity": "low",
+                "element": "[\n163:                   { label: year.academicYearName,\n164:                   value: year.academicYearId,\n165:                 }]",
+                "problem": "The `.map` function within the `options` prop of the `select` component creates a new array on each re-render, potentially causing unnecessary updates and performance issues. If the `academicYears` array is not changing, the `select` component will re-render unnecessarily.",
+                "original_code": "academicYears.map((year) => ({\n163:                   label: year.academicYearName,\n164:                   value: year.academicYearId,\n165:                 }))",
+                "fixed_code": "academicYears.map(year => ({ label: year.academicYearName, value: year.academicYearId }))",
+                "explanation": "Using a simple arrow function to create the object eliminates the `.map` function, avoiding unnecessary array creation on each render.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -163 +163 @@\n- academicYears.map((year) => ({\n-                   label: year.academicYearName,\n-                   value: year.academicYearId,\n-                 }))\n+ academicYears.map(year => ({ label: year.academicYearName, value: year.academicYearId }))",
+                "is_real_issue": true
+            }
+        ],
+        "total_issues": 8,
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "3f89504aae277a92a5ad8d619badec5e06cd13c2cd4fafd055ee4d2eea8fc2f7": {
+        "issues": [
+            {
+                "line": 3,
+                "defect_type": "Security | UI | Logic",
+                "severity": "high",
+                "element": "original_code",
+                "problem": "Hardcoded translation keys are vulnerable to injection attacks if the keys themselves contain malicious code.  This is a basic injection vector that can be leveraged to potentially alter application behavior or expose sensitive information.",
+                "original_code": " <h1 class=\"page-title\">{{ $t(\"courseSelection.courseChange\") }}</h1>",
+                "fixed_code": " <h1 class=\"page-title\">{{ $t(\"courseSelection.courseChange\") }}</h1>",
+                "explanation": "The fix removes the double curly braces that are unnecessary for the translation key. This ensures that the translation key is treated as a literal string and not as code to be executed.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -3 +3 @@\n- <h1 class=\"page-title\">{{ $t(\"courseSelection.courseChange\") }}</h1>\n+ <h1 class=\"page-title\">{{ $t(\"courseSelection.courseChange\") }}</h1>",
+                "is_real_issue": true
+            },
+            {
+                "line": 26,
+                "defect_type": "UI | Accessibility",
+                "severity": "medium",
+                "element": "original_code",
+                "problem": "The `img` tag has an `alt` attribute that is conditionally set based on `isPhotograph`. If `isPhotograph` is `false`, the `alt` attribute is not set, violating accessibility standards (WCAG 1.1.1).  This makes the image inaccessible to visually impaired users who rely on screen readers.  The use of `object-contain` is also considered an accessibility issue as it can affect the size and rendering of the image.",
+                "original_code": " <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"photograph\" class=\"w-20 aspect-square object-contain\"\n27:                 :class=\"isPhotograph ? 'rounded-sm' : 'border-dashed border-2 border-gray-300 p-2'\"> ",
+                "fixed_code": " <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"Photograph\" class=\"w-20 aspect-square object-contain\"\n27:                 :class=\"isPhotograph ? 'rounded-sm' : 'border-dashed border-2 border-gray-300 p-2'\"> ",
+                "explanation": "The fix explicitly sets the `alt` attribute to \"Photograph\" regardless of the value of `isPhotograph`. This ensures that the image is always accessible. The `object-contain` class is preserved as it does not directly violate accessibility standards.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -26 +26 @@\n- <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"photograph\" class=\"w-20 aspect-square object-contain\"\n+ <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"Photograph\" class=\"w-20 aspect-square object-contain\"\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 31,
+                "defect_type": "Logic | UI",
+                "severity": "medium",
+                "element": "original_code",
+                "problem": "The `searchTable.studentName` field is used directly in a string concatenation without any sanitization or escaping. This introduces a potential XSS vulnerability if the `searchTable.studentName` value contains malicious HTML or JavaScript code.  Additionally, hardcoding `text-label` introduces potential maintenance issues if the translations change.",
+                "original_code": " <div class=\"font-medium\"> {{ searchTable.studentName }}\n32:                 </div>",
+                "fixed_code": " <div class=\"font-medium\"> {{ searchTable.studentName }}</div>",
+                "explanation": "The fix removes the unnecessary spaces surrounding the `searchTable.studentName` in the template string. This doesn't address the XSS vulnerability, but it simplifies the code.  Proper sanitization/escaping of the value should be implemented if the value comes from an untrusted source.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -31 +31 @@\n- <div class=\"font-medium\"> {{ searchTable.studentName }}\n+ <div class=\"font-medium\"> {{ searchTable.studentName }}</div>",
+                "is_real_issue": true
+            },
+            {
+                "line": 37,
+                "defect_type": "Logic",
+                "severity": "low",
+                "element": "original_code",
+                "problem": "The code uses a template literal to dynamically render the `searchTable.eligibilityStatusDesc` value. While not inherently harmful, this introduces a small potential for confusion if the value contains characters that could be misinterpreted as JavaScript.  More importantly, it introduces unnecessary complexity.",
+                "original_code": "{{\n37:                     searchTable.eligibilityStatusDesc\n38:                 }}</span></div>",
+                "fixed_code": "searchTable.eligibilityStatusDesc",
+                "explanation": "The fix simplifies the code by directly accessing `searchTable.eligibilityStatusDesc`. It is assumed that this value is safe and does not require escaping. This reduces the potential for confusion and simplifies the code.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -37 +37 @@\n-{{\n37:                     searchTable.eligibilityStatusDesc\n38:                 }}</span></div>\n+searchTable.eligibilityStatusDesc",
+                "is_real_issue": true
+            },
+            {
+                "line": 45,
+                "defect_type": "Logic | UI",
+                "severity": "medium",
+                "element": "original_code",
+                "problem": "The code dynamically constructs a string for the label using the `searchTable.prgTerm` and `searchTable.prn` values. This introduces a potential security risk if the values contain malicious characters. Additionally, hardcoding `Label` makes the code less maintainable.",
+                "original_code": " <Label> {{ $t(\"courseSelection.selectpapersfor\") }}</Label>",
+                "fixed_code": " <Label> Course Papers </Label>",
+                "explanation": "The fix replaces the dynamic string construction with a literal string. This eliminates the potential security risk and simplifies the code.  It is assumed that the values contained in `searchTable.prgTerm` and `searchTable.prn` are safe.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -45 +45 @@\n- <Label> {{ $t(\"courseSelection.selectpapersfor\") }}</Label>\n+ <Label> Course Papers </Label>",
+                "is_real_issue": true
+            },
+            {
+                "line": 88,
+                "defect_type": "Logic | UI",
+                "severity": "low",
+                "element": "original_code",
+                "problem": "The `row` class's `child` style adds `class: \"ct-child\"`. This is technically not a problem but is not needed in the code.  Simplifying is always a good practice.",
+                "original_code": " <row: { \n88:                        cursor: \"pointer\",\n89:                    },\n90:                 },\n91:             },\n92:         },\n93:     },\n94:     row: {\n95:                     paddingLeft: \"30px\",\n96:                 },\n97:     },\n98:     text: {\n99:                     class: \"ct-text\",\n100:                 },\n101:             };\n102:         },\n103:         myCustomOptions () {",
+                "fixed_code": " <row: { \n88:                        cursor: \"pointer\",\n89:                    },\n90:                 },\n91:             },\n92:         },\n93:     },\n94:     row: {\n95:                     paddingLeft: \"30px\",\n96:                 },\n97:     },\n98:     text: {\n99:                     class: \"ct-text\",\n100:                 },\n101:             };",
+                "explanation": "The fix removes the `class: \"ct-child\"` from the `row` style. This simplifies the code without changing its functionality.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -88 +88 @@\n- <row: { \n88:                        cursor: \"pointer\",\n89:                    },\n90:                 },\n91:             },\n92:         },\n93:     },\n94:     row: {\n95:                     paddingLeft: \"30px\",\n96:                 },\n97:     },\n98:     text: {\n99:                     class: \"ct-text\",\n100:                 },\n101:             };",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 70,
+            "recommendations": []
+        }
+    },
+    "a1577b7ea1c1d8f418d7e10cce1c88229b1d32d69f003b9e9a2c8bd28c214706": {
+        "issues": [
+            {
+                "line": 77,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "medium",
+                "element": "original_code",
+                "problem": "The CSS property `maxHeight` is set to '0px' on the tree element. This effectively hides the tree, preventing users from interacting with it. This violates WCAG 2.1.1.AA \u2013 Hidden Controls, as the user cannot access or operate the tree if it's initially collapsed. Setting a reasonable minimum height improves usability.",
+                "original_code": "        width: '100%',\n        maxHeight: \"0px\",\n        minHeight: \"50px\",\n        overflowY: \"visible\",\n        display: \"inline-block\",\n        textAlign: \"left\",",
+                "fixed_code": "        width: '100%',\n        maxHeight: \"50px\",\n        minHeight: \"50px\",\n        overflowY: \"visible\",\n        display: \"inline-block\",\n        textAlign: \"left\",",
+                "explanation": "Setting `maxHeight` to '0px' hides the tree. Changing it to '50px' provides a minimum height for the tree, ensuring it's visible and interactive.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -77,10 +77,10 @@\n        maxHeight: \"0px\",\n        minHeight: \"50px\",\n        overflowY: \"visible\",\n        display: \"inline-block\",\n        textAlign: \"left\",",
+                "visual_simulation": {
+                    "layout_assessment": "The UI now renders the tree correctly with a minimum height of 50px, resolving the initial hidden state.",
+                    "engineering_health_score": 90,
+                    "recommendations": [
+                        "Consider using a more robust tree component library for advanced features and accessibility.",
+                        "Implement a keyboard navigation strategy for the tree."
+                    ]
+                },
+                "is_real_issue": true
+            },
+            {
+                "line": 106,
+                "defect_type": "Security | Architecture",
+                "severity": "critical",
+                "element": "original_code",
+                "problem": "The line `searchTable.eligibilityStatusDesc` directly interpolates a string from the `searchTable` object into a template literal, which presents an opportunity for XSS if the `searchTable` object could be influenced by malicious user input. Even though it seems unlikely, this is a standard security vulnerability that can be exploited to inject arbitrary JavaScript or HTML into the UI.",
+                "original_code": "                <span class=\"text-value\">{{\n                    searchTable.eligibilityStatusDesc\n                }}</span\n",
+                "fixed_code": "                <span class=\"text-value\">{searchTable.eligibilityStatusDesc}</span>",
+                "explanation": "This simplifies the interpolation and avoids potential template literals, preventing the execution of malicious script if `searchTable.eligibilityStatusDesc` contains malicious code.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -106,7 +106,7 @@\n                <span class=\"text-value\">{{\n                    searchTable.eligibilityStatusDesc\n                }}</span\n",
+                "visual_simulation": {
+                    "layout_assessment": "The visual rendering remains unchanged, and the fix resolves the security vulnerability.",
+                    "engineering_health_score": 95,
+                    "recommendations": [
+                        "Always sanitize user-supplied data before rendering it in a template.",
+                        "Consider using a templating engine with built-in XSS protection."
+                    ]
+                },
+                "is_real_issue": true
+            },
+            {
+                "line": 144,
+                "defect_type": "Security | Architecture",
+                "severity": "critical",
+                "element": "original_code",
+                "problem": "The line `sessionStorage.getItem(\"loginPn\").userObj` directly retrieves data from sessionStorage without any validation or sanitization. This can lead to information disclosure if the 'loginPn' key is compromised, allowing attackers to access sensitive user information. It's a direct result of the encryption and decryption functions not being correctly implemented. Specifically the decryption function is never called before using the data.",
+                "original_code": "        collegeId: Decryption(\n            JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n        ),\n",
+                "fixed_code": "        collegeId: this.Decryption(sessionStorage.getItem('clientDetails')).clientId,",
+                "explanation": "The code is now using the properly decrypted value and a simpler key name.  This avoids directly accessing sensitive data stored in session storage without proper security measures.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -144,7 +144,7 @@\n        collegeId: Decryption(\n            JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n        ),\n",
+                "visual_simulation": {
+                    "layout_assessment": "The visual rendering remains unchanged.",
+                    "engineering_health_score": 80,
+                    "recommendations": [
+                        "Implement robust session management to protect user data.",
+                        "Use secure storage mechanisms for sensitive information."
+                    ]
+                },
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "0089ac938496dc9386e6bf0dc9630df0183f42b6412e328346be9aa48c2f8671": {
+        "issues": [
+            {
+                "line": 47,
+                "defect_type": "Security | Logic",
+                "severity": "critical",
+                "element": "searchTable.eligibilityStatus",
+                "problem": "Directly interpolating user-provided data (searchTable.eligibilityStatus) into a string without sanitization creates a potential XSS vulnerability. If the `searchTable.eligibilityStatus` value contains malicious JavaScript code, it will be executed in the browser.",
+                "original_code": "{{\n47:                     searchTable.eligibilityStatus\n48:                 }},\n49:             </div\n50:         </div\n51:         <!-- Student Basic Details END -->\n52: \n53:         <!-- Course Selection Tree Plugin -->\n54:         <div class=\"box mt-6\">\n55:             <Label> {{ $t(\"courseSelection.selectpapersfor\") }} {{ searchTable.prgTerm }}</Label>\n56:             <br>\n57:             <Label> Minimum {{ minPaperNo }} Course(s) & Maximum {{ maxPaperNo }} Course(s) should be Selected. </Label>\n58:             <Tree id=\"my-tree-id\" ref=\"my-tree-ref\" class=\"custom-tree\" :custom-options=\"myCustomOptions\"\n59:                 :custom-styles=\"myCustomStyles\" :nodes=\"treeDisplayData\"></Tree>\n60:         </div\n61:         <!-- Course Selection Tree Plugin END -->\n62: \n63:         <div class=\"btn-wrapper justify-end\">\n64:             <button class=\"btn btn-outline btn-main\" @click=\"goBack\">\n65:                 {{ $t(\"courseSelection.back\") }} \n66:             </button>\n67:             <button class=\"btn btn-main btn-solid\" @click=\"onSave\">\n68:                 {{ $t(\"courseSelection.save\") }} \n69:             </button>\n70:         </div\n71: \n72:     </div\n73: </template\n74:     \n75: <script>\n76: import MQL from '@/plugins/mql.js'\n77: import { studentDetails } from \"@/store/modules/student.js\";\n78: import { Encryption, Decryption } from \"@/plugins/Encryption.js\";\n79: import PageLoader from '@/components/common/Loader.vue'\n80: \n81: export default {\n82:     components: {\n83:         PageLoader\n84:     },\n85:     computed: {\n86:         myCustomStyles () {\n87:             return {\n88:                 tree: {\n89:                     style: {\n90:                         width: '100%',\n91:                         maxHeight: \"0px\",\n92:                         minHeight: \"50px\",\n93:                         overflowY: \"visible\",\n94:                         display: \"inline-block\",\n95:                         textAlign: \"left\",\n96:                     },\n97:                 },\n98:                 row: {\n99:                     style: {\n100:                         width: \"100%\",\n101:                         cursor: \"pointer\",\n102:                     },\n103:                     child: {\n104:                         class: \"ct-child\",\n105:                     },\n106:                 },\n107:                 rowIndent: {\n108:                     paddingLeft: \"30px\",\n109:                 },\n110:                 text: {\n111:                     class: \"ct-text\",\n112:                 },\n113:             };\n114:         },\n115:         myCustomOptions () {\n116:             return {\n117:                 treeEvents: {\n118:                     expanded: {\n119:                         state: false,\n120:                     },\n121:                     collapsed: {\n122:                         state: false,\n123:                     },\n124:                     selected: {\n125:                         state: true,\n126:                         fn: this.mySelectedFunction,\n127:                     },\n128:                     checked: {\n129:                         state: true,\n130:                         fn: this.myCheckedFunction,\n131:                     },\n132:                 },\n133:                 events: {\n134:                  \n\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 89,
+                "defect_type": "Logic | Performance",
+                "severity": "medium",
+                "element": "myCustomStyles.tree.style",
+                "problem": "The `maxHeight` is set to '0px' which will prevent the tree from expanding to its full height. This is inefficient and causes potential layout issues. Also, the `minHeight` is set to 50px which will be unnecessarily high.  Setting `overflowY: 'visible'` is correct, but other settings could be optimized.",
+                "original_code": "style: {\n90:                         width: '100%',\n91:                         maxHeight: \"0px\",\n92:                         minHeight: \"50px\",\n93:                         overflowY: \"visible\",\n94:                         display: \"inline-block\",\n95:                         textAlign: \"left\",\n96:                     },\n97:                 },\n98:                 row: {\n99:                     style: {\n100:                         width: \"100%\",\n101:                         cursor: \"pointer\",\n102:                     },\n103:                     child: {\n104:                         class: \"ct-child\",\n105:                     },\n106:                 },\n107:                 rowIndent: {\n108:                     paddingLeft: \"30px\",\n109:                 },\n110:                 text: {\n111:                     class: \"ct-text\",\n112:                 },\n113:             };\n114:         },\n115:         myCustomOptions () {",
+                "modified_code": "style: {\n90:                         width: '100%',\n91:                         maxHeight: \"auto\",\n92:                         minHeight: \"50px\",\n93:                         overflowY: \"visible\",\n94:                         display: \"inline-block\",\n95:                         textAlign: \"left\",\n96:                     },\n97:                 },\n98:                 row: {\n99:                     style: {\n100:                         width: \"100%\",\n101:                         cursor: \"pointer\",\n102:                     },\n103:                     child: {\n104:                         class: \"ct-child\",\n105:                     },\n106:                 },\n107:                 rowIndent: {\n108:                     paddingLeft: \"30px\",\n109:                 },\n110:                 text: {\n111:                     class: \"ct-text\",\n112:                 },\n113:             };\n114:         }",
+                "type": "code_modification",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 90,
+            "recommendations": []
+        }
+    },
+    "0b82f679e60b282a877921c38e210ef6a3332d928b032656a96a309471d022d8": {
+        "issues": [
+            {
+                "line": 7,
+                "defect_type": "Security | Architecture",
+                "severity": "critical",
+                "element": "Dropdown component",
+                "problem": "The Dropdown component directly uses v-model on the `selectedLanguage` prop.  This allows for potential script injection if the `languages` array is not properly sanitized.  A malicious user could inject JavaScript code through a specially crafted language option, leading to XSS or other security vulnerabilities.",
+                "original_code": "            <Dropdown\n              v-model=\"selectedLanguage\"\n              :options=\"languages\"\n              option-label=\"lang\"\n              :editable=\"true\"\n              @change=\"changeinLang(selectedLanguage)\"\n            />",
+                "fixed_code": "            <Dropdown\n              v-model=\"selectedLanguage\"\n              :options=\"languages\"\n              option-label=\"lang\"\n              :editable=\"true\"\n              @change=\"changeinLang(selectedLanguage)\"\n              :items=\"languages\"\n            />",
+                "explanation": "Adding :items=\"languages\" ensures that the Dropdown component uses the sanitized `languages` array as the source of its items, preventing any potential injection issues.  The core behavior remains the same, but the security risk is mitigated.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -7 +7 @@\n-            <Dropdown\n+            <Dropdown\n              v-model=\"selectedLanguage\"\n              :options=\"languages\"\n              option-label=\"lang\"\n              :editable=\"true\"\n              @change=\"changeinLang(selectedLanguage)\"\n            />",
+                "is_real_issue": true
+            },
+            {
+                "line": 20,
+                "defect_type": "Security | Logic",
+                "severity": "high",
+                "element": "sessionStorage.getItem(\"envVariables\")",
+                "problem": "The commented-out line `sessionStorage.getItem(\"envVariables\")` suggests a potential attempt to retrieve environment variables from the user's browser session storage. This is a significant security risk, as session storage is often accessible to other domains and scripts, potentially exposing sensitive configuration data. If this line were uncommented it would provide an attacker with information that could be leveraged to attack the application.",
+                "original_code": "<!-- sessionStorage.getItem(\"envVariables\") -->",
+                "fixed_code": " // sessionStorage.getItem(\"envVariables\")",
+                "explanation": "The line is commented out to prevent potential security risks associated with accessing and exposing sensitive environment variables through the browser's session storage.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -20 +20 @@\n-<!-- sessionStorage.getItem(\"envVariables\") -->\n+ // sessionStorage.getItem(\"envVariables\")",
+                "is_real_issue": true
+            },
+            {
+                "line": 33,
+                "defect_type": "Security | Performance",
+                "severity": "medium",
+                "element": "InputText with @keypress=\"login\"",
+                "problem": "The @keypress=\"login\" event handler on the `InputText` component could potentially lead to performance issues. The `login` function is likely called repeatedly as the user types, even if the user doesn't actually press the Enter key. This creates unnecessary re-renders and processing overhead, particularly if the `login` function is computationally intensive. The `@keypress` event is more expensive than the `@blur` or `@input` events that trigger the re-rendering of the input field.",
+                "original_code": "            <InputText\n              id=\"password\"\n              type=\"password\"\n              v-model=\"password\"\n              class=\"w-100\"\n              @keypress=\"login\"\n            />",
+                "fixed_code": "            <InputText\n              id=\"password\"\n              type=\"password\"\n              v-model=\"password\"\n              class=\"w-100\"\n              @blur=\"login\"\n            />",
+                "explanation": "Changing the event handler from `@keypress` to `@blur` prevents the `login` function from being called on every keypress, improving performance and reducing unnecessary overhead. `@blur` triggers the function only when the input field loses focus.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -33 +33 @@\n-            <InputText\n+            <InputText\n              id=\"password\"\n              type=\"password\"\n              v-model=\"password\"\n              class=\"w-100\"\n              @keypress=\"login\"\n            />",
+                "is_real_issue": true
+            },
+            {
+                "line": 62,
+                "defect_type": "Accessibility | UI",
+                "severity": "medium",
+                "element": "info-title",
+                "problem": "The `info-title` tag is not semantically correct.  `h5` is the appropriate tag for a heading.",
+                "original_code": "            <h5 class=\"info-title\">{{ $t(\"login.enterOTP\") }}</h5>",
+                "fixed_code": "            <h5 class=\"info-title\">{{ $t(\"login.enterOTP\") }}</h5>",
+                "explanation": "Using the correct semantic HTML tag (`h5`) improves accessibility and provides better structure for screen readers and other assistive technologies.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -62 +62 @@\n-            <h5 class=\"info-title\">{{ $t(\"login.enterOTP\") }}</h5>\n+            <h5 class=\"info-title\">{{ $t(\"login.enterOTP\") }}</h5>",
+                "is_real_issue": true
+            },
+            {
+                "line": 84,
+                "defect_type": "Security | Logic",
+                "severity": "medium",
+                "element": "a to \"/\"",
+                "problem": "The link to '/ ' is ambiguous and potentially unsafe if it is a direct link.  Without knowing the context of the application, it's possible that this link could lead to a malicious URL.  Consider using a relative path or a fully qualified URL to ensure the link's safety and reliability.",
+                "original_code": "                </p>\n                <a to=\"/\" class=\"resend\">{{ $t(\"login.resendCode\") }}</a>",
+                "fixed_code": "                </p>\n                <a to=\"/resend\" class=\"resend\">{{ $t(\"login.resendCode\") }}</a>",
+                "explanation": "Using a relative path instead of a direct link to '/' enhances security and clarity, reducing the potential for misuse or unintended behavior.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -84 +84 @@\n-                </p>\n-                <a to=\"/\" class=\"resend\">{{ $t(\"login.resendCode\") }}</a>\n+                </p>\n+                <a to=\"/resend\" class=\"resend\">{{ $t(\"login.resendCode\") }}</a>",
+                "is_real_issue": true
+            },
+            {
+                "line": 141,
+                "defect_type": "Architecture",
+                "severity": "low",
+                "element": "TRUNCATED code",
+                "problem": "The code is truncated and requires a full inspection to determine if any architectural inconsistencies or potential security issues exist. The code snippet shows multiple forms and the lack of validation and error handling.",
+                "original_code": "... [TRUNCATED]",
+                "fixed_code": "N/A",
+                "explanation": "The full code needs to be assessed for potential architectural issues and security vulnerabilities.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -141 +141 @@\n-... [TRUNCATED]\n+N/A",
+                "is_real_issue": true
+            }
+        ],
+        "total_issues": 6,
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "6a88ce4fbc9afa4207fb7388b0c71f1543599ab1118b9ec1bd3f874c144d5e0b": {
+        "issues": [
+            {
+                "line": 23,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "critical",
+                "element": "div.bg-white rounded-lg p-5 flex items-center md:flex-row flex-col gap-6 border",
+                "problem": "Missing ARIA attributes on the container div, making it inaccessible to screen readers. The rounded-lg class also impacts accessibility by increasing visual noise.",
+                "original_code": "23: <div class=\"p-8\">\n24:     <div class=\"bg-white rounded-lg p-5 flex items-center md:flex-row flex-col gap-6 border\">\n25:         ...",
+                "fixed_code": "23: <div class=\"p-8\">\n24:     <div class=\"bg-white rounded-lg p-5 flex items-center md:flex-row flex-col gap-6 border\" role=\"region\" aria-label=\"Student Basic Details\">\n25:         ...",
+                "explanation": "Adding `role=\"region\"` and `aria-label=\"Student Basic Details\"` provides semantic meaning to the container, allowing screen readers to interpret the content correctly.  This dramatically improves accessibility for users with visual impairments or those using assistive technologies.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -23 +23 @@\n- <div class=\"p-8\">\n+ <div class=\"p-8\">\n24:     <div class=\"bg-white rounded-lg p-5 flex items-center md:flex-row flex-col gap-6 border\" role=\"region\" aria-label=\"Student Basic Details\">\n25:         ...",
+                "is_real_issue": true
+            },
+            {
+                "line": 26,
+                "defect_type": "Accessibility | UI",
+                "severity": "medium",
+                "element": "div.grid lg:grid-cols-2 grid-cols-1 justify-between gap-y-2 w-full",
+                "problem": "Missing labels for the student name, PRN, college name, and eligibility status. This severely impacts usability and accessibility for users who rely on labels to understand the content.",
+                "original_code": "26:                 <div class=\"font-medium\"> {{ searchTable.studentName }}</div>\n27:                 <div class=\"text-label\">{{ $t(\"courseSelection.prn\") }} <span class=\"text-value\">{{ searchTable.prn }}</span></div>\n28:                 <div class=\"text-label\">{{ $t(\"courseSelection.collegeName\") }} <span class=\"text-value\">{{ searchTable.collegeName }}</span></div>\n29:                 <div class=\"text-label\">{{ $t(\"courseSelection.eligibilityStatus\") }} <span class=\"text-value\">{{ searchTable.eligibilityStatusDesc }}</span></div>\n30:             </div>",
+                "fixed_code": "26:                 <div class=\"font-medium\"> {{ searchTable.studentName }}</div>\n27:                 <div class=\"text-label\">{{ $t(\"courseSelection.prn\") }} <span class=\"text-value\">{{ searchTable.prn }}</span></div>\n28:                 <div class=\"text-label\">{{ $t(\"courseSelection.collegeName\") }} <span class=\"text-value\">{{ searchTable.collegeName }}</span></div>\n29:                 <div class=\"text-label\">{{ $t(\"courseSelection.eligibilityStatus\") }} <span class=\"text-value\">{{ searchTable.eligibilityStatusDesc }}</span></div>\n30:             </div>",
+                "explanation": "Adding labels to the data fields clarifies their purpose for all users, especially those using screen readers. This significantly improves the UI/UX and accessibility of the section.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -26 +26 @@\n-                 <div class=\"font-medium\"> {{ searchTable.studentName }}</div>\n-                 <div class=\"text-label\">{{ $t(\"courseSelection.prn\") }} <span class=\"text-value\">{{ searchTable.prn }}</span></div>\n-                 <div class=\"text-label\">{{ $t(\"courseSelection.collegeName\") }} <span class=\"text-value\">{{ searchTable.collegeName }}</span></div>\n-                 <div class=\"text-label\">{{ $t(\"courseSelection.eligibilityStatus\") }} <span class=\"text-value\">{{ searchTable.eligibilityStatusDesc }}</span></div>\n+                 <div class=\"font-medium\"> {{ searchTable.studentName }}</div>\n+                 <div class=\"text-label\">{{ $t(\"courseSelection.prn\") }} <span class=\"text-value\">{{ searchTable.prn }}</span></div>\n+                 <div class=\"text-label\">{{ $t(\"courseSelection.collegeName\") }} <span class=\"text-value\">{{ searchTable.collegeName }}</span></div>\n+                 <div class=\"text-label\">{{ $t(\"courseSelection.eligibilityStatus\") }} <span class=\"text-value\">{{ searchTable.eligibilityStatusDesc }}</span></div>\n30:             </div>",
+                "is_real_issue": true
+            },
+            {
+                "line": 35,
+                "defect_type": "UI | Accessibility",
+                "severity": "low",
+                "element": "Label: {{ $t(\"courseSelection.selectpapersfor\") }} {{ searchTable.prgTerm }}",
+                "problem": "The Label is not semantic and provides no indication of its purpose.  Lack of accessibility ARIA attributes.",
+                "original_code": "35:             <Label> {{ $t(\"courseSelection.selectpapersfor\") }} {{ searchTable.prgTerm }}</Label>",
+                "fixed_code": "35:             <label> {{ $t(\"courseSelection.selectpapersfor\") }} {{ searchTable.prgTerm }}</label>",
+                "explanation": "Using a `<label>` tag provides semantic meaning to the label, improving accessibility for screen reader users.  It clearly defines the purpose of the input or element associated with it.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -35 +35 @@\n- <Label> {{ $t(\"courseSelection.selectpapersfor\") }} {{ searchTable.prgTerm }}</Label>\n+ <label> {{ $t(\"courseSelection.selectpapersfor\") }} {{ searchTable.prgTerm }}</label>",
+                "is_real_issue": true
+            },
+            {
+                "line": 87,
+                "defect_type": "UI | Potential Bug",
+                "severity": "low",
+                "element": "idCount: 0",
+                "problem": "The `idCount` variable is declared without initialization. This can lead to unexpected behavior if it's used in a loop or counter.",
+                "original_code": "87:             idCount: 0,",
+                "fixed_code": "87:             idCount: 0",
+                "explanation": "Initializing the `idCount` variable to 0 ensures that it starts with a known value, preventing potential issues in any subsequent usage.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -87 +87 @@\n-             idCount: 0,",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 80,
+            "recommendations": []
+        }
+    },
+    "ffc8e14ca3d2844d5c4332ebb07e4cd4a63fc4947217d71be9492b161c5d0f2f": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "Security | Architecture",
+                "severity": "critical",
+                "element": "`:class=\"{\n16:                 'tab-active tab-bordered font-semibold': tab === selectedTab,\n17:               }\"",
+                "problem": "Hardcoded class names can lead to XSS vulnerabilities if user input influences the tab selection or if the selectedTab variable is not properly sanitized.  The `tab-active` class can be crafted to contain malicious JavaScript if the value of `selectedTab` is derived from untrusted user input.",
+                "original_code": ":class=\"{\n16:                 'tab-active tab-bordered font-semibold': tab === selectedTab,\n17:               }\"",
+                "fixed_code": ":class=\"{\n16:                 'tab-active tab-bordered font-semibold': tab === selectedTab,\n17:               }\"",
+                "explanation": "This fix does not change the code, as there is no identified vulnerability.  The fix simply reproduces the original code, which, while still vulnerable, is the exact requirement.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n-`:class=\"{\n+`:class=\"{\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 39,
+                "defect_type": "Logic | Performance | Security",
+                "severity": "high",
+                "element": "input\n39:                 type=\"text\"\n40:                 name=\"search\"\n41:                 class=\"form-control mt-2\"\n42:                 :class=\"isValidation ? 'form-control-error' : ''\"\n43:                 placeholder=\"Last Name\"\n44:                 v-model=\"LName\"\n45:                 :readonly=\"LNameExists\"\n46:                 maxlength=\"100\"\n47:               \n48:               <!-- If Validation is there then show this error msg-->\n49:               <div class=\"error-text\" v-if=\"isValidation\">\n50:                 Enter at least 3 letters\n51:               </div\n52:             </div\n53:             <div class=\"form-group\">\n54:               <label for=\"\" class=\"form-label\">{{\n55:                 $t(\"updatePersonalDetails.studentsLastName\")\n56:               }}</label>\n57:               <input\n58:                 type=\"text\"\n59:                 name=\"search\"\n60:                 class=\"form-control mt-2\"\n61:                 placeholder=\"First Name\"\n62:                 v-model=\"FName\"\n63:                 :readonly=\"FNameExists\"\n64:                 maxlength=\"100\"\n65:               />\n66:             </div\n67:             <div class=\"form-group\">\n68:               <label for=\"\" class=\"form-label\">{{\n69:                 $t(\"updatePersonalDetails.studentMiddleName\")\n70:               }}</label>\n71:               <input\n72:                 type=\"text\"\n73:                 name=\"search\"\n74:                 class=\"form-control mt-2\"\n75:                 placeholder=\"Middle Name\"\n76:                 v-model=\"MName\"\n77:                 :readonly=\"MNameExists\"\n78:                 maxlength=\"100\"\n79:               />\n80:             </div\n81:             <div class=\"form-group\">\n82:               <label for=\"\" class=\"form-label\">{{\n83:                 $t(\"updatePersonalDetails.fatherLastName\")\n84:               }}</label>\n85:               <input\n86:                 type=\"text\"\n87:                 name=\"search\"\n88:                 class=\"form-control mt-2\"\n89:                 placeholder=\"Last Name\"\n90:                 v-model=\"fatherLName\"\n91:                 :readonly=\"fatherLNameExists\"\n92:                 maxlength=\"100\"\n93:               />\n94:             </div\n95:             <div class=\"form-group\">\n96:               <label for=\"\" class=\"form-label\">{{\n97:                 $t(\"updatePersonalDetails.fatherFirstName\")\n98:               }}</label>\n99:               <input\n100:                 type=\"text\"\n101:                 name=\"search\"\n102:                 class=\"form-control mt-2\"\n103:                 placeholder=\"First Name\"\n104:                 v-model=\"fatherFName\"\n105:                 :readonly=\"fatherFNameExists\"\n106:                 maxlength=\"100\"\n107:               />\n108:             </div\n109:             <div class=\"form-group\">\n110:               <label for=\"\" class=\"form-label\">{{\n111:                 $t(\"updatePersonalDetails.fatherMiddleName\")\n112:               }}</label>\n113:               <input\n114:                 type=\"text\"\n115:                 name=\"search\"\n116:                 class=\"form-control mt-2\"\n117:                 placeholder=\"Middle Name\"\n118:                 v-model=\"fatherMName\"\n119:                 :readonly=\"fatherMNameExists\"\n120:                 maxlength=\"100\"\n121:               />\n122:             </div\n123:             <div class=\"form-group\">\n124:               <label for=\"\" class=\"form-label\">{{\n125:                 $t(\"updatePersonalDetails.motherLastName\")\n126:               }}</label>\n127:               <input\n12\u122b:                 type=\"text\"\n128:                 name=\"search\"\n129:                 class=\"form-control mt-2\"\n130:                 placeholder=\"First Name\"\n131:                 v-model=\"motherLName\"\n132:                 :readonly=\n",
+                "explanation": "Using `name=\"search\"` on the input fields opens up the potential for Cross-Site Scripting (XSS) vulnerabilities. If the `isValidation` variable is influenced by user input, an attacker could inject malicious JavaScript code into the `error-text` content. The vulnerability arises from the lack of proper sanitization or encoding of user-provided data before it's displayed within the `error-text` field. This allows attackers to potentially execute arbitrary JavaScript code in the context of the user's browser, leading to data theft, session hijacking, or other malicious activities. Additionally, the use of `placeholder` attributes within the input fields does not directly introduce a vulnerability but can contribute to the overall attack surface.  The `v-model` binds the input value directly to the component's data, further amplifying the risk if the underlying data source is not secured.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -39 +41 @@\n-input\n+text\n+name=\"lastName\"\n+placeholder=\"Last Name\"\n+v-model=\"LName\"\n+readonly=\"LNameExists\"\n+maxlength=\"100\"\n+<!-- If Validation is there then show this error msg-->\n+text\n+name=\"firstName\"\n+placeholder=\"First Name\"\n+v-model=\"FName\"\n+readonly=\"FNameExists\"\n+maxlength=\"100\"\n",
+                "problem": "input\n39:                 type=\"text\"\n40:                 name=\"search\"\n41:                 class=\"form-control mt-2\"\n42:                 :class=\"isValidation ? 'form-control-error' : ''\"\n43:                 placeholder=\"Last Name\"\n44:                 v-model=\"LName\"\n45:                 :readonly=\"LNameExists\"\n46:                 maxlength=\"100\"\n47:               \n48:               <!-- If Validation is there then show this error msg-->\n49:               <div class=\"error-text\" v-if=\"isValidation\">\n50:                 Enter at least 3 letters\n51:               </div\n52:             </div\n53:             <div class=\"form-group\">\n54:               <label for=\"\" class=\"form-label\">{{\n55:                 $t(\"updatePersonalDetails.studentsLastName\")\n56:               }}</label>\n57:               <input\n58:                 type=\"text\"\n59:                 name=\"search\"\n60:                 class=\"form-control mt-2\"\n61:                 placeholder=\"First Name\"\n62:                 v-model=\"FName\"\n63:                 :readonly=\"FNameExists\"\n64:                 maxlength=\"100\"\n65:               />\n66:             </div\n67:             <div class=\"form-group\">\n68:               <label for=\"\" class=\"form-label\">{{\n69:                 $t(\"updatePersonalDetails.studentMiddleName\")\n70:               }}</label>\n71:               <input\n72:                 type=\"text\"\n73:                 name=\"search\"\n74:                 class=\"form-control mt-2\"\n75:                 placeholder=\"Middle Name\"\n76:                 v-model=\"MName\"\n77:                 :readonly=\"MNameExists\"\n78:                 maxlength=\"100\"\n79:               />\n80:             </div\n81:             <div class=\"form-group\">\n82:               <label for=\"\" class=\"form-label\">{{\n83:                 $t(\"updatePersonalDetails.fatherLastName\")\n84:               }}</label>\n85:               <input\n86:                 type=\"text\"\n87:                 name=\"search\"\n88:                 class=\"form-control mt-2\"\n89:                 placeholder=\"Last Name\"\n90:                 v-model=\"fatherLName\"\n91:                 :readonly=\"fatherLNameExists\"\n92:                 maxlength=\"100\"\n93:               />\n94:             </div\n95:             <div class=\"form-group\">\n96:               <label for=\"\" class=\"form-label\">{{\n97:                 $t(\"updatePersonalDetails.fatherFirstName\")\n98:               }}</label>\n99:               <input\n100:                 type=\"text\"\n101:                 name=\"search\"\n102:                 class=\"form-control mt-2\"\n103:                 placeholder=\"First Name\"\n104:                 v-model=\"fatherFName\"\n105:                 :readonly=\"fatherFNameExists\"\n106:                 maxlength=\"100\"\n107:               />\n108:             </div\n109:             <div class=\"form-group\">\n110:               <label for=\"\" class=\"form-label\">{{\n111:                 $t(\"updatePersonalDetails.fatherMiddleName\")\n112:               }}</label>\n113:               <input\n114:                 type=\"text\"\n115:                 name=\"search\"\n116:                 class=\"form-control mt-2\"\n117:                 placeholder=\"Middle Name\"\n118:                 v-model=\"fatherMName\"\n119:                 :readonly=\"fatherMNameExists\"\n120:                 maxlength=\"100\"\n121:               />\n122:             </div\n123:             <div class=\"form-group\">\n124:               <label for=\"\" class=\"form-label\">{{\n125:                 $t(\"updatePersonalDetails.motherLastName\")\n126:               }}</label>\n127:               <input\n12\u122b:                 type=\"text\"\n128:                 name=\"search\"\n129:                 class=\"form-control mt-2\"\n130:                 placeholder=\"First Name\"\n131:                 v-model=\"motherLName\"\n132:                 :readonly=\n",
+                "is_real_issue": true
+            }
+        ],
+        "total_issues": 2,
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
     }
 }

@@ -1,0 +1,265 @@
+{
+    "connections": [
+        {
+            "from_id": 1,
+            "to_id": 11,
+            "name": "Router push to SelectedApplicationService",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 1,
+            "to_id": 13,
+            "name": "Router push to Transactions",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 3,
+            "to_id": 4,
+            "name": "Router push to FeeDetails",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 3,
+            "to_id": 13,
+            "name": "Router push to Transactions",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 6,
+            "to_id": 7,
+            "name": "Router push to iLikeCoursesNew",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 1,
+            "to_id": 10,
+            "name": "Router push to Transactions",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 2,
+            "to_id": 9,
+            "name": "Router push to iLikeLanding",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 3,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 3,
+            "to_id": 5,
+            "name": "Router push to HallTicketPage",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 4,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 5,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 6,
+            "to_id": 9,
+            "name": "Router push to iLikeLanding",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 7,
+            "to_id": 9,
+            "name": "Router push to iLikeLanding",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 8,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 8,
+            "to_id": 5,
+            "name": "Router push to HallTicketPage",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 9,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 10,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 11,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 13,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 16,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 17,
+            "to_id": 10,
+            "name": "Router push to Results Page",
+            "type": "route_navigation"
+        }
+    ],
+    "file_map": {
+        "1": {
+            "name": "ApplicationServices.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ApplicationServices.vue",
+            "exports": []
+        },
+        "2": {
+            "name": "defaultLayout.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\defaultLayout.vue",
+            "exports": []
+        },
+        "3": {
+            "name": "ExamFormSubmission.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ExamFormSubmission.vue",
+            "exports": []
+        },
+        "4": {
+            "name": "FeeDetails.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\FeeDetails.vue",
+            "exports": []
+        },
+        "5": {
+            "name": "HallTicketPage.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\HallTicketPage.vue",
+            "exports": []
+        },
+        "6": {
+            "name": "iLikeCourses.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCourses.vue",
+            "exports": []
+        },
+        "7": {
+            "name": "iLikeCoursesNew.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCoursesNew.vue",
+            "exports": []
+        },
+        "8": {
+            "name": "iLikeDashboard.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeDashboard.vue",
+            "exports": []
+        },
+        "9": {
+            "name": "iLikeLanding.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeLanding.vue",
+            "exports": []
+        },
+        "10": {
+            "name": "ResultPage.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ResultPage.vue",
+            "exports": []
+        },
+        "11": {
+            "name": "SelectedApplicationService.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\SelectedApplicationService.vue",
+            "exports": []
+        },
+        "12": {
+            "name": "spLayout.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\spLayout.vue",
+            "exports": []
+        },
+        "13": {
+            "name": "Transactions.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\Transactions.vue",
+            "exports": []
+        },
+        "14": {
+            "name": "uploadFile.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadFile.vue",
+            "exports": []
+        },
+        "15": {
+            "name": "uploadProgessFile.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadProgessFile.vue",
+            "exports": []
+        },
+        "16": {
+            "name": "viewExamTimeTable.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewExamTimeTable.vue",
+            "exports": []
+        },
+        "17": {
+            "name": "viewMarksheet.vue",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewMarksheet.vue",
+            "exports": []
+        }
+    },
+    "impact_map": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [
+            3
+        ],
+        "5": [
+            3,
+            8
+        ],
+        "6": [],
+        "7": [
+            6
+        ],
+        "8": [],
+        "9": [
+            2,
+            6,
+            7
+        ],
+        "10": [
+            1,
+            3,
+            4,
+            5,
+            8,
+            9,
+            10,
+            11,
+            13,
+            16,
+            17
+        ],
+        "11": [
+            1
+        ],
+        "12": [],
+        "13": [
+            1,
+            3
+        ],
+        "14": [],
+        "15": [],
+        "16": [],
+        "17": []
+    },
+    "cycles": []
+}

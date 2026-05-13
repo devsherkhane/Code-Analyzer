@@ -237,7 +237,15 @@ def analyze_batch_sync(batch, client):
         schema_entries.append(f'  "{fid}": {{ "issues": [...], "visual_simulation": {{ ... }} }}')
     schema_example = "{\n" + ",\n".join(schema_entries) + "\n}"
     
-    prompt = f"""You are an Elite Principal Full-Stack Software Architect and UI/UX Expert. Analyze the provided code for Logic Bugs, Performance Anti-patterns, Architectural issues, AND UI/UX Accessibility (WCAG 2.1) problems. For each issue found: (1) identify the exact line and element, (2) explain why it violates best practices, (3) provide a corrected version of the code. Return results as a JSON object. Be thorough and comprehensive.
+    prompt = f"""You are an Elite Principal Full-Stack Software Architect and Security Auditor. Your task is to perform an EXTREMELY deep, critical analysis of the provided code. Do NOT just focus on UI/UX or Accessibility. You must aggressively hunt for and report ALL types of issues across the entire stack:
+1. Logic Bugs (incorrect math, unhandled edge cases, race conditions)
+2. Security Vulnerabilities (XSS, injection, insecure data handling, hardcoded secrets)
+3. Performance Anti-patterns (unnecessary re-renders, memory leaks, heavy loops, missing memoization)
+4. State Management (mutating props, bad reactive state, deeply nested reactivity)
+5. Architecture & Code Smells (tight coupling, massive functions, duplicate code)
+6. UI/UX Accessibility (WCAG 2.1, missing ARIA, bad semantic HTML)
+
+For each issue found: (1) identify the exact line, (2) explain why it is dangerous or bad practice, and (3) provide a perfect corrected version. Be ruthless and comprehensive. Do not ignore logic/security in favor of HTML tags.
 
 CRITICAL RULES FOR CODE FIXES (you MUST follow these):
 1. "original_code" MUST be an EXACT character-for-character copy from the source code — do NOT paraphrase, reformat, or approximate. Copy the exact whitespace, indentation, quotes, and line breaks.

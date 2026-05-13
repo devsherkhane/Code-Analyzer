@@ -12,7 +12,8 @@ export default {
       activeView: 'dashboard', // 'dashboard' | 'overview' | 'issues' | 'files' | 'architecture'
       theme: 'dark',
       sidebarCollapsed: false,
-      selectedReportId: null
+      selectedReportId: null,
+      chatIssue: null
     }
   },
   created() {
@@ -49,6 +50,10 @@ export default {
         this.selectedReportId = reportId;
         this.analysisDone = true;
         this.activeView = 'overview';
+    },
+    handleDiscussIssue(issue) {
+        this.chatIssue = { ...issue, _ts: Date.now() };
+        this.activeView = 'chat';
     },
 
   }
@@ -188,7 +193,9 @@ export default {
                 v-if="['overview', 'issues', 'files', 'chat'].includes(activeView)"
                 :activeView="activeView"
                 :selectedReportId="selectedReportId"
+                :chatIssue="chatIssue"
                 @navigate="activeView = $event"
+                @discuss-issue="handleDiscussIssue"
                 :key="activeView"
               />
               <DependencyGraph v-else-if="activeView === 'architecture'" :selectedReportId="selectedReportId" key="dep-graph" />
