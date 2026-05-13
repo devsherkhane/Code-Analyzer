@@ -1,4 +1,4 @@
-# 🚀 PrismAI
+#  PrismAI
 ## AI-Powered UI/UX, Accessibility & Intelligent Code Analysis Platform
 
 Code-Analyzer is an advanced AI-driven developer platform built to modernize the way developers analyze, maintain, and improve frontend applications. It combines Large Language Models (LLMs), static code analysis, accessibility auditing, and intelligent automation into a single integrated ecosystem.
@@ -9,7 +9,7 @@ Unlike traditional linters or static analyzers, Code-Analyzer not only detects i
 
 ---  
  
-# 🌟 Vision
+#  Vision 
 
 Modern applications often suffer from:
 
@@ -34,11 +34,11 @@ The platform is designed for:
 
 ---
 
-# ✨ Core Features
+#  Core Features
 
 ---
 
-## 🛡️ Real-Time UI/UX & Accessibility Analysis
+##  Real-Time UI/UX & Accessibility Analysis
 
 Code-Analyzer continuously scans frontend codebases and detects:
 
@@ -72,7 +72,7 @@ The analysis engine works in real time and provides immediate feedback during de
 
 ---
 
-# 🤖 AI-Powered Automated Code Fixes
+#  AI-Powered Automated Code Fixes
 
 Traditional tools stop at reporting errors.
 
@@ -92,7 +92,7 @@ Developers can review and apply fixes directly from the IDE with a single click.
 
 ---
 
-# 💬 AI Architect Assistant
+#  AI Architect Assistant
 
 One of the most powerful components of Code-Analyzer is the AI Architect Assistant.
 
@@ -116,7 +116,7 @@ This transforms the codebase into an interactive, searchable knowledge system.
 
 ---
 
-# 📊 Interactive Project Health Dashboard
+#  Interactive Project Health Dashboard
 
 The web dashboard provides a visual overview of the entire project.
 
@@ -145,7 +145,7 @@ The dashboard enables both developers and managers to better understand project 
 
 ---
 
-# 🏗️ Multi-Engine Distributed Architecture
+#  Multi-Engine Distributed Architecture
 
 Code-Analyzer uses a modular distributed architecture designed for scalability, performance, and flexibility.
 
@@ -153,11 +153,11 @@ The platform is divided into multiple specialized services.
 
 ---
 
-# ⚙️ Backend Architecture
+#  Backend Architecture
 
 ---
 
-## 🔹 Go Backend Service (Port 8081)
+##  Go Backend Service (Port 8081)
 
 The Go backend acts as the central orchestration layer.
 
@@ -185,7 +185,7 @@ The backend is built using the Gin framework.
 
 ---
 
-# 🧠 Python Analyzer Engine
+#  Python Analyzer Engine
 
 The Python layer powers intelligent analysis and AI operations.
 
@@ -207,7 +207,7 @@ Python was chosen because of its strong ecosystem for:
 
 ---
 
-## 🔹 Flask Bridge (Port 7891)
+##  Flask Bridge (Port 7891)
 
 The Flask Bridge enables communication between:
 
@@ -224,7 +224,7 @@ It provides:
 
 ---
 
-## 🔹 MCP Server (Port 8892)
+##  MCP Server (Port 8892)
 
 The MCP (Model Context Protocol) Server provides structured project context to LLMs.
 
@@ -240,7 +240,7 @@ The MCP layer is critical for building context-aware AI interactions.
 
 ---
 
-# 🔍 Logic & Analysis Layer
+#  Logic & Analysis Layer
 
 The core analysis engine uses:
 
@@ -257,7 +257,7 @@ This enables deep understanding of both:
 
 ---
 
-# 🌐 Frontend Dashboard (Vite + Vue.js)
+#  Frontend Dashboard (Vite + Vue.js)
 
 The frontend dashboard is built using:
 
@@ -279,7 +279,7 @@ The frontend communicates with the Go backend through REST APIs.
 
 ---
 
-# 🔌 VS Code Extension Integration
+#  VS Code Extension Integration
 
 The VS Code extension integrates Code-Analyzer directly into the developer workflow.
 
@@ -296,7 +296,7 @@ This eliminates the need to constantly switch between tools.
 
 ---
 
-# 🛠️ Technology Stack
+#  Technology Stack
 
 | Layer | Technology |
 |---|---|
@@ -312,11 +312,11 @@ This eliminates the need to constantly switch between tools.
 
 ---
 
-# 🚀 Installation & Setup
+#  Installation & Setup
 
 ---
 
-# 📋 Prerequisites
+#  Prerequisites
 
 Ensure the following tools are installed:
 
@@ -328,7 +328,7 @@ Ensure the following tools are installed:
 
 ---
 
-# 📦 Clone Repository
+#  Clone Repository
 
 ```bash
 git clone https://github.com/your-username/code-analyzer.git
@@ -337,7 +337,7 @@ cd code-analyzer
 
 ---
 
-# ⚙️ Configure Environment Variables
+#  Configure Environment Variables
 
 Create a `.env` file in the root directory.
 
@@ -349,7 +349,7 @@ LLM_MODEL=gemma3:latest
 
 ---
 
-# 📥 Install Python Dependencies
+#  Install Python Dependencies
 
 ```bash
 cd analyzer
@@ -358,7 +358,7 @@ pip install -r requirements.txt
 
 ---
 
-# 🚦 Running the Platform
+#  Running the Platform
 
 The project includes a unified launcher script that starts all services together.
 
@@ -370,7 +370,7 @@ The project includes a unified launcher script that starts all services together
 
 ---
 
-# 🌐 Running Services
+#  Running Services
 
 | Service | URL |
 |---|---|
@@ -381,7 +381,7 @@ The project includes a unified launcher script that starts all services together
 
 ---
 
-# 🔌 VS Code Extension Setup
+#  VS Code Extension Setup
 
 Navigate to the extension directory.
 
@@ -409,7 +409,7 @@ code --install-extension uiux-copilot-0.0.1.vsix
 
 ---
 
-# 🔮 Future Roadmap
+#  Future Roadmap
 
 The future roadmap includes:
 
@@ -428,7 +428,7 @@ The future roadmap includes:
 
 ---
 
-# 🎯 Potential Use Cases
+#  Potential Use Cases
 
 ---
 
@@ -453,7 +453,7 @@ Maintainers can improve code consistency and project health automatically.
 
 ---
 
-# 🤝 Contributing
+#  Contributing
 
 Contributions are welcome.
 
@@ -466,7 +466,7 @@ Contributions are welcome.
 5. Open a Pull Request
 
 ---
-# 🎬 Demo Preview
+# Demo Preview
 
 <p align="center">
   <img src="./assets/Final_Internship_video.gif" alt="Code-Analyzer Demo"/>
@@ -474,7 +474,7 @@ Contributions are welcome.
 ---
 
 
-# ⭐ Final Note
+#  Final Note
 
 Code-Analyzer is more than a static analysis tool.
 
