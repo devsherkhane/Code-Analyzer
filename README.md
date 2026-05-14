@@ -9,7 +9,7 @@ Unlike traditional linters or static analyzers, Code-Analyzer not only detects i
 
 ---  
  
-#  Vision 
+#  Vision  
 
 Modern applications often suffer from:
 
