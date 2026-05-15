@@ -8,7 +8,7 @@ The platform acts as a bridge between **design quality**, **accessibility standa
 Unlike traditional linters or static analyzers, Code-Analyzer not only detects issues but also understands project context and generates intelligent code fixes, architectural recommendations, and UI/UX improvements.
 
 ---    
-    
+     
 #  Vision   
 
 Modern applications often suffer from:
