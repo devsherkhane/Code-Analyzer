@@ -5964,5 +5964,129 @@
             "engineering_health_score": 85,
             "recommendations": []
         }
+    },
+    "6a82174f10a35479f5c3e5053ce6068197ab66231aa744737579d0512ceb4fe3": {
+        "issues": [
+            {
+                "line": 10,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "critical",
+                "element": "img src=\"isPhotograph\" alt=\"User Profile\"",
+                "problem": "Hardcoded image URL. This is a security risk as malicious users can potentially manipulate the URL. It can also cause accessibility issues if the alternative text is missing or doesn't describe the image adequately.",
+                "original_code": "<!-- <img src=\"../../../img/avartar.jpg\" alt=\"User Profile\"\n7:         class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\" /> -->",
+                "fixed_code": "<img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"photograph\" class=\"w-20 aspect-square object-contain\" :class=\"isPhotograph ? 'rounded-sm' : 'border-dashed border-2 border-gray-300 p-2'/>",
+                "explanation": "Replaced the hardcoded image path with the dynamic value 'photoGraph' and 'dummyImg'.  The `:class` binding is used to conditionally apply different styling based on the 'isPhotograph' value, improving flexibility and avoiding hardcoded styles. The `alt` tag is correctly set and aligns with accessibility best practices.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -7,7 +7,7 @@\n-        <img src=\"../../../img/avartar.jpg\" alt=\"User Profile\"\n+        <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"photograph\" class=\"w-20 aspect-square object-contain\" :class=\"isPhotograph ? 'rounded-sm' : 'border-dashed border-2 border-gray-300 p-2'/>",
+                "is_real_issue": true
+            },
+            {
+                "line": 94,
+                "defect_type": "Security | UI",
+                "severity": "high",
+                "element": "button class=\"btn btn-main btn-solid\" @click=\"editPersonalInfo\"",
+                "problem": "Potential XSS vulnerability if the 'editPersonalInfo' function uses untrusted data without proper sanitization. The button class also contains 'btn-main' and 'btn-solid', which could lead to inconsistent styling and accessibility issues if not carefully managed.",
+                "original_code": "<button class=\"btn btn-main btn-solid\" @click=\"editPersonalInfo\">\n95:               <i class=\"fa-light fa-user-pen\" />\n96:               {{ \n",
+                "fixed_code": "<button class=\"btn btn-main btn-solid\" @click=\"editPersonalInfo\" :disabled=\"!isEditRequire\">\n95:               <i class=\"fa-light fa-user-pen\" />\n96:               {{ \n",
+                "explanation": "Added a `disabled` attribute to the button to conditionally prevent clicking when `isEditRequire` is false. This prevents the potentially dangerous `editPersonalInfo` function from executing when it shouldn't. The button class remains the same, but the code now includes a check to only enable the button if editing is required.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -94,7 +94,7 @@\n-<button class=\"btn btn-main btn-solid\" @click=\"editPersonalInfo\">\n+<button class=\"btn btn-main btn-solid\" @click=\"editPersonalInfo\" :disabled=\"!isEditRequire\">\n95:               <i class=\"fa-light fa-user-pen\" />\n96:               {{\n",
+                "additional_notes": "Consider adding input validation and sanitization to the `editPersonalInfo` function to prevent XSS attacks.  Also, ensure the `btn-main` and `btn-solid` classes are well-defined and consistent for styling and accessibility.",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 90,
+            "recommendations": []
+        }
+    },
+    "fdb24d686b2e50bef5bb1d46607a0b3b723275c9e096fc35ae83e0797dfd6c44": {
+        "issues": [
+            {
+                "line": 10,
+                "defect_type": "Code Style | Maintainability",
+                "severity": "medium",
+                "element": "let cancel\n28:     let isDevelopment = process.env.NODE_ENV !== 'production'\n29:     let CancelToken = axios.Create({\n",
+                "problem": "Incorrect naming convention for variable. The variable name `CancelToken` should be `CancelToken`.",
+                "original_code": "let cancel\n28:     let isDevelopment = process.env.NODE_ENV !== 'production'\n29:     let CancelToken = axios.Create({\n",
+                "fixed_code": "let cancel\n28:     let isDevelopment = process.env.NODE_ENV !== 'production'\n29:     let CancelToken = axios.Create({\n",
+                "explanation": "Corrected the variable name `CancelToken` to `CancelToken` to adhere to standard JavaScript naming conventions.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -29,7 +29,7 @@\n-     let CancelToken = axios.Create({\n+     let CancelToken = axios.Create({\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 95,
+            "recommendations": []
+        }
+    },
+    "3453516ad8362d42b5f77b810e10e4be16250b3bc592d7f36de5f81372d376ca": {
+        "issues": [
+            {
+                "line": 9,
+                "defect_type": "Security | UI | Logic",
+                "severity": "critical",
+                "element": "{{ $t(\"updateReservationDetails.legalReservationInformation\") }}",
+                "problem": "Directly interpolating a key into a string literal creates a potential XSS vulnerability. If the key 'updateReservationDetails.legalReservationInformation' is not properly sanitized, an attacker could inject malicious JavaScript code into the rendered HTML.  Additionally, using `$t` without proper localization configuration can lead to issues if the translation key is not found or if the translation data is compromised.",
+                "original_code": "            <div class=\"sec-title mb-6\">\n18:             {{ $t(\"updateReservationDetails.legalReservationInformation\") }}\n19:           </div>",
+                "fixed_code": "            <div class=\"sec-title mb-6\">\n18:             {translate(\"updateReservationDetails.legalReservationInformation\")}\n19:           </div>",
+                "explanation": "The fix replaces the direct interpolation with a `translate()` function call.  This assumes a proper translation service is configured to handle the key, sanitizing it on the fly and preventing XSS.  The translated output is used.  This is the most secure approach.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -9,7 +9,7 @@\n-            <div class=\"sec-title mb-6\">\n-              {{ $t(\"updateReservationDetails.legalReservationInformation\") }}\n-            </div>\n+            <div class=\"sec-title mb-6\">\n+              {translate(\"updateReservationDetails.legalReservationInformation\")}\n+            </div>",
+                "is_real_issue": true
+            },
+            {
+                "line": 12,
+                "defect_type": "Security | UI | Logic",
+                "severity": "high",
+                "element": "{{\n13:             $t(\"updateReservationDetails.domicile\")\n14:           }}",
+                "problem": "Similar to line 9, this directly interpolates a translation key into a string literal, creating a potential XSS vulnerability. The key is not sanitized, allowing attackers to inject arbitrary JavaScript code.  The reliance on `$t` again introduces potential issues with localization configuration and missing translations.",
+                "original_code": "            <div class=\"form-group mb-6\">\n13:             <label for=\"app-no\" class=\"form-label\">{{\n14:               $t(\"updateReservationDetails.domicile\")\n15:             }}</label>\n16:           </div>",
+                "fixed_code": "            <div class=\"form-group mb-6\">\n13:             <label for=\"app-no\" class=\"form-label\">{translate(\"updateReservationDetails.domicile\")}</label>\n14:           </div>",
+                "explanation": "The fix replaces the direct interpolation with a `translate()` function call, mirroring the fix on line 9.  This isolates the vulnerability and enforces proper sanitization of the translation key.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -12,7 +12,7 @@\n-            <div class=\"form-group mb-6\">\n-              <label for=\"app-no\" class=\"form-label\">{{\n-                $t(\"updateReservationDetails.domicile\")\n-              }}</label>\n-            </div>\n+            <div class=\"form-group mb-6\">\n+              <label for=\"app-no\" class=\"form-label\">{translate(\"updateReservationDetails.domicile\")}</label>\n-            </div>",
+                "is_real_issue": true
+            },
+            {
+                "line": 22,
+                "defect_type": "Security | UI | Logic",
+                "severity": "medium",
+                "element": "{{ $t(\"updateReservationDetails.selectState\") }}",
+                "problem": "Direct interpolation of a translation key, as with lines 9 and 12, presents a potential XSS vulnerability. Although the key is a controlled string, it's still best practice to sanitize it for security.",
+                "original_code": "            <option\n122:               v-for=\"option in getStates\"\n123:               :key=\"option.stateId\"\n124:               :value=\"option\"\n125:             >\n126:               {{ option.stateName }}\n127:             </option>",
+                "fixed_code": "            <option\n122:               v-for=\"option in getStates\"\n123:               :key=\"option.stateId\"\n124:               :value=\"option\"\n125:             >\n126:               {translate(option.stateName)}  <!-- Apply translation -->\n127:             </option>",
+                "explanation": "The fix introduces `translate()` for the `option.stateName` value within the `{{ }}` expression, ensuring that the value is properly sanitized before being rendered. This is a preventative measure against potential XSS attacks.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -22,7 +22,7 @@\n-            <option\n+            <option\n122:               v-for=\"option in getStates\"\n123:               :key=\"option.stateId\"\n124:               :value=\"option\"\n125:             >\n+              {translate(option.stateName)}  <!-- Apply translation -->\n126:               {{ option.stateName }}\n127:             </option>",
+                "is_real_issue": true
+            },
+            {
+                "line": 118,
+                "defect_type": "UI | Logic",
+                "severity": "medium",
+                "element": "{{ $t(\"updateReservationDetails.selectOccupation\") }}",
+                "problem": "Direct interpolation of a translation key. This is a potential XSS vulnerability and bad practice. Should be sanitized before use.",
+                "original_code": "            <select\n114:               class=\"select select-bordered w-full mt-2\"\n115:               v-model=\"selectedOccupation\"\n116:               placeholder=\"Select Occupation\"\n117:             >\n118:               <option\n119:                 v-for=\"option in getoccupation\"\n120:                 :key=\"option.occupationId\"\n121:                 :value=\"option\"\n122:               >\n123:                 {{ option.occupationName }}\n124:               </option>\n125:             </select>",
+                "fixed_code": "            <select\n114:               class=\"select select-bordered w-full mt-2\"\n115:               v-model=\"selectedOccupation\"\n116:               placeholder=\"Select Occupation\"\n117:             >\n118:               <option\n119:                 v-for=\"option in getoccupation\"\n120:                 :key=\"option.occupationId\"\n121:                 :value=\"{translate(option.occupationName)}\"\n122:               >\n123:                 {translate(option.occupationName)}  <!-- Apply translation -->\n124:               </option>\n125:             </select>",
+                "explanation": "The fix replaces the direct interpolation with `translate()` for the value within the `<option>` tag, ensuring that the value is properly sanitized before being rendered. This is a preventative measure against potential XSS attacks.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -118,7 +118,7 @@\n-            <select\n+            <select\n114:               class=\"select select-bordered w-full mt-2\"\n115:               v-model=\"selectedOccupation\"\n116:               placeholder=\"Select Occupation\"\n117:             >\n118:               <option\n119:                 v-for=\"option in getoccupation\"\n120:                 :key=\"option.occupationId\"\n121:                 :value=\"option\"\n122:               >\n+              {translate(option.occupationName)}  <!-- Apply translation -->\n123:                 {{ option.occupationName }}\n124:               </option>\n125:             </select>",
+                "is_real_issue": true
+            },
+            {
+                "line": 142,
+                "defect_type": "UI | Logic",
+                "severity": "low",
+                "element": "  <td class=\"w-7\">{{ index + 1 }}</td>",
+                "problem": "This displays the index directly, which could be useful for debugging but should be removed from production code.",
+                "original_code": "            <td class=\"w-7\">{{ index + 1 }}</td>",
+                "fixed_code": "            <td class=\"w-7\">{index + 1}</td>",
+                "explanation": "This reduces the number of characters that are rendered in the table.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -142,1 +142,1 @@\n-            <td class=\"w-7\">{{ index + 1 }}</td>\n+            <td class=\"w-7\">{index + 1}</td>",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 75,
+            "recommendations": []
+        }
     }
 }
