@@ -1,7 +1,7 @@
 #  PrismAI
 ## AI-Powered UI/UX, Accessibility & Intelligent Code Analysis Platform
 
-Code-Analyzer is an advanced AI-driven developer platform built to modernize the way developers analyze, maintain, and improve frontend applications. It combines Large Language Models (LLMs), static code analysis, accessibility auditing, and intelligent automation into a single integrated ecosystem.
+Prism AI is an advanced AI-driven developer platform built to modernize the way developers analyze, maintain, and improve frontend applications. It combines Large Language Models (LLMs), static code analysis, accessibility auditing, and intelligent automation into a single integrated ecosystem.
 
 The platform acts as a bridge between **design quality**, **accessibility standards**, and **development workflows** by providing deep real-time insights directly inside the IDE and through a centralized analytics dashboard.
 
