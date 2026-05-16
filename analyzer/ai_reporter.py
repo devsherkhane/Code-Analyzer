@@ -183,6 +183,13 @@ def _validate_ai_result(result):
         for issue in val["issues"]:
             if not isinstance(issue, dict):
                 continue
+            
+            # Remove issues where fixed_code is identical to original_code
+            orig = str(issue.get("original_code", "")).strip()
+            fixed = str(issue.get("fixed_code", "")).strip()
+            if orig and fixed and orig == fixed:
+                continue
+
             issue.setdefault("defect_type", "Unknown")
             issue.setdefault("severity", "medium")
             issue.setdefault("problem", issue.get("element", "Issue detected by AI"))
@@ -237,15 +244,23 @@ def analyze_batch_sync(batch, client):
         schema_entries.append(f'  "{fid}": {{ "issues": [...], "visual_simulation": {{ ... }} }}')
     schema_example = "{\n" + ",\n".join(schema_entries) + "\n}"
     
-    prompt = f"""You are an Elite Principal Full-Stack Software Architect and Security Auditor. Your task is to perform an EXTREMELY deep, critical analysis of the provided code. Do NOT just focus on UI/UX or Accessibility. You must aggressively hunt for and report ALL types of issues across the entire stack:
-1. Logic Bugs (incorrect math, unhandled edge cases, race conditions)
-2. Security Vulnerabilities (XSS, injection, insecure data handling, hardcoded secrets)
-3. Performance Anti-patterns (unnecessary re-renders, memory leaks, heavy loops, missing memoization)
-4. State Management (mutating props, bad reactive state, deeply nested reactivity)
-5. Architecture & Code Smells (tight coupling, massive functions, duplicate code)
-6. UI/UX Accessibility (WCAG 2.1, missing ARIA, bad semantic HTML)
+    prompt = f"""You are an Expert Full-Stack Developer. Your task is to perform a focused and pragmatic analysis of the provided code. Your goal is to identify ONLY definitive bugs, critical vulnerabilities, and undeniable accessibility violations.
 
-For each issue found: (1) identify the exact line, (2) explain why it is dangerous or bad practice, and (3) provide a perfect corrected version. Be ruthless and comprehensive. Do not ignore logic/security in favor of HTML tags.
+Focus strictly on these objective categories:
+1. Critical Logic Bugs (unhandled exceptions, infinite loops, objective errors)
+2. Security Vulnerabilities (XSS, injection, exposed secrets)
+3. Severe Performance Bottlenecks (memory leaks, infinite re-renders)
+4. Critical UI/UX Accessibility (ONLY flag complete failures like missing ARIA on custom interactive controls. DO NOT flag tooltip positions, margin/padding, or minor layout classes).
+
+IMPORTANT RULES FOR REPORTING ISSUES:
+- ONLY report an issue if it is a SEVERE, objective failure or active danger that genuinely breaks the application or the user experience.
+- DO NOT flag minor UI nitpicks (e.g., tooltip positions, CSS class choices, margin/padding, tag choices). If the UI renders and functions, leave it alone.
+- DO NOT report subjective architectural preferences, "code smells", naming conventions, or stylistic choices. 
+- DO NOT flag code as an issue simply because there is a "better" or "more modern" way to write it. If it works and is safe, assume the developer wrote it that way intentionally.
+- Be extremely conservative with your flags. It is better to return zero issues than to report a false positive.
+- DO NOT FORCE ISSUES. If a file is clean, return an empty array `[]` for "issues". This is the expected baseline behavior for most files.
+
+For each genuine issue found: (1) identify the exact line, (2) explain why it is a definitive bug, and (3) provide a corrected version.
 
 CRITICAL RULES FOR CODE FIXES (you MUST follow these):
 1. "original_code" MUST be an EXACT character-for-character copy from the source code — do NOT paraphrase, reformat, or approximate. Copy the exact whitespace, indentation, quotes, and line breaks.
@@ -255,9 +270,10 @@ CRITICAL RULES FOR CODE FIXES (you MUST follow these):
 5. If a fix requires changes in multiple non-contiguous locations, report each location as a separate issue entry.
 6. The fixed_code snippet must be SELF-CONTAINED — when it replaces original_code in the file, the result must be valid and compilable with zero additional changes needed.
 7. Do NOT invent variable names, props, or methods that don't exist in the source code.
+8. Do NOT return an issue if "original_code" and "fixed_code" are identical. If you have no actual code changes to make, do not report the issue.
 
 You MUST return a JSON object with a key for EACH of these file IDs: {file_ids_list}
-Each key maps to an object with "issues" (array) and "visual_simulation" (object).
+Each key maps to an object with "issues" (array) and "visual_simulation" (object). If a file has no bugs, the "issues" array MUST be empty.
 
 Issue schema per entry:
 {{

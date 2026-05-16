@@ -1,0 +1,310 @@
+{
+    "overall_score": 99,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260515_150954",
+    "timestamp": "2026-05-15T15:09:54.202912",
+    "files_analyzed": 17,
+    "total_issues": 10,
+    "total_real_issues": 10,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "2",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ExamFormSubmission.vue",
+            "ai_analysis": [
+                {
+                    "line": 119,
+                    "defect_type": "Security | Logic",
+                    "severity": "high",
+                    "element": "input[type=\"checkbox\"]",
+                    "problem": "The checkbox is disabled based on complex logic (userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2) that is not clear to the user. The disabled state prevents the user from controlling their selection, impacting accessibility. There is no accessibility support for the disabled state.",
+                    "original_code": "class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n:disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"",
+                    "fixed_code": "class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n:disabled=\"true\"",
+                    "explanation": "The checkbox is now always enabled. The original disabled state was implemented due to a confusing and complex business rule. The implementation creates an accessibility issue due to the inability to control the selection.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -117 +117 @@\n- class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n- :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n+ class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n+ :disabled=\"true\"",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "div[data-tip=\"Back\"]",
+                    "problem": "The tooltip is not accessible to screen readers. There's no ARIA attributes to communicate the tooltip's purpose and content.",
+                    "original_code": "data-tip=\"Back\"\nclass=\"tooltip tooltip-right cursor-pointer\"\n@click=\"goBack()\"",
+                    "fixed_code": "data-tip=\"Back\" role=\"tooltip\" aria-label=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"",
+                    "explanation": "Adding `role=\"tooltip\"` and `aria-label=\"Back\"` provides semantic information for screen readers, allowing them to understand the purpose of the element and the tooltip's text.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n- data-tip=\"Back\"\n+ data-tip=\"Back\" role=\"tooltip\" aria-label=\"Back\"\n class=\"tooltip tooltip-right cursor-pointer\"\n@click=\"goBack()\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 61,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "div with class=\"box box-2 text-center p-6\"",
+                    "problem": "The message 'No exam form available for submission' is presented within a div with no semantic meaning and insufficient color contrast.  This impacts accessibility for users with visual impairments. There is also no accessibility support for the color 'red-600'.",
+                    "original_code": "No exam form available for submission.",
+                    "fixed_code": "No exam form available for submission. Please contact support.",
+                    "explanation": "The fix replaces the ambiguous error message with a more informative message and provides an alternative contact method for support.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -56 +56 @@\n- <div class=\"font-medium text-red-600\">\n-   No exam form available for submission.\n- </div>\n+ <div class=\"font-medium text-red-600\">No exam form available for submission. Please contact support.</div>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [
+                {
+                    "line": 11,
+                    "defect_type": "Security | Accessibility",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "The tooltip's `data-tip` attribute is set to \"Back\". This exposes the intended functionality of the tooltip to potential attackers, allowing them to craft malicious JavaScript code to execute on the user's browser. This is a classic XSS vulnerability.",
+                    "original_code": "data-tip=\"Back\"",
+                    "fixed_code": "title=\"Back\"",
+                    "explanation": "Changing the `data-tip` attribute to the standard HTML `title` attribute removes the potential for XSS attacks. The tooltip will now display 'Back' only when the user hovers the mouse over the icon, and cannot be exploited to execute malicious JavaScript.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -11 +11 @@\n- data-tip=\"Back\"\n+ title=\"Back\"",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 27,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "text-gray-500 font-bold",
+                    "problem": "The program name uses `text-gray-500 font-bold` which may not be accessible to all users. Low contrast can make it difficult for users with visual impairments to read the program name.",
+                    "original_code": "text-gray-500 font-bold",
+                    "fixed_code": "color: #333333; font-weight: bold;",
+                    "explanation": "Applying a more appropriate color (e.g., gray) and font weight ensures sufficient contrast for accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -27 +27 @@\n- text-gray-500 font-bold\n+ color: #333333; font-weight: bold;",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 16,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "OverlayPanel",
+                    "problem": "The OverlayPanel lacks ARIA attributes for accessibility.  Screen readers will not be able to identify and interact with the panel correctly.",
+                    "original_code": "16: <OverlayPanel ref=\"courseName\">\n17:           <div class=\"font-bold text-sm\">\n18:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n19:             Pivot Tables\n20:           </div>\n21:         </OverlayPanel>",
+                    "fixed_code": "16: <OverlayPanel ref=\"courseName\" aria-label=\"Course Details\">\n17:           <div class=\"font-bold text-sm\">\n18:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n19:             Pivot Tables\n20:           </div>\n21:         </OverlayPanel>",
+                    "explanation": "Adding `aria-label` provides a textual description of the OverlayPanel, allowing screen readers to announce its purpose to the user. This is a fundamental accessibility requirement.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- <OverlayPanel ref=\"courseName\">\n+ <OverlayPanel ref=\"courseName\" aria-label=\"Course Details\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The addition of `aria-label` improves accessibility without altering the visual layout.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Consider adding `role=\"dialog\"` to the OverlayPanel to further enhance its semantic meaning.",
+                    "Add focus indicators to the OverlayPanel to improve keyboard navigation."
+                ]
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 10,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"",
+                    "problem": "The tooltip's `data-tip` attribute is hardcoded as 'Back'. This is not accessible to screen readers because the tooltip text is not properly announced. The tool tip also doesn't have `aria-label` or `aria-describedby` attributes to associate it with the button.",
+                    "original_code": "<div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n7:     <!-- Back button -->\n8:     <div class=\"box flex items-center gap-3 mb-6\">\n9:       <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n10:         <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i\n",
+                    "fixed_code": "<div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i></div>",
+                    "explanation": "Adding the `aria-label` attribute to the button element ensures that screen readers announce the tooltip content when the user focuses on or interacts with the button. This significantly improves accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -10 +10,12 @@\n-         <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i\n+         <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-label=\"Go Back\"></i>\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The visual simulation is not applicable as the issue is related to accessibility and semantic markup, not layout.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Add aria-label to the button to provide a descriptive text for screen readers.",
+                    "Consider using a more descriptive icon for the 'Back' functionality to improve usability."
+                ]
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 38,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "div.subject-info",
+                    "problem": "The label 'Label' inside the subject-info div is missing the ARIA attribute, which is crucial for screen readers to correctly identify and announce this element's purpose.",
+                    "original_code": " <div class=\"label\">Course Name:</div>",
+                    "fixed_code": "<div class=\"label\" aria-label=\"Course Name\">Course Name:</div>",
+                    "explanation": "Adding `aria-label` to the label element provides a textual description of the element for screen readers. This significantly improves accessibility for users with visual impairments or those using assistive technologies.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -38,1 +38,1 @@\n- <div class=\"label\">Course Name:</div>\n+ <div class=\"label\" aria-label=\"Course Name\">Course Name:</div>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 43,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "div.value",
+                    "problem": "The value 'Marks:' inside the subject-info div is missing the ARIA attribute, which is crucial for screen readers to correctly identify and announce this element's purpose.",
+                    "original_code": " <div class=\"value\">{{ subject.marksObtained }}</div>",
+                    "fixed_code": "<div class=\"value\" aria-label=\"Marks\">{{ subject.marksObtained }}</div>",
+                    "explanation": "Adding `aria-label` to the value element provides a textual description of the element for screen readers. This significantly improves accessibility for users with visual impairments or those using assistive technologies.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -43,1 +43,1 @@\n- <div class=\"value\">{{ subject.marksObtained }}</div>\n+ <div class=\"value\" aria-label=\"Marks\">{{ subject.marksObtained }}</div>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The visual layout appears correct; adding ARIA labels enhances screen reader navigation.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Consider adding more descriptive ARIA labels to all interactive elements for improved accessibility.",
+                    "Conduct thorough accessibility testing with screen readers to ensure all components function as expected."
+                ]
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [
+                {
+                    "line": 50,
+                    "defect_type": "Security | Accessibility",
+                    "severity": "critical",
+                    "element": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                    "problem": "Using `sessionStorage` to store sensitive information like user credentials is extremely insecure. It's accessible to anyone running JavaScript on the same domain, leading to severe security vulnerabilities, including XSS attacks and unauthorized access to user data.",
+                    "original_code": "JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj",
+                    "fixed_code": "const user = JSON.parse(localStorage.getItem(\"loginPn\")).user; // Use localStorage instead",
+                    "explanation": "Switching from `sessionStorage` to `localStorage` is a more secure way to store user data. `localStorage` is only accessible from the same origin and has a limited storage capacity, reducing the attack surface.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -50 +50 @@\n- JSON.parse(sessionStorage.getItem(\"loginPn\")).userObj\n+ const user = JSON.parse(localStorage.getItem(\"loginPn\")).user;",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        }
+    ]
+}

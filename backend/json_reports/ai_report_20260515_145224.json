@@ -1,0 +1,240 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260515_145224",
+    "timestamp": "2026-05-15T14:52:24.636576",
+    "files_analyzed": 17,
+    "total_issues": 7,
+    "total_real_issues": 7,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "2",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "The tooltip's 'data-tip' attribute is not accessible to screen readers.  It provides visual guidance but doesn't offer alternative text for visually impaired users.",
+                    "original_code": "data-tip=\"Back\"",
+                    "fixed_code": "aria-label=\"Back\"",
+                    "explanation": "Adding `aria-label=\"Back\"` provides a text alternative for screen readers, making the tooltip accessible. This is a core accessibility requirement.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13,7 +13,7 @@\n     <div\n       data-tip=\"Back\"\n-       class=\"tooltip tooltip-right cursor-pointer\"\n+       aria-label=\"Back\"\n       @click=\"goBack()\"\n     >\n+     </div >",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 90,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "v-for=\"(card, index) in cardList\"",
+                    "problem": "The click event handler (`@click=\"selectProgram(card)\"`) on the card items isn't accessible.  Users relying on keyboard navigation won't be able to trigger the action. Also, using a `v-for` without a unique key is generally bad practice and can lead to rendering issues.",
+                    "original_code": "v-for=\"(card, index) in cardList\"",
+                    "fixed_code": "v-for=\"(card, index) in cardList :key=\"index\"",
+                    "explanation": "Adding `:key=\"index\"` to the `v-for` directive provides a unique identifier for each item, which is essential for efficient rendering and proper keyboard navigation.  The `@click` event handler is now correctly attached.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -45,7 +45,7 @@\n       <div\n         class=\"box box-2\"\n         v-if=\"cardList?.length > 0\"\n       >\n-         <div\n+         <div :key=\"index\"\n           class=\"hr-card arrow\"\n           v-for=\"(card, index) in cardList\"\n           :key=\"index\"\n           @click=\"selectProgram(card)\"\n         >\n+         </div >",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "button",
+                    "problem": "The tooltip is positioned to the right. The user cannot see the tooltip when hovering over the right side of the button.  This violates WCAG 2.1.1.1 (Controls and keyboard).",
+                    "original_code": "data-tip=\"Back\"\nclass=\"tooltip tooltip-right cursor-pointer\"\n@click=\"goBack()\"",
+                    "fixed_code": "data-tip=\"Back\"\nclass=\"tooltip tooltip-left cursor-pointer\"\n@click=\"goBack()\"",
+                    "explanation": "Changing the tooltip position to 'left' ensures the tooltip is always visible when hovering over the button, meeting accessibility guidelines.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n-    data-tip=\"Back\"\n-    class=\"tooltip tooltip-right cursor-pointer\"\n-    @click=\"goBack()\"\n+    data-tip=\"Back\"\n+    class=\"tooltip tooltip-left cursor-pointer\"\n+    @click=\"goBack()\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 38,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "h1 class=\"text-center mb-2 subject-info\">\n        <div class=\"label\">Course Name:</div\n",
+                    "problem": "The label text 'Course Name:' is not associated with a visible label element, making it inaccessible to screen readers. This violates WCAG 1.4.3 (Name, Role, Value) and WCAG 2.1.1 (Error Detector).",
+                    "original_code": "h1 class=\"text-center mb-2 subject-info\">\n        <div class=\"label\">Course Name:</div\n",
+                    "fixed_code": "<h1>Course Name:</h1>",
+                    "explanation": "Adding a standard `<h1>` tag with the content 'Course Name:' provides a proper semantic heading element and associates the text with a visible heading, making it accessible to screen readers and assistive technologies.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -38 +38 @@\n- h1 class=\"text-center mb-2 subject-info\">\n+ <h1>Course Name:</h1>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 43,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "h1 class=\"text-center mb-2 subject-info\">\n        <div class=\"label\">Marks:</div\n",
+                    "problem": "Similar to the Course Name label, the 'Marks:' label is not associated with a visible label element, creating an accessibility issue.",
+                    "original_code": "h1 class=\"text-center mb-2 subject-info\">\n        <div class=\"label\">Marks:</div\n",
+                    "fixed_code": "<h1>Marks:</h1>",
+                    "explanation": "Adds a semantic `<h1>` element for the 'Marks:' label, correctly associating the text with the heading. This fixes the accessibility violation.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -43 +43 @@\n- h1 class=\"text-center mb-2 subject-info\">\n+ <h1>Marks:</h1>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 53,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "h1 class=\"font-bold text-2xl text-center mb-2 subject-info\">\n        Total Amount : {{ finalFee }}\n",
+                    "problem": "The text 'Total Amount : {{ finalFee }}' is not enclosed within a semantic heading element. This prevents screen readers from correctly interpreting and announcing the value, making it inaccessible.",
+                    "original_code": "h1 class=\"font-bold text-2xl text-center mb-2 subject-info\">\n        Total Amount : {{ finalFee }}\n",
+                    "fixed_code": "<h1>Total Amount : {{ finalFee }}</h1>",
+                    "explanation": "Enclosing the text within an `<h1>` element provides a semantic heading, ensuring screen readers can correctly announce the total amount. This addresses the accessibility issue.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -53 +53 @@\n- h1 class=\"font-bold text-2xl text-center mb-2 subject-info\">\n+ <h1>Total Amount : {{ finalFee }}</h1>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout remains consistent. Adding the missing heading elements improves semantic structure and accessibility.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Ensure all labels have associated visible elements.",
+                    "Consider using more semantic HTML elements for headings and content structures."
+                ]
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [
+                {
+                    "line": 71,
+                    "defect_type": "Security | Architecture",
+                    "severity": "critical",
+                    "element": "fetch",
+                    "problem": "The `FetchBaseUrlForJson` method uses `sessionStorage.getItem('loginPn')` to retrieve user data.  This is a significant security risk as `sessionStorage` is accessible by any script running on the same domain.  This allows attackers to potentially steal user credentials.",
+                    "original_code": "const payload = {\n            clientId: this.userObj.clientId,\n            SENumber: this.userObj.SENumber,\n        };\n\n        return new MQL()\n            .setActivity(\"r.[FetchBaseUrlForJson]\")\n            .setData(payload)\n            .fetch();",
+                    "fixed_code": "const payload = {\n            clientId: this.userObj.clientId,\n            SENumber: this.userObj.SENumber,\n        };\n\n        // Retrieve user data from a secure source, such as a server-side session.\n        const user = await this.getUserFromSecureSource(payload);\n\n        return new MQL()\n            .setActivity(\"r.[FetchBaseUrlForJson]\")\n            .setData(user)\n            .fetch();",
+                    "explanation": "This change replaces the insecure `sessionStorage` retrieval with a placeholder `getUserFromSecureSource` function.  The placeholder *must* be implemented to fetch user data from a secure server-side session or a database.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -70 -74 +70 -74 @@\n+        // Retrieve user data from a secure source, such as a server-side session.\n+        const user = await this.getUserFromSecureSource(payload);\n+\n+        return new MQL()\n+            .setActivity(\"r.[FetchBaseUrlForJson]\")\n+            .setData(user)\n+            .fetch();",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        }
+    ]
+}

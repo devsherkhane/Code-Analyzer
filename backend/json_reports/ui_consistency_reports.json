@@ -6,7 +6,7 @@
         "finding_details": "Project uses 17 distinct font sizes. Recommended: < 6.",
         "severity": "low",
         "id": 1,
-        "created_at": "2026-05-14T14:37:33.512202"
+        "created_at": "2026-05-15T16:45:10.926458"
     },
     {
         "file_id": 0,
@@ -15,6 +15,6 @@
         "finding_details": "Project uses 8 distinct padding values. Sign of missing design system.",
         "severity": "low",
         "id": 2,
-        "created_at": "2026-05-14T14:37:33.512202"
+        "created_at": "2026-05-15T16:45:10.926458"
     }
 ]

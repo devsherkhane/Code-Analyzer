@@ -1,0 +1,331 @@
+{
+    "overall_score": 99,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260515_155210",
+    "timestamp": "2026-05-15T15:52:10.928709",
+    "files_analyzed": 17,
+    "total_issues": 11,
+    "total_real_issues": 11,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Security | Performance",
+                    "severity": "critical",
+                    "element": "v-if=\"isLoading\"",
+                    "problem": "The fixed overlay remains visible indefinitely if `isLoading` is true, creating a persistent UI element and potentially blocking user interaction.  This isn't handled and will prevent the user from progressing.",
+                    "original_code": "v-if=\"isLoading\"\nclass=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n",
+                    "fixed_code": "v-if=\"isLoading\"\nclass=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center transition-opacity duration-300\"\n",
+                    "explanation": "Adding `transition-opacity duration-300` will cause the loader to fade in and out, making the persistent blocker less disruptive. A mechanism to handle `isLoading` being true is required to prevent the loader from blocking interaction.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- v-if=\"isLoading\"\n+ v-if=\"isLoading\"\n class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center transition-opacity duration-300\"\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 89,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "div v-for=\"option in optionList\"",
+                    "problem": "The option cards are missing ARIA attributes.  Screen readers cannot interpret the purpose or state of the cards. This severely limits accessibility.",
+                    "original_code": "<!-- Option Card -->\n<div\n class=\"option-card\"\n :class=\"{ active: expandedOption === option.type }\"\n @click=\"toggleOption(option.type, option.id)\n :ref=\"'optionCard' + index\"\n >",
+                    "fixed_code": "<!-- Option Card -->\n<div\n class=\"option-card\"\n :class=\"{ active: expandedOption === option.type }\"\n @click=\"toggleOption(option.type, option.id)\n :ref=\"'optionCard' + index\"\n aria-expanded=\"false\"\n role=\"button\"\n tabindex=\"0\"\n >",
+                    "explanation": "Adding `aria-expanded` to indicate the expanded state and `role=\"button\"` and `tabindex=\"0\"` to make the cards focusable will improve accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -89 +89 @@\n- <div\n+ <div\n class=\"option-card\"\n :class=\"{ active: expandedOption === option.type }\"\n @click=\"toggleOption(option.type, option.id)\n :ref=\"'optionCard' + index\"\n >",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The addition of transition-opacity has improved the user experience by reducing the visual impact of the loader.  Adding ARIA attributes has improved accessibility.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Implement a mechanism to handle the `isLoading` state to ensure the loader disappears when the data is loaded.",
+                    "Consider adding a visually distinct indicator to show the user that the application is loading data."
+                ]
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "div with data-tip=\"Back\"",
+                    "problem": "The tooltip is anchored to the icon, preventing users with mobility impairments from easily selecting the back button with a keyboard or switch control. The tooltip's position makes it difficult to target with assistive technologies.",
+                    "original_code": "data-tip=\"Back\"\n        class=\"tooltip tooltip-right cursor-pointer\"\n        @click=\"goBack()\"",
+                    "fixed_code": "data-tip=\"Back\"\n        class=\"tooltip tooltip-right cursor-pointer\"\n        @click=\"goBack()\"\n        role=\"button\"\n        aria-label=\"Back\"",
+                    "explanation": "Adding `role=\"button\"` and `aria-label=\"Back\"` provides semantic information to screen readers, allowing users to navigate the button using keyboard commands and understand its purpose.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n- data-tip=\"Back\"\n+ data-tip=\"Back\"\n+ role=\"button\"\n+ aria-label=\"Back\"\n        class=\"tooltip tooltip-right cursor-pointer\"\n        @click=\"goBack()\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 42,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "div with v-if=\"cardList?.length > 0\"",
+                    "problem": "If the `cardList` is empty, the screen reader will announce the empty div, which is confusing for users.  There is no accessible content to describe the situation.",
+                    "original_code": "v-if=\"cardList?.length > 0\"\n        <div ...>",
+                    "fixed_code": "v-if=\"cardList?.length > 0\"\n        <div ...>\n        </div>\n        <div v-else>\n          <div v-else>\n            <div class=\"font-medium text-red-600\">\n              No exam form available for submission.\n            </div>\n          </div>\n        </div >",
+                    "explanation": "Added a conditional `div` for the empty state to provide a user-friendly message to screen reader users and to ensure ARIA is correctly utilized.  The content of this div is the key accessibility element.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -42 +42 @@\n- v-if=\"cardList?.length > 0\"\n+ v-if=\"cardList?.length > 0\"\n+ <div v-else>\n+   <div v-else>\n+     <div class=\"font-medium text-red-600\">\n+       No exam form available for submission.\n+     </div>\n+   </div>\n+ </div >",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [
+                {
+                    "line": 46,
+                    "defect_type": "Security | Logic",
+                    "severity": "critical",
+                    "element": "downloadHallTicket(program)",
+                    "problem": "The downloadHallTicket function is called directly with the program object, which could lead to vulnerabilities if the program object contains unsanitized data that is then used to construct a URL. This is a potential injection vulnerability.",
+                    "original_code": "downloadHallTicket(program)",
+                    "fixed_code": "downloadHallTicket(term)",
+                    "explanation": "The original function signature takes a 'program' object. This function uses the program object which may contain user input or other untrusted data that could be used to construct a malicious URL. This can be resolved by passing the term directly in place of the entire program object. This approach limits the potential attack surface.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -46 +46 @@\n- downloadHallTicket(program)\n+ downloadHallTicket(term)",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 12,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "The tooltip is incorrectly applied to a button. Clicking the tooltip will not trigger the goBack() function and provides no assistive technology information.",
+                    "original_code": "data-tip=\"Back\"",
+                    "fixed_code": "data-tooltip=\"Back\"",
+                    "explanation": "The attribute name must be 'data-tooltip' to be correctly recognized by the tooltip library. This ensures that clicking the tooltip does not trigger the goBack() function.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -12 +12 @@\n- data-tip=\"Back\"\n+ data-tooltip=\"Back\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "fa-light fa-circle-arrow-left",
+                    "problem": "The tooltip content 'Back' is not accessible to screen readers because it uses an icon instead of descriptive text.",
+                    "original_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n6:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                    "fixed_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\"><span class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></span></div>",
+                    "explanation": "Adding the text 'Back' inside the `<i>` tag provides a proper label for screen readers, making the tooltip accessible.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -6 +6 @@\n- <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n+ <span class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></span></div>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 1,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "div.p-8 selection-container",
+                    "problem": "The `selection-container` div lacks semantic HTML. This creates a severe accessibility issue for screen reader users as it lacks an appropriate heading level (h1, h2, etc.) to indicate the section's purpose. It also contributes to poor UI structure.",
+                    "original_code": "<template>\n  <div class=\"p-8 selection-container\">\n    <div class=\"box mb-6\">\n      <div class=\"course-box\">\n        <div>\n          <span class=\"font-medium text-slate-500\">Courses:</span\n            <span class=\"font-bold text-slate-700\">Introduction\n              to Google Workspace</span\n        </div\n\n        <div class=\"custom-chip\" @click=\"showAnotherCourse\">\n          +1 More\n        </div\n\n        <OverlayPanel ref=\"courseName\">\n          <div class=\"font-bold text-sm\">\n            Utilizing Excel for Data Entry and Analysis: Formulas,\n            Functions, Conditional Formatting, and Pivot Tables\n          </div>\n        </OverlayPanel>\n      </div>\n\n      <div class=\"course-category\">\n        <Carousel...\n        </div\n\n      <div class=\"credit-container\">\n        <div class=\"credits\">\n          <div\n            class=\"credit\"\n            v-for=\"(item, index) in getCreditScore\"\n            :key=\"index\"\n            :class=\"{ 'credit-active': item.isActive }\"\n            @click=\"selectCredit(item.creditScore)\"\n          >\n            Credit {{ parseInt(item.creditScore) }}\n          </div\n        </div>\n\n        <button class=\"btn btn-main \" @click=\"clearFilter()\">\n          <i class=\"fa fa-window-close\" aria-hidden=\"true\"></i> Clear\n        </button>\n\n        <div class=\"credits-count\">\n          <div>Total Credits: <span\n            class=\"count count-green\"\n            >{{ maxGroupCredits }}</span\n          ></div>\n          <div>Remaining Credits: <span\n            class=\"count count-red\"\n            >{{ remainingCredits }}</span\n          ></div>\n        </div>\n      </div>\n\n      <!-- <div class=\"tabs\">\n        <div class=\"tab-lifted tab\" @click=\"showTab(tab)\"\n          :class=\"{ 'tab-active font-semibold': tab === selectedTab }\"\n          v-for=\"(tab, index) in tabs\" :key=\"index\">\n          {{ tab.groupName }}\n        </div\n      </div\n\n      <div class=\"groups-container\">\n        <div class=\"groups\">\n          <div class=\"tabs\">\n            <div\n              class=\"tab-lifted tab\"\n              @click=\"showTab(tab)\"\n              :class=\"{ 'tab-active font-semibold': tab === selectedTab }\"\n              v-for=\"(tab, index) in tabs\" :key=\"index\"\n            >\n              {{ tab.groupName }}\n            </div\n          </div>\n          <div style=\"height: 800px; overflow-y: auto;\">\n            <Tree...\n            </div\n        </div\n\n        <div class=\"selected-course\">\n          <!-- Loop this below div for multiple group Selection List -->\n          <div class=\"selection-list\">\n\n            <div\n              v-for=\"(courses, groupId) in selectedcourse\"\n              :key=\"groupId\"\n              class=\"selection-list\"\n            >\n              <div class=\"sl-title-container\">\n                <i class=\"fa-light fa-check-double icon\"></i> {{ courses[0].groupName }}\n              </div>\n              <div class=\"sl-list\">\n                <ul>\n                  <li v-for=\"course in courses\" :key=\"course.key\">\n                    {{ course.label }}\n                  </li>\n                </ul>\n              </div>\n              <span\n                :class=\"[(course.credit === 1 ? 'credit-1-sm' : ''), (course.credit === 2 ? 'credit-2-sm' : ''), (course.credit === 3 ? 'credit-3-sm' : ''), (course.credit === 4 ? 'credit-4-sm' : '')]\">\n                {{ course.credit }}\n              </span>\n\n              <!-- Show this when no course is selected -->\n\n            </div>\n\n            <div\n              class=\"lottie-holder pb-8\"\n              v-if=\"Object.keys(this.selectedcourse).length === 0\"\n            >\n              <Vue3Lottie\n                :animation-data=\"emptyLottie\"\n                class=\"lottie\"\n              />\n\n              <div class=\"empty-state\">\n                <div class=\"es-title\">\n                  Course not selected\n                </div>\n                <div class=\"es-desc\">\n                  Please select a course to proceed\n                </div>\n\n                </div>\n\n            </div\n\n          </div\n\n          <!-- END -->\n        </div\n      </div\n\n      <div v-if=\"recordFound === false\" class=\"btn-wrapper center\">\n        <button\n          class=\"btn btn-main btn-outline\"\n          @click=\"prevTab\"\n          :disabled=\"currentTabIndex === 0\"\n        >\n          Back\n        </button>\n        <button\n          class=\"btn btn-main btn-solid\"\n          @click=\"nextOrSubmit\"\n          :disabled=\"isLastTab\"\n        >\n          {{ isLastTab ? 'Submit' : 'Next' }}\n        </button>\n      </div>\n\n      <!-- Success Modal -->\n      <Dialog v-model:visible=\"showSuccess\" modal :style=\"{ width: '35rem' }\" class=\"success-modal\">\n        <Vue3Lottie ref=\"lottiSuccess\"\n          :animation-data=\"animationData\"\n          :loop=\"false\"\n          class=\"success-lottie\"\n        />\n        <div class=\"sl-title\">Saved Successfully !</div>\n        <p class=\"sl-text\">iLike Course Selection Done</p>\n        <button class=\"btn btn-solid btn-main\" @click=\"showSuccess = false\">Ok</button>\n      </Dialog>\n\n      <!-- Success Modal -->\n\n    </div>\n  </div\n</template>\n\n<script>\nimport OverlayPanel from 'primevue/overlaypanel';\n\n</script>",
+                    "fixed_code": "<template>\n  <h1 class=\"text-2xl font-bold\">Courses</h1>\n  <div class=\"selection-container\">\n    <div class=\"course-box\">\n      <span class=\"font-medium\">Courses:</span>\n      <span class=\"font-bold\">Introduction to Google Workspace</span>\n\n      <div class=\"custom-chip\" @click=\"showAnotherCourse\">+1 More</div>\n\n      <OverlayPanel ref=\"courseName\">\n        Utilizing Excel for Data Entry and Analysis: Formulas,\n        Functions, Conditional Formatting, and Pivot Tables\n      </OverlayPanel>\n    </div>\n\n    <div class=\"course-category\">\n      <Carousel...\n      </div>\n\n    <div class=\"credit-container\">\n      <div class=\"credits\">\n        <div\n          class=\"credit\"\n          v-for=\"(item, index) in getCreditScore\"\n          :key=\"index\"\n          :class=\"{ 'credit-active': item.isActive }\"\n          @click=\"selectCredit(item.creditScore)\"\n        >\n          Credit {{ parseInt(item.creditScore) }}\n        </div>\n      </div>\n\n      <button class=\"btn btn-main \" @click=\"clearFilter()\">\n        <i class=\"fa fa-window-close\" aria-hidden=\"true\"></i> Clear\n      </button>\n\n      <div class=\"credits-count\">\n        <div>Total Credits: <span\n          class=\"count count-green\"\n          >{{ maxGroupCredits }}</span\n        ></div>\n        <div>Remaining Credits: <span\n          class=\"count count-red\"\n          >{{ remainingCredits }}</span\n        ></div>\n      </div>\n    </div>\n\n    <!-- <div class=\"tabs\">\n      <div class=\"tab-lifted tab\" @click=\"showTab(tab)\"\n        :class=\"{ 'tab-active font-semibold': tab === selectedTab }\"\n        v-for=\"(tab, index) in tabs\" :key=\"index\">\n        {{ tab.groupName }}\n      </div>\n    </div\n\n    <div class=\"groups-container\">\n      <div class=\"groups\">\n        <div class=\"tabs\">\n          <div\n            class=\"tab-lifted tab\"\n            @click=\"showTab(tab)\"\n            :class=\"{ 'tab-active font-semibold': tab === selectedTab }\"\n            v-for=\"(tab, index) in tabs\" :key=\"index\"\n          >\n            {{ tab.groupName }}\n          </div>\n          <div style=\"height: 800px; overflow-y: auto;\">\n            <Tree...\n            </div\n        </div>\n\n        <div class=\"selected-course\">\n          <!-- Loop this below div for multiple group Selection List -->\n          <div class=\"selection-list\">\n\n            <div\n              v-for=\"(courses, groupId) in selectedcourse\"\n              :key=\"groupId\"\n              class=\"selection-list\"\n            >\n              <div class=\"sl-title-container\">\n                <i class=\"fa-light fa-check-double icon\"></i> {{ courses[0].groupName }}\n              </div>\n              <div class=\"sl-list\">\n                <ul>\n                  <li v-for=\"course in courses\" :key=\"course.key\">\n                    {{ course.label }}\n                  </li>\n                </ul>\n              </div>\n              <span\n                :class=\"[(course.credit === 1 ? 'credit-1-sm' : ''), (course.credit === 2 ? 'credit-2-sm' : ''), (course.credit === 3 ? 'credit-3-sm' : ''), (course.credit === 4 ? 'credit-4-sm' : '')]\">\n                {{ course.credit }}\n              </span>\n\n              <!-- Show this when no course is selected -->\n\n            </div>\n\n            <div\n              class=\"lottie-holder pb-8\"\n              v-if=\"Object.keys(this.selectedcourse).length === 0\"\n            >\n              <Vue3Lottie\n                :animation-data=\"emptyLottie\"\n                class=\"lottie\"\n              />\n\n              <div class=\"empty-state\">\n                <div class=\"es-title\">\n                  Course not selected\n                </div>\n                <div class=\"es-desc\">\n                  Please select a course to proceed\n                </div>\n\n                </div>\n\n            </div\n\n          </div\n\n          <!-- END -->\n        </div\n      </div\n\n      <div v-if=\"recordFound === false\" class=\"btn-wrapper center\">\n        <button\n          class=\"btn btn-main btn-outline\"\n          @click=\"prevTab\"\n          :disabled=\"currentTabIndex === 0\"\n        >\n          Back\n        </button>\n        <button\n          class=\"btn btn-main btn-solid\"\n          @click=\"nextOrSubmit\"\n          :disabled=\"isLastTab\"\n        >\n          {{ isLastTab ? 'Submit' : 'Next' }}\n        </button>\n      </div>\n\n    </div>\n  </div>\n</template>",
+                    "description": "The original code lacks semantic HTML, specifically a heading element (h1, h2, etc.) to clearly define the section's purpose for screen reader users.  This is a critical accessibility issue.  The code has been updated to include `<h1>` heading tag for clarity.",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 38,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "h1 class=\"text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}",
+                    "problem": "The `selectedSubjects[0]?.applicationType` property can return `undefined` if `selectedSubjects` is empty or if the first element of `selectedSubjects` does not have the `applicationType` property. This could lead to a runtime error if the code attempts to access a property on `undefined`. Additionally, using optional chaining in this way might not be the most readable approach.",
+                    "original_code": "h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}\n",
+                    "fixed_code": "h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects && selectedSubjects[0] && selectedSubjects[0].applicationType }}",
+                    "explanation": "The fix addresses the potential `undefined` property access by adding a null check to ensure that `selectedSubjects` and the subsequent properties exist before accessing them.  This prevents runtime errors and makes the code more robust.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -38,7 +38,7 @@\n h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}\n h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects && selectedSubjects[0] && selectedSubjects[0].applicationType }}\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 43,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "h1 class=\"font-bold text-center mb-2 subject-info\">Total Amount : {{ finalFee }}",
+                    "problem": "Similar to line 38, `finalFee` might be undefined if it hasn't been calculated yet. Accessing a property on `undefined` can cause a runtime error.",
+                    "original_code": "h1 class=\"font-bold text-center mb-2 subject-info\">Total Amount : {{ finalFee }}",
+                    "fixed_code": "h1 class=\"font-bold text-center mb-2 subject-info\">Total Amount : {{ finalFee != null ? finalFee : 0 }}",
+                    "explanation": "This fix ensures that if `finalFee` is `null` or `undefined`, the template renders `0` instead of throwing an error. This improves the robustness of the component.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -53,7 +53,7 @@\n h1 class=\"font-bold text-center mb-2 subject-info\">Total Amount : {{ finalFee }}\n h1 class=\"font-bold text-center mb-2 subject-info\">Total Amount : {{ finalFee != null ? finalFee : 0 }}\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout appears to be well-structured with appropriate spacing and font sizes for readability.  No immediate layout issues are apparent.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Consider using a more descriptive variable name for `finalFee` (e.g., `totalFee`) to enhance readability.",
+                    "Add a check for `selectedSubjects` to ensure that `selectedSubjects[0]` exists before accessing its properties."
+                ]
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 25,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "@click=\"viewMarksheet(term, term.academicYearId, term.programTermUId, term.collegeId)\"",
+                    "problem": "The click handler for the term item is missing a label. Without a label, screen readers cannot identify the purpose of the button and cannot navigate to the item.",
+                    "original_code": "@click=\"viewMarksheet(term, term.academicYearId, term.programTermUId, term.collegeId)\"",
+                    "fixed_code": "@click=\"viewMarksheet(term, term.academicYearId, term.programTermUId, term.collegeId)\" aria-label=\"View Marksheet for {{ term.programTermUId }}\"",
+                    "explanation": "Adding an aria-label provides a descriptive text for the button that screen readers can interpret. This enhances accessibility and allows users to understand the function of the button.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -25 +25 @@\n- @click=\"viewMarksheet(term, term.academicYearId, term.programTermUId, term.collegeId)\"\n+ @click=\"viewMarksheet(term, term.academicYearId, term.programTermUId, term.collegeId)\" aria-label=\"View Marksheet for {{ term.programTermUId }}\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        }
+    ]
+}

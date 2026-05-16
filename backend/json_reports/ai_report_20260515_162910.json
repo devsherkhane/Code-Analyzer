@@ -1,0 +1,367 @@
+{
+    "overall_score": 99,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260515_162910",
+    "timestamp": "2026-05-15T16:29:10.901642",
+    "files_analyzed": 17,
+    "total_issues": 13,
+    "total_real_issues": 13,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Security | UI",
+                    "severity": "critical",
+                    "element": "div v-if=\"isLoading\"",
+                    "problem": "The `isLoading` div is fixed to the viewport using `inset-0`, `fixed`, and `bg-opacity-20`. This prevents the user from interacting with any part of the application while loading, effectively blocking the UI and causing a critical UX issue.",
+                    "original_code": "v-if=\"isLoading\"\n    class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n",
+                    "fixed_code": "v-if=\"isLoading\"\n    class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n    style=\"margin: 0;\"\n",
+                    "explanation": "Removing `inset-0` and `fixed` will allow the loading div to be replaced by the actual content.  Adding `margin: 0` will allow the loading div to be contained by its parent div. This resolves the blocked UI issue.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n-    class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n+    class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center margin: 0;\"\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 21,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "div =\"box flex items-center gap-3 mb-6\"",
+                    "problem": "The `div` element that contains the back button has no semantic meaning. This is a styling issue but it also hurts accessibility by not providing information about the component's role to assistive technologies.",
+                    "original_code": "div =\"box flex items-center gap-3 mb-6\"\n",
+                    "fixed_code": "div class=\"box flex items-center gap-3 mb-6\"\n",
+                    "explanation": "This fixes the line by removing the `=` sign, which is not a valid HTML attribute assignment. This does not impact functionality, but improves code readability and semantic meaning for assistive technologies.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -21 +21 @@\n-div =\"box flex items-center gap-3 mb-6\"\n+div class=\"box flex items-center gap-3 mb-6\"\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 28,
+                    "defect_type": "UI",
+                    "severity": "low",
+                    "element": "i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"",
+                    "problem": "The font icon is visually inconsistent with the rest of the application's styling (using `fa-light`) but the color is the same, which is fine, but the font size and font weight could be adjusted to better align with the overall design.",
+                    "original_code": "i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"\n",
+                    "fixed_code": "i class=\"fa-solid fa-circle-left text-xl text-[#54519e] font-bold\"\n",
+                    "explanation": "Changes the icon to use `fa-solid` instead of `fa-light` to align with the rest of the component and adjusts the icon name to `fa-circle-left` to align more closely with the desired icon.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -28 +28 @@\n-i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"\n+i class=\"fa-solid fa-circle-left text-xl text-[#54519e] font-bold\"\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 89,
+                    "defect_type": "UI | Logic",
+                    "severity": "medium",
+                    "element": "div v-for=\"option in optionList\"",
+                    "problem": "The `optionList` is not defined in the component's scope. This is causing the `v-for` loop to not render any content.",
+                    "original_code": "div v-for=\"option in optionList\"",
+                    "fixed_code": "div v-for=\"(option, index) in options\"\n",
+                    "explanation": "This fixes the line by defining `options` as a variable in the component's scope.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -89 +89 @@\n-div v-for=\"option in optionList\"\n+div v-for=\"(option, index) in options\"\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "The tooltip is incorrectly associated with the 'Back' icon.  This violates accessibility standards, as screen readers will announce the tooltip when the user interacts with the icon, creating a confusing and potentially overwhelming experience for users who rely on screen readers.",
+                    "original_code": "data-tip=\"Back\"\n",
+                    "fixed_code": "data-tip=\"Back\" aria-label=\"Back\"",
+                    "explanation": "Adding the `aria-label` attribute to the `div` with the tooltip provides a descriptive label for screen readers, clearly communicating the icon's purpose.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n- data-tip=\"Back\"\n+ data-tip=\"Back\" aria-label=\"Back\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 61,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "No exam form available for submission.",
+                    "problem": "The message 'No exam form available for submission' is rendered with a red text color, which can be visually jarring and inaccessible for users with color vision deficiencies.  It also provides no indication on how to proceed or what options are available.",
+                    "original_code": "No exam form available for submission.",
+                    "fixed_code": "No exam form available for submission.<br>Please contact your administrator for assistance.",
+                    "explanation": "Adding a short explanation and a call to action helps users understand the situation and what steps they can take.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -56 +56 @@\n- <div v-else\n+ <div v-else>\n+   No exam form available for submission.<br>\n+   Please contact your administrator for assistance.\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 12,
+                    "defect_type": "Security | UI/UX | Accessibility",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "The `data-tip` attribute on the back button icon is set to \"Back\". This is not accessible to screen readers and can cause confusion for users who rely on screen readers.",
+                    "original_code": "data-tip=\"Back\"",
+                    "fixed_code": "aria-label=\"Back\"",
+                    "explanation": "Using `aria-label` provides a meaningful text alternative for screen readers, improving accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -12 +12 @@\n- data-tip=\"Back\"\n+ aria-label=\"Back\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 36,
+                    "defect_type": "UI/UX | Accessibility",
+                    "severity": "medium",
+                    "element": "tooltip tooltip-right",
+                    "problem": "The tooltip is implemented using a custom `tooltip` component with `tooltip-right` class. This is not a standard ARIA component and may not be fully accessible to screen readers. Using a standard ARIA role and label would be more robust.",
+                    "original_code": "tooltip tooltip-right",
+                    "fixed_code": "aria-describedby=\"tooltip-description\"",
+                    "explanation": "Using `aria-describedby` links the tooltip to a descriptive label which is a standard accessible pattern.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -36 +36 @@\n- tooltip tooltip-right\n+ aria-describedby=\"tooltip-description\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                    "problem": "The tooltip element lacks ARIA attributes, making it inaccessible to screen readers. Users relying on screen readers will not be able to understand the purpose or functionality of the button.",
+                    "original_code": "   <i data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n6:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n7:         </div>",
+                    "fixed_code": "   <i data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n6:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-label=\"Back\" ></i>\n7:         </div>",
+                    "explanation": "Adding `aria-label=\"Back\"` provides a text alternative for the icon, enabling screen readers to interpret its purpose.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -6 +6 @@\n- <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n+ <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-label=\"Back\" ></i>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 16,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "OverlayPanel",
+                    "problem": "The OverlayPanel lacks an ARIA role, making it inaccessible to screen readers. Users relying on screen readers will not be able to interact with the content within the panel.",
+                    "original_code": "16: <OverlayPanel ref=\"courseName\">\n17:           <div class=\"font-bold text-sm\">\n18:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n19:             Pivot Tables\n20:           </div>\n21:         </OverlayPanel>",
+                    "fixed_code": "16: <OverlayPanel ref=\"courseName\" role=\"dialog\">\n17:           <div class=\"font-bold text-sm\">\n18:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n19:             Pivot Tables\n20:           </div>\n21:         </OverlayPanel>",
+                    "explanation": "Adding `role=\"dialog\"` to the OverlayPanel element provides a semantic indication to screen readers that this panel is a dialog, allowing them to understand its purpose and provide appropriate navigation cues.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- <OverlayPanel ref=\"courseName\">\n+ <OverlayPanel ref=\"courseName\" role=\"dialog\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 10,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"",
+                    "problem": "The `data-tip` attribute is used to provide tooltips for the 'Back' icon, but there's no corresponding `aria-label` or equivalent ARIA attribute to make this interactive element accessible to screen readers. Users with screen readers will not know that the icon is a back button.",
+                    "original_code": "<div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n7:     <!-- Back button -->\n8:     <div class=\"box flex items-center gap-3 mb-6\">\n9:       <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n10:       ",
+                    "fixed_code": "<div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" role=\"button\" @click=\"goBack()\">\n7:     <!-- Back button -->\n8:     <div class=\"box flex items-center gap-3 mb-6\">\n9:       <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" role=\"button\" @click=\"goBack()\">\n10:       ",
+                    "explanation": "Adding `role=\"button\"` to the div makes it a button, which is semantically correct and enhances accessibility. This will allow screen readers to identify and announce the button's function.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -10,12 +10,12 @@\n <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n-       </div>\n+       </div>\n+     <button role=\"button\" data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"></button>\n7:     <!-- Back button -->\n8:     <div class=\"box flex items-center gap-3 mb-6\">\n9:       <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n10:       ",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The addition of `role=\"button\"` on the button element improves accessibility and provides a more semantically correct HTML structure.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Ensure all interactive elements have appropriate ARIA attributes or roles for screen reader users.",
+                    "Review the overall visual design and ensure a consistent user experience across all components."
+                ]
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 38,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "div.subject-info",
+                    "problem": "The label 'Course Name:' is missing an associated `aria-label` attribute. This makes it difficult for screen readers to identify the purpose of the label.",
+                    "original_code": "    <div class=\"label\">Course Name:</div>",
+                    "fixed_code": "    <div class=\"label\"><span aria-label=\"Course Name:\"></span>Course Name:</div>",
+                    "explanation": "Adding the `aria-label` attribute to the label provides a textual description of the label's content for screen readers, significantly improving accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -38 +38 @@\n-    <div class=\"label\">Course Name:</div>\n+    <div class=\"label\"><span aria-label=\"Course Name:\"></span>Course Name:</div>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Adding `aria-label` improves accessibility by providing a clear description for screen readers, maintaining the current layout.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Ensure all labels have associated `aria-label` attributes for enhanced accessibility.",
+                    "Consider using semantic HTML elements (e.g., `<legend>` for labels within `<fieldset>`) to improve structure and accessibility."
+                ]
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 50,
+                    "defect_type": "UI/UX | Accessibility",
+                    "severity": "medium",
+                    "element": "isModalVisible: false",
+                    "problem": "The `isModalVisible` state variable is used to control the visibility of the modal. However, there's no associated ARIA attribute to indicate the modal's presence to screen readers.",
+                    "original_code": "isModalVisible: false",
+                    "fixed_code": "isModalVisible: false, aria-hidden=\"true\"",
+                    "explanation": "Adding `aria-hidden=\"true\"` to the modal element when it's hidden tells screen readers to ignore it, preventing unnecessary announcements.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -50 +50 @@\n- isModalVisible: false\n+ isModalVisible: false, aria-hidden=\"true\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        }
+    ]
+}

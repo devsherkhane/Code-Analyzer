@@ -36,6 +36,12 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M4 10a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4zm14 0a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-4zM4 22a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4zm14 0a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-4z"></path></svg>
             File Explorer
           </button>
+          <button 
+            :class="['btn-toggle', viewMode === 'mindmap' ? 'active' : '']" 
+            @click="activateMindmap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            Project Mindmap
+          </button>
         </div>
       </div>
     </div>
@@ -242,6 +248,45 @@
 
         </div>
       </div>
+
+      <!-- Mindmap View (NotebookLM Style) -->
+      <div v-show="viewMode === 'mindmap' && !loading && !error" class="mindmap-layout" style="height: 100%; width: 100%; position: relative; overflow: hidden;">
+          <div class="mm-toolbar">
+            <span class="mm-toolbar-title">🧠 Project Mind Map</span>
+            <button class="mm-toolbar-btn" @click="resetMindmapCamera">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+              Fit View
+            </button>
+            <button class="mm-toolbar-btn" @click="expandAllMindmap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+              Expand All
+            </button>
+            <button class="mm-toolbar-btn" @click="collapseAllMindmap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+              Collapse
+            </button>
+          </div>
+          <div ref="mindmapCanvas" class="mm-canvas"
+               @mousedown="mmStartDrag" @mousemove="mmDrag" @mouseup="mmEndDrag" @mouseleave="mmEndDrag"
+               @wheel.prevent="mmZoom">
+            <div class="mm-transform" :style="mmTransformStyle">
+              <svg class="mm-svg" :width="mmSvgWidth" :height="mmSvgHeight" :viewBox="mmSvgViewBox">
+                <path v-for="(line, i) in mmLines" :key="'l'+i"
+                      :d="line.d" fill="none" :stroke="line.color" :stroke-width="line.width"
+                      stroke-linecap="round" :opacity="line.opacity" />
+              </svg>
+              <div v-for="n in mmRenderedNodes" :key="'n'+n.id"
+                   class="mm-node"
+                   :class="{ 'mm-node-root': n.isRoot, 'mm-node-leaf': !n.hasChildren, 'mm-node-expanded': n.isExpanded, 'mm-node-issue': n.hasIssues }"
+                   :style="n.style"
+                   @click.stop="mmToggleNode(n.id)">
+                <span class="mm-node-label">{{ n.label }}</span>
+                <span v-if="n.hasChildren" class="mm-node-badge">{{ n.childCount }}</span>
+              </div>
+            </div>
+          </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -270,6 +315,20 @@ export default {
       searchQuery: '',
       isIsolationActive: false,
       isolatedNodeId: null,
+      
+      // Mindmap state
+      expandedMindmapNodes: [],
+      mmRenderedNodes: [],
+      mmLines: [],
+      mmTree: null,
+      mmScale: 1,
+      mmPanX: 0,
+      mmPanY: 0,
+      mmDragging: false,
+      mmDragStartX: 0,
+      mmDragStartY: 0,
+      mmSvgWidth: 4000,
+      mmSvgHeight: 4000,
       
       // Keep lists in data for computed filtering but use copies
       rawNodes: [],
@@ -331,6 +390,15 @@ export default {
       if (!this.selectedNode || !this.graphData?.cycles) return [];
       const id = parseInt(this.selectedNode.id);
       return this.graphData.cycles.filter(c => c.includes(id));
+    },
+    mmTransformStyle() {
+      return {
+        transform: `translate(${this.mmPanX}px, ${this.mmPanY}px) scale(${this.mmScale})`,
+        transformOrigin: '0 0'
+      };
+    },
+    mmSvgViewBox() {
+      return `0 0 ${this.mmSvgWidth} ${this.mmSvgHeight}`;
     }
   },
   async mounted() {
@@ -716,6 +784,275 @@ export default {
         this.network.setOptions(newOptions);
         this.resetCamera();
       }
+    },
+    activateMindmap() {
+      this.viewMode = 'mindmap';
+      // Reset to collapsed state on each activation
+      this.expandedMindmapNodes = [];
+      this.$nextTick(() => {
+        this.mmBuildTree();
+        this.mmLayout();
+      });
+    },
+    
+    // --- NotebookLM-style Mindmap Engine ---
+    
+    mmBranchColors() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      return isDark ? [
+        { bg: 'rgba(129, 140, 248, 0.18)', border: '#818cf8', line: '#818cf8' },
+        { bg: 'rgba(52, 211, 153, 0.18)', border: '#34d399', line: '#34d399' },
+        { bg: 'rgba(251, 191, 36, 0.18)', border: '#fbbf24', line: '#fbbf24' },
+        { bg: 'rgba(244, 114, 182, 0.18)', border: '#f472b6', line: '#f472b6' },
+        { bg: 'rgba(167, 139, 250, 0.18)', border: '#a78bfa', line: '#a78bfa' },
+        { bg: 'rgba(96, 165, 250, 0.18)', border: '#60a5fa', line: '#60a5fa' },
+        { bg: 'rgba(248, 113, 113, 0.18)', border: '#f87171', line: '#f87171' },
+        { bg: 'rgba(45, 212, 191, 0.18)', border: '#2dd4bf', line: '#2dd4bf' },
+      ] : [
+        { bg: '#eef2ff', border: '#6366f1', line: '#6366f1' },
+        { bg: '#ecfdf5', border: '#10b981', line: '#10b981' },
+        { bg: '#fffbeb', border: '#f59e0b', line: '#f59e0b' },
+        { bg: '#fdf2f8', border: '#ec4899', line: '#ec4899' },
+        { bg: '#f5f3ff', border: '#8b5cf6', line: '#8b5cf6' },
+        { bg: '#eff6ff', border: '#3b82f6', line: '#3b82f6' },
+        { bg: '#fef2f2', border: '#ef4444', line: '#ef4444' },
+        { bg: '#f0fdfa', border: '#14b8a6', line: '#14b8a6' },
+      ];
+    },
+    
+    mmBuildTree() {
+      if (!this.rawNodes || this.rawNodes.length === 0) return;
+      
+      const nodeMap = {};
+      this.rawNodes.forEach(n => { nodeMap[n.id] = { ...n, children: [] }; });
+      
+      const childSet = new Set();
+      this.rawEdges.forEach(e => {
+        if (nodeMap[e.from] && nodeMap[e.to]) {
+          nodeMap[e.from].children.push(nodeMap[e.to]);
+          childSet.add(e.to);
+        }
+      });
+      
+      // Find root nodes (not imported by anything, or entry points)
+      let roots = this.rawNodes.filter(n => !childSet.has(n.id));
+      if (roots.length === 0) roots = [this.rawNodes[0]];
+      
+      // Create a virtual root representing the project
+      this.mmTree = {
+        id: '__root__',
+        label: '📁 Project',
+        children: roots.map(r => nodeMap[r.id]),
+        isVirtualRoot: true
+      };
+      
+      // Initialize expanded: only root is expanded
+      if (this.expandedMindmapNodes.length === 0) {
+        this.expandedMindmapNodes = ['__root__'];
+      }
+    },
+    
+    mmLayout() {
+      if (!this.mmTree) return;
+      
+      const NODE_H = 48;
+      const NODE_W_BASE = 11;
+      const NODE_W_PAD = 56;
+      const LEVEL_GAP = 320;
+      const SIBLING_GAP = 22;
+      const colors = this.mmBranchColors();
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      
+      const renderedNodes = [];
+      const lines = [];
+      
+      // Calculate the subtree height (number of visible leaf slots)
+      const getSubtreeSlots = (node) => {
+        const isExpanded = this.expandedMindmapNodes.includes(node.id);
+        if (!node.children || node.children.length === 0 || !isExpanded) return 1;
+        let total = 0;
+        node.children.forEach(c => { total += getSubtreeSlots(c); });
+        return total;
+      };
+      
+      const totalSlots = getSubtreeSlots(this.mmTree);
+      const totalHeight = totalSlots * (NODE_H + SIBLING_GAP);
+      
+      // Recursively position nodes
+      const layoutNode = (node, depth, yStart, yEnd, branchColorIdx) => {
+        const nodeW = Math.max(160, node.label.length * NODE_W_BASE + NODE_W_PAD);
+        const x = 200 + depth * LEVEL_GAP;
+        const y = (yStart + yEnd) / 2;
+        
+        const isExpanded = this.expandedMindmapNodes.includes(node.id);
+        const hasChildren = node.children && node.children.length > 0;
+        const hasIssues = this.getFileIssueCount ? this.getFileIssueCount(node.label) > 0 : false;
+        const colorIdx = branchColorIdx % colors.length;
+        const color = colors[colorIdx];
+        
+        const isRoot = node.isVirtualRoot;
+        
+        renderedNodes.push({
+          id: node.id,
+          label: node.label,
+          isRoot,
+          hasChildren,
+          isExpanded,
+          hasIssues,
+          childCount: hasChildren ? node.children.length : 0,
+          style: {
+            position: 'absolute',
+            left: `${x}px`,
+            top: `${y - (isRoot ? 30 : NODE_H / 2)}px`,
+            width: isRoot ? '240px' : `${nodeW}px`,
+            height: isRoot ? '60px' : `${NODE_H}px`,
+            background: isRoot
+              ? (isDark ? 'linear-gradient(135deg, #312e81 0%, #4338ca 100%)' : 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)')
+              : (hasIssues ? (isDark ? 'rgba(239,68,68,0.15)' : '#fef2f2') : color.bg),
+            border: isRoot ? '3px solid rgba(255,255,255,0.2)' : `2px solid ${hasIssues ? '#ef4444' : color.border}`,
+            borderRadius: isRoot ? '28px' : '999px',
+            color: isRoot ? '#fff' : (isDark ? '#e2e8f0' : '#1e293b'),
+            zIndex: isRoot ? 10 : 5,
+            boxShadow: isRoot ? '0 8px 32px rgba(79,70,229,0.35)' : '',
+          },
+          _x: x,
+          _y: y,
+          _w: isRoot ? 240 : nodeW,
+          _color: color
+        });
+        
+        if (hasChildren && isExpanded) {
+          let childYStart = yStart;
+          node.children.forEach((child, ci) => {
+            const childSlots = getSubtreeSlots(child);
+            const childYEnd = childYStart + childSlots * (NODE_H + SIBLING_GAP);
+            const childBranchColor = depth === 0 ? ci : branchColorIdx;
+            
+            const childResult = layoutNode(child, depth + 1, childYStart, childYEnd, childBranchColor);
+            
+            // Draw bezier curve from parent to child
+            const px = x + (isRoot ? 240 : nodeW);
+            const py = y;
+            const cx = childResult.x;
+            const cy = childResult.y;
+            const midX = (px + cx) / 2;
+            
+            const childColor = colors[childBranchColor % colors.length];
+            
+            lines.push({
+              d: `M ${px} ${py} C ${midX} ${py}, ${midX} ${cy}, ${cx} ${cy}`,
+              color: childColor.line,
+              width: depth === 0 ? 3.5 : 2.5,
+              opacity: depth === 0 ? 0.65 : 0.45
+            });
+            
+            childYStart = childYEnd;
+          });
+        }
+        
+        return { x, y, w: isRoot ? 240 : nodeW };
+      };
+      
+      layoutNode(this.mmTree, 0, 0, totalHeight, 0);
+      
+      // Calculate SVG bounds
+      let maxX = 0, maxY = 0;
+      renderedNodes.forEach(n => {
+        const right = n._x + n._w + 100;
+        const bottom = n._y + NODE_H + 50;
+        if (right > maxX) maxX = right;
+        if (bottom > maxY) maxY = bottom;
+      });
+      
+      this.mmSvgWidth = maxX + 200;
+      this.mmSvgHeight = maxY + 200;
+      this.mmRenderedNodes = renderedNodes;
+      this.mmLines = lines;
+      
+      // Auto-fit on first render
+      this.$nextTick(() => this.resetMindmapCamera());
+    },
+    
+    mmToggleNode(nodeId) {
+      const idx = this.expandedMindmapNodes.indexOf(nodeId);
+      if (idx > -1) {
+        // Collapse: remove this node and all descendants from expanded
+        const toRemove = new Set();
+        const collectDescendants = (nid) => {
+          toRemove.add(nid);
+          if (this.mmTree) {
+            const findNode = (node) => {
+              if (node.id === nid) return node;
+              if (node.children) {
+                for (const c of node.children) {
+                  const found = findNode(c);
+                  if (found) return found;
+                }
+              }
+              return null;
+            };
+            const target = findNode(this.mmTree);
+            if (target && target.children) {
+              target.children.forEach(c => collectDescendants(c.id));
+            }
+          }
+        };
+        collectDescendants(nodeId);
+        this.expandedMindmapNodes = this.expandedMindmapNodes.filter(id => !toRemove.has(id));
+      } else {
+        this.expandedMindmapNodes.push(nodeId);
+      }
+      this.mmLayout();
+    },
+    
+    expandAllMindmap() {
+      if (!this.mmTree) return;
+      const allIds = [];
+      const collect = (node) => {
+        allIds.push(node.id);
+        if (node.children) node.children.forEach(collect);
+      };
+      collect(this.mmTree);
+      this.expandedMindmapNodes = allIds;
+      this.mmLayout();
+    },
+    
+    collapseAllMindmap() {
+      this.expandedMindmapNodes = ['__root__'];
+      this.mmLayout();
+    },
+    
+    // Pan & zoom
+    mmStartDrag(e) {
+      this.mmDragging = true;
+      this.mmDragStartX = e.clientX - this.mmPanX;
+      this.mmDragStartY = e.clientY - this.mmPanY;
+    },
+    mmDrag(e) {
+      if (!this.mmDragging) return;
+      this.mmPanX = e.clientX - this.mmDragStartX;
+      this.mmPanY = e.clientY - this.mmDragStartY;
+    },
+    mmEndDrag() {
+      this.mmDragging = false;
+    },
+    mmZoom(e) {
+      const delta = e.deltaY > 0 ? -0.08 : 0.08;
+      this.mmScale = Math.min(3, Math.max(0.15, this.mmScale + delta));
+    },
+    
+    resetMindmapCamera() {
+      if (!this.$refs.mindmapCanvas) return;
+      const container = this.$refs.mindmapCanvas;
+      const cw = container.clientWidth;
+      const ch = container.clientHeight;
+      if (this.mmSvgWidth <= 0 || this.mmSvgHeight <= 0) return;
+      
+      const scaleX = cw / this.mmSvgWidth;
+      const scaleY = ch / this.mmSvgHeight;
+      this.mmScale = Math.min(scaleX, scaleY, 1) * 0.85;
+      this.mmPanX = (cw - this.mmSvgWidth * this.mmScale) / 2;
+      this.mmPanY = (ch - this.mmSvgHeight * this.mmScale) / 2;
     }
   }
 };
@@ -1188,4 +1525,153 @@ export default {
 @keyframes pulsePurple { 0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); } 100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); } }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== NotebookLM-style Mindmap ===== */
+.mm-toolbar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-overlay, rgba(255,255,255,0.85));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 6px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle, rgba(0,0,0,0.08));
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.mm-toolbar-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding: 0 8px;
+  letter-spacing: -0.01em;
+}
+.mm-toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid var(--border-subtle, rgba(0,0,0,0.1));
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.mm-toolbar-btn:hover {
+  background: var(--accent-primary-subtle, rgba(99,102,241,0.08));
+  color: var(--accent-primary, #6366f1);
+  border-color: var(--accent-primary, #6366f1);
+}
+
+.mm-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  position: relative;
+  overflow: hidden;
+}
+.mm-canvas:active {
+  cursor: grabbing;
+}
+
+.mm-transform {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.mm-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Nodes */
+.mm-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 18px;
+  cursor: pointer;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  user-select: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.mm-node:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  z-index: 10 !important;
+}
+
+/* Root node */
+.mm-node-root {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  box-shadow: 0 4px 24px rgba(99,102,241,0.25);
+}
+.mm-node-root:hover {
+  box-shadow: 0 6px 32px rgba(99,102,241,0.35);
+}
+
+/* Leaf nodes */
+.mm-node-leaf {
+  cursor: default;
+  opacity: 0.85;
+}
+.mm-node-leaf:hover {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+/* Issue nodes */
+.mm-node-issue {
+  animation: mmPulseIssue 2.5s ease-in-out infinite;
+}
+@keyframes mmPulseIssue {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.15); }
+  50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+}
+
+/* Node label */
+.mm-node-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* Child count badge */
+.mm-node-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.1);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0 5px;
+  flex-shrink: 0;
+}
+.mm-node-root .mm-node-badge {
+  background: rgba(255,255,255,0.25);
+}
+
 </style>

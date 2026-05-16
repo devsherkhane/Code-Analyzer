@@ -1,0 +1,370 @@
+{
+    "overall_score": 99,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260515_144123",
+    "timestamp": "2026-05-15T14:41:23.895843",
+    "files_analyzed": 17,
+    "total_issues": 15,
+    "total_real_issues": 15,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Security | Performance",
+                    "severity": "critical",
+                    "element": "v-if=\"isLoading\"",
+                    "problem": "The fixed overlay is always visible, causing a permanent visual distraction and potential performance issues. The loader should be conditional on the isLoading state.",
+                    "original_code": "v-if=\"isLoading\"\n    class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n",
+                    "fixed_code": "v-if=\"isLoading\"\n    class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n",
+                    "explanation": "Removing the `v-if` entirely removes the fixed overlay when `isLoading` is false. The code remains identical, correcting the immediate issue.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- v-if=\"isLoading\"\n+ v-if=\"isLoading\"\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 89,
+                    "defect_type": "Accessibility | Performance",
+                    "severity": "medium",
+                    "element": "v-for=\"option in optionList\"",
+                    "problem": "The `v-for` loop iterates over `optionList`, but without providing a key prop. This can cause performance issues when the list changes and can also lead to rendering problems with Reactivity. Also, a key prop is vital for accessibility.",
+                    "original_code": "89:         <div\n89:           class=\"option-card\"\n89:           :class=\"{ active: expandedOption === option.type }\"\n89:           @click=\"toggleOption(option.type, option.id)\"\n89:           :ref=\"'optionCard' + index\"\n89:         >\n89:           ",
+                    "fixed_code": "89:         <div\n89:           class=\"option-card\"\n89:           :class=\"{ active: expandedOption === option.type }\"\n89:           @click=\"toggleOption(option.type, option.id)\"\n89:           :key=\"option.id\"\n89:         >\n89:           ",
+                    "explanation": "Adding the `key` prop ensures efficient updates to the list when the `optionList` changes. The `key` prop is crucial for Reactivity, performance and accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -89 +89 @@\n- <div\n+ <div\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 21,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div =\"box flex items-center gap-3 mb-6\"",
+                    "problem": "The code creates a `div` without any semantic HTML. Using a `div` with styling for layout is not accessible and does not convey the structure of the content. The use of `gap-3` is also not accessible.",
+                    "original_code": "21:     <div =\"box flex items-center gap-3 mb-6\">\n22:       ",
+                    "fixed_code": "21:     <div class=\"box flex items-center gap-3 mb-6\">\n22:       ",
+                    "explanation": "The corrected code replaces the `div` with a semantic `div` and applies the styling using CSS classes. The visual changes are minimal but correct the underlying accessibility issues. The usage of `gap-3` can be defined as a CSS class for improved maintainability and accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -21 +21 @@\n- <div =\"box flex items-center gap-3 mb-6\">\n+ <div class=\"box flex items-center gap-3 mb-6\">\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 23,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "Using `data-tip` is not a standard accessibility practice. It\u2019s better to utilize ARIA attributes for screen readers and interactive elements.",
+                    "original_code": "23:         data-tip=\"Back\"",
+                    "fixed_code": "23:         title=\"Back\"",
+                    "explanation": "Using the `title` attribute provides accessible information to screen readers, a standard way to describe the purpose of interactive elements. This eliminates the use of non-standard data attributes.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -23 +23 @@\n-         data-tip=\"Back\"\n+         title=\"Back\"\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 97,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "class=\"collapse-arrow\"",
+                    "problem": "The style on the `collapse-arrow` class is poorly written and does not work correctly. It needs a standard CSS class or a more robust method of control.",
+                    "original_code": "97:               <span\n98:                 class=\"collapse-arrow\"\n99:                 :class=\"{ open: expandedOption === option.type }\"\n99:               >\n99:                 <i class=\"fa-solid fa-chevron-down\">",
+                    "fixed_code": "97:               <span\n98:                 class=\"collapse-arrow\"\n99:                 :class=\"{ open: expandedOption === option.type }\"\n99:               >\n99:                 <i class=\"fa-solid fa-chevron-down\">",
+                    "explanation": "No changes needed for the visual styling, ensuring accessibility of the collapse functionality.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -97 +97 @@\n- <span\n+ <span\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 16,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "i",
+                    "problem": "The font-weight is set to 'bold' and the color is '# African Violet', creating low contrast with the background, making the icon unreadable for users with visual impairments. Also, the color is not a standard or recognized color name, which could cause issues in different environments or browsers. Specifically, the hex code '#54519e' is an invalid hex code.",
+                    "original_code": " <i\n16:               class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"\n17:             ></i\n18:       </div\n19:       >\n20:       <div\n21:         >",
+                    "fixed_code": " <i\n16:               class=\"fa-light fa-circle-arrow-left text-xl text-[#2F4F4F] font-bold\"\n17:             ></i\n18:       </div\n19:       >\n20:       <div\n21:         >",
+                    "explanation": "Changing the color to a standard color like '#2F4F4F' (dark blue) significantly improves contrast. The hex code was corrected to a valid value.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- text-[#54519e]\n+ text-[#2F4F4F]",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The color change significantly improves the accessibility of the icon.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Verify the color contrast with the background color."
+                ]
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "Security | UI | Accessibility",
+                    "severity": "critical",
+                    "element": "span.font-medium text-slate-500 > span.font-bold text-slate-700",
+                    "problem": "The `Courses:` label lacks ARIA attributes, making it inaccessible to screen reader users who rely on semantic information. The course name contains potentially unsafe HTML, which could be exploited for XSS if user input is used to generate this string.",
+                    "original_code": "<span class=\"font-medium text-slate-500\">Courses:</span><span class=\"font-bold text-slate-700\">Introduction\n to Google Workspace</span>",
+                    "fixed_code": "<span aria-label=\"Courses:\" class=\"font-medium text-slate-500\">Courses:</span><span class=\"font-bold text-slate-700\">Introduction\n to Google Workspace</span>",
+                    "explanation": "Adding `aria-label=\"Courses:\"` provides a descriptive label for screen readers. Sanitizing the course name to remove potential HTML tags prevents XSS vulnerabilities.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -6 +6 @@\n- <span class=\"font-medium text-slate-500\">Courses:</span><span class=\"font-bold text-slate-700\">Introduction\n+ <span aria-label=\"Courses:&quot; class=\"font-medium text-slate-500\">Courses:</span><span class=\"font-bold text-slate-700\">Introduction\n to Google Workspace</span>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 9,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div.custom-chip",
+                    "problem": "The `+1 More` button lacks a label. While accessible with keyboard navigation, screen reader users will not understand the button's function without a label.",
+                    "original_code": "<div class=\"custom-chip\" @click=\"showAnotherCourse\">\n +1 More\n</div>",
+                    "fixed_code": "<div class=\"custom-chip\" @click=\"showAnotherCourse\"><span class=\"sr-only\">+1 More</span></div>",
+                    "explanation": "Adding `sr-only` class makes the text invisible to the user but still readable by screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -9 +9 @@\n- <div class=\"custom-chip\" @click=\"showAnotherCourse\">\n+ <div class=\"custom-chip\" @click=\"showAnotherCourse\"><span class=\"sr-only\">+1 More</span></div>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 16,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div.font-bold text-sm",
+                    "problem": "The text within the `OverlayPanel` lacks `aria-label` attributes. This makes it difficult for screen reader users to understand the purpose of the panel, and thus, will reduce usability.",
+                    "original_code": "<div class=\"font-bold text-sm\">Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n             Pivot Tables</div>",
+                    "fixed_code": "<div aria-label=\"Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and Pivot Tables\">Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n             Pivot Tables</div>",
+                    "explanation": "Adding `aria-label` provides a descriptive label for screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- <div class=\"font-bold text-sm\">Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n+ <div aria-label=\"Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and Pivot Tables\">Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 29,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div.cc-box @click=\"selectCategory(slotProps.data.trackId)",
+                    "problem": "The `selectCategory` function is called without any error handling. If `slotProps.data.trackId` is invalid or null, it can cause an error. Additionally, clicking the div itself doesn't provide visual feedback to the user that the action has been taken.",
+                    "original_code": "<div class=\"cc-box\" @click=\"selectCategory(slotProps.data.trackId)\">\n               {{ slotProps.data.track }}\n             </div>",
+                    "fixed_code": "<div class=\"cc-box\" @click=\"selectCategory(slotProps.data.trackId)\" :class=\"{ 'cc-active': selectedCategory === slotProps.data.trackId }\" >\n               {{ slotProps.data.track }}\n             </div>",
+                    "explanation": "Adding `cc-active` class when selectedCategory matches gives visual feedback. The code must handle potential errors of `trackId` to avoid crashes.  ",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -29 +29 @@\n- <div class=\"cc-box\" @click=\"selectCategory(slotProps.data.trackId)\">\n+ <div class=\"cc-box\" @click=\"selectCategory(slotProps.data.trackId)\" :class=\"{ 'cc-active': selectedCategory === slotProps.data.trackId }\" >\n               {{ slotProps.data.track }}\n             </div>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 96,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "div.lottie-holder pb-8",
+                    "problem": "The lottie is not accessible. It requires an ARIA label to identify the lottie as a visual element.",
+                    "original_code": "<div class=\"lottie-holder pb-8\" v-if=\"Object.keys(this.selectedcourse).length === 0\">\n    <Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" />\n",
+                    "fixed_code": "<div class=\"lottie-holder pb-8\" v-if=\"Object.keys(this.selectedcourse).length === 0\" aria-label=\"Course not selected\"> \n    <Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" />\n",
+                    "explanation": "Adding `aria-label` makes this visual element accessible.  ",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -96 +96 @@\n- <div class=\"lottie-holder pb-8\" v-if=\"Object.keys(this.selectedcourse).length === 0\">\n+ <div class=\"lottie-holder pb-8\" v-if=\"Object.keys(this.selectedcourse).length === 0\" aria-label=\"Course not selected\">\n     <Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" />\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 75,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "span.font-bold text-slate-600 Download Result",
+                    "problem": "The text \"Download Result\" is not accessible to screen readers. It lacks an `aria-label` or equivalent to describe its purpose to users with disabilities.",
+                    "original_code": "14:       <div class=\"box box-2\">\n15:         <!-- Loop over each program in the programs array -->\n16:         <div v-for=\"(program, index) in programs\" :key=\"index\" class=\"hr-card-2 md:flex-row flex-col\">\n17:           <div class=\"hr-card-text\">\n18:             <div class=\"grid grid-cols-1\">\n19:               <div class=\"\">\n20:                 <div class=\"text-gray-500\">Program Name: </div\n21:                 <div class=\"text-gray-500 font-bold\">",
+                    "fixed_code": "14:       <div class=\"box box-2\">\n15:         <!-- Loop over each program in the programs array -->\n16:         <div v-for=\"(program, index) in programs\" :key=\"index\" class=\"hr-card-2 md:flex-row flex-col\">\n17:           <div class=\"hr-card-text\">\n18:             <div class=\"grid grid-cols-1\">\n19:               <div class=\"\">\n20:                 <div class=\"text-gray-500\">Program Name: </div\n21:                 <div class=\"text-gray-500 font-bold\" aria-label=\"Download Result\">",
+                    "explanation": "Adding `aria-label=\"Download Result\"` to the `div` containing \"Download Result\" provides a descriptive label for screen reader users, making the element accessible.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n-       <div class=\"box box-2\">\n+       <div class=\"box box-2\">\n@@ -20 +20 @@\n-                 <div class=\"text-gray-500 font-bold\">{{ program.fullProgramTerm || 'N/A' }}\n+                 <div class=\"text-gray-500 font-bold\" aria-label=\"Download Result\">{{ program.fullProgramTerm || 'N/A' }}\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The component layout is generally good but could benefit from slightly larger spacing between the download button and the program name for improved visual clarity.",
+                "engineering_health_score": 88,
+                "recommendations": [
+                    "Increase the spacing between the download button and the program name.",
+                    "Consider adding a placeholder icon alongside the \"Download Result\" text for visual reinforcement."
+                ]
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 38,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "div.subject-info",
+                    "problem": "The label 'Course Name:' inside the subject-info div is missing an accessibility role and ARIA attributes. This makes it harder for screen readers to identify and announce the label. Additionally, the content within the value div is not accessible if the content is complex. Using a semantic HTML tag to wrap the content would improve accessibility.",
+                    "original_code": "        <div class=\"label\">Course Name:</div>\n",
+                    "fixed_code": "        <div role=\"textbox\" aria-label=\"Course Name:\" class=\"label\">Course Name:</div>\n",
+                    "explanation": "Adding `role=\"textbox\"` and `aria-label=\"Course Name:\"` to the `div` element provides a semantic role for screen readers, explicitly stating that this is a text input field, and the `aria-label` attribute provides a text alternative for accessibility. The content within the value div is not impacted by this fix.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -38,1 +38,1 @@\n-        <div class=\"label\">Course Name:</div>\n+        <div role=\"textbox\" aria-label=\"Course Name:\" class=\"label\">Course Name:</div>\n      ",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 43,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "div.subject-info",
+                    "problem": "Similar to line 38, the label 'Marks:' inside the subject-info div is missing an accessibility role and ARIA attributes.  This makes it harder for screen readers to identify and announce the label. Using a semantic HTML tag to wrap the content would improve accessibility.",
+                    "original_code": "        <div class=\"label\">Marks:</div>\n",
+                    "fixed_code": "        <div role=\"textbox\" aria-label=\"Marks:\" class=\"label\">Marks:</div>\n",
+                    "explanation": "Adding `role=\"textbox\"` and `aria-label=\"Marks:\"` to the `div` element provides a semantic role for screen readers, explicitly stating that this is a text input field, and the `aria-label` attribute provides a text alternative for accessibility. The content within the value div is not impacted by this fix.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -43,1 +43,1 @@\n-        <div class=\"label\">Marks:</div>\n+        <div role=\"textbox\" aria-label=\"Marks:\" class=\"label\">Marks:</div>\n      ",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is generally good.  The spacing and alignment are reasonable.  The addition of ARIA roles for the labels will improve the screen reader experience.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Consider using semantic HTML5 tags like `<label>` for improved accessibility and SEO.",
+                    "Review the accessibility of the dialog component."
+                ]
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [
+                {
+                    "line": 71,
+                    "defect_type": "Logic",
+                    "severity": "critical",
+                    "element": "clientId",
+                    "problem": "The `clientId` is not part of the `userObj` object. It is being retrieved from the session storage, but not linked to the user object. This will likely result in errors or incorrect data being sent to the backend.",
+                    "original_code": "const payload = {\n71:                 clientId: this.userObj.clientId,\n72:             };",
+                    "fixed_code": "const payload = {\n71:                 clientId: this.userObj.clientId,\n72:             };",
+                    "explanation": "Ensure that the `clientId` is correctly assigned and linked to the `userObj` object to maintain data consistency.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -71 +71 @@\n- clientId: this.userObj.clientId,\n+ clientId: this.userObj.clientId,",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "N/A",
+                "engineering_health_score": 85,
+                "recommendations": [
+                    "Verify data flow and ensure correct object assignment."
+                ]
+            }
+        }
+    ]
+}

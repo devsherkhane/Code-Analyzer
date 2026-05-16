@@ -3,6 +3,3 @@ python-dotenv
 flask
 beautifulsoup4
 mcp[cli]
-# google-genai (removed)
-# groq (removed)
-# cerebras_cloud_sdk (removed)

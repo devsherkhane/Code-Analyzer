@@ -1,0 +1,454 @@
+{
+    "overall_score": 98,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260515_154011",
+    "timestamp": "2026-05-15T15:40:11.930175",
+    "files_analyzed": 17,
+    "total_issues": 23,
+    "total_real_issues": 23,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "2",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "The tooltip is incorrectly associated with the 'Back' icon. This will provide incorrect information to the user and is a fundamental accessibility failure. Users relying on screen readers will not receive the intended 'Back' action information, or will receive incorrect information.",
+                    "original_code": "data-tip=\"Back\"",
+                    "fixed_code": "data-title=\"Back\"",
+                    "explanation": "Changing the `data-tip` attribute to `data-title` is the correct way to define a tooltip for accessibility. `data-title` is a standard HTML attribute that screen readers correctly interpret.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n- data-tip=\"Back\"\n+ data-title=\"Back\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 42,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "v-if=\"cardList?.length > 0\"",
+                    "problem": "The absence of an appropriate ARIA role and label for the dynamically generated card list creates a serious accessibility issue. Screen readers cannot determine that this represents an interactive list of options. This is a critical failure.",
+                    "original_code": "v-if=\"cardList?.length > 0\"",
+                    "fixed_code": "v-if=\"cardList?.length > 0 && <div role=\"list\">{{cardList}}</div>\"",
+                    "explanation": "Adding `role=\"list\"` and a wrapper `<div>` around `cardList` will inform screen readers that this is a list of interactive elements. The additional `{{cardList}}` ensures the content is read out.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -42 +42 @@\n- v-if=\"cardList?.length > 0\"\n+ v-if=\"cardList?.length > 0 && <div role=\"list\">{{cardList}}</div>\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 61,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "text-red-600",
+                    "problem": "The use of the `text-red-600` class is visually only and provides no accessibility information to assistive technology users. It provides no alternative text for the user.",
+                    "original_code": "text-red-600",
+                    "fixed_code": "text-red-600 aria-label=\"No exam form available\"",
+                    "explanation": "Adding `aria-label=\"No exam form available\"` provides screen readers with an accessible label for this message.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -61 +61 @@\n- text-red-600\n+ text-red-600 aria-label=\"No exam form available\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 81,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "{{\n            selectedProgram ? selectedProgram.fullProgramTerm : \"...\"",
+                    "problem": "The dynamic rendering of the `selectedProgram?.fullProgramTerm` creates a poor user experience, particularly for screen reader users. The text is not read out correctly for users who rely on screen readers.",
+                    "original_code": "{{\n            selectedProgram ? selectedProgram.fullProgramTerm : \"...\"",
+                    "fixed_code": "{{\n            selectedProgram ? selectedProgram.fullProgramTerm : '... '}\"",
+                    "explanation": "Adding a space after the ellipsis in the rendered text improves readability for screen readers. This prevents the program term from being read as an incomplete phrase.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -81 +81 @@\n- {{\n-            selectedProgram ? selectedProgram.fullProgramTerm : \"...\"\n+ {{\n+            selectedProgram ? selectedProgram.fullProgramTerm : '... '}\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [
+                {
+                    "line": 94,
+                    "defect_type": "Logic",
+                    "severity": "low",
+                    "element": "payload",
+                    "problem": "The payload passed to the MQL service doesn't include the `SENumber` parameter, which is required by the API.  This will lead to failures when fetching the program details.",
+                    "original_code": "const payload = {\n    clientId: this.userObj.clientId,\n    SENumber: this.userObj.SENumber,\n}",
+                    "fixed_code": "const payload = {\n    clientId: this.userObj.clientId,\n    SENumber: this.userObj.SENumber,\n  }",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 105,
+                    "defect_type": "Logic",
+                    "severity": "low",
+                    "element": "rs",
+                    "problem": "The `resolve()` function is called regardless of whether the API call is successful, which can lead to unexpected behavior.  Should also handle error cases.",
+                    "original_code": "resolve(); // Resolve after fetching programs",
+                    "fixed_code": "if (rs.isValid(\"studentWiseHallTicketParam\")) {\n    resolve(); // Resolve after fetching programs\n}",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 116,
+                    "defect_type": "Logic",
+                    "severity": "low",
+                    "element": "console.error",
+                    "problem": "The `console.error` call does not have an informative message that would help with debugging.",
+                    "original_code": "console.error(\"Error fetching program name:\", err)",
+                    "fixed_code": "console.error(\"Error fetching program name:\", err, \"Please check the logs for details.\")",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 12,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "tooltip tooltip-right",
+                    "problem": "The tooltip is not accessible because it lacks the necessary ARIA attributes for screen readers to interpret it as an interactive element or to convey its purpose. The `data-tip` attribute does not equate to a usable ARIA role.",
+                    "original_code": "data-tip=\"Back\"\n",
+                    "fixed_code": "aria-label=\"Back\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 15,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "i",
+                    "problem": "The icon within the tooltip is purely decorative. Without the `role` and `aria-hidden` attributes, screen readers will announce the icon, which is redundant and can disrupt the user experience.",
+                    "original_code": "i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"",
+                    "fixed_code": "i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-hidden=\"true\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 75,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                    "problem": "The tooltip is applied to an `i` tag, which is not a semantically correct element for a tooltip.  This violates accessibility guidelines, making it difficult for screen readers to identify and interact with the element. It also has an incorrect color code.",
+                    "original_code": " <i data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n5:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n6:         </div>",
+                    "fixed_code": " <i data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n5:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#4d5fa7] font-bold\" title=\"Back\"></i>\n6:         </div>",
+                    "explanation": "Replaced the `i` tag with a `span` or `button` element for the icon. Added the `title` attribute to the `i` tag for screen reader accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -5 +6 @@\n- <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n+ <i class=\"fa-light fa-circle-arrow-left text-xl text-[#4d5fa7] font-bold\" title=\"Back\"></i>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 19,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": ":style=\"{ cursor: recordFound ? 'not-allowed' : 'pointer' }\"",
+                    "problem": "Setting `cursor: 'not-allowed'` when `recordFound` is true prevents users from interacting with the div, providing a poor user experience.  This is a critical accessibility violation.",
+                    "original_code": " <div class=\"cc-active': selectedCategory === slotProps.data.trackId, 'disabled': recordFound }\"\n19:                :style=\"{ cursor: recordFound ? 'not-allowed' : 'pointer' }\"\n20:             </div>",
+                    "fixed_code": " <div class=\"cc-active': selectedCategory === slotProps.data.trackId, 'disabled': recordFound }\"\n19:                :style=\"{ cursor: recordFound ? 'pointer' : 'pointer' }\"\n20:             </div>",
+                    "explanation": "Corrected the `cursor` style to `pointer` regardless of the `recordFound` status. This allows users to interact with the element.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -19 +19 @@\n- :style=\"{ cursor: recordFound ? 'not-allowed' : 'pointer' }\"\n+ :style=\"{ cursor: recordFound ? 'pointer' : 'pointer' }\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [
+                {
+                    "line": 89,
+                    "defect_type": "Security | Logic",
+                    "severity": "critical",
+                    "element": "course.credit",
+                    "problem": "The `course.credit` variable can be vulnerable to injection attacks if used directly in a template without sanitization.  A malicious user could inject JavaScript code if the `course.credit` value is not properly escaped.",
+                    "original_code": "{{ course.credit }}",
+                    "fixed_code": "{{ course.credit | number }}",
+                    "explanation": "This fixes the injection vulnerability by ensuring that the number is always rendered correctly and doesn't allow for the injection of any malicious code.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -89 +89 @@\n- {{ course.credit }}\n+ {{ course.credit | number }}\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 96,
+                    "defect_type": "Security | Logic",
+                    "severity": "critical",
+                    "element": "Vue3Lottie",
+                    "problem": "The Vue3Lottie component can be vulnerable to XSS attacks. User supplied content within the animation data could be used to execute arbitrary JavaScript code.",
+                    "original_code": " <Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" />",
+                    "fixed_code": " <Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" dangerouslySetInnerHTML=\"{{JSON.stringify(animationData)}}\" />",
+                    "explanation": "This implementation uses `dangerouslySetInnerHTML` to allow the JSON to be rendered in the component. This is an extremely dangerous operation and should be avoided unless absolutely necessary.  Only use if you are 100% certain about the source and contents of the JSON.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -96 +96 @@\n- <Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" />\n+ <Vue3Lottie :animation-data=\"emptyLottie\" class=\"lottie\" dangerouslySetInnerHTML=\"{{JSON.stringify(animationData)}}\" />",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "span.font-medium text-slate-500",
+                    "problem": "The `font-medium` style is applied to a `span` element, which is semantically incorrect.  Span elements are for inline content; `font-medium` should be applied to a heading or other semantically appropriate element.  This affects screen reader users as the heading information is not correctly announced.",
+                    "original_code": "<span>Courses:</span> <span class=\"font-bold text-slate-700\">Introduction to Google Workspace</span>",
+                    "fixed_code": "<h1>Courses</h1> <span class=\"font-bold text-slate-700\">Introduction to Google Workspace</span>",
+                    "explanation": "Changing the `span` to an `h1` element provides the heading information to screen readers, ensuring a better user experience. Also, the new heading tag is more semantic.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -6 +6 @@\n- <span>Courses:</span> <span class=\"font-bold text-slate-700\">Introduction to Google Workspace</span>\n+ <h1>Courses</h1> <span class=\"font-bold text-slate-700\">Introduction to Google Workspace</span>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 16,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "div.font-bold text-sm",
+                    "problem": "The `font-bold` style is applied to a `div` element, which is semantically incorrect.  Similar to the previous issue, this affects screen reader users and is not semantically correct. The content is a description and should be within a `<p>` tag or other appropriate semantic element.",
+                    "original_code": "<div>Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n            Pivot Tables</div>",
+                    "fixed_code": "<p>Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n            Pivot Tables</p>",
+                    "explanation": "Changing the `div` to a `<p>` tag provides a paragraph element which is semantically correct for this text and will be announced correctly by screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- <div>Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n-            Pivot Tables</div>\n+ <p>Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n-            Pivot Tables</p>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 10,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"",
+                    "problem": "The `data-tip` attribute is used for tooltips, but there is no corresponding ARIA attribute to define the role and state of this interactive element. This makes it inaccessible to screen readers.",
+                    "original_code": "10:       <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n11:         <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n12:       </div>",
+                    "fixed_code": "10:       <div data-tip=\"Back\" role=\"button\" aria-label=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n11:         <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n12:       </div>",
+                    "explanation": "Adding `role=\"button\"` and `aria-label=\"Back\"` provides semantic information to assistive technologies, allowing screen readers to understand and announce the element's function.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -10 +10 @@\n-       <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n+       <div role=\"button\" aria-label=\"Back\" data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The component's layout is functional, but the removal of the URL generation in the HTML also removes a visual reference to fetching the base URL, which might be useful for debugging.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Review the security implications of exposing base URLs.",
+                    "Consider using a more robust method for URL construction that handles potential vulnerabilities."
+                ]
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 38,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "low",
+                    "element": "h1 class=\"text-center mb-2 subject-info\">\n        <div class=\"label\">Course Name:</div\n",
+                    "problem": "The `label` tag is not semantically correct for this context.  It should be a `div` with a `label` attribute for accessibility, allowing screen readers to associate the label with the input field. Missing ARIA attributes would also be good practice.",
+                    "original_code": " <div class=\"label\">Course Name:</div>\n        <div class=\"value\">{{ subject.courseName }}</div>\n",
+                    "fixed_code": " <label class=\"label\" for=\"courseName\">Course Name:</label>\n        <div class=\"value\">{{ subject.courseName }}</div>\n",
+                    "explanation": "Using the `<label>` tag with the `for` attribute correctly associates the label with the corresponding input element, improving accessibility for screen reader users.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -38,4 +38,4 @@\n- <div class=\"label\">Course Name:</div>\n+ <label class=\"label\" for=\"courseName\">Course Name:</label>\n+ <div class=\"value\">{{ subject.courseName }}</div>\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The addition of the `<label>` tag improves the structure and semantic clarity of the component, enhancing readability and maintainability.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Consider adding `aria-labelledby` attributes to clearly link the label with the input element for enhanced accessibility.",
+                    "Ensure sufficient color contrast between the label text and the background for improved readability."
+                ]
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [
+                {
+                    "line": 50,
+                    "defect_type": "Logic",
+                    "severity": "critical",
+                    "element": "isModalVisible",
+                    "problem": "The state variable `isModalVisible` is not being used to control the visibility of the modal, leading to unexpected behavior and potential rendering issues.",
+                    "original_code": "isModalVisible: false, // State to control modal visibility",
+                    "fixed_code": "isModalVisible: false",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 52,
+                    "defect_type": "Logic",
+                    "severity": "critical",
+                    "element": "marksheetData",
+                    "problem": "There is no actual loading or processing of marksheet data. This variable is initialized but never used, which is misleading.",
+                    "original_code": "marksheetData: [],",
+                    "fixed_code": "marksheetData: []",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 57,
+                    "defect_type": "Logic",
+                    "severity": "critical",
+                    "element": "baseUrl",
+                    "problem": "There is no logic to actually build a base URL from the response of the API. It's just set to an empty string.",
+                    "original_code": "baseUrl:'',",
+                    "fixed_code": "baseUrl: ''",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 87,
+                    "defect_type": "Logic",
+                    "severity": "critical",
+                    "element": "baseUrl",
+                    "problem": "The `replace(/#$/, '')` is performed incorrectly; it should be on the *final* URL and not a temporary URL.",
+                    "original_code": "baseUrl.replace(/#$/, \"\")",
+                    "fixed_code": "baseUrl = baseUrl.replace(/#$/, \"\")",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 97,
+                    "defect_type": "Logic",
+                    "severity": "critical",
+                    "element": "try...catch",
+                    "problem": "The `try...catch` block is used to handle errors, but the error messages are generic and don't provide enough information to debug. The `catch` block doesn't return or log the error.",
+                    "original_code": "try {\n    // Fetch... \n} catch (error) {\n    console.error(\"Error fetching program name:\", err)\n}",
+                    "fixed_code": "try {\n    // Fetch... \n} catch (error) {\n    console.error(\"Error fetching program name:\", error, \"Please check the logs for details.\");\n}",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 103,
+                    "defect_type": "Logic",
+                    "severity": "low",
+                    "element": "rs",
+                    "problem": "The promise does not reject correctly when the API call fails, leading to potential issues later on.",
+                    "original_code": "new MQL()\n.setCustomURL(this.portalCustomURL)\n.setActivity(\"o.[studentWiseHallTicketParam]\")\n.setData(payload)\n.fetch()\n.then((rs) => { ... }),",
+                    "fixed_code": "new MQL()\n.setCustomURL(this.portalCustomURL)\n.setActivity(\"o.[studentWiseHallTicketParam]\")\n.setData(payload)\n.fetch()\n.then((rs) => { resolve(); });",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 70,
+                "recommendations": []
+            }
+        }
+    ]
+}
