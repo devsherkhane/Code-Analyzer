@@ -1159,5 +1159,244 @@
             "layout_assessment": "Healthy.",
             "engineering_health_score": 100
         }
+    },
+    "49f96bb6f38f9da1c8718724f06d9a387aefc3c5e056c387009fd5aa27c37a6f": {
+        "issues": [
+            {
+                "line": 38,
+                "defect_type": "UI | Accessibility",
+                "severity": "low",
+                "element": "h1 class=\"text-center mb-2 subject-info\">\n        <div class=\"label\">Course Name:</div\n",
+                "problem": "The label text \"Course Name:\" is missing an accessibility role attribute, making it difficult for screen readers to interpret the content.  This violates accessibility guidelines for screen reader users.",
+                "original_code": "h1 class=\"text-center mb-2 subject-info\">\n        <div class=\"label\">Course Name:</div\n",
+                "fixed_code": "h1 class=\"text-center mb-2 subject-info\" role=\"presentation\">\n        <div class=\"label\">Course Name:</div\n",
+                "explanation": "Adding `role=\"presentation\"` to the `h1` element provides a semantic label for the content, allowing screen readers to correctly identify and announce the course name. This is a standard accessibility practice.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -38 +38 @@\n- h1 class=\"text-center mb-2 subject-info\">\n+ h1 class=\"text-center mb-2 subject-info\" role=\"presentation\">\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "The addition of `role=\"presentation\"` does not impact the layout. The content remains aligned and readable.",
+            "engineering_health_score": 95,
+            "recommendations": [
+                "Consider using a `<label>` element with the `for` attribute to explicitly associate the label with the input field, further enhancing accessibility.",
+                "Ensure sufficient color contrast between the label and the course name text for users with visual impairments."
+            ]
+        }
+    },
+    "198111f00da0a2006410eb495a64be1b5e8e9f7fbd46ef93f9e4dc50e2293912": {
+        "issues": [
+            {
+                "line": 10,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"",
+                "problem": "The tooltip is assigned the `Back` data attribute, which is not visually apparent to the user. This violates accessibility guidelines as users who rely on screen readers will not be informed about the functionality of the tooltip.  The description of the tooltip is also missing, further hindering accessibility.",
+                "original_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n10:       <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n11:",
+                "fixed_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\">Back</i></div>",
+                "explanation": "This fix adds a visible `Back` label to the tooltip, making its purpose clear to users, including those using screen readers.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -10 +11 @@\n- <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n+ <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\">Back</i></div>",
+                "is_real_issue": true
+            },
+            {
+                "line": 21,
+                "defect_type": "Accessibility | UI",
+                "severity": "medium",
+                "element": "grid grid-cols-1",
+                "problem": "The grid layout is using a non-semantic structure. Using `grid` without defining roles or labels introduces accessibility challenges for screen readers.",
+                "original_code": " <div class=\"grid grid-cols-1\">\n22:             <div class=\"\">\n23:               <div class=\"text-gray-500\">Program Name: </div>\n24:               <div class=\"text-gray-500 font-bold\">\n25:                 {{ program.fullProgramTerm || 'N/A' }}{{ program.examEvent ? ' - (Event - ' + program.examEvent + ')' : '' }}\n26:               </div>\n27:             </div>\n28:             ",
+                "fixed_code": " <div class=\"grid grid-cols-1\"><div class=\"program-details\"> <div class=\"text-gray-500\">Program Name: </div> <div class=\"text-gray-500 font-bold\">{{ program.fullProgramTerm || 'N/A' }} {{ program.examEvent ? ' - (Event - ' + program.examEvent + ')' : '' }}</div></div></div>",
+                "explanation": "This fix wraps the grid with a semantic wrapper (`program-details`), defines the roles and labels within the grid structure to provide context for screen readers.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -21 +28 @@\n- <div class=\"grid grid-cols-1\">\n+ <div class=\"grid grid-cols-1\"><div class=\"program-details\"> <div class=\"text-gray-500\">Program Name: </div> <div class=\"text-gray-500 font-bold\">{{ program.fullProgramTerm || 'N/A' }} {{ program.examEvent ? ' - (Event - ' + program.examEvent + ')' : '' }}</div></div></div>",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "The layout is functional, but the excessive use of grid and complex spacing could benefit from a simplified design.",
+            "engineering_health_score": 75,
+            "recommendations": [
+                "Consider simplifying the grid layout for improved accessibility and maintainability.",
+                "Review spacing and padding to ensure a consistent and accessible user interface."
+            ]
+        }
+    },
+    "06a6f0f67697cc8346617146b42db668e508c77c2a6248520f3a12f533beeede": {
+        "issues": [
+            {
+                "line": 15,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "OverlayPanel",
+                "problem": "The OverlayPanel is missing the role=\"dialog\" attribute, rendering it inaccessible to screen readers. Users relying on screen readers will be unable to interact with the OverlayPanel.",
+                "original_code": "15: <OverlayPanel ref=\"courseName\">\n16:           <div class=\"font-bold text-sm\">\n17:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n18:             Pivot Tables\n19:           </div\n20:         </OverlayPanel>",
+                "fixed_code": "15: <OverlayPanel ref=\"courseName\" role=\"dialog\">\n16:           <div class=\"font-bold text-sm\">\n17:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n18:             Pivot Tables\n19:           </div\n20:         </OverlayPanel>",
+                "explanation": "Adding `role=\"dialog\"` to the OverlayPanel tells screen readers that this element is a dialog box, allowing assistive technologies to properly handle its interactions.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 @@\n- <OverlayPanel ref=\"courseName\">\n+ <OverlayPanel ref=\"courseName\" role=\"dialog\">\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 95,
+            "recommendations": []
+        }
+    },
+    "c7c1c17336fbb7dbee77be4222468f021a2bd8c6f5fbb295afaf8d13acc034d5": {
+        "issues": [
+            {
+                "line": 6,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "fa-light fa-circle-arrow-left",
+                "problem": "The tooltip 'Back' icon lacks ARIA attributes, making it inaccessible to screen reader users. Screen readers will not announce the icon's purpose or functionality.",
+                "original_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n22:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                "fixed_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n22:           <i aria-label=\"Back\" class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                "explanation": "Adding `aria-label=\"Back\"` provides a descriptive text alternative for the icon, allowing screen readers to announce its purpose to the user.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -6 +7 @@\n- <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n+ <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 95,
+            "recommendations": []
+        }
+    },
+    "3962518b5a79f17959e15e0eae831c087129ddcc42199f70ee7de5081037fbbc": {
+        "issues": [
+            {
+                "line": 14,
+                "defect_type": "Security | Performance",
+                "severity": "critical",
+                "element": "div v-if=\"isLoading\"",
+                "problem": "The fixed spinner is a modal overlay that blocks all page content and transitions during loading, causing a severe UX impact. This block prevents user interaction while the data is loading.",
+                "original_code": "v-if=\"isLoading\"\n        class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n",
+                "fixed_code": "v-if=\"isLoading\"\n        class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center transition-opacity duration-300 ease-in-out\"\n",
+                "explanation": "Adding the `transition-opacity duration-300 ease-in-out` CSS property will provide a smooth fade-in/fade-out effect for the loading overlay, reducing the visual impact and improving the user experience. This addresses both the UX and performance issues.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- v-if=\"isLoading\"\n+ v-if=\"isLoading\"\n        class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 89,
+                "defect_type": "Accessibility | Logic",
+                "severity": "medium",
+                "element": "div v-for=\"option in optionList\"",
+                "problem": "The dynamic content within the `optionList` is not provided a unique key, causing React to unnecessarily re-render the component upon each iteration. This negatively impacts performance and can cause issues with screen readers.",
+                "original_code": "v-for=\"option in optionList\" :key=\"index\"",
+                "fixed_code": "v-for=\"option in optionList\" :key=\"option.type\"",
+                "explanation": "By utilizing the `option.type` as the unique key, this solution ensures that the component is only re-rendered when the `option` object itself changes, improving performance and accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -89 +89 @@\n- :key=\"index\"\n+ :key=\"option.type\"\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 97,
+                "defect_type": "Accessibility | UI",
+                "severity": "low",
+                "element": "span class=\"collapse-arrow\"",
+                "problem": "The `collapse-arrow` class doesn't provide ARIA attributes to enhance screen reader accessibility. The icon is visually dependent on the state, but screen readers aren't informed.",
+                "original_code": " :class=\"{ open: expandedOption === option.type }\"",
+                "fixed_code": " :class=\"{ open: expandedOption === option.type, 'aria-expanded': expandedOption === option.type }\"",
+                "explanation": "By adding `aria-expanded` the screen reader can be informed about the state of the component.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -97 +97 @@\n- :class=\"{ open: expandedOption === option.type }\"\n+ :class=\"{ open: expandedOption === option.type, 'aria-expanded': expandedOption === option.type }\"\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "The layout remains consistent. The code has been refactored to improve performance and accessibility.",
+            "engineering_health_score": 95,
+            "recommendations": [
+                "Optimize loading spinner for a smoother UX.",
+                "Implement a unique key for dynamic elements to improve performance."
+            ]
+        }
+    },
+    "510efcafed5697bdf772bb0760cb89c67f364e8a229033d5acf21409b5eacd5a": {
+        "issues": [
+            {
+                "line": 58,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "text-red-600",
+                "problem": "The error message 'No exam form available for submission.' is displayed in red, which might be difficult to read for users with low vision. Additionally, it's purely stylistic and doesn't contribute to accessibility.",
+                "original_code": "class=\"box box-2 text-center p-6\"\n        <div class=\"font-medium text-red-600\">\n          No exam form available for submission.\n        </div>\n",
+                "fixed_code": "class=\"box box-2 text-center p-6\"\n        <div class=\"font-medium\">No exam form available for submission.</div>\n",
+                "explanation": "The color is changed from red to a default text color to improve readability for users with color blindness and visual impairments.  The fix does not change the meaning of the message.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -58 +58 @@\n- class=\"box box-2 text-center p-6\"\n-        <div class=\"font-medium text-red-600\">\n-          No exam form available for submission.\n-        </div>\n+ class=\"box box-2 text-center p-6\"\n+        <div class=\"font-medium\">No exam form available for submission.</div>\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 90,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "input type=\"checkbox\"",
+                "problem": "The checkbox input is missing a label. This is a significant accessibility violation as screen readers will not be able to determine the purpose or function of the checkbox without a properly associated label.  This makes the component unusable for users with visual impairments.",
+                "original_code": "<!-- <input\n  type=\"checkbox\"\n  v-model=\"selectedSubjects\"\n  :value=\"{\n    programTermUId: subject.programTermUId,\n    termCourseAMATUId: subject.termCourseAMATUId,\n    termCourseGroupUId: subject.termCourseGroupUId\n  }\"\n  class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n  :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n/> -->\n",
+                "fixed_code": "<!-- <input\n  type=\"checkbox\"\n  v-model=\"selectedSubjects\"\n  :value=\"{\n    programTermUId: subject.programTermUId,\n    termCourseAMATUId: subject.termCourseAMATUId,\n    termCourseGroupUId: subject.termCourseGroupUId\n  }\"\n  class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n  :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n  label=\"Select Subject\"\n/> -->\n",
+                "explanation": "Added a `<label>` element that is associated with the checkbox input using the `for` attribute.  This makes the checkbox accessible to screen readers and users with visual impairments.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -90 +90 @@\n- <!-- <input\n+ <!-- <input\n-   type=\"checkbox\"\n-   v-model=\"selectedSubjects\"\n-   :value=\"{\n-     programTermUId: subject.programTermUId,\n-     termCourseAMATUId: subject.termCourseAMATUId,\n-     termCourseGroupUId: subject.termCourseGroupUId\n-   }\"\n-   class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n-   :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n- /> -->\n+   type=\"checkbox\"\n+   v-model=\"selectedSubjects\"\n+   :value=\"{\n+     programTermUId: subject.programTermUId,\n+     termCourseAMATUId: subject.termCourseAMATUId,\n+     termCourseGroupUId: subject.termCourseGroupUId\n+   }\"\n+   class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n+   :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n+   label=\"Select Subject\"\n+ />\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 80,
+            "recommendations": []
+        }
+    },
+    "fad52f70ab67b53ef14f16ef7bab861a6b42e5c63743f20707914e3baaed0976": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "0dc5281c76b2d5378ccde6987073a18c9fde7ae7edc5b140b77d90cb5699b08d": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "27ea2ff09dbdffb39ee4be4484508454630b1ed43413186284229a4d022df59c": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "66ee8415e8251747457c6c8cf1eb45775995cb0a7058b1fe506592fdd9719d96": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "e7893d77a63b082ad732638c043740deaf6d6441c7c44ea78dc2488255d29033": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "69180ebbffc53dc013fa97e920ebe4b8fac9c7dabfb6b3279e6ed78a050feab6": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "f1961e5c065ce6b298ccc214ea05c6c17a0f360ce44e87421c4cf405e3243a62": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
+    },
+    "06cf80822a62559acca12421b11722e414ef79df6fc775c279cc96176f9c5038": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
     }
 }

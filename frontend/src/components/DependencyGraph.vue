@@ -846,6 +846,8 @@ export default {
         isVirtualRoot: true
       };
       
+      this.mmNodeMap = nodeMap;
+      
       // Initialize expanded: only root is expanded
       if (this.expandedMindmapNodes.length === 0) {
         this.expandedMindmapNodes = ['__root__'];
@@ -867,11 +869,15 @@ export default {
       const lines = [];
       
       // Calculate the subtree height (number of visible leaf slots)
-      const getSubtreeSlots = (node) => {
+      const getSubtreeSlots = (node, path = new Set()) => {
+        if (path.has(node.id)) return 1; // Prevent cycle
         const isExpanded = this.expandedMindmapNodes.includes(node.id);
         if (!node.children || node.children.length === 0 || !isExpanded) return 1;
+        
+        path.add(node.id);
         let total = 0;
-        node.children.forEach(c => { total += getSubtreeSlots(c); });
+        node.children.forEach(c => { total += getSubtreeSlots(c, path); });
+        path.delete(node.id);
         return total;
       };
       
@@ -879,7 +885,7 @@ export default {
       const totalHeight = totalSlots * (NODE_H + SIBLING_GAP);
       
       // Recursively position nodes
-      const layoutNode = (node, depth, yStart, yEnd, branchColorIdx) => {
+      const layoutNode = (node, depth, yStart, yEnd, branchColorIdx, path = new Set()) => {
         const nodeW = Math.max(160, node.label.length * NODE_W_BASE + NODE_W_PAD);
         const x = 200 + depth * LEVEL_GAP;
         const y = (yStart + yEnd) / 2;
@@ -921,14 +927,15 @@ export default {
           _color: color
         });
         
-        if (hasChildren && isExpanded) {
+        if (hasChildren && isExpanded && !path.has(node.id)) {
+          path.add(node.id);
           let childYStart = yStart;
           node.children.forEach((child, ci) => {
             const childSlots = getSubtreeSlots(child);
             const childYEnd = childYStart + childSlots * (NODE_H + SIBLING_GAP);
             const childBranchColor = depth === 0 ? ci : branchColorIdx;
             
-            const childResult = layoutNode(child, depth + 1, childYStart, childYEnd, childBranchColor);
+            const childResult = layoutNode(child, depth + 1, childYStart, childYEnd, childBranchColor, path);
             
             // Draw bezier curve from parent to child
             const px = x + (isRoot ? 240 : nodeW);
@@ -948,6 +955,7 @@ export default {
             
             childYStart = childYEnd;
           });
+          path.delete(node.id);
         }
         
         return { x, y, w: isRoot ? 240 : nodeW };
@@ -979,22 +987,11 @@ export default {
         // Collapse: remove this node and all descendants from expanded
         const toRemove = new Set();
         const collectDescendants = (nid) => {
+          if (toRemove.has(nid)) return;
           toRemove.add(nid);
-          if (this.mmTree) {
-            const findNode = (node) => {
-              if (node.id === nid) return node;
-              if (node.children) {
-                for (const c of node.children) {
-                  const found = findNode(c);
-                  if (found) return found;
-                }
-              }
-              return null;
-            };
-            const target = findNode(this.mmTree);
-            if (target && target.children) {
-              target.children.forEach(c => collectDescendants(c.id));
-            }
+          const node = nid === '__root__' ? this.mmTree : (this.mmNodeMap && this.mmNodeMap[nid]);
+          if (node && node.children) {
+            node.children.forEach(c => collectDescendants(c.id));
           }
         };
         collectDescendants(nodeId);
@@ -1007,13 +1004,14 @@ export default {
     
     expandAllMindmap() {
       if (!this.mmTree) return;
-      const allIds = [];
+      const allIds = new Set();
       const collect = (node) => {
-        allIds.push(node.id);
+        if (allIds.has(node.id)) return;
+        allIds.add(node.id);
         if (node.children) node.children.forEach(collect);
       };
       collect(this.mmTree);
-      this.expandedMindmapNodes = allIds;
+      this.expandedMindmapNodes = Array.from(allIds);
       this.mmLayout();
     },
     
