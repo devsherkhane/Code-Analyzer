@@ -10,7 +10,7 @@ Unlike traditional linters or static analyzers, Code-Analyzer not only detects i
 ---         
 #  Vision       
  
-Modern applications often suffer from:  
+Modern applications often suffer from:   
  
 - Poor accessibility compliance
 - Inconsistent UI/UX implementations
