@@ -6,7 +6,7 @@ Prism AI is an advanced AI-driven developer platform built to modernize the way 
 The platform acts as a bridge between **design quality**, **accessibility standards**, and **development workflows** by providing deep real-time insights directly inside the IDE and through a centralized analytics dashboard.
 
 Unlike traditional linters or static analyzers, Code-Analyzer not only detects issues but also understands project context and generates intelligent code fixes, architectural recommendations, and UI/UX improvements.
- 
+  
 ---          
 #  Vision       
  
