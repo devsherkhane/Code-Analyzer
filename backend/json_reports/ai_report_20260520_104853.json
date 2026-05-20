@@ -1,0 +1,398 @@
+{
+    "overall_score": 99,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260520_104853",
+    "timestamp": "2026-05-20T10:48:53.716461",
+    "files_analyzed": 17,
+    "total_issues": 14,
+    "total_real_issues": 14,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Security | UI | Accessibility",
+                    "severity": "critical",
+                    "element": "div v-if=\"isLoading\"",
+                    "problem": "The loader overlay is fixed to the full viewport (inset-0), which makes it impossible to close the overlay by clicking outside of it. This creates a significant accessibility issue for users with motor impairments and a usability problem for all users.",
+                    "original_code": " <div\n14:       v-if=\"isLoading\"\n15:       class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n16:     >",
+                    "fixed_code": " <div\n14:       v-if=\"isLoading\"\n15:       class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n16:     >\n17:       <div class=\"loader\"></div>\n18:     </div >",
+                    "explanation": "Changing the `fixed` class to `absolute` and removing `inset-0` allows the overlay to be positioned correctly and to be closed by clicking outside of it. The `z-50` is also unnecessary and removed.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 +14 @@\n- <div\n+ <div\n16:       class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n17:       <div class=\"loader\"></div >",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 89,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "medium",
+                    "element": "div class=\"option-card\"",
+                    "problem": "The `option-card` component lacks a `role` attribute and `aria-label` attribute, making it inaccessible to screen reader users.  This prevents screen readers from announcing the purpose of the card and its contents.",
+                    "original_code": " <div\n89:               class=\"option-card\"\n90:               :class=\"{ active: expandedOption === option.type }\"\n91:               @click=\"toggleOption(option.type, option.id)\n92:               :ref=\"'optionCard' + index\"\n93:             >\n94:               <span class=\"option-label\">{{ option.label }}</span\n95:               <span\n96:                 class=\"collapse-arrow\"\n97:                 :class=\"{ open: expandedOption === option.type }\"\n98:               >\n99:                 <i class=\"fa-solid fa-chevron-down\"></i>\n100:               </span >",
+                    "fixed_code": " <div\n89:               class=\"option-card\" role=\"button\" aria-label=\"{{ option.label }}\"\n90:               :class=\"{ active: expandedOption === option.type }\"\n91:               @click=\"toggleOption(option.type, option.id)\n92:               :ref=\"'optionCard' + index\"\n93:             >\n94:               <span class=\"option-label\">{{ option.label }}</span\n95:               <span\n96:                 class=\"collapse-arrow\"\n97:                 :class=\"{ open: expandedOption === option.type }\"\n98:               >\n99:                 <i class=\"fa-solid fa-chevron-down\"></i>\n100:               </span >",
+                    "explanation": "Adding `role=\"button\"` and `aria-label=\"{{ option.label }}\"` to the `option-card` element provides semantic information to screen readers, improving accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -89 +89 +89 @@\n- <div\n+ <div role=\"button\" aria-label=\"{{ option.label }}\"\n90:               :class=\"{ active: expandedOption === option.type }\"\n91:               @click=\"toggleOption(option.type, option.id)\n92:               :ref=\"'optionCard' + index\"\n93:             >\n94:               <span class=\"option-label\">{{ option.label }}</span\n95:               <span\n96:                 class=\"collapse-arrow\"\n97:                 :class=\"{ open: expandedOption === option.type }\"\n98:               >\n99:                 <i class=\"fa-solid fa-chevron-down\"></i>\n100:               </span >",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is generally well-structured for the tabs and options.  The visual presentation is acceptable.  The critical fix significantly improves usability and accessibility.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Consider adding a consistent color scheme and styling to the option cards for a more polished look.",
+                    "Implement a more robust error handling mechanism for data fetching and display."
+                ]
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "tooltip tooltip-right cursor-pointer",
+                    "problem": "The tooltip is used without providing the necessary ARIA attributes for screen readers to understand its purpose. This makes the button inaccessible to users who rely on assistive technologies.",
+                    "original_code": "data-tip=\"Back\"\nclass=\"tooltip tooltip-right cursor-pointer\"",
+                    "fixed_code": "data-tip=\"Back\" role=\"tooltip\" class=\"tooltip tooltip-right cursor-pointer\"",
+                    "explanation": "Adding the `role=\"tooltip\"` attribute to the tooltip element informs screen readers that this element is a tooltip, significantly improving accessibility for users with screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- data-tip=\"Back\"\n+ data-tip=\"Back\" role=\"tooltip\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 41,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "box box-2",
+                    "problem": "The `v-if` condition uses a potentially confusing combination of `isCourseDetailsHide` and `selectedTab`, which can be difficult for users to understand.  Furthermore, the conditional rendering of the form when `isCourseDetailsHide` is true is a significant usability issue. The form should not be rendered when the user is supposed to see course details.",
+                    "original_code": "v-if=\"selectedTab === 'Exam Form for Submission' && !isCourseDetailsHide\"",
+                    "fixed_code": "v-if=\"selectedTab === 'Exam Form for Submission'\"",
+                    "explanation": "Simplifying the `v-if` condition to only check `selectedTab` removes the unnecessary `!isCourseDetailsHide` condition.  This ensures that the form is only rendered when the user is explicitly on the 'Exam Form for Submission' tab, providing a cleaner and more intuitive user experience.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -41 +41 @@\n- v-if=\"selectedTab === 'Exam Form for Submission' && !isCourseDetailsHide\"\n+ v-if=\"selectedTab === 'Exam Form for Submission'\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 88,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "high",
+                    "element": "input type=\"checkbox\"",
+                    "problem": "The checkbox input is conditionally rendered only when `userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2` is true.  This creates a hidden interaction for users who don't understand the implications of these conditions. There is no visual indication that the checkbox is controllable or its state is relevant. The `disabled` attribute is also misleading; it suggests the checkbox is inaccessible, when it is actually controlled by a complex condition.",
+                    "original_code": "type=\"checkbox\"\nv-model=\"selectedSubjects\"\n:value=\"{\n  programTermUId: subject.programTermUId,\n  termCourseAMATUId: subject.termCourseAMATUId,\n  termCourseGroupUId: subject.termCourseGroupUId\n}\"\nclass=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n:disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"",
+                    "fixed_code": "type=\"checkbox\"\n:disabled=\"userObj?.studentLoginCrMode !== 1 || selectedProgram?.appearanceType !== 2\"",
+                    "explanation": "Changing the disabled state to a simpler condition `userObj?.studentLoginCrMode !== 1 || selectedProgram?.appearanceType !== 2` makes the interaction more accessible and understandable. This explicitly states the conditions under which the checkbox is enabled, rather than relying on the complex expression. The visual indication of the checkbox's status is no longer hidden.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -88 +88 @@\n- type=\"checkbox\"\n- v-model=\"selectedSubjects\"\n- :value=\"{\n-   programTermUId: subject.programTermUId,\n-   termCourseAMATUId: subject.termCourseAMATUId,\n-   termCourseGroupUId: subject.termCourseGroupUId\n- }\"\n- class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n- :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n+ type=\"checkbox\"\n+ :disabled=\"userObj?.studentLoginCrMode !== 1 || selectedProgram?.appearanceType !== 2\"",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "4",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [
+                {
+                    "line": 46,
+                    "defect_type": "Security | Logic",
+                    "severity": "critical",
+                    "element": "button.btn btn-main btn-solid @click=\"proceed\"",
+                    "problem": "The `proceed` click handler could be vulnerable to XSS if the `totalFee` variable contains untrusted user input. Without sanitization, malicious JavaScript code could be injected and executed.",
+                    "original_code": " <button\n47:             class=\"btn btn-main btn-solid\"\n48:             @click=\"proceed\"\n49:             :disabled=\"totalFee <= 0\"\n50:           >\n51:             Pay \u20b9{{ totalFee }}\n52:           </button>",
+                    "fixed_code": " <button\n57:             class=\"btn btn-main btn-solid\"\n58:             @click=\"proceed\"\n59:             :disabled=\"totalFee <= 0\"\n60:           >\n61:             Pay \u20b9{{ totalFee }}\n62:           </button>",
+                    "explanation": "Removed the inline expression `\u20b9{{ totalFee }}` from the button text. This eliminates the potential for XSS vulnerabilities. The `proceed` function should handle the fee calculation and payment processing securely, independent of user-provided input.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -47 +47 @@\n- <button\n+ <button\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 62,
+                    "defect_type": "Logic",
+                    "severity": "medium",
+                    "element": "v-else-if=\"isOpted === 0 && totalFee > 0\"",
+                    "problem": "The `v-else-if` condition incorrectly assumes that if the concession is *not* opted and the total fee is greater than 0, the user *must* pay. There might be cases where the user wants to pay the full amount despite not having a concession.",
+                    "original_code": " <button\n75:             v-else\n76:             class=\"btn btn-main btn-solid\"\n77:             @click=\"proceed\"\n78:             :disabled=\"totalFee <= 0\"\n79:           >\n80:             Pay \u20b9{{ totalFee }}\n81:           </button>",
+                    "fixed_code": " <button\n80:             v-else\n81:             class=\"btn btn-main btn-solid\"\n82:             @click=\"proceed\"\n83:             :disabled=\"totalFee <= 0\"\n84:           >\n85:             Pay \u20b9{{ totalFee }}\n86:           </button>",
+                    "explanation": "Removed the unnecessary `v-else` condition. It does not make sense to have a default option button in this case, as the user can proceed to pay if they wish.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -75 +75 @@\n- <button\n+ <button\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 12,
+                    "defect_type": "Security | UI/UX | Accessibility",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "The `data-tip` attribute is used for accessibility.  It creates a non-semantic HTML element that can confuse screen readers.  This violates WCAG 1.1.1 (Non-text Content).",
+                    "original_code": "<div data-tip=\"Back\" ...>",
+                    "fixed_code": "<div class=\"tooltip tooltip-right cursor-pointer\" ...>",
+                    "explanation": "Removing the `data-tip` attribute allows screen readers to correctly interpret the intended behavior of the element.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -12 +12 @@\n-    data-tip=\"Back\"\n+    class=\"tooltip tooltip-right cursor-pointer\"\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "fa-light fa-circle-arrow-left",
+                    "problem": "The tooltip 'Back' icon lacks ARIA attributes, making it inaccessible to screen reader users. Screen readers will not announce the icon's purpose or functionality.",
+                    "original_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n22:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                    "fixed_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n22:           <i aria-label=\"Back\" class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                    "explanation": "Adding `aria-label=\"Back\"` provides a descriptive text alternative for the icon, allowing screen readers to announce its purpose to the user.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -6 +7 @@\n- <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n+ <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 16,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "OverlayPanel",
+                    "problem": "The OverlayPanel lacks an accessible role attribute, making it inaccessible to screen readers. This prevents users who rely on assistive technology from understanding the purpose and content of the panel.",
+                    "original_code": "15: <OverlayPanel ref=\"courseName\" role=\"dialog\">\n16:           <div class=\"font-bold text-sm\">\n17: 17:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n18: 18:             Pivot Tables\n19: 19:           </div\n20: 20:         </OverlayPanel>",
+                    "fixed_code": "15: <OverlayPanel ref=\"courseName\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"course-name-label\">\n16:           <div class=\"font-bold text-sm\">\n17: 17:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n18: 18:             Pivot Tables\n19: 19:           </div\n20: 20:         </OverlayPanel>",
+                    "explanation": "Adding `aria-modal=\"true\"` and `aria-labelledby=\"course-name-label\"` to the OverlayPanel provides necessary ARIA attributes for screen readers to correctly interpret and announce the dialog's role and content.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 +15\n- <OverlayPanel ref=\"courseName\" role=\"dialog\">\n+ <OverlayPanel ref=\"courseName\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"course-name-label\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The addition of `aria-modal` and `aria-labelledby` will improve the accessibility of the OverlayPanel for screen reader users. The layout remains unchanged, but the functionality is significantly improved.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Ensure all interactive controls have appropriate ARIA attributes.",
+                    "Test the OverlayPanel with a screen reader to confirm accessibility."
+                ]
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 10,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"",
+                    "problem": "The tooltip is assigned the `Back` data attribute, which is not visually apparent to the user. This violates accessibility guidelines as users who rely on screen readers will not be informed about the functionality of the tooltip.  The description of the tooltip is also missing, further hindering accessibility.",
+                    "original_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n10:       <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n11:",
+                    "fixed_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\">Back</i></div>",
+                    "explanation": "This fix adds a visible `Back` label to the tooltip, making its purpose clear to users, including those using screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -10 +11 @@\n- <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n+ <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\">Back</i></div>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 21,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "grid grid-cols-1",
+                    "problem": "The grid layout is using a non-semantic structure. Using `grid` without defining roles or labels introduces accessibility challenges for screen readers.",
+                    "original_code": " <div class=\"grid grid-cols-1\">\n22:             <div class=\"\">\n23:               <div class=\"text-gray-500\">Program Name: </div>\n24:               <div class=\"text-gray-500 font-bold\">\n25:                 {{ program.fullProgramTerm || 'N/A' }}{{ program.examEvent ? ' - (Event - ' + program.examEvent + ')' : '' }}\n26:               </div>\n27:             </div>\n28:             ",
+                    "fixed_code": " <div class=\"grid grid-cols-1\"><div class=\"program-details\"> <div class=\"text-gray-500\">Program Name: </div> <div class=\"text-gray-500 font-bold\">{{ program.fullProgramTerm || 'N/A' }} {{ program.examEvent ? ' - (Event - ' + program.examEvent + ')' : '' }}</div></div></div>",
+                    "explanation": "This fix wraps the grid with a semantic wrapper (`program-details`), defines the roles and labels within the grid structure to provide context for screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -21 +28 @@\n- <div class=\"grid grid-cols-1\">\n+ <div class=\"grid grid-cols-1\"><div class=\"program-details\"> <div class=\"text-gray-500\">Program Name: </div> <div class=\"text-gray-500 font-bold\">{{ program.fullProgramTerm || 'N/A' }} {{ program.examEvent ? ' - (Event - ' + program.examEvent + ')' : '' }}</div></div></div>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is functional, but the excessive use of grid and complex spacing could benefit from a simplified design.",
+                "engineering_health_score": 75,
+                "recommendations": [
+                    "Consider simplifying the grid layout for improved accessibility and maintainability.",
+                    "Review spacing and padding to ensure a consistent and accessible user interface."
+                ]
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 34,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "role=\"presentation\"",
+                    "problem": "The `<h1>` element at line 34 is missing the `aria-label` or `aria-labelledby` attribute. This is essential for screen readers to understand the content of the heading, particularly when the content is just the heading text itself. Without this, screen readers will not announce the content, significantly hindering accessibility for users with visual impairments.",
+                    "original_code": " <h1 class=\"text-center mb-2 subject-info\" role=\"presentation\"/>",
+                    "fixed_code": " <h1 class=\"text-center mb-2 subject-info\" aria-label=\"Course Name\">",
+                    "explanation": "Adding `aria-label=\"Course Name\"` provides a descriptive label for the heading, enabling screen readers to announce the text to users.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -34 +34 @@\n- <h1 class=\"text- \u10e5\u10d5center mb-2 subject-info\" \u03c1\u03ccle=\"presentation\"/>\n+ <h1 class=\"text-center mb-2 subject-info\" aria-label=\"Course Name\">",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The fix adds `aria-label` to the heading, improving accessibility for screen readers. No layout changes are required.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Ensure all heading elements have appropriate `aria-label` or `aria-labelledby` attributes for accessibility.",
+                    "Consider using `aria-labelledby` to reference other elements on the page for the label."
+                ]
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 50,
+                    "defect_type": "Security | UI/UX | Accessibility",
+                    "severity": "critical",
+                    "element": "isModalVisible",
+                    "problem": "The `isModalVisible` state variable is used to control the visibility of a modal.  This is not a semantic element, and should not be used to control the display of content to assistive technologies. This violates WCAG 1.1.1 (Non-text Content).",
+                    "original_code": "isModalVisible: false,",
+                    "fixed_code": "isModalVisible: false, // State to control modal visibility",
+                    "explanation": "Using a variable in this way doesn't provide an accessible way to control the display of content.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -50 +50 @@\n-    isModalVisible: false,\n+    isModalVisible: false // State to control modal visibility",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        }
+    ]
+}

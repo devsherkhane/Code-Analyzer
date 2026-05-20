@@ -6,7 +6,7 @@
         <div class="hero-label">Software Quality Intelligence</div>
         <h1 class="hero-title">Engineering Health <br/><span class="text-accent">Simplified with AI</span></h1>
         <p class="hero-desc">
-          Upload your Vue.js codebase for an automated architectural audit, accessibility check, 
+          Connect your codebase for an automated architectural audit, accessibility check, 
           and structural triage powered by Gemma.
         </p>
         <div class="hero-actions">

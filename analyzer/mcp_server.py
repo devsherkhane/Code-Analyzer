@@ -22,7 +22,12 @@ if _this_dir not in sys.path:
     sys.path.insert(0, _this_dir)
 
 from mcp.server.fastmcp import FastMCP
-from mcp_index_builder import load_mcp_index, build_mcp_index
+from mcp_index_builder import (
+    load_mcp_index,
+    build_mcp_index,
+    search_semantic_index,
+    get_blast_radius as build_blast_radius,
+)
 
 # Load env
 try:
@@ -218,6 +223,20 @@ def search_by_symbol(symbol: str) -> list:
         fd = index["by_id"].get(str(fid), {})
         results.append({"file_id": str(fid), "file_name": fd.get("file_name", "?"), "role": "imports"})
     return results
+
+
+@mcp.tool()
+def search_semantic(query: str, top_k: int = 5) -> list:
+    """Find the most semantically relevant files for a bug, feature, or symbol description."""
+    index = _get_index()
+    return search_semantic_index(index, query=query, top_k=top_k)
+
+
+@mcp.tool()
+def get_blast_radius(file_id: str, depth: int = 1) -> dict:
+    """Get downstream dependents and upstream dependencies for a file."""
+    index = _get_index()
+    return build_blast_radius(index, file_id=file_id, depth=depth)
 
 
 @mcp.tool()

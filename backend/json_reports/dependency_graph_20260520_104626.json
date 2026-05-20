@@ -1,0 +1,84 @@
+{
+    "connections": [
+        {
+            "from_id": 4,
+            "to_id": 1,
+            "name": "Router push to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 6,
+            "to_id": 1,
+            "name": "Router push to AdminSettings",
+            "type": "route_navigation"
+        }
+    ],
+    "file_map": {
+        "1": {
+            "name": "AdminSettings.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\AdminSettings.vue",
+            "exports": []
+        },
+        "2": {
+            "name": "DataTable.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\DataTable.vue",
+            "exports": []
+        },
+        "3": {
+            "name": "ImageGallery.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\ImageGallery.vue",
+            "exports": []
+        },
+        "4": {
+            "name": "LoginForm.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\LoginForm.vue",
+            "exports": []
+        },
+        "5": {
+            "name": "NotificationBell.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\NotificationBell.vue",
+            "exports": []
+        },
+        "6": {
+            "name": "PaymentForm.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\PaymentForm.vue",
+            "exports": []
+        },
+        "7": {
+            "name": "ProductCard.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\ProductCard.vue",
+            "exports": []
+        },
+        "8": {
+            "name": "SearchBar.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\SearchBar.vue",
+            "exports": []
+        },
+        "9": {
+            "name": "UserDashboard.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\UserDashboard.vue",
+            "exports": []
+        },
+        "10": {
+            "name": "UserProfile.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\UserProfile.vue",
+            "exports": []
+        }
+    },
+    "impact_map": {
+        "1": [
+            4,
+            6
+        ],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": [],
+        "10": []
+    },
+    "cycles": []
+}

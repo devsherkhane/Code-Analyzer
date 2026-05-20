@@ -1,0 +1,129 @@
+{
+    "connections": [
+        {
+            "from_id": 4,
+            "to_id": 1,
+            "name": "Router push to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 6,
+            "to_id": 1,
+            "name": "Router push to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 8,
+            "to_id": 1,
+            "name": "Router push to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 2,
+            "to_id": 7,
+            "name": "ProductCard usage",
+            "type": "component_tag"
+        },
+        {
+            "from_id": 3,
+            "to_id": 7,
+            "name": "ProductCard usage",
+            "type": "component_tag"
+        },
+        {
+            "from_id": 9,
+            "to_id": 10,
+            "name": "UserProfile usage",
+            "type": "component_tag"
+        },
+        {
+            "from_id": 1,
+            "to_id": 8,
+            "name": "SearchBar usage",
+            "type": "component_tag"
+        },
+        {
+            "from_id": 5,
+            "to_id": 1,
+            "name": "NotificationBell usage",
+            "type": "component_tag"
+        }
+    ],
+    "file_map": {
+        "1": {
+            "name": "AdminSettings.vue",
+            "path": "test-files\\AdminSettings.vue",
+            "exports": []
+        },
+        "2": {
+            "name": "DataTable.vue",
+            "path": "test-files\\DataTable.vue",
+            "exports": []
+        },
+        "3": {
+            "name": "ImageGallery.vue",
+            "path": "test-files\\ImageGallery.vue",
+            "exports": []
+        },
+        "4": {
+            "name": "LoginForm.vue",
+            "path": "test-files\\LoginForm.vue",
+            "exports": []
+        },
+        "5": {
+            "name": "NotificationBell.vue",
+            "path": "test-files\\NotificationBell.vue",
+            "exports": []
+        },
+        "6": {
+            "name": "PaymentForm.vue",
+            "path": "test-files\\PaymentForm.vue",
+            "exports": []
+        },
+        "7": {
+            "name": "ProductCard.vue",
+            "path": "test-files\\ProductCard.vue",
+            "exports": []
+        },
+        "8": {
+            "name": "SearchBar.vue",
+            "path": "test-files\\SearchBar.vue",
+            "exports": []
+        },
+        "9": {
+            "name": "UserDashboard.vue",
+            "path": "test-files\\UserDashboard.vue",
+            "exports": []
+        },
+        "10": {
+            "name": "UserProfile.vue",
+            "path": "test-files\\UserProfile.vue",
+            "exports": []
+        }
+    },
+    "impact_map": {
+        "1": [
+            4,
+            6,
+            8,
+            5
+        ],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [
+            2,
+            3
+        ],
+        "8": [
+            1
+        ],
+        "9": [],
+        "10": [
+            9
+        ]
+    },
+    "cycles": []
+}

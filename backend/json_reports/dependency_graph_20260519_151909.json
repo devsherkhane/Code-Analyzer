@@ -1,0 +1,163 @@
+{
+    "connections": [
+        {
+            "from_id": 4,
+            "to_id": 1,
+            "name": "Router push to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 8,
+            "to_id": 1,
+            "name": "SearchBar to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 2,
+            "to_id": 1,
+            "name": "DataTable to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 3,
+            "to_id": 1,
+            "name": "ImageGallery to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 6,
+            "to_id": 1,
+            "name": "PaymentForm to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 7,
+            "to_id": 1,
+            "name": "ProductCard to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 5,
+            "to_id": 1,
+            "name": "NotificationBell to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 9,
+            "to_id": 1,
+            "name": "UserDashboard to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 10,
+            "to_id": 1,
+            "name": "UserProfile to AdminSettings",
+            "type": "route_navigation"
+        },
+        {
+            "from_id": 2,
+            "to_id": 7,
+            "name": "DataTable to ProductCard",
+            "type": "component_tag"
+        },
+        {
+            "from_id": 8,
+            "to_id": 7,
+            "name": "SearchBar to ProductCard",
+            "type": "component_tag"
+        },
+        {
+            "from_id": 6,
+            "to_id": 7,
+            "name": "PaymentForm to ProductCard",
+            "type": "component_tag"
+        },
+        {
+            "from_id": 7,
+            "to_id": 8,
+            "name": "ProductCard to SearchBar",
+            "type": "component_tag"
+        }
+    ],
+    "file_map": {
+        "1": {
+            "name": "AdminSettings.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\AdminSettings.vue",
+            "exports": []
+        },
+        "2": {
+            "name": "DataTable.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\DataTable.vue",
+            "exports": []
+        },
+        "3": {
+            "name": "ImageGallery.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\ImageGallery.vue",
+            "exports": []
+        },
+        "4": {
+            "name": "LoginForm.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\LoginForm.vue",
+            "exports": []
+        },
+        "5": {
+            "name": "NotificationBell.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\NotificationBell.vue",
+            "exports": []
+        },
+        "6": {
+            "name": "PaymentForm.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\PaymentForm.vue",
+            "exports": []
+        },
+        "7": {
+            "name": "ProductCard.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\ProductCard.vue",
+            "exports": []
+        },
+        "8": {
+            "name": "SearchBar.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\SearchBar.vue",
+            "exports": []
+        },
+        "9": {
+            "name": "UserDashboard.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\UserDashboard.vue",
+            "exports": []
+        },
+        "10": {
+            "name": "UserProfile.vue",
+            "path": "c:\\Users\\Lenovo\\Downloads\\test-vue-files\\test-files\\UserProfile.vue",
+            "exports": []
+        }
+    },
+    "impact_map": {
+        "1": [
+            4,
+            8,
+            2,
+            3,
+            6,
+            7,
+            5,
+            9,
+            10
+        ],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [
+            2,
+            8,
+            6
+        ],
+        "8": [
+            7
+        ],
+        "9": [],
+        "10": []
+    },
+    "cycles": []
+}

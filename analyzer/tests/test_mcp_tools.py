@@ -1,12 +1,13 @@
 """Quick smoke test for all MCP server tools."""
+import os
 import sys
 import json
-sys.path.insert(0, ".")
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from mcp_server import (
     list_files, get_file_detail, get_file_source, get_dependency_graph,
-    get_folder_structure, search_by_symbol, get_api_calls, get_ai_report,
-    get_architecture, get_metrics_summary, reload_index
+    get_folder_structure, search_by_symbol, search_semantic, get_blast_radius,
+    get_api_calls, get_ai_report, get_architecture, get_metrics_summary, reload_index
 )
 
 def test(name, result):
@@ -57,8 +58,17 @@ folders = get_folder_structure()
 test("get_folder_structure()", folders)
 
 # 6. search_by_symbol
-symbols = search_by_symbol(symbol="default")
-test("search_by_symbol(default)", symbols)
+symbols = search_by_symbol(symbol="MQL")
+test("search_by_symbol(MQL)", symbols)
+
+# 6b. search_semantic
+semantic = search_semantic(query="application services transaction flow", top_k=3)
+test("search_semantic(...)", semantic)
+
+# 6c. get_blast_radius
+if files:
+    blast = get_blast_radius(file_id=files[0]["file_id"], depth=2)
+    test("get_blast_radius(file)", blast)
 
 # 7. get_api_calls
 apis = get_api_calls()

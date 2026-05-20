@@ -1,0 +1,23 @@
+{
+    "connections": [
+        {
+            "from_id": 1,
+            "to_id": 1,
+            "name": "Import @vite/client",
+            "type": "import"
+        }
+    ],
+    "file_map": {
+        "1": {
+            "name": "visual_scan_dom.html",
+            "path": "c:\\Users\\Lenovo\\Desktop\\Projects\\code-analyzer\\backend\\json_reports\\visuals\\visual_scan_dom.html",
+            "exports": []
+        }
+    },
+    "impact_map": {
+        "1": [
+            1
+        ]
+    },
+    "cycles": []
+}

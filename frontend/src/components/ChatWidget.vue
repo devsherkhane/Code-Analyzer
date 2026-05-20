@@ -12,7 +12,7 @@
           <label class="switch-label" style="margin-left: 10px;">Context:</label>
           <select v-model="contextType" class="modern-select">
             <option value="workspace">Entire Workspace</option>
-            <optgroup label="Files">
+            <optgroup label="Files">                                                                
               <option v-for="f in allFiles" :key="f.file_path" :value="f.file_path">
                 {{ f.file_name }}
               </option>
@@ -213,7 +213,7 @@ export default {
       
       // If there's an attached issue and no custom text, build a default prompt
       if (!this.inputText.trim() && this.attachedIssue) {
-        this.inputText = 'Can you explain this issue in detail and suggest the best way to fix it?';
+        this.inputText = 'Please analyze this issue. Explain the root cause, suggest the best approach to resolve it, and evaluate whether the provided fix code is reliable.';
       }
       
       const userMsg = this.inputText.trim();
@@ -225,16 +225,22 @@ export default {
       this.scrollToBottom();
       
       try {
+
         const historyPayload = this.messages.slice(1, -1).map(m => ({ role: m.role, content: m.content }));
         let activeFileName = '';
         let activeContent = '';
+        const attachedIssue = this.attachedIssue ? { ...this.attachedIssue } : null;
 
         if (this.contextType !== 'workspace') {
            const selected = this.allFiles.find(f => f.file_path === this.contextType);
            if (selected) {
              activeFileName = selected.file_name;
              const res = await axios.get(`http://127.0.0.1:8081/file-content?path=${encodeURIComponent(selected.file_path)}`);
-             activeContent = res.data;
+             if (attachedIssue && attachedIssue.original_code) {
+               activeContent = attachedIssue.original_code;
+             } else {
+               activeContent = res.data;
+             }
            }
         }
 
@@ -244,7 +250,8 @@ export default {
           workspacePath: this.workspacePath,
           activeFileName: activeFileName,
           activeContent: activeContent,
-          history: historyPayload
+          history: historyPayload,
+          issueContext: attachedIssue
         };
 
         const response = await axios.post('http://127.0.0.1:7891/chat', payload);
@@ -301,18 +308,16 @@ export default {
       });
     },
     buildIssuePrompt(issue) {
-      let prompt = `I found this issue in my code and need help understanding and fixing it:\n\n`;
-      prompt += `**Issue Type:** ${issue.defect_type || issue.problem || 'Unknown'}\n`;
-      if (issue._fileName) prompt += `**File:** ${issue._fileName}\n`;
-      if (issue.line_number || issue.line) prompt += `**Line:** ${issue.line_number || issue.line}\n`;
-      if (issue.wcag_rule) prompt += `**WCAG Rule:** ${issue.wcag_rule}\n`;
-      if (issue._source) prompt += `**Detected By:** ${issue._source}\n`;
-      if (issue.rationale) prompt += `\n**AI Rationale:** ${issue.rationale}\n`;
-      if (issue.suggestion || issue.explanation) prompt += `\n**Suggested Fix:** ${issue.suggestion || issue.explanation}\n`;
-      if (issue.original_code_snippet || issue.original_code) prompt += `\n**Original Code:**\n\`\`\`\n${issue.original_code_snippet || issue.original_code}\n\`\`\`\n`;
-      if (issue.fixed_code_snippet || issue.fixed_code) prompt += `\n**Proposed Fix:**\n\`\`\`\n${issue.fixed_code_snippet || issue.fixed_code}\n\`\`\`\n`;
-      prompt += `\nPlease explain this issue in detail, why it matters, and provide the best approach to fix it.`;
-      return prompt;
+      const parts = [
+        'Please analyze this issue. Explain the root cause, suggest the best approach to resolve it, and evaluate whether the provided fix code is reliable.',
+        `**Issue type**: ${issue.defect_type || issue.problem || 'Unknown'}`,
+      ];
+      if (issue._fileName) parts.push(`**File**: ${issue._fileName}`);
+      if (issue.line_number || issue.line) parts.push(`**Line**: ${issue.line_number || issue.line}`);
+      if (issue.wcag_rule) parts.push(`**Rule**: ${issue.wcag_rule}`);
+      if (issue.suggestion || issue.explanation) parts.push(`**Suggested Fix**:\n${issue.suggestion || issue.explanation}`);
+      if (issue.fixed_code_snippet || issue.fixed_code) parts.push(`**Fix Code**:\n\`\`\`vue\n${issue.fixed_code_snippet || issue.fixed_code}\n\`\`\``);
+      return parts.join('\n\n');
     },
     async sendIssueToChat(issue) {
       const prompt = this.buildIssuePrompt(issue);
@@ -335,8 +340,6 @@ export default {
 }
 
 .chat-window {
-  flex: 1;
-  width: 100%;
   background: var(--bg-surface);
   border-radius: var(--radius-lg);
   display: flex;
@@ -689,4 +692,5 @@ export default {
   background: var(--bg-inset);
   border-radius: 4px;
 }
+
 </style>

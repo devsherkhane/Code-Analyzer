@@ -1,0 +1,256 @@
+{
+    "overall_score": 99,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260520_110357",
+    "timestamp": "2026-05-20T11:03:57.705464",
+    "files_analyzed": 10,
+    "total_issues": 8,
+    "total_real_issues": 8,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "AdminSettings.vue",
+            "file_path": "test-files\\AdminSettings.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "Security | UI | Performance",
+                    "severity": "critical",
+                    "element": "input type=\"text\" v-model=\"dbPassword\"",
+                    "problem": "The database password input field is displaying the actual password to the user due to the absence of any masking or blurring. This constitutes a significant security vulnerability, exposing sensitive credentials to unauthorized viewing.",
+                    "original_code": " <input type=\"text\" v-model=\"dbPassword\" placeholder=\"DB Password\" style=\"display:block; margin-bottom:8px; padding: 8px; width: 300px;\" />",
+                    "fixed_code": " <input type=\"password\" v-model=\"dbPassword\" placeholder=\"DB Password\" style=\"display:block; margin-bottom:8px; padding: 8px; width: 300px;\" />",
+                    "explanation": "Changing the input type to 'password' will automatically mask the entered text, preventing unauthorized viewing of the password.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -6 +6 @@\n- <input type=\"text\" v-model=\"dbPassword\" placeholder=\"DB Password\" style=\"display:block; margin-bottom:8px; padding: 8px; width: 300px;\" />\n+ <input type=\"password\" v-model=\"dbPassword\" placeholder=\"DB Password\" style=\"display:block; margin-bottom:8px; padding: 8px; width: 300px;\" />",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "DataTable.vue",
+            "file_path": "test-files\\DataTable.vue",
+            "ai_analysis": [
+                {
+                    "line": 36,
+                    "defect_type": "Security | Performance",
+                    "severity": "critical",
+                    "element": "fix_code",
+                    "problem": "Using `v-html` to render the `name` and `description` fields from a database directly exposes the application to Cross-Site Scripting (XSS) vulnerabilities.  An attacker could inject malicious JavaScript code into these fields, which would then be executed by the browser when the user views the data.  Additionally, using `v-html` can have performance implications if the content is complex.",
+                    "original_code": "        <td v-html=\"row.name\"></td>\n        <td v-html=\"row.description\"></td>\n",
+                    "fixed_code": "        <td >{{ row.name }}</td>\n        <td >{{ row.description }}</td>\n",
+                    "explanation": "By sanitizing or escaping the data before rendering it, the risk of XSS vulnerabilities is eliminated.  Displaying the raw data is safer, though performance issues might still exist if the data is extremely large.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -5 -5 +5 -5 @@\n-        <td v-html=\"row.name\"></td>\n-        <td v-html=\"row.description\"></td>\n+        <td >{{ row.name }}</td>\n+        <td >{{ row.description }}</td>\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "The DataTable utilizes `v-html` which creates a significant security risk.  The input field lacks a clear \"search\" function implementation.",
+                "engineering_health_score": 60,
+                "recommendations": [
+                    "Remove the use of `v-html` and sanitize data appropriately.",
+                    "Implement a search function for the DataTable."
+                ]
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "ImageGallery.vue",
+            "file_path": "test-files\\ImageGallery.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 8,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "critical",
+                    "element": "fixed_code",
+                    "problem": "The modal's background is semi-transparent, making it difficult to see content behind it and obscuring the image when in full screen, violating accessibility guidelines and creating a poor user experience.",
+                    "original_code": "    <div v-if=\"modalOpen\" style=\"position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: flex; align-items: center; justify-content: center;\">\n",
+                    "fixed_code": "    <div v-if=\"modalOpen\" style=\"position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; align-items: center; justify-content: center;\">\n",
+                    "explanation": "Reducing the opacity of the background to 0.5 allows the underlying content to be visible, improving accessibility and usability.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -7 -7 +7 -7 @@\n+        background: rgba(0,0,0,0.5);\n+        z-index: 9999;\n+        display: flex;\n+        align-items: center;\n+        justify-content: center;\n+    }\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The modal background's transparency creates a visually distracting and unusable interface.",
+                "engineering_health_score": 75,
+                "recommendations": [
+                    "Reduce modal background transparency.",
+                    "Ensure sufficient contrast between the modal content and background."
+                ]
+            }
+        },
+        {
+            "file_id": "4",
+            "file_name": "LoginForm.vue",
+            "file_path": "test-files\\LoginForm.vue",
+            "ai_analysis": [
+                {
+                    "line": 29,
+                    "defect_type": "Security | Architecture",
+                    "severity": "critical",
+                    "element": "SECRET",
+                    "problem": "Hardcoded API secret directly within the component's data. This exposes the secret to potential compromise and unauthorized access.",
+                    "original_code": "29:       API_KEY: 'sk-prod-8f3k2j9x1m4n7p0q',\n30:       SECRET: 'super_secret_value_12345'",
+                    "fixed_code": "29:       API_KEY: 'sk-prod-8f3k2j9x1m4n7p0q',\n30:       SECRET: 'REDACTED'",
+                    "explanation": "Replacing 'super_secret_value_12345' with 'REDACTED' mitigates the immediate exposure of the secret. A more robust solution would involve securely storing and retrieving the secret from a configuration service or environment variable.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -30 +30 @@\n-       SECRET: 'super_secret_value_12345'\n+       SECRET: 'REDACTED'",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "The layout remains unchanged; the fix addresses a critical security vulnerability.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Implement a secure configuration management solution for storing sensitive information.",
+                    "Review the application's authentication and authorization mechanisms."
+                ]
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "NotificationBell.vue",
+            "file_path": "test-files\\NotificationBell.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 5,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "span",
+                    "problem": "The notification count is displayed within a span that does not have ARIA attributes, making it inaccessible to screen readers.  It's also visually intrusive. It needs to be a proper element.",
+                    "original_code": "<span>{{ notifications.length }}</span>",
+                    "fixed_code": "<span aria-label=\"Number of notifications\">{{ notifications.length }}</span>",
+                    "explanation": "Adding `aria-label` provides a text alternative for screen reader users, and the change to `span` ensures the element is valid and can be styled correctly.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -5 +5 @@\n- <span>{{ notifications.length }}</span>\n+ <span aria-label=\"Number of notifications\">{{ notifications.length }}</span>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The notification count is visually prominent and might obstruct other content. Using a span is not semantically correct for this content.",
+                "engineering_health_score": 75,
+                "recommendations": [
+                    "Use a semantic HTML element (e.g., `<span>`, `<div>`) instead of a span for the notification count.",
+                    "Consider using CSS to adjust the styling of the notification count to prevent visual obstruction."
+                ]
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "PaymentForm.vue",
+            "file_path": "test-files\\PaymentForm.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "ProductCard.vue",
+            "file_path": "test-files\\ProductCard.vue",
+            "ai_analysis": [
+                {
+                    "line": 35,
+                    "defect_type": "Security | Logic",
+                    "severity": "critical",
+                    "element": "fetch('/api/cart/add')",
+                    "problem": "The `/api/cart/add` endpoint is vulnerable to cross-site scripting (XSS) if the `productId` and `qty` parameters are not properly sanitized.  An attacker could inject JavaScript code into these parameters.",
+                    "original_code": "fetch('/api/cart/add', {\n        method: 'POST',\n        body: JSON.stringify({ productId: this.product.id, qty: 1 })\n      })",
+                    "fixed_code": "fetch('/api/cart/add', {\n        method: 'POST',\n        body: JSON.stringify({ productId: sanitizeInput(this.product.id), qty: 1 }) // Added input sanitization\n      })",
+                    "explanation": "The fix includes `sanitizeInput` to escape potentially malicious JavaScript code before sending it to the server. This prevents the XSS vulnerability.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -35 +35 @@\n- fetch('/api/cart/add', ...)\n+ fetch('/api/cart/add', {\n+   method: 'POST',\n+   body: JSON.stringify({ productId: sanitizeInput(this.product.id), qty: 1 }) // Added input sanitization\n+ })",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "No immediate visual issues detected.",
+                "engineering_health_score": 88,
+                "recommendations": [
+                    "Implement robust input sanitization for all user-provided data.",
+                    "Use a secure API gateway to further protect against common web vulnerabilities."
+                ]
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "SearchBar.vue",
+            "file_path": "test-files\\SearchBar.vue",
+            "ai_analysis": [
+                {
+                    "line": 34,
+                    "defect_type": "Security | Architecture",
+                    "severity": "critical",
+                    "element": "fetch(`/api/search?q=${this.query}`)",
+                    "problem": "The URL includes the user's search query directly in the URL. This is vulnerable to Server-Side Template Injection (SSTI) and other injection attacks if the query is not properly sanitized.",
+                    "original_code": "34:       const res = await fetch(`/api/search?q=${this.query}`)",
+                    "fixed_code": "34:       const res = await fetch(`/api/search?q=${encodeURIComponent(this.query)}`)",
+                    "explanation": "Using `encodeURIComponent()` ensures that the search query is properly escaped before being included in the URL, mitigating the risk of SSTI and other injection attacks.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -34 +34 @@\n-       const res = await fetch(`/api/search?q=${this.query}`)\n+       const res = await fetch(`/api/search?q=${encodeURIComponent(this.query)}`)",
+                    "fix_type": "Security",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "The visual layout of the SearchBar component remains unchanged, as the fix addresses a security issue. No UI changes were necessary.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Implement robust input validation and sanitization on the server-side.",
+                    "Consider using a dedicated search service with built-in security features."
+                ]
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "UserDashboard.vue",
+            "file_path": "test-files\\UserDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 87,
+                    "defect_type": "Performance | UI | Logic",
+                    "severity": "medium",
+                    "element": "new Date(u.createdAt).toLocaleDateString()",
+                    "problem": "Converting timestamps to date strings on every render introduces unnecessary performance overhead, particularly as the dataset grows. The formatting is also inconsistent across dates.",
+                    "original_code": "if (u.createdAt) processed.createdAt = new Date(u.createdAt).toLocaleDateString()\n",
+                    "fixed_code": "if (u.createdAt) processed.createdAt = u.createdAt ? new Date(u.createdAt).toLocaleDateString() : null\n",
+                    "explanation": "The fix addresses this by adding a null check before the date conversion.  If createdAt is null or undefined, it sets processed.createdAt to null, avoiding the costly date conversion.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -87 +87 @@\n- if (u.createdAt) processed.createdAt = new Date(u.createdAt).toLocaleDateString()\n+ if (u.createdAt) processed.createdAt = u.createdAt ? new Date(u.createdAt).toLocaleDateString() : null",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "UserProfile.vue",
+            "file_path": "test-files\\UserProfile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        }
+    ]
+}

@@ -1,19 +1,6 @@
 <template>
   <div class="report-root">
-    <!-- Fix Status Toast -->
-    <transition name="slide-up">
-      <div v-if="fixToast.visible" class="fix-toast" :class="'fix-toast-' + fixToast.status">
-        <div class="fix-toast-icon">
-          <svg v-if="fixToast.status === 'success'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-          <svg v-else-if="fixToast.status === 'error'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-          <svg v-else-if="fixToast.status === 'warning'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-          <svg v-else-if="fixToast.status === 'rolledback'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
-          <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-        </div>
-        <span class="fix-toast-msg">{{ fixToast.message }}</span>
-        <button class="fix-toast-close" @click="fixToast.visible = false">&times;</button>
-      </div>
-    </transition>
+
     <!-- Loading / Error States -->
     <transition name="fade" mode="out-in">
       <div v-if="loading" class="state-panel" key="loading">
@@ -352,11 +339,7 @@
                               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                               Open in Editor
                             </button>
-                            <button v-if="issue.fixed_code_snippet || issue.fixed_code" class="btn btn-primary btn-sm" :disabled="fixApplying" @click.stop="applyFixInVsCode(issue)">
-                              <svg v-if="!fixApplying" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                              <span v-if="fixApplying" class="btn-spinner"></span>
-                              {{ fixApplying ? 'Applying...' : 'Apply AI Fix' }}
-                            </button>
+
                             <button class="btn-discuss btn-sm" @click.stop="discussWithAI({ ...issue, _fileName: selectedFile?.file_name })">
                               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                               Discuss with AI
@@ -447,10 +430,7 @@ export default {
       selectedIssueLines: [],
       aiArchitecture: null,
       issuesPanelOpen: true,
-      activeFileIssue: null,
-      fixApplying: false,
-      fixToast: { visible: false, status: '', message: '' },
-      _fixToastTimer: null
+      activeFileIssue: null
     };
   },
   computed: {
@@ -608,18 +588,13 @@ export default {
   },
   async mounted() {
     await this.fetchReport();
-    // Listen for fix status messages from VS Code extension
-    window.addEventListener('message', this.handleFixStatus);
   },
   errorCaptured(err, instance, info) {
     console.error('[AIReport] Component error caught:', err, info);
     this.componentError = `A rendering error occurred: ${err.message}. Try refreshing the report.`;
     return false; // Prevent the error from propagating further
   },
-  beforeUnmount() {
-    window.removeEventListener('message', this.handleFixStatus);
-    if (this._fixToastTimer) clearTimeout(this._fixToastTimer);
-  },
+
   methods: {
     async fetchReport() {
       this.loading = true;
@@ -760,40 +735,7 @@ export default {
       
       window.parent.postMessage(payload, '*');
     },
-    handleFixStatus(event) {
-      if (event.data && event.data.command === 'fixStatus') {
-        this.fixApplying = false;
-        this.fixToast = {
-          visible: true,
-          status: event.data.status,
-          message: event.data.message
-        };
-        // Auto-hide toast after 6 seconds
-        if (this._fixToastTimer) clearTimeout(this._fixToastTimer);
-        this._fixToastTimer = setTimeout(() => {
-          this.fixToast.visible = false;
-        }, 6000);
-      }
-    },
-    applyFixInVsCode(issue) {
-      if (!this.selectedFile || this.fixApplying) return;
-      this.fixApplying = true;
-      const startLine = issue.line_number || issue.line || this.extractLineNumber(issue.rationale) || this.extractLineNumber(issue.suggestion);
-      const codeToMeasure = issue.original_code || issue.original_code_snippet || issue.fixed_code || issue.fixed_code_snippet;
-      let count = 1;
-      if (codeToMeasure) {
-        count = Math.max(1, codeToMeasure.trim().split('\n').length);
-      }
-      const payload = {
-        command: 'applyFix',
-        filePath: this.selectedFile.file_path,
-        startLine: startLine || 0,
-        endLine: startLine ? startLine + count - 1 : 0,
-        originalCode: issue.original_code || issue.original_code_snippet,
-        fixedCode: issue.fixed_code || issue.fixed_code_snippet
-      };
-      window.parent.postMessage(payload, '*');
-    },
+
     async copyFix(code) {
       try {
         await navigator.clipboard.writeText(code);

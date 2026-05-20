@@ -8,12 +8,17 @@ Writes: mcp_index.json (O(1) lookups by ID, name, folder, symbol)
 
 import os
 import json
+import math
+import re
 from datetime import datetime
 from collections import defaultdict
 
 _this_dir = os.path.dirname(os.path.abspath(__file__))
 JSON_REPORTS_DIR = os.path.normpath(os.path.join(_this_dir, "..", "backend", "json_reports"))
 MCP_INDEX_PATH = os.path.join(JSON_REPORTS_DIR, "mcp_index.json")
+SEMANTIC_VECTOR_SIZE = 128
+_EMBEDDING_MODEL = None
+_EMBEDDING_BACKEND = None
 
 
 def _load_json(filename):
@@ -71,6 +76,7 @@ def _build_file_lookups(files_data):
     for file_record in files_data:
         fid = str(file_record.get("file_id", file_record.get("id", "")))
         file_name = file_record.get("file_name", "")
+        semantic_text = _build_semantic_text(file_record)
         entry = {
             "file_id": fid,
             "file_name": file_name,
@@ -81,6 +87,8 @@ def _build_file_lookups(files_data):
             "metrics": file_record.get("metrics", {}),
             "ast_data": file_record.get("ast_data", {}),
             "context": file_record.get("context", {}),
+            "semantic_text": semantic_text,
+            "semantic_vector": _compute_semantic_vector(semantic_text),
         }
         by_id[fid] = entry
         if file_name in by_name:
@@ -92,6 +100,165 @@ def _build_file_lookups(files_data):
         else:
             by_name[file_name] = entry
     return by_id, by_name
+
+
+def _tokenize(text):
+    return re.findall(r"[A-Za-z_][A-Za-z0-9_]{1,}", (text or "").lower())
+
+
+def _build_semantic_text(file_record):
+    metrics = file_record.get("metrics", {}) or {}
+    ast_data = file_record.get("ast_data", {}) or {}
+    imports = file_record.get("imports", []) or []
+    exports = file_record.get("exports", []) or []
+
+    def _names(items):
+        names = []
+        for item in items:
+            if isinstance(item, dict):
+                names.extend([
+                    str(item.get("name", "")),
+                    str(item.get("source", "")),
+                    str(item.get("type", "")),
+                ])
+            else:
+                names.append(str(item))
+        return [n for n in names if n]
+
+    parts = [
+        file_record.get("file_name", ""),
+        file_record.get("path", ""),
+        " ".join(_names(imports)),
+        " ".join(_names(exports)),
+        " ".join(ast_data.get("methods", []) or []),
+        " ".join(ast_data.get("computed", []) or []),
+        " ".join(ast_data.get("watchers", []) or []),
+        " ".join(ast_data.get("registered_components", []) or []),
+        " ".join(ast_data.get("imported_components", []) or []),
+        str(metrics.get("content", ""))[:2000],
+    ]
+    return "\n".join([part for part in parts if part]).strip()
+
+
+def _compute_semantic_vector(text, dims=SEMANTIC_VECTOR_SIZE):
+    model = _get_embedding_model()
+    if model is not None:
+        try:
+            vector = model.encode(text or "", normalize_embeddings=True)
+            return [round(float(v), 6) for v in vector]
+        except Exception:
+            pass
+
+    vector = [0.0] * dims
+    for token in _tokenize(text):
+        idx = hash(token) % dims
+        vector[idx] += 1.0
+
+    norm = math.sqrt(sum(v * v for v in vector))
+    if norm:
+        vector = [round(v / norm, 6) for v in vector]
+    return vector
+
+
+def _cosine_similarity(vec_a, vec_b):
+    if not vec_a or not vec_b or len(vec_a) != len(vec_b):
+        return 0.0
+    return round(sum(a * b for a, b in zip(vec_a, vec_b)), 6)
+
+
+def _get_embedding_model():
+    global _EMBEDDING_MODEL, _EMBEDDING_BACKEND
+    if _EMBEDDING_BACKEND is not None:
+        return _EMBEDDING_MODEL
+
+    _EMBEDDING_MODEL = None
+    _EMBEDDING_BACKEND = "hashed-token-cosine"
+    return _EMBEDDING_MODEL
+
+
+def search_semantic_index(index, query, top_k=5, exclude_file_ids=None):
+    query = (query or "").strip()
+    if not query:
+        return []
+
+    exclude = {str(fid) for fid in (exclude_file_ids or [])}
+    query_vector = _compute_semantic_vector(query)
+    scored = []
+    for fid, file_data in (index or {}).get("by_id", {}).items():
+        if str(fid) in exclude:
+            continue
+        file_vector = file_data.get("semantic_vector")
+        if not file_vector:
+            fallback_text = file_data.get("semantic_text") or " ".join([
+                file_data.get("file_name", ""),
+                file_data.get("path", ""),
+                " ".join((file_data.get("ast_data", {}) or {}).get("methods", [])[:20]),
+            ])
+            file_vector = _compute_semantic_vector(fallback_text)
+        score = _cosine_similarity(query_vector, file_vector)
+        if score <= 0:
+            continue
+        scored.append({
+            "file_id": str(fid),
+            "file_name": file_data.get("file_name", ""),
+            "path": file_data.get("path", ""),
+            "score": score,
+        })
+    scored.sort(key=lambda item: item["score"], reverse=True)
+    return scored[:max(1, top_k)]
+
+
+def get_blast_radius(index, file_id, depth=1):
+    dep_graph = (index or {}).get("dependency_graph", {}) or {}
+    impact_map = dep_graph.get("impact_map", {}) or {}
+    file_map = dep_graph.get("file_map", {}) or {}
+    connections = dep_graph.get("connections", []) or []
+    target_id = str(file_id)
+    max_depth = max(1, int(depth or 1))
+
+    downstream = []
+    visited = {target_id}
+    frontier = [target_id]
+
+    for level in range(max_depth):
+        next_frontier = []
+        for current in frontier:
+            for dependent in impact_map.get(current, []):
+                dep_id = str(dependent)
+                if dep_id in visited:
+                    continue
+                visited.add(dep_id)
+                next_frontier.append(dep_id)
+                downstream.append({
+                    "file_id": dep_id,
+                    "file_name": file_map.get(dep_id, {}).get("name", ""),
+                    "path": file_map.get(dep_id, {}).get("path", ""),
+                    "depth": level + 1,
+                })
+        frontier = next_frontier
+        if not frontier:
+            break
+
+    upstream = []
+    for conn in connections:
+        if str(conn.get("from_id")) == target_id:
+            upstream_id = str(conn.get("to_id"))
+            upstream.append({
+                "file_id": upstream_id,
+                "file_name": file_map.get(upstream_id, {}).get("name", ""),
+                "path": file_map.get(upstream_id, {}).get("path", ""),
+                "type": conn.get("type", "unknown"),
+                "name": conn.get("name", ""),
+            })
+
+    return {
+        "file_id": target_id,
+        "file_name": file_map.get(target_id, {}).get("name", ""),
+        "path": file_map.get(target_id, {}).get("path", ""),
+        "downstream": downstream,
+        "upstream_dependencies": upstream,
+        "downstream_count": len(downstream),
+    }
 
 
 def _aggregate_metrics(by_id):
@@ -153,12 +320,16 @@ def build_mcp_index():
     metrics_summary = _aggregate_metrics(by_id)
 
     index = {
-        "version": "1.0",
+        "version": "1.1",
         "built_at": datetime.now().isoformat(),
         "project": {
             "name": project_name,
             "file_count": len(files_data),
             "last_scan": datetime.now().isoformat(),
+        },
+        "semantic_config": {
+            "vector_size": SEMANTIC_VECTOR_SIZE,
+            "strategy": _EMBEDDING_BACKEND or "hashed-token-cosine",
         },
         "by_id": by_id,
         "by_name": by_name,

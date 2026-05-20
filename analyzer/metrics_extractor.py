@@ -183,13 +183,31 @@ def get_metrics(file_path, tags):
     # Calculate nesting depth within template
     max_depth = 0
     try:
-        if tags:
+        if isinstance(tags, dict):
+            max_depth = tags.get("template_metrics", {}).get("max_depth", 0)
+        elif tags:
             for tag in tags:
                 depth = len(list(tag.parents))
                 if ("v-if" in tag.attrs or "v-for" in tag.attrs) and depth > max_depth:
                     max_depth = depth
     except Exception:
         max_depth = 0
+
+    template_metrics = tags.get("template_metrics", {}) if isinstance(tags, dict) else {}
+    script_metrics = tags.get("script_metrics", {}) if isinstance(tags, dict) else {}
+    style_metrics = tags.get("style_metrics", {}) if isinstance(tags, dict) else {}
+
+    # Count hardcoded colors (non-Tailwind colors) from style AST
+    hardcoded_colors = 0
+    colors_list = style_metrics.get("colors", [])
+    if colors_list:
+        for c in colors_list:
+            c_str = str(c).strip().lower()
+            if not (c_str.startswith("text-") or c_str.startswith("bg-")):
+                hardcoded_colors += 1
+    else:
+        # Fallback to colors_used from CSS regex
+        hardcoded_colors = len(colors_used)
 
     return {
         "loc": len(lines),
@@ -211,6 +229,13 @@ def get_metrics(file_path, tags):
         "font_sizes": list(font_sizes),
         "colors_used": list(colors_used),
         "contrast_issues": [],
+        # PrismAI Core Triage & Complexity metrics
+        "cyclomatic_complexity": script_metrics.get("cyclomatic_complexity", 1),
+        "cognitive_complexity": script_metrics.get("cognitive_complexity", 0),
+        "missing_alt_count": template_metrics.get("missing_alt_count", 0),
+        "unlabeled_inputs": template_metrics.get("unlabeled_inputs", 0),
+        "interactive_without_role": template_metrics.get("interactive_without_role", 0),
+        "hardcoded_colors": hardcoded_colors
     }
 
 # ... (Keep existing extract_header_styles, extract_alignment_info, etc. functions) ...
@@ -237,4 +262,10 @@ def get_empty_metrics():
         "font_sizes": [],
         "colors_used": [],
         "contrast_issues": [],
+        "cyclomatic_complexity": 1,
+        "cognitive_complexity": 0,
+        "missing_alt_count": 0,
+        "unlabeled_inputs": 0,
+        "interactive_without_role": 0,
+        "hardcoded_colors": 0
     }

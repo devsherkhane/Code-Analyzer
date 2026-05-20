@@ -109,6 +109,17 @@ def fetch_all_issues_context(db_conn=None):
                         found_path = cand
                         break
                         
+                # Dynamic Fallback: search workspace recursively by file_name if path is mismatched/outdated
+                if not found_path and file_name:
+                    for root, dirs, files_in_dir in os.walk(base_dir):
+                        if 'node_modules' in dirs:
+                            dirs.remove('node_modules')
+                        if '.git' in dirs:
+                            dirs.remove('.git')
+                        if file_name in files_in_dir:
+                            found_path = os.path.join(root, file_name)
+                            break
+                            
                 if found_path:
                     with open(found_path, 'r', encoding='utf-8') as f:
                         lines = f.readlines()
@@ -133,11 +144,13 @@ def fetch_all_issues_context(db_conn=None):
                 "metrics": file_record.get("metrics", {}),
                 "ast_data": file_record.get("ast_data", {}),
                 "dependency_impact": impact_map.get(file_id, []),
+                "downstream_impact": impact_map.get(file_id, []),
                 "global_design_context": global_design_context
             })
             
     # Return all frontend file bundles (not just .vue)
     return context_bundles
+
 if __name__ == "__main__":
     bundles = fetch_all_issues_context()
     print(f"Fetched context for {len(bundles)} files.")

@@ -1,0 +1,1301 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260519_171712",
+    "timestamp": "2026-05-19T17:17:12.452643",
+    "files_analyzed": 96,
+    "total_issues": 18,
+    "total_real_issues": 18,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": ".eslintrc.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\.eslintrc.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "babel.config.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\babel.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "gulpfile.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\gulpfile.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "4",
+            "file_name": "index.html",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\index.html",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "jest.config.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\jest.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "postcss.config.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\postcss.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "tailwind.config.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tailwind.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "vite.config.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\vite.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "31",
+            "file_name": "App.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\App.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "32",
+            "file_name": "axiosApi.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\axiosApi.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis crashed. File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "33",
+            "file_name": "formkit.config.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\formkit.config.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "35",
+            "file_name": "main.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\main.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "36",
+            "file_name": "registerServiceWorker.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\registerServiceWorker.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "37",
+            "file_name": "router.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\router.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis crashed. File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "38",
+            "file_name": "date-range-pickr.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\date-range-pickr.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "39",
+            "file_name": "MTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\MTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "40",
+            "file_name": "multiselect.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\multiselect.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "41",
+            "file_name": "updateDbSave.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\BL\\updateDbSave.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "42",
+            "file_name": "updateUser.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\BL\\updateUser.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "43",
+            "file_name": "breadCrumbs.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\breadCrumbs.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "44",
+            "file_name": "courseTitleBar.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\courseTitleBar.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "45",
+            "file_name": "Footer.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Footer.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "46",
+            "file_name": "Header.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Header.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "47",
+            "file_name": "Menu.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Menu.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "48",
+            "file_name": "programBar.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\programBar.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "49",
+            "file_name": "Sidebar.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\Sidebar.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "50",
+            "file_name": "SidebarNew.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\common\\SidebarNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "51",
+            "file_name": "Toast.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\DaiseUIComponents\\Toast.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "52",
+            "file_name": "downloadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\download-manager\\downloadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "53",
+            "file_name": "downloadProgress.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\download-manager\\downloadProgress.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "54",
+            "file_name": "clientData.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\excel\\clientData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "55",
+            "file_name": "saveWActivity.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\excel\\saveWActivity.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "56",
+            "file_name": "updateData.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\excel\\updateData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "57",
+            "file_name": "Component1.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\i18Demo\\Component1.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "58",
+            "file_name": "Component2.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\i18Demo\\Component2.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "59",
+            "file_name": "decryptData.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\decryptData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "60",
+            "file_name": "encryptData.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\encryptData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "61",
+            "file_name": "hashData.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\hashData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "62",
+            "file_name": "hashSalt.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\keymappers\\hashSalt.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "63",
+            "file_name": "customID.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\mongodbID\\customID.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "64",
+            "file_name": "hexID.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\mongodbID\\hexID.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "65",
+            "file_name": "deleteData.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\sessionmanager\\deleteData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "66",
+            "file_name": "fetchData.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\sessionmanager\\fetchData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "67",
+            "file_name": "storeData.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\sessionmanager\\storeData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "68",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\upload-manager\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "69",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\components\\upload-manager\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "70",
+            "file_name": "Encryption.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\Encryption.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "71",
+            "file_name": "mql.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mql.js",
+            "ai_analysis": [
+                {
+                    "line": 7,
+                    "defect_type": "Critical Logic Bugs",
+                    "severity": "critical",
+                    "element": "Swal.fire",
+                    "problem": "The Promise resolves immediately on success, regardless of whether the user confirms the dialog. This can lead to unintended actions being triggered without user consent.",
+                    "original_code": "8:     Swal.fire({\n9:       title: title,\n10:       text: text,\n11:       confirmButtonText: 'Yes',\n12:       showCancelButton: true,\n13:       cancelButtonText: 'Cancel'\n14:     }).then((obj) => {\n15:       if (obj.isConfirmed) {\n16:         resolve()\n17:       } else {\n18:         console.log(\"in reject\", new Error(errMsg));\n19:         reject(new Error(errMsg))\n20:       }\n21:     })\n22:   }",
+                    "fixed_code": "8:     Swal.fire({\n9:       title: title,\n10:       text: text,\n11:       confirmButtonText: 'Yes',\n12:       showCancelButton: true,\n13:       cancelButtonText: 'Cancel',\n14:       stopOnce: true // Add stopOnce to prevent multiple resolves\n15:       onConfirmed: () => resolve(),\n16:       onCancelled: () => reject(new Error(errMsg))\n17:     })\n18:   })\n19:   }",
+                    "explanation": "Adding `stopOnce: true` to the `Swal.fire` configuration prevents the `.then` callback from being executed multiple times if the user clicks the 'Yes' button repeatedly.  The `onConfirmed` and `onCancelled` callbacks are used to explicitly resolve and reject the promise, respectively, based on the user's choice.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -15,6 +15,19 @@\n16:         resolve()\n17:       } else {\n18:         console.log(\"in reject\", new Error(errMsg));\n19:         reject(new Error(errMsg))\n20:       }\n21:     })\n22:   },\n23:     onConfirmed: () => resolve(),\n24:     onCancelled: () => reject(new Error(errMsg))\n25:   })",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 27,
+                    "defect_type": "Critical Logic Bugs",
+                    "severity": "critical",
+                    "element": "let cancel",
+                    "problem": "Uninitialized variable `cancel` is used in the `axios.CancelToken` creation, potentially leading to unpredictable behavior and errors.  This variable needs to be initialized to a valid value.",
+                    "original_code": "27:     let cancel",
+                    "fixed_code": "27:     let cancel = null",
+                    "explanation": "Initializing `cancel` to `null` provides a default value, eliminating the risk of using an uninitialized variable.  This ensures the `axios.CancelToken` can be created without errors.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -27,1 +27,1 @@\n- let cancel\n+ let cancel = null",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "72",
+            "file_name": "mqlAssetFDB.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mqlAssetFDB.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis crashed. File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "73",
+            "file_name": "mqlCdn.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mqlCdn.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "74",
+            "file_name": "mqlOptions.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\mqlOptions.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "75",
+            "file_name": "response.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\response.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "76",
+            "file_name": "SearchProgram.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\plugins\\SearchProgram.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "77",
+            "file_name": "i18n-setup.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\setup\\i18n-setup.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "78",
+            "file_name": "init.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\setup\\init.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "79",
+            "file_name": "index.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\index.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis crashed. File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "80",
+            "file_name": "types.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\types.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "81",
+            "file_name": "academicYears.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\academicYears.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "82",
+            "file_name": "clientDetails.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\clientDetails.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "83",
+            "file_name": "collegeDetails.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\collegeDetails.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "84",
+            "file_name": "examManagementVar.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\examManagementVar.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "85",
+            "file_name": "login.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\login.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "86",
+            "file_name": "loginPn.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\loginPn.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "87",
+            "file_name": "ProgramD.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\ProgramD.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "88",
+            "file_name": "store.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\store.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "89",
+            "file_name": "types.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\store\\modules\\types.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "91",
+            "file_name": "autoBL.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\autoBL.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "92",
+            "file_name": "CdnUpload.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\CdnUpload.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "93",
+            "file_name": "Home.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Home.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "94",
+            "file_name": "Login.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Login.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis crashed. File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "95",
+            "file_name": "SessionManager.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\SessionManager.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "96",
+            "file_name": "StudentData.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\StudentData.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "97",
+            "file_name": "StudentDemo.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\StudentDemo.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "98",
+            "file_name": "Validator.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Validator.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "99",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "fa-light fa-circle-arrow-left",
+                    "problem": "The tooltip 'Back' icon lacks ARIA attributes, making it inaccessible to screen reader users. Screen readers will not announce the icon's purpose or functionality.",
+                    "original_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n22:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                    "fixed_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n22:           <i aria-label=\"Back\" class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                    "explanation": "Adding `aria-label=\"Back\"` provides a descriptive text alternative for the icon, allowing screen readers to announce its purpose to the user.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -6 +7 @@\n- <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n+ <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "100",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 15,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "OverlayPanel",
+                    "problem": "The OverlayPanel is missing the role=\"dialog\" attribute, rendering it inaccessible to screen readers. Users relying on screen readers will be unable to interact with the OverlayPanel.",
+                    "original_code": "15: <OverlayPanel ref=\"courseName\">\n16:           <div class=\"font-bold text-sm\">\n17:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n18:             Pivot Tables\n19:           </div\n20:         </OverlayPanel>",
+                    "fixed_code": "15: <OverlayPanel ref=\"courseName\" role=\"dialog\">\n16:           <div class=\"font-bold text-sm\">\n17:             Utilizing Excel for Data Entry and Analysis: Formulas, Functions, Conditional Formatting, and\n18:             Pivot Tables\n19:           </div\n20:         </OverlayPanel>",
+                    "explanation": "Adding `role=\"dialog\"` to the OverlayPanel tells screen readers that this element is a dialog box, allowing assistive technologies to properly handle its interactions.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -15 +15 @@\n- <OverlayPanel ref=\"courseName\">\n+ <OverlayPanel ref=\"courseName\" role=\"dialog\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "101",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "102",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\iLike\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "103",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Layout\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "104",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Layout\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "105",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\ApplicationServices.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "div class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"",
+                    "problem": "The fixed overlay obscures all content on the page, including the main application area and potentially important UI elements, making the interface unusable for users who need to access the application. There is no indication of how to close the overlay, and it doesn't respond to clicks outside of it.",
+                    "original_code": "v-if=\"isLoading\"\nclass=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"",
+                    "fixed_code": "v-if=\"isLoading\"\nclass=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center transition-opacity duration-300\"",
+                    "explanation": "Adding `transition-opacity duration-300` to the overlay allows for a smooth fade-in/fade-out effect, improving the user experience and preventing a jarring visual transition when the overlay appears or disappears. The default transition behavior is instantaneous, which can be disruptive.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- v-if=\"isLoading\"\n- class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n+ v-if=\"isLoading\"\n+ class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center transition-opacity duration-300\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 22,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "The tooltip is incorrectly positioned and uses an invalid attribute (`data-tip`) for accessibility. Tooltips should be implemented using ARIA attributes to provide screen readers with the necessary information about the element.",
+                    "original_code": "data-tip=\"Back\"",
+                    "fixed_code": "title=\"Back\"",
+                    "explanation": "Using the `title` attribute for tooltips is the standard and accessible way to provide tooltip text to screen readers. The `data-tip` attribute is not a standard HTML attribute and offers no accessibility support.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -22 +22 @@\n- data-tip=\"Back\"\n+ title=\"Back\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 27,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                    "problem": "The icon is missing alternative text (alt attribute).  Screen readers rely on alt text to describe images, making the icon inaccessible to visually impaired users. A generic alt text like \"arrow\" is insufficient.",
+                    "original_code": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                    "fixed_code": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold aria-label=\"Go back\"",
+                    "explanation": "Adding `aria-label=\"Go back\"` provides a descriptive label for the icon, allowing screen readers to announce the action when the icon is focused or activated. This significantly improves accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -27 +27 @@\n- fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\n+ fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold aria-label=\"Go back\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 54,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "box box-2 col-span-3 text-center p-6",
+                    "problem": "The \"No Data\" message is visually prominent and lacks clear accessibility information.  It's a purely visual indicator and doesn't provide an alternative for screen reader users.  Consider using an ARIA live region to announce data changes to screen readers.",
+                    "original_code": "box box-2 col-span-3 text-center p-6",
+                    "fixed_code": "box box-2 col-span-3 text-center p-6 aria-live=\"polite\"",
+                    "explanation": "Adding `aria-live=\"polite\"` to the div informs screen readers to be notified of updates to the content. While this doesn't *fix* the visual presentation, it enables screen reader users to understand when data is available.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -54 +54 @@\n- box box-2 col-span-3 text-center p-6\n+ box box-2 col-span-3 text-center p-6 aria-live=\"polite\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 86,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "option-card option-label {{ option.label }}",
+                    "problem": "The labels within the `option-card` are not accessible.  Labels must be associated with their corresponding input elements using the `for` attribute or equivalent ARIA practices. This impacts screen reader users' ability to understand the purpose of each option.",
+                    "original_code": "option-card option-label {{ option.label }}",
+                    "fixed_code": "option-card option-label <label for=\"{{ option.id }}\">{{ option.label }}</label>",
+                    "explanation": "Using the `<label for=\"{{ option.id }}\">` element correctly associates the label with the input field, allowing screen readers to announce the label when the input field is focused.  This is a fundamental accessibility practice.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -86 +86 @@\n- option-card option-label {{ option.label }}\n+ option-card option-label <label for=\"{{ option.id }}\">{{ option.label }}</label>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 75,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "106",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 58,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "text-red-600",
+                    "problem": "The error message 'No exam form available for submission.' is displayed in red, which might be difficult to read for users with low vision. Additionally, it's purely stylistic and doesn't contribute to accessibility.",
+                    "original_code": "class=\"box box-2 text-center p-6\"\n        <div class=\"font-medium text-red-600\">\n          No exam form available for submission.\n        </div>\n",
+                    "fixed_code": "class=\"box box-2 text-center p-6\"\n        <div class=\"font-medium\">No exam form available for submission.</div>\n",
+                    "explanation": "The color is changed from red to a default text color to improve readability for users with color blindness and visual impairments.  The fix does not change the meaning of the message.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -58 +58 @@\n- class=\"box box-2 text-center p-6\"\n-        <div class=\"font-medium text-red-600\">\n-          No exam form available for submission.\n-        </div>\n+ class=\"box box-2 text-center p-6\"\n+        <div class=\"font-medium\">No exam form available for submission.</div>\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 90,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "input type=\"checkbox\"",
+                    "problem": "The checkbox input is missing a label. This is a significant accessibility violation as screen readers will not be able to determine the purpose or function of the checkbox without a properly associated label.  This makes the component unusable for users with visual impairments.",
+                    "original_code": "<!-- <input\n  type=\"checkbox\"\n  v-model=\"selectedSubjects\"\n  :value=\"{\n    programTermUId: subject.programTermUId,\n    termCourseAMATUId: subject.termCourseAMATUId,\n    termCourseGroupUId: subject.termCourseGroupUId\n  }\"\n  class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n  :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n/> -->\n",
+                    "fixed_code": "<!-- <input\n  type=\"checkbox\"\n  v-model=\"selectedSubjects\"\n  :value=\"{\n    programTermUId: subject.programTermUId,\n    termCourseAMATUId: subject.termCourseAMATUId,\n    termCourseGroupUId: subject.termCourseGroupUId\n  }\"\n  class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n  :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n  label=\"Select Subject\"\n/> -->\n",
+                    "explanation": "Added a `<label>` element that is associated with the checkbox input using the `for` attribute.  This makes the checkbox accessible to screen readers and users with visual impairments.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -90 +90 @@\n- <!-- <input\n+ <!-- <input\n-   type=\"checkbox\"\n-   v-model=\"selectedSubjects\"\n-   :value=\"{\n-     programTermUId: subject.programTermUId,\n-     termCourseAMATUId: subject.termCourseAMATUId,\n-     termCourseGroupUId: subject.termCourseGroupUId\n-   }\"\n-   class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n-   :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n- /> -->\n+   type=\"checkbox\"\n+   v-model=\"selectedSubjects\"\n+   :value=\"{\n+     programTermUId: subject.programTermUId,\n+     termCourseAMATUId: subject.termCourseAMATUId,\n+     termCourseGroupUId: subject.termCourseGroupUId\n+   }\"\n+   class=\"w-5 h-5 accent-blue-600 cursor-pointer\"\n+   :disabled=\"!(userObj.studentLoginCrMode === 1 && selectedProgram?.appearanceType === 2)\"\n+   label=\"Select Subject\"\n+ />\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 80,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "107",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\FeeDetails.vue",
+            "ai_analysis": [
+                {
+                    "line": 46,
+                    "defect_type": "Security | Logic",
+                    "severity": "critical",
+                    "element": "button.btn btn-main btn-solid @click=\"proceed\"",
+                    "problem": "The `proceed` click handler could be vulnerable to XSS if the `totalFee` variable contains untrusted user input. Without sanitization, malicious JavaScript code could be injected and executed.",
+                    "original_code": " <button\n47:             class=\"btn btn-main btn-solid\"\n48:             @click=\"proceed\"\n49:             :disabled=\"totalFee <= 0\"\n50:           >\n51:             Pay \u20b9{{ totalFee }}\n52:           </button>",
+                    "fixed_code": " <button\n57:             class=\"btn btn-main btn-solid\"\n58:             @click=\"proceed\"\n59:             :disabled=\"totalFee <= 0\"\n60:           >\n61:             Pay \u20b9{{ totalFee }}\n62:           </button>",
+                    "explanation": "Removed the inline expression `\u20b9{{ totalFee }}` from the button text. This eliminates the potential for XSS vulnerabilities. The `proceed` function should handle the fee calculation and payment processing securely, independent of user-provided input.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -47 +47 @@\n- <button\n+ <button\n",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 62,
+                    "defect_type": "Logic",
+                    "severity": "medium",
+                    "element": "v-else-if=\"isOpted === 0 && totalFee > 0\"",
+                    "problem": "The `v-else-if` condition incorrectly assumes that if the concession is *not* opted and the total fee is greater than 0, the user *must* pay. There might be cases where the user wants to pay the full amount despite not having a concession.",
+                    "original_code": " <button\n75:             v-else\n76:             class=\"btn btn-main btn-solid\"\n77:             @click=\"proceed\"\n78:             :disabled=\"totalFee <= 0\"\n79:           >\n80:             Pay \u20b9{{ totalFee }}\n81:           </button>",
+                    "fixed_code": " <button\n80:             v-else\n81:             class=\"btn btn-main btn-solid\"\n82:             @click=\"proceed\"\n83:             :disabled=\"totalFee <= 0\"\n84:           >\n85:             Pay \u20b9{{ totalFee }}\n86:           </button>",
+                    "explanation": "Removed the unnecessary `v-else` condition. It does not make sense to have a default option button in this case, as the user can proceed to pay if they wish.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -75 +75 @@\n- <button\n+ <button\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "108",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 12,
+                    "defect_type": "Security | UI/UX | Accessibility",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "The `data-tip` attribute is used for accessibility.  It creates a non-semantic HTML element that can confuse screen readers.  This violates WCAG 1.1.1 (Non-text Content).",
+                    "original_code": "<div data-tip=\"Back\" ...>",
+                    "fixed_code": "<div class=\"tooltip tooltip-right cursor-pointer\" ...>",
+                    "explanation": "Removing the `data-tip` attribute allows screen readers to correctly interpret the intended behavior of the element.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -12 +12 @@\n-    data-tip=\"Back\"\n+    class=\"tooltip tooltip-right cursor-pointer\"\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "109",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 10,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"",
+                    "problem": "The tooltip is assigned the `Back` data attribute, which is not visually apparent to the user. This violates accessibility guidelines as users who rely on screen readers will not be informed about the functionality of the tooltip.  The description of the tooltip is also missing, further hindering accessibility.",
+                    "original_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n10:       <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n11:",
+                    "fixed_code": " <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\">Back</i></div>",
+                    "explanation": "This fix adds a visible `Back` label to the tooltip, making its purpose clear to users, including those using screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -10 +11 @@\n- <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\">\n+ <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBack()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\">Back</i></div>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 21,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "grid grid-cols-1",
+                    "problem": "The grid layout is using a non-semantic structure. Using `grid` without defining roles or labels introduces accessibility challenges for screen readers.",
+                    "original_code": " <div class=\"grid grid-cols-1\">\n22:             <div class=\"\">\n23:               <div class=\"text-gray-500\">Program Name: </div>\n24:               <div class=\"text-gray-500 font-bold\">\n25:                 {{ program.fullProgramTerm || 'N/A' }}{{ program.examEvent ? ' - (Event - ' + program.examEvent + ')' : '' }}\n26:               </div>\n27:             </div>\n28:             ",
+                    "fixed_code": " <div class=\"grid grid-cols-1\"><div class=\"program-details\"> <div class=\"text-gray-500\">Program Name: </div> <div class=\"text-gray-500 font-bold\">{{ program.fullProgramTerm || 'N/A' }} {{ program.examEvent ? ' - (Event - ' + program.examEvent + ')' : '' }}</div></div></div>",
+                    "explanation": "This fix wraps the grid with a semantic wrapper (`program-details`), defines the roles and labels within the grid structure to provide context for screen readers.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -21 +28 @@\n- <div class=\"grid grid-cols-1\">\n+ <div class=\"grid grid-cols-1\"><div class=\"program-details\"> <div class=\"text-gray-500\">Program Name: </div> <div class=\"text-gray-500 font-bold\">{{ program.fullProgramTerm || 'N/A' }} {{ program.examEvent ? ' - (Event - ' + program.examEvent + ')' : '' }}</div></div></div>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The layout is functional, but the excessive use of grid and complex spacing could benefit from a simplified design.",
+                "engineering_health_score": 75,
+                "recommendations": [
+                    "Consider simplifying the grid layout for improved accessibility and maintainability.",
+                    "Review spacing and padding to ensure a consistent and accessible user interface."
+                ]
+            }
+        },
+        {
+            "file_id": "110",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 38,
+                    "defect_type": "UI | Accessibility",
+                    "severity": "low",
+                    "element": "h1 class=\"text-center mb-2 subject-info\">\n        <div class=\"label\">Course Name:</div\n",
+                    "problem": "The label text \"Course Name:\" is missing an accessibility role attribute, making it difficult for screen readers to interpret the content.  This violates accessibility guidelines for screen reader users.",
+                    "original_code": "h1 class=\"text-center mb-2 subject-info\">\n        <div class=\"label\">Course Name:</div\n",
+                    "fixed_code": "h1 class=\"text-center mb-2 subject-info\" role=\"presentation\">\n        <div class=\"label\">Course Name:</div\n",
+                    "explanation": "Adding `role=\"presentation\"` to the `h1` element provides a semantic label for the content, allowing screen readers to correctly identify and announce the course name. This is a standard accessibility practice.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -38 +38 @@\n- h1 class=\"text-center mb-2 subject-info\">\n+ h1 class=\"text-center mb-2 subject-info\" role=\"presentation\">\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The addition of `role=\"presentation\"` does not impact the layout. The content remains aligned and readable.",
+                "engineering_health_score": 95,
+                "recommendations": [
+                    "Consider using a `<label>` element with the `for` attribute to explicitly associate the label with the input field, further enhancing accessibility.",
+                    "Ensure sufficient color contrast between the label and the course name text for users with visual impairments."
+                ]
+            }
+        },
+        {
+            "file_id": "111",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "112",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "113",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\src\\views\\Result\\viewMarksheet.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 50,
+                    "defect_type": "Security | UI/UX | Accessibility",
+                    "severity": "critical",
+                    "element": "isModalVisible",
+                    "problem": "The `isModalVisible` state variable is used to control the visibility of a modal.  This is not a semantic element, and should not be used to control the display of content to assistive technologies. This violates WCAG 1.1.1 (Non-text Content).",
+                    "original_code": "isModalVisible: false,",
+                    "fixed_code": "isModalVisible: false, // State to control modal visibility",
+                    "explanation": "Using a variable in this way doesn't provide an accessible way to control the display of content.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -50 +50 @@\n-    isModalVisible: false,\n+    isModalVisible: false // State to control modal visibility",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "114",
+            "file_name": "elementCount.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\e2e\\custom-assertions\\elementCount.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "115",
+            "file_name": "login.specs.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\e2e\\specs\\login.specs.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "116",
+            "file_name": "test.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\e2e\\specs\\test.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "117",
+            "file_name": ".eslintrc.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\unit\\.eslintrc.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "118",
+            "file_name": "HelloWorld.spec.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\unit\\HelloWorld.spec.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "119",
+            "file_name": "login.spec.js",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\ShivaniD\\ShivaniD\\StudentLogin\\client\\app\\tests\\unit\\login.spec.js",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        }
+    ]
+}

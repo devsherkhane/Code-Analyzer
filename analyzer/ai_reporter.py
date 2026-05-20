@@ -21,25 +21,61 @@ def analyze_sniffer_pass(batch, client):
         ast_data = bundle.get("ast_data", {})
         downstream = bundle.get("downstream_impact", [])
         
-        cyc = metrics.get("cyclomatic_complexity", 1)
-        cog = metrics.get("cognitive_complexity", 0)
-        depth = metrics.get("nesting_depth", 0)
+        # Ensure we look in ast_data if metrics doesn't contain them
+        template_metrics = ast_data.get("template_metrics", {})
+        script_metrics = ast_data.get("script_metrics", {})
+        style_metrics = ast_data.get("style_metrics", {})
+        
         methods = len(ast_data.get("methods", []))
         api_calls = ast_data.get("api_calls", [])
         flags = [a for a in api_calls if a.get("flag")]
         
         reasons = []
+        
+        cyc = metrics.get("cyclomatic_complexity")
+        if cyc is None:
+            cyc = script_metrics.get("cyclomatic_complexity", 1)
+            
+        cog = metrics.get("cognitive_complexity")
+        if cog is None:
+            cog = script_metrics.get("cognitive_complexity", 0)
+            
+        depth = metrics.get("nesting_depth")
+        if depth is None or depth == 0:
+            depth = template_metrics.get("max_depth", 0)
+            
+        missing_alts = metrics.get('missing_alt_count')
+        if missing_alts is None:
+            missing_alts = template_metrics.get('missing_alt_count', 0)
+            
+        unlabeled_inputs = metrics.get('unlabeled_inputs')
+        if unlabeled_inputs is None:
+            unlabeled_inputs = template_metrics.get('unlabeled_inputs', 0)
+            
+        interactive_no_role = metrics.get('interactive_without_role')
+        if interactive_no_role is None:
+            interactive_no_role = template_metrics.get('interactive_without_role', 0)
+            
+        hardcoded_colors = metrics.get('hardcoded_colors')
+        if hardcoded_colors is None:
+            # Count hardcoded colors from style_metrics
+            colors_list = style_metrics.get("colors", [])
+            hc_count = 0
+            if colors_list:
+                for c in colors_list:
+                    c_str = str(c).strip().lower()
+                    if not (c_str.startswith("text-") or c_str.startswith("bg-")):
+                        hc_count += 1
+            else:
+                hc_count = len(metrics.get("colors_used", []))
+            hardcoded_colors = hc_count
+
         if cyc >= 10 or cog >= 10: reasons.append(f"High complexity (Cyc:{cyc}/Cog:{cog})")
         if depth >= 6: reasons.append(f"Excessive nesting ({depth} deep)")
         if methods > 10: reasons.append("Overloaded logic (>10 methods)")
         if len(api_calls) > 5: reasons.append(f"Heavy API coupling ({len(api_calls)} calls)")
         if len(downstream) >= 3: reasons.append(f"High blast radius ({len(downstream)} downstream)")
         if flags: reasons.append("Suspicious AST flags detected")
-        
-        missing_alts = metrics.get('missing_alt_count', 0)
-        unlabeled_inputs = metrics.get('unlabeled_inputs', 0)
-        interactive_no_role = metrics.get('interactive_without_role', 0)
-        hardcoded_colors = metrics.get('hardcoded_colors', 0)
 
         if missing_alts > 0: reasons.append(f"Missing alt tags ({missing_alts})")
         if unlabeled_inputs > 0: reasons.append(f"Unlabeled inputs ({unlabeled_inputs})")
@@ -312,14 +348,28 @@ FILES DATA:
         
         # Normalize: ensure each file_id value is {issues: [...], visual_simulation: {...}}
         # The AI sometimes returns file_id -> [issues] instead of file_id -> {issues: [...], ...}
+        # Standardize keys by matching against file_id (as string) or file_name.
         normalized = {}
         if isinstance(result_data, dict):
             for key, val in result_data.items():
                 if key in ("results", "error"):
                     continue
+                
+                # Match key against file IDs or filenames in the batch
+                matched_fid = None
+                key_str = str(key).strip().lower()
+                for b in batch:
+                    bfid = str(b["file_id"])
+                    bfname = str(b["file_name"]).strip().lower()
+                    if key_str == bfid.lower() or key_str == bfname or key_str in bfname or bfname in key_str:
+                        matched_fid = bfid
+                        break
+                
+                target_key = matched_fid or str(key)
+                
                 if isinstance(val, list):
                     # AI returned bare issues array — wrap it
-                    normalized[key] = {
+                    normalized[target_key] = {
                         "issues": val,
                         "visual_simulation": {
                             "layout_assessment": "Analyzed by AI.",
@@ -332,7 +382,7 @@ FILES DATA:
                     if "issues" not in val:
                         # Maybe the entire val IS an issue object, or issues are at top level
                         if "line" in val or "wcag_rule" in val:
-                            normalized[key] = {
+                            normalized[target_key] = {
                                 "issues": [val],
                                 "visual_simulation": val.get("visual_simulation", {
                                     "layout_assessment": "Analyzed by AI.",
@@ -347,17 +397,30 @@ FILES DATA:
                                 "engineering_health_score": 85,
                                 "recommendations": []
                             })
-                            normalized[key] = val
+                            normalized[target_key] = val
                     else:
                         val.setdefault("visual_simulation", {
                             "layout_assessment": "Analyzed by AI.",
                             "engineering_health_score": 85,
                             "recommendations": []
                         })
-                        normalized[key] = val
+                        normalized[target_key] = val
                 else:
-                    normalized[key] = {"issues": [], "visual_simulation": {"layout_assessment": "Analyzed by AI.", "engineering_health_score": 85}}
+                    normalized[target_key] = {"issues": [], "visual_simulation": {"layout_assessment": "Analyzed by AI.", "engineering_health_score": 85}}
         
+        # Guarantee that every file in the batch has a valid entry in the returned dict
+        for b in batch:
+            bfid = str(b["file_id"])
+            if bfid not in normalized:
+                normalized[bfid] = {
+                    "issues": [],
+                    "visual_simulation": {
+                        "layout_assessment": "Analyzed by AI.",
+                        "engineering_health_score": 100,
+                        "recommendations": []
+                    }
+                }
+
         # Validate and sanitize the AI output schema
         final = normalized if normalized else result_data
         if isinstance(final, dict):
@@ -418,7 +481,7 @@ def run_ai_reporter():
 
         # PHASE 2: SMART BATCHED DEEP DIVE
         if files_requiring_deep_dive:
-            smart_batches = _create_smart_batches(files_requiring_deep_dive)
+            smart_batches = _create_smart_batches(files_requiring_deep_dive, max_files_per_batch=2)
             total_batches = len(smart_batches)
             print(f"  -> [PHASE 2] {len(files_requiring_deep_dive)} files packed into {total_batches} smart batches (Pool Size: 3)...")
             phase2_start = time.time()

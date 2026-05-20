@@ -1,0 +1,24 @@
+{
+    "overall_score": 100,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260520_113429",
+    "timestamp": "2026-05-20T11:34:29.655099",
+    "files_analyzed": 1,
+    "total_issues": 0,
+    "total_real_issues": 0,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "visual_scan_dom.html",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Projects\\code-analyzer\\backend\\json_reports\\visuals\\visual_scan_dom.html",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        }
+    ]
+}
