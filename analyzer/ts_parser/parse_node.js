@@ -4,7 +4,7 @@ const { parse } = require('@typescript-eslint/typescript-estree');
 const postcss = require('postcss');
 
 const isWorker = process.argv.includes('--worker');
-const filePathArg = process.argv.find(arg => arg !== 'node' && !arg.endsWith('parse_node.js') && arg !== '--worker');
+const filePathArg = process.argv.slice(2).find(arg => arg !== '--worker');
 
 if (!isWorker && !filePathArg) {
     console.error("Usage: node parse_node.js <file> [--worker]");
@@ -231,6 +231,7 @@ try {
             sourceType: 'module'
         });
     } catch (e) {
+        result.syntax_error = e.message;
         return result;
     }
     

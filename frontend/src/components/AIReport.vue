@@ -274,19 +274,146 @@
                 <code class="ws-path">{{ selectedFile.file_path }}</code>
               </div>
               <div class="ws-body custom-scrollbar">
-                <!-- Integrated Source Code Viewer -->
-                <div class="ws-source-v2">
+                <!-- Integrated Source Code Viewer & Refactor Sandbox -->
+                <div class="ws-source-v2" :class="{ 'sandbox-mode': activeViewerTab === 'sandbox' }">
                    <div class="source-header">
-                      <span>Source Code</span>
-                      <div v-if="selectedIssueLines.length" class="highlight-info">
-                        <span class="line-dot"></span> Focus: Line {{ selectedIssueLines[0] }}
+                      <div class="viewer-tabs">
+                         <button 
+                           class="tab-btn" 
+                           :class="{ active: activeViewerTab === 'source' }" 
+                           @click="activeViewerTab = 'source'"
+                         >
+                           Source Code
+                         </button>
+                         <button 
+                           class="tab-btn sandbox-tab-btn" 
+                           :class="{ active: activeViewerTab === 'sandbox' }" 
+                           @click="activeViewerTab = 'sandbox'"
+                         >
+                           Refactor Sandbox
+                           <span class="sandbox-pulse-dot"></span>
+                         </button>
+                      </div>
+                      
+                      <div v-if="activeViewerTab === 'source' && selectedIssueLines.length" class="highlight-info">
+                         <span class="line-dot"></span> Focus: Line {{ selectedIssueLines[0] }}
+                      </div>
+                      
+                      <div v-if="activeViewerTab === 'sandbox'" class="sandbox-actions-panel">
+                         <button 
+                           class="btn btn-secondary btn-xs btn-sandbox-action" 
+                           @click="applySelectedFix" 
+                           :disabled="activeFileIssue === null"
+                           title="Apply fix for selected issue into sandbox in-memory"
+                         >
+                           Apply Selected Fix
+                         </button>
+                         <button 
+                           class="btn btn-secondary btn-xs btn-sandbox-action" 
+                           @click="applyAllSuggestions"
+                           title="Apply all suggested fixes into sandbox in-memory"
+                         >
+                           Apply All Suggestions
+                         </button>
+                         <button 
+                           class="btn btn-success btn-xs btn-sandbox-action save-btn" 
+                           @click="saveSandboxToFile"
+                           title="Save current sandbox changes to the physical file on disk"
+                         >
+                           Write to File
+                         </button>
+                         <button 
+                           class="btn btn-primary btn-xs btn-sandbox-action build-btn" 
+                           @click="runBuildCheck"
+                           title="Trigger background Vite compilation check"
+                         >
+                           <span v-if="buildStatus === 'running'" class="btn-spinner"></span>
+                           Run Build Check
+                         </button>
                       </div>
                    </div>
-                   <SourceViewer 
-                     v-if="selectedFile"
-                     :filePath="selectedFile.file_path"
-                     :highlightedLines="selectedIssueLines"
-                   />
+
+                   <!-- Pane Contents -->
+                   <div class="viewer-panes-container">
+                     <!-- Tab 1: Source Viewer -->
+                     <SourceViewer 
+                       v-if="activeViewerTab === 'source' && selectedFile"
+                       :filePath="selectedFile.file_path"
+                       :highlightedLines="selectedIssueLines"
+                     />
+
+                     <!-- Tab 2: Refactor Sandbox split view -->
+                     <div v-if="activeViewerTab === 'sandbox'" class="sandbox-split-layout">
+                       <!-- Left Side: Original Disk State -->
+                       <div class="sandbox-side original-side">
+                         <div class="side-banner">Original File State (Read-Only)</div>
+                         <div class="side-pane-wrapper">
+                           <SourceViewer 
+                             v-if="selectedFile"
+                             :filePath="selectedFile.file_path"
+                             :highlightedLines="selectedIssueLines"
+                           />
+                         </div>
+                       </div>
+                       
+                       <!-- Right Side: Editable Sandbox -->
+                       <div class="sandbox-side editor-side">
+                         <div class="side-banner editable-banner">Sandbox Playground (Fully Editable)</div>
+                         <div class="side-pane-wrapper editable-pane-wrapper">
+                           <div class="sandbox-editor-wrapper">
+                             <div class="sandbox-bgs-container" ref="editorBgsContainer" aria-hidden="true">
+                               <div 
+                                 v-for="n in sandboxLineCount" 
+                                 :key="'sbg'+n" 
+                                 class="sandbox-line-bg"
+                                 :class="{ 'hl-bg': selectedIssueLines.includes(n) }"
+                               ></div>
+                             </div>
+                             <div class="sandbox-line-numbers" ref="editorLineNumbers">
+                               <div 
+                                 v-for="n in sandboxLineCount" 
+                                 :key="n" 
+                                 class="sandbox-num"
+                                 :class="{ 'highlight-line': selectedIssueLines.includes(n) }"
+                               >{{ n }}</div>
+                             </div>
+                             <textarea 
+                               class="sandbox-textarea"
+                               v-model="sandboxSource"
+                               ref="sandboxTextarea"
+                               @scroll="syncEditorScroll"
+                               spellcheck="false"
+                             ></textarea>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Glassmorphic Streaming Terminal Console -->
+                   <div v-if="activeViewerTab === 'sandbox'" class="glassmorphic-terminal">
+                      <div class="terminal-header">
+                         <div class="terminal-title">
+                            <span class="terminal-dot red-dot"></span>
+                            <span class="terminal-dot yellow-dot"></span>
+                            <span class="terminal-dot green-dot"></span>
+                            <span class="terminal-label">INTEGRATED BUILD CONSOLE</span>
+                         </div>
+                         <div class="terminal-status-badge">
+                            <span class="status-dot" :class="buildStatus"></span>
+                            <span class="status-text">{{ buildStatusText }}</span>
+                         </div>
+                         <button v-if="buildLogs.length" class="btn-ghost btn-xs btn-clear-console" @click="clearBuildLogs">Clear Logs</button>
+                      </div>
+                      <div class="terminal-body custom-scrollbar" ref="terminalBody">
+                         <div v-if="buildLogs.length === 0" class="terminal-placeholder">
+                            Console Idle. Ready to capture and stream Vite/Rollup build logs color-coded by severity.
+                         </div>
+                         <div v-else v-for="(log, idx) in buildLogs" :key="idx" class="terminal-line" :class="getLogLineClass(log)">
+                            {{ log }}
+                         </div>
+                      </div>
+                   </div>
                 </div>
 
                 <!-- Issues Panel for Selected File -->
@@ -396,6 +523,19 @@
         <ChatWidget :activeFile="selectedFile" :workspacePath="workspacePath" :allFiles="reportData.files" :injectedIssue="chatIssue" :allIssues="confirmedIssues" />
       </div>
 
+      <!-- ═══ FIX STATUS TOAST ═══ -->
+      <transition name="slide-up">
+        <div v-if="toast.show" class="fix-toast" :class="'fix-toast-' + toast.type" key="toast">
+           <div class="fix-toast-icon">
+              <svg v-if="toast.type === 'success'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg v-else-if="toast.type === 'error'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+           </div>
+           <div class="fix-toast-msg">{{ toast.msg }}</div>
+           <button class="fix-toast-close" @click="closeToast">×</button>
+        </div>
+      </transition>
+
     </div>
   </div>
 </template>
@@ -430,7 +570,17 @@ export default {
       selectedIssueLines: [],
       aiArchitecture: null,
       issuesPanelOpen: true,
-      activeFileIssue: null
+      activeFileIssue: null,
+      
+      // Sandbox Refactor state
+      activeViewerTab: 'source',
+      sandboxSource: '',
+      sandboxOriginal: '',
+      buildJobId: null,
+      buildStatus: 'idle',
+      buildLogs: [],
+      sseSource: null,
+      toast: { show: false, msg: '', type: 'success' }
     };
   },
   computed: {
@@ -584,10 +734,53 @@ export default {
       if (!this.reportData?.files) return [];
       const q = this.searchQuery.toLowerCase().trim();
       return this.reportData.files.map((f, idx) => ({ ...f, _origIdx: idx })).filter(f => !q || f.file_name.toLowerCase().includes(q) || (f.file_path || '').toLowerCase().includes(q));
+    },
+    sandboxLineCount() {
+      if (!this.sandboxSource) return 1;
+      return this.sandboxSource.split('\n').length;
+    },
+    buildStatusText() {
+      switch (this.buildStatus) {
+        case 'running': return 'BUILDING...';
+        case 'success': return 'COMPILED SUCCESSFULLY';
+        case 'failed': return 'COMPILATION FAILED';
+        default: return 'IDLE';
+      }
+    }
+  },
+  watch: {
+    selectedFileIndex() {
+      this.selectedIssueLines = [];
+      this.activeFileIssue = null;
+      this.issuesPanelOpen = true;
+      if (this.activeViewerTab === 'sandbox') {
+        this.initializeSandbox();
+      }
+    },
+    activeViewerTab(newTab) {
+      if (newTab === 'sandbox') {
+        this.initializeSandbox();
+      }
+    },
+    selectedIssueLines: {
+      handler(newLines) {
+        if (this.activeViewerTab === 'sandbox') {
+          this.scrollSandboxToFirstHighlight();
+        }
+      },
+      deep: true
     }
   },
   async mounted() {
     await this.fetchReport();
+  },
+  beforeUnmount() {
+    if (this.sseSource) {
+      this.sseSource.close();
+    }
+    if (this.toastTimer) {
+      clearTimeout(this.toastTimer);
+    }
   },
   errorCaptured(err, instance, info) {
     console.error('[AIReport] Component error caught:', err, info);
@@ -747,6 +940,304 @@ export default {
     discussWithAI(issue) {
       // Emit upward to App.vue so the issue survives the component re-key
       this.$emit('discuss-issue', issue);
+    },
+    // ── Refactor Sandbox & Build Check Methods ────────────────
+    async initializeSandbox() {
+      if (!this.selectedFile) return;
+      try {
+        const res = await axios.get(`/file-content?path=${encodeURIComponent(this.selectedFile.file_path)}`);
+        this.sandboxOriginal = res.data;
+        this.sandboxSource = res.data;
+      } catch (err) {
+        console.error('Failed to load file content for sandbox', err);
+        this.showToast('Failed to load sandbox source code.', 'error');
+      }
+    },
+    toggleSandboxTab() {
+      this.activeViewerTab = 'sandbox';
+    },
+    syncEditorScroll() {
+      const textarea = this.$refs.sandboxTextarea;
+      const lineNumbers = this.$refs.editorLineNumbers;
+      const bgsContainer = this.$refs.editorBgsContainer;
+      if (textarea) {
+        if (lineNumbers) lineNumbers.scrollTop = textarea.scrollTop;
+        if (bgsContainer) bgsContainer.scrollTop = textarea.scrollTop;
+      }
+    },
+    scrollSandboxToFirstHighlight() {
+      if (this.selectedIssueLines.length > 0) {
+        this.$nextTick(() => {
+          const lineNum = this.selectedIssueLines[0];
+          const lineNumbersEl = this.$refs.editorLineNumbers;
+          if (lineNumbersEl && lineNumbersEl.children) {
+            const targetEl = lineNumbersEl.children[lineNum - 1];
+            const textarea = this.$refs.sandboxTextarea;
+            if (targetEl && textarea) {
+              const top = targetEl.offsetTop;
+              const height = textarea.clientHeight;
+              textarea.scrollTop = top - (height / 2);
+              this.syncEditorScroll();
+            }
+          }
+        });
+      }
+    },
+    showToast(msg, type = 'success') {
+      this.toast.show = true;
+      this.toast.msg = msg;
+      this.toast.type = type;
+      
+      if (this.toastTimer) {
+        clearTimeout(this.toastTimer);
+      }
+      this.toastTimer = setTimeout(() => {
+        this.toast.show = false;
+      }, 4000);
+    },
+    closeToast() {
+      this.toast.show = false;
+    },
+    applySelectedFix() {
+      if (this.activeFileIssue === null) return;
+      const issue = this.selectedFileIssues[this.activeFileIssue];
+      if (issue) {
+        this.applyIssueFix(issue);
+      }
+    },
+    applyAllSuggestions() {
+      let count = 0;
+      for (const issue of this.selectedFileIssues) {
+        if (issue.is_real_issue) {
+          const success = this.applyIssueFixSilent(issue);
+          if (success) count++;
+        }
+      }
+      if (count > 0) {
+        this.showToast(`Applied ${count} fixes successfully in-memory!`, 'success');
+      } else {
+        this.showToast('No fixes could be automatically applied.', 'warning');
+      }
+    },
+    applyIssueFix(issue) {
+      const originalSnippet = (issue.original_code || issue.original_code_snippet || '').trim();
+      const fixedSnippet = (issue.fixed_code || issue.fixed_code_snippet || '').trim();
+      
+      if (!originalSnippet || !fixedSnippet) {
+        this.showToast('Could not find code snippets to apply the fix.', 'error');
+        return false;
+      }
+      
+      if (this.sandboxSource.includes(originalSnippet)) {
+        this.sandboxSource = this.sandboxSource.replace(originalSnippet, fixedSnippet);
+        this.showToast('Successfully applied fix suggestion!', 'success');
+        return true;
+      }
+      
+      const lines = this.sandboxSource.split('\n');
+      const lineNum = issue.line_number || issue.line || this.extractLineNumber(issue.rationale);
+      
+      if (lineNum && lineNum <= lines.length) {
+        const targetIdx = lineNum - 1;
+        const origLines = originalSnippet.split('\n');
+        let matched = true;
+        for (let i = 0; i < origLines.length; i++) {
+          if (targetIdx + i >= lines.length || !lines[targetIdx + i].trim().includes(origLines[i].trim())) {
+            matched = false;
+            break;
+          }
+        }
+        
+        if (matched) {
+          lines.splice(targetIdx, origLines.length, fixedSnippet);
+          this.sandboxSource = lines.join('\n');
+          this.showToast('Successfully applied fix at line ' + lineNum, 'success');
+          return true;
+        }
+      }
+      
+      const firstOrigLine = originalSnippet.split('\n')[0].trim();
+      if (firstOrigLine.length > 5) {
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].trim() === firstOrigLine) {
+            const origLines = originalSnippet.split('\n');
+            lines.splice(i, origLines.length, fixedSnippet);
+            this.sandboxSource = lines.join('\n');
+            this.showToast('Successfully applied fix (fuzzy matched lines)', 'success');
+            return true;
+          }
+        }
+      }
+      
+      this.showToast('Could not auto-apply fix. The code may have been modified. Please copy the fix manually.', 'warning');
+      return false;
+    },
+    applyIssueFixSilent(issue) {
+      const originalSnippet = (issue.original_code || issue.original_code_snippet || '').trim();
+      const fixedSnippet = (issue.fixed_code || issue.fixed_code_snippet || '').trim();
+      if (!originalSnippet || !fixedSnippet) return false;
+      
+      if (this.sandboxSource.includes(originalSnippet)) {
+        this.sandboxSource = this.sandboxSource.replace(originalSnippet, fixedSnippet);
+        return true;
+      }
+      
+      const lines = this.sandboxSource.split('\n');
+      const lineNum = issue.line_number || issue.line || this.extractLineNumber(issue.rationale);
+      if (lineNum && lineNum <= lines.length) {
+        const targetIdx = lineNum - 1;
+        const origLines = originalSnippet.split('\n');
+        let matched = true;
+        for (let i = 0; i < origLines.length; i++) {
+          if (targetIdx + i >= lines.length || !lines[targetIdx + i].trim().includes(origLines[i].trim())) {
+            matched = false;
+            break;
+          }
+        }
+        if (matched) {
+          lines.splice(targetIdx, origLines.length, fixedSnippet);
+          this.sandboxSource = lines.join('\n');
+          return true;
+        }
+      }
+      
+      const firstOrigLine = originalSnippet.split('\n')[0].trim();
+      if (firstOrigLine.length > 5) {
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].trim() === firstOrigLine) {
+            const origLines = originalSnippet.split('\n');
+            lines.splice(i, origLines.length, fixedSnippet);
+            this.sandboxSource = lines.join('\n');
+            return true;
+          }
+        }
+      }
+      return false;
+    },
+    async saveSandboxToFile() {
+      if (!this.selectedFile) return;
+      try {
+        const res = await axios.post('/api/save-file', {
+          path: this.selectedFile.file_path,
+          content: this.sandboxSource
+        });
+        if (res.data.status === 'success') {
+          this.sandboxOriginal = this.sandboxSource;
+          this.showToast('File saved to disk successfully!', 'success');
+        } else {
+          this.showToast(res.data.error || 'Failed to save file.', 'error');
+        }
+      } catch (err) {
+        console.error('Failed to save file', err);
+        this.showToast(err.response?.data?.error || 'Failed to save file to disk.', 'error');
+      }
+    },
+    async runBuildCheck() {
+      if (!this.selectedFile) return;
+      this.buildLogs = ['[SYSTEM] Saving playground code to file...'];
+      this.buildStatus = 'running';
+      
+      try {
+        const saveRes = await axios.post('/api/save-file', {
+          path: this.selectedFile.file_path,
+          content: this.sandboxSource
+        });
+        if (saveRes.data.status === 'success') {
+          this.sandboxOriginal = this.sandboxSource;
+          this.buildLogs.push('[SYSTEM] File saved successfully.');
+        } else {
+          this.buildLogs.push('[SYSTEM ERROR] Failed to save sandbox code to disk. Testing last saved state instead.');
+        }
+      } catch (err) {
+        console.error('Auto-save error', err);
+        this.buildLogs.push('[SYSTEM WARNING] File write failed. Proceeding check on last saved disk version.');
+      }
+      
+      try {
+        const res = await axios.post('/api/run-build', {
+          filePath: this.selectedFile.file_path
+        });
+        const jobId = res.data.job_id;
+        this.buildJobId = jobId;
+        
+        if (this.sseSource) {
+          this.sseSource.close();
+        }
+        
+        const sseUrl = `/progress/${jobId}`;
+        this.sseSource = new EventSource(sseUrl);
+        
+        this.sseSource.onmessage = (event) => {
+          const line = event.data;
+          this.buildLogs.push(line);
+          this.$nextTick(() => {
+            this.scrollTerminalToBottom();
+          });
+        };
+        
+        this.sseSource.onerror = (err) => {
+          console.error('SSE Error:', err);
+          if (this.sseSource) {
+            this.sseSource.close();
+            this.sseSource = null;
+          }
+          this.checkBuildJobStatus(jobId);
+        };
+      } catch (err) {
+        console.error('Failed to run build', err);
+        this.buildStatus = 'failed';
+        this.buildLogs.push('[SYSTEM ERROR] Failed to trigger build job API.');
+        this.showToast('Failed to trigger build check.', 'error');
+      }
+    },
+    async checkBuildJobStatus(jobId) {
+      try {
+        const res = await axios.get(`/status/${jobId}`);
+        const status = res.data.status;
+        if (status === 'done') {
+          const hasError = this.buildLogs.some(line => {
+            const l = line.toLowerCase();
+            return l.includes('error') || l.includes('failed') || l.includes('fail');
+          });
+          this.buildStatus = hasError ? 'failed' : 'success';
+          if (hasError) {
+            this.showToast('Build check completed with compilation errors.', 'error');
+          } else {
+            this.showToast('Build check passed! Zero compile errors.', 'success');
+          }
+        } else if (status === 'error') {
+          this.buildStatus = 'failed';
+          this.showToast(res.data.error || 'Build process encountered an error.', 'error');
+        } else if (status === 'running' || status === 'queued') {
+          setTimeout(() => this.checkBuildJobStatus(jobId), 1000);
+        }
+      } catch (err) {
+        console.error('Failed to get job status', err);
+        this.buildStatus = 'idle';
+      }
+    },
+    scrollTerminalToBottom() {
+      const terminal = this.$refs.terminalBody;
+      if (terminal) {
+        terminal.scrollTop = terminal.scrollHeight;
+      }
+    },
+    clearBuildLogs() {
+      this.buildLogs = [];
+      this.buildStatus = 'idle';
+    },
+    getLogLineClass(log) {
+      const l = log.toLowerCase();
+      if (l.includes('error') || l.includes('failed') || l.includes('fail') || l.includes('err:')) {
+        return 'log-error';
+      }
+      if (l.includes('built') || l.includes('success') || l.includes('done') || l.includes('compiled')) {
+        return 'log-success';
+      }
+      if (l.includes('vite') || l.includes('rollup') || l.includes('building')) {
+        return 'log-info';
+      }
+      return 'log-normal';
     }
   }
 };
@@ -1055,6 +1546,388 @@ export default {
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
+}
+
+/* ── Refactor Sandbox & Custom Code Editor ── */
+.ws-source-v2.sandbox-mode {
+  max-height: 800px;
+  height: 800px;
+  min-height: 600px;
+}
+
+.viewer-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-inset, #0b0f19);
+  padding: 2px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  background: var(--bg-surface);
+  color: var(--accent-primary);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.sandbox-tab-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sandbox-pulse-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  margin-left: 5px;
+  box-shadow: 0 0 8px var(--accent-primary);
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 5px rgba(139, 92, 246, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+}
+
+.sandbox-actions-panel {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-sandbox-action {
+  font-size: 0.72rem !important;
+  padding: 0.25rem 0.6rem !important;
+  font-weight: 600 !important;
+}
+
+.btn-sandbox-action.save-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-color: #059669;
+}
+
+.btn-sandbox-action.build-btn {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border-color: #4f46e5;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.viewer-panes-container {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.sandbox-split-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-subtle);
+  overflow: hidden;
+  height: 100%;
+}
+
+.sandbox-side {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-inset);
+  overflow: hidden;
+  height: 100%;
+}
+
+.side-banner {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--bg-overlay);
+  border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: 0.05em;
+}
+
+.editable-banner {
+  color: var(--accent-primary);
+  border-left: 2px solid var(--accent-primary);
+}
+
+.side-pane-wrapper {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+}
+
+.editable-pane-wrapper {
+  background: var(--bg-surface);
+}
+
+.sandbox-editor-wrapper {
+  display: flex;
+  height: 100%;
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: #0f1420;
+}
+
+.sandbox-bgs-container {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  padding: 1rem 0;
+}
+
+.sandbox-line-bg {
+  height: 1.6em;
+  width: 100%;
+}
+
+.sandbox-line-bg.hl-bg {
+  background: var(--accent-danger-subtle, rgba(239, 68, 68, 0.15));
+}
+
+.sandbox-line-numbers {
+  width: 40px;
+  background: #0b0e17;
+  border-right: 1px solid var(--border-subtle);
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  user-select: none;
+  overflow-y: hidden;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.sandbox-num {
+  padding: 0 0.75rem;
+  color: var(--text-tertiary);
+  height: 1.6em;
+  line-height: 1.6;
+  border-right: 3px solid transparent;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.sandbox-num.highlight-line {
+  background: var(--accent-danger-subtle, rgba(239, 68, 68, 0.15));
+  color: var(--accent-danger, #ef4444);
+  border-right: 3px solid var(--accent-danger, #ef4444);
+  font-weight: 700;
+}
+
+.sandbox-textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 1rem;
+  color: #e2e8f0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Glassmorphic Streaming Terminal Console */
+.glassmorphic-terminal {
+  height: 220px;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminal-header {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(9, 15, 29, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.terminal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.red-dot { background: #ef4444; }
+.yellow-dot { background: #eab308; }
+.green-dot { background: #22c55e; }
+
+.terminal-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  margin-left: 0.4rem;
+  letter-spacing: 0.05em;
+}
+
+.terminal-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,255,255,0.04);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+}
+
+.status-dot.running {
+  background: #eab308;
+  box-shadow: 0 0 8px #eab308;
+  animation: pulse-dot-yellow 1.5s infinite;
+}
+
+.status-dot.success {
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.status-dot.failed {
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: pulse-dot-red 1.5s infinite;
+}
+
+@keyframes pulse-dot-yellow {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 5px rgba(234, 179, 8, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
+}
+
+@keyframes pulse-dot-red {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 5px rgba(239, 68, 68, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.status-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+.btn-clear-console {
+  font-size: 0.65rem !important;
+  color: var(--text-tertiary) !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer;
+}
+
+.btn-clear-console:hover {
+  color: var(--text-primary) !important;
+}
+
+.terminal-body {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+  background: rgba(9, 13, 22, 0.4);
+}
+
+.terminal-placeholder {
+  color: var(--text-tertiary);
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.terminal-line {
+  white-space: pre-wrap;
+  margin-bottom: 0.2rem;
+}
+
+.log-error {
+  color: #f87171;
+  font-weight: 600;
+  background: rgba(239, 68, 68, 0.08);
+  padding: 0.1rem 0.25rem;
+  border-left: 2px solid #ef4444;
+  animation: pulse-danger-line 2s infinite;
+}
+
+@keyframes pulse-danger-line {
+  0% { background: rgba(239, 68, 68, 0.08); }
+  50% { background: rgba(239, 68, 68, 0.15); }
+  100% { background: rgba(239, 68, 68, 0.08); }
+}
+
+.log-success {
+  color: #34d399;
+  font-weight: 600;
+  background: rgba(16, 185, 129, 0.06);
+  padding: 0.1rem 0.25rem;
+}
+
+.log-info {
+  color: #22d3ee;
+}
+
+.log-normal {
+  color: #cbd5e1;
 }
 
 /* Print Styles */

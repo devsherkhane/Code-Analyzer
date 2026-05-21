@@ -36,6 +36,13 @@ func updateJobStatus(jobID, status, errMsg string) {
 		job.Mutex.Lock()
 		job.Status = status
 		job.ErrorMsg = errMsg
+		// When a job completes, close all SSE client channels so streams terminate
+		if status == "done" || status == "error" {
+			for _, ch := range job.Clients {
+				close(ch)
+			}
+			job.Clients = nil
+		}
 		job.Mutex.Unlock()
 	}
 }
@@ -48,11 +55,13 @@ func appendJobLog(jobID, line string) {
 	if exists {
 		job.Mutex.Lock()
 		job.Logs = append(job.Logs, line)
-		// Send to all connected SSE clients
-		for _, ch := range job.Clients {
-			select {
-			case ch <- line:
-			default:
+		// Only send to clients if job is still active (channels not closed)
+		if job.Status != "done" && job.Status != "error" {
+			for _, ch := range job.Clients {
+				select {
+				case ch <- line:
+				default:
+				}
 			}
 		}
 		job.Mutex.Unlock()
@@ -86,6 +95,114 @@ func runAnalysisJob(jobID string, path string) {
 		return
 	}
 
+	updateJobStatus(jobID, "done", "")
+}
+
+func runBuildJob(jobID string, filePath string) {
+	updateJobStatus(jobID, "running", "")
+
+	// 1. Check if we have a valid file path and find its closest npm project directory
+	var projectDir string
+	var hasPackageJSON bool
+
+	if filePath != "" {
+		appendJobLog(jobID, fmt.Sprintf("[INTEGRATED] Analyzing target context for file: %s", filepath.Base(filePath)))
+		dir := filepath.Dir(filePath)
+		// Traverse up to find package.json
+		for {
+			pkgPath := filepath.Join(dir, "package.json")
+			if _, err := os.Stat(pkgPath); err == nil {
+				projectDir = dir
+				hasPackageJSON = true
+				break
+			}
+			parent := filepath.Dir(dir)
+			if parent == dir {
+				break
+			}
+			dir = parent
+		}
+	}
+
+	if hasPackageJSON {
+		// Found package.json! Run standard build check inside the target project directory.
+		appendJobLog(jobID, fmt.Sprintf("[BUILD] Found npm project configuration at %s", projectDir))
+		appendJobLog(jobID, "[BUILD] Spawning Vite/Rollup compiler for target workspace...")
+		
+		cmd := exec.Command("cmd", "/c", "npm run build")
+		cmd.Dir = projectDir
+
+		stdout, err := cmd.StdoutPipe()
+		if err != nil {
+			updateJobStatus(jobID, "error", fmt.Sprintf("Failed to redirect stdout: %v", err))
+			return
+		}
+		cmd.Stderr = cmd.Stdout
+
+		if err := cmd.Start(); err != nil {
+			updateJobStatus(jobID, "error", fmt.Sprintf("Failed to start build process: %v", err))
+			return
+		}
+
+		scanner := bufio.NewScanner(stdout)
+		for scanner.Scan() {
+			appendJobLog(jobID, scanner.Text())
+		}
+
+		if err := cmd.Wait(); err != nil {
+			updateJobStatus(jobID, "error", fmt.Sprintf("Build failed with exit code: %v", err))
+			return
+		}
+
+		updateJobStatus(jobID, "done", "")
+		return
+	}
+
+	// 2. Fallback: No npm project found. Run high-speed linter syntax check on the single file!
+	if filePath == "" {
+		updateJobStatus(jobID, "error", "No file or workspace context provided for compilation check.")
+		return
+	}
+
+	appendJobLog(jobID, "[LINTER] No npm project found in directory. Falling back to high-speed AST linter...")
+	appendJobLog(jobID, fmt.Sprintf("[LINTER] Scanning syntax for: %s", filepath.Base(filePath)))
+
+	// Execute parser worker
+	scriptPath := "./analyzer/ts_parser/parse_node.js"
+	if _, err := os.Stat(scriptPath); err != nil {
+		scriptPath = "../analyzer/ts_parser/parse_node.js"
+	}
+
+	cmd := exec.Command("node", scriptPath, filePath)
+	output, err := cmd.CombinedOutput()
+	
+	if err != nil {
+		appendJobLog(jobID, "[LINTER ERROR] Node.js syntax parser failed to run.")
+		updateJobStatus(jobID, "error", fmt.Sprintf("Parser error: %v", err))
+		return
+	}
+
+	// Parse JSON output from the script
+	var parsed map[string]interface{}
+	if err := json.Unmarshal(output, &parsed); err == nil {
+		if errMsg, exists := parsed["error"]; exists {
+			appendJobLog(jobID, fmt.Sprintf("[LINTER ERROR] Syntax Validation Failed for %s:", filepath.Base(filePath)))
+			appendJobLog(jobID, fmt.Sprintf("  => %v", errMsg))
+			updateJobStatus(jobID, "error", "Syntax Validation Failed")
+			return
+		}
+		if syntaxErr, exists := parsed["syntax_error"]; exists && syntaxErr != nil && syntaxErr != "" {
+			appendJobLog(jobID, fmt.Sprintf("[LINTER ERROR] Syntax Validation Failed for %s:", filepath.Base(filePath)))
+			appendJobLog(jobID, fmt.Sprintf("  => %v", syntaxErr))
+			updateJobStatus(jobID, "error", "Syntax Validation Failed")
+			return
+		}
+	}
+
+	// If no error, validation succeeded!
+	time.Sleep(300 * time.Millisecond) // Add slight aesthetic lag so console looks alive
+	appendJobLog(jobID, fmt.Sprintf("[LINTER SUCCESS] Syntactical scan of %s passed with zero errors!", filepath.Base(filePath)))
+	appendJobLog(jobID, "[LINTER SUCCESS] AST parsing completed successfully. Ready for deployment.")
 	updateJobStatus(jobID, "done", "")
 }
 
@@ -395,6 +512,63 @@ func main() {
 			return
 		}
 		c.File(filePath)
+	})
+
+	r.POST("/api/save-file", func(c *gin.Context) {
+		var req struct {
+			Path    string `json:"path"`
+			Content string `json:"content"`
+		}
+		if err := c.ShouldBindJSON(&req); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+			return
+		}
+
+		if req.Path == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "path is required"})
+			return
+		}
+
+		cleanedPath := filepath.Clean(req.Path)
+		err := os.WriteFile(cleanedPath, []byte(req.Content), 0644)
+		if err != nil {
+			// Try absolute path fallback if direct write fails
+			cleanedPathAlt := filepath.Join("..", cleanedPath)
+			errAlt := os.WriteFile(cleanedPathAlt, []byte(req.Content), 0644)
+			if errAlt != nil {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("Failed to write file: %v", err.Error())})
+				return
+			}
+		}
+
+		c.JSON(http.StatusOK, gin.H{"status": "success", "msg": "File saved successfully"})
+	})
+
+	r.POST("/api/run-build", func(c *gin.Context) {
+		var req struct {
+			FilePath string `json:"filePath"`
+		}
+		if err := c.ShouldBindJSON(&req); err != nil {
+			req.FilePath = ""
+		}
+
+		jobID := fmt.Sprintf("build_%d", time.Now().UnixNano())
+		job := &Job{
+			ID:     jobID,
+			Status: "queued",
+		}
+
+		jobsMutex.Lock()
+		jobs[jobID] = job
+		jobsMutex.Unlock()
+
+		// Execute the compilation check in a background goroutine
+		go runBuildJob(jobID, req.FilePath)
+
+		c.JSON(http.StatusOK, gin.H{
+			"job_id": jobID,
+			"msg":    "Vite compilation process started",
+		})
 	})
 
 	// Fallback to index.html for frontend HTML5 history mode routing

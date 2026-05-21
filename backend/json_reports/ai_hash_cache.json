@@ -1964,5 +1964,61 @@
             "layout_assessment": "Healthy.",
             "engineering_health_score": 100
         }
+    },
+    "3d195479cc1ba450166ca3b8b9692042651c887ebad393675e29a3085e9d5f65": {
+        "issues": [
+            {
+                "line": 5,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "aria-label on icon",
+                "problem": "The aria-label on the back icon is \"Back\". This does not align with the visually rendered text \"Back\" which is also present in the icon.  Screen readers may announce \"Back\" twice, creating a confusing user experience. Also the icon is not a semantic element.",
+                "original_code": "<div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-label=\"Back\" ></i></div>",
+                "fixed_code": "<div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" ></i><span class=\"sr-only\">Back</span></div>",
+                "explanation": "Using `sr-only` as an inline span to provide a textual description to screen readers for the icon. This ensures a single announcement, aligning the code with the visual presentation and improving accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -5 +5 @@\n- <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-label=\"Back\" ></i></div>\n+ <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" ></i><span class=\"sr-only\">Back</span></div>",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 95,
+            "recommendations": []
+        }
+    },
+    "2c60f7edd43fc90686f60fdba64925f2b4fbdebc21a9aded42bf5b5ab854a2a9": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 100,
+            "recommendations": []
+        }
+    },
+    "9630fa485ead454a81fc1b1cee59871a49767fbb3bae6eef2ac08193c1b638f1": {
+        "issues": [
+            {
+                "line": 113,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "input[v-model=\"clientMenu.menuHelpText\"]",
+                "problem": "The input field for the menu help text has no associated label or description. This makes it difficult for users to understand the purpose of this field, particularly those with cognitive disabilities. It\u2019s crucial to provide a descriptive label that explains what information should be entered in this field.",
+                "original_code": " <input \n113:           v-model=\"clientMenu.menuHelpText\" \n114:           type=\"text\" \n115:           class=\"form-control\" \n116:         />",
+                "modified_code": " <input \n113:           v-model=\"clientMenu.menuHelpText\" \n114:           type=\"text\" \n115:           class=\"form-control\" \n116:           placeholder=\"Enter help text for the menu item\" \n117:         />",
+                "fix_suggestion": "Add a placeholder text to the input to explain what the user should enter.",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "00e4e4b3531fe8afd6bee662db3c7b1398dd190b9f627816095941dfe45e0b21": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Healthy.",
+            "engineering_health_score": 100
+        }
     }
 }

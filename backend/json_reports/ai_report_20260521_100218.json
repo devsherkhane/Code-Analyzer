@@ -1,0 +1,333 @@
+{
+    "overall_score": 62,
+    "audit_status": "complete",
+    "project_name": "PrismAI Project",
+    "report_id": "20260521_100218",
+    "timestamp": "2026-05-21T10:02:18.229130",
+    "files_analyzed": 17,
+    "total_issues": 9,
+    "total_real_issues": 9,
+    "total_false_positives": 0,
+    "files": [
+        {
+            "file_id": "1",
+            "file_name": "ApplicationServices.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ApplicationServices.vue",
+            "ai_analysis": [
+                {
+                    "line": 14,
+                    "defect_type": "Security | Performance",
+                    "severity": "critical",
+                    "element": "div with v-if=\"isLoading\"",
+                    "problem": "The fixed overlay is always visible, regardless of loading state. This significantly degrades performance and provides a persistent, distracting visual element, especially on slower devices.",
+                    "original_code": "v-if=\"isLoading\"\nclass=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center\"\n",
+                    "fixed_code": "v-if=\"isLoading\"\nclass=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center transition-opacity duration-300 ease-in-out\"\n",
+                    "explanation": "Adding `transition-opacity duration-300 ease-in-out` allows the overlay to fade in and out smoothly, mitigating the performance impact of constant rendering and providing a better user experience.  The overlay is only active if isLoading is true.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -14 +14 @@\n- v-if=\"isLoading\"\n+ v-if=\"isLoading\"\n+ class=\"fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center transition-opacity duration-300 ease-in-out\"\n",
+                    "is_real_issue": true
+                }
+            ],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 85,
+                    "defect_type": "Accessibility | UI",
+                    "severity": "medium",
+                    "element": "v-for=\"option in optionList\"",
+                    "problem": "The `optionCard` element lacks appropriate ARIA attributes to define its role and accessibility behavior, particularly for keyboard navigation and screen reader interpretation. This makes the dynamic content inaccessible to users with disabilities.",
+                    "original_code": "v-for=\"option in optionList\" :key=\"index\"\nclass=\"option-card\"\n:class=\"{ active: expandedOption === option.type }\"\n@click=\"toggleOption(option.type, option.id)\n:ref=\"'optionCard' + index\"\n",
+                    "fixed_code": "v-for=\"option in optionList\" :key=\"option.id\"\nclass=\"option-card\"\n:class=\"{ active: expandedOption === option.type }\"\n@click=\"toggleOption(option.type, option.id)\n:ref=\"'optionCard' + index\"\naria-controls=\"option.id + accordionContent\" aria-expanded=\"expandedOption === option.type\"",
+                    "explanation": "Adding `aria-controls` and `aria-expanded` attributes correctly defines the role of the `optionCard` element as a collapsible section, enabling screen readers to navigate and understand its state. The key is linked to a dynamically created content id.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -85 +85 @@\n- v-for=\"option in optionList\" :key=\"index\"\n+ v-for=\"option in optionList\" :key=\"option.id\"\n+ aria-controls=\"option.id + accordionContent\" aria-expanded=\"expandedOption === option.type\"\n",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The visual layout appears consistent but the loader overlay should fade in and out smoothly, and the dynamically created accordion sections must be navigable using screen readers.",
+                "engineering_health_score": 90,
+                "recommendations": [
+                    "Implement smooth transitions for the loader overlay.",
+                    "Thoroughly test with screen readers to ensure dynamic content is fully accessible."
+                ]
+            }
+        },
+        {
+            "file_id": "2",
+            "file_name": "defaultLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\defaultLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "3",
+            "file_name": "ExamFormSubmission.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ExamFormSubmission.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 13,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "data-tip=\"Back\"",
+                    "problem": "Missing ARIA role and appropriate label for the tooltip, making it inaccessible to screen readers and users who rely on keyboard navigation.",
+                    "original_code": "data-tip=\"Back\"\n        class=\"tooltip tooltip-right cursor-pointer\"\n        @click=\"goBack()\"",
+                    "fixed_code": "data-tip=\"Back\" role=\"button\" aria-label=\"Back\" class=\"tooltip tooltip-right cursor-pointer\"\n        @click=\"goBack()\"",
+                    "explanation": "Adding `role=\"button\"` and `aria-label=\"Back\"` provides semantic information to assistive technologies, allowing screen readers to properly interpret and announce the tooltip's function as 'Back'.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -13 +13 @@\n- data-tip=\"Back\"\n+ data-tip=\"Back\" role=\"button\" aria-label=\"Back\"",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 16,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "fa-light fa-circle-arrow-left",
+                    "problem": "Using a Font Awesome icon without appropriate ARIA attributes or a visible label, creating a confusing user experience for screen reader users. Also, the icon may not be recognizable to all users.",
+                    "original_code": "<i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>",
+                    "fixed_code": "<i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-label=\"Go back\"></i>",
+                    "explanation": "Adding `aria-label=\"Go back\"` provides a descriptive label for the icon, enabling screen readers to accurately announce its purpose. While using Font Awesome is fine, a native HTML element with a label is preferred for accessibility.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n+ <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-label=\"Go back\"></i>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 19,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "<span>Exam Form Submission</span>",
+                    "problem": "The heading text 'Exam Form Submission' is not accessible if the component's title is changed dynamically.  A11y best practice is to always provide a descriptive label.",
+                    "original_code": "<span>Exam Form Submission</span>",
+                    "fixed_code": "<span class=\"font-bold text-slate-600\">Exam Form Submission</span>",
+                    "explanation": "Leaving this line unchanged, as it provides a sensible heading for the form submission module.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -19 +19 @@\n- <span>Exam Form Submission</span>\n+ <span>Exam Form Submission</span>",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 41,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "box box-2",
+                    "problem": "The \"box box-2\" class is a CSS styling class that doesn't have a semantic meaning and therefore contributes to the overall technical debt. It does not help to identify the elements that belong to the section.",
+                    "original_code": "<div class=\"box box-2\">",
+                    "fixed_code": "<div class=\"form-section\">",
+                    "explanation": "Changing the class name to form-section provides a semantic meaning that makes it easier to identify the section's purpose.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -41 +41 @@\n- <div class=\"box box-2\"> \n+ <div class=\"form-section\">",
+                    "is_real_issue": true
+                },
+                {
+                    "line": 85,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "hr-card-2",
+                    "problem": "The \"hr-card-2\" class is a CSS styling class that doesn't have a semantic meaning and therefore contributes to the overall technical debt. It does not help to identify the elements that belong to the section.",
+                    "original_code": "<div class=\"hr-card-2\">",
+                    "fixed_code": "<div class=\"form-card\">",
+                    "explanation": "Changing the class name to form-card provides a semantic meaning that makes it easier to identify the elements that belong to the section.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -85 +85 @@\n- <div class=\"hr-card-2\"> \n+ <div class=\"form-card\">",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 85,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "4",
+            "file_name": "FeeDetails.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\FeeDetails.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "5",
+            "file_name": "HallTicketPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\HallTicketPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "6",
+            "file_name": "iLikeCourses.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCourses.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 6,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "critical",
+                    "element": "fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold",
+                    "problem": "The tooltip's 'Back' text is not accessible to screen readers because it's not associated with a visible, accessible control.  The tooltip itself doesn't have ARIA attributes to indicate its purpose.",
+                    "original_code": "  <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\">\n6:           <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n7:         </div>",
+                    "fixed_code": "  <div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-label=\"Back\" ></i></div>",
+                    "explanation": "Adding `aria-label=\"Back\"` to the `<i>` element makes it accessible to screen readers. This provides a text alternative for the icon, describing its function to users with disabilities.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -6 +7 @@\n-  <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i>\n+  <i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" aria-label=\"Back\"></i>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 95,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "7",
+            "file_name": "iLikeCoursesNew.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeCoursesNew.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 90,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "8",
+            "file_name": "iLikeDashboard.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeDashboard.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "9",
+            "file_name": "iLikeLanding.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\iLikeLanding.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "10",
+            "file_name": "ResultPage.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\ResultPage.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "AI analysis unavailable (server timeout). File will be re-analyzed on next run.",
+                "engineering_health_score": 0
+            }
+        },
+        {
+            "file_id": "11",
+            "file_name": "SelectedApplicationService.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\SelectedApplicationService.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [
+                {
+                    "line": 24,
+                    "defect_type": "Accessibility | UI | Logic",
+                    "severity": "medium",
+                    "element": "h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType}}",
+                    "problem": "The `role` attribute is missing from the `h1` tag. This is a critical accessibility issue for screen readers, as it prevents them from understanding the content and purpose of the heading.",
+                    "original_code": " <h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}</h1>",
+                    "fixed_code": "<h1 class=\"font-bold text-center mb-2 subject-info\" role=\"presentation\">Selected courses for {{ selectedSubjects[0]?.applicationType }}</h1>",
+                    "explanation": "Adding `role=\"presentation\"` to the heading element informs screen readers that this is purely a presentation element and not a semantic heading. This allows screen readers to correctly interpret the content without misinterpreting it as a navigational element.",
+                    "fix_diff": "--- original\n+++ fixed\n@@ -24 +24 @@\n- <h1 class=\"font-bold text-center mb-2 subject-info\">Selected courses for {{ selectedSubjects[0]?.applicationType }}</h1>\n++ <h1 class=\"font-bold text-center mb-2 subject-info\" role=\"presentation\">Selected courses for {{ selectedSubjects[0]?.applicationType }}</h1>",
+                    "is_real_issue": true
+                }
+            ],
+            "visual_simulation": {
+                "layout_assessment": "The addition of `role=\"presentation\"` will not visually change the layout of the component.  It only improves accessibility.",
+                "engineering_health_score": 92,
+                "recommendations": [
+                    "Consider adding `aria-labelledby` to link this heading to the appropriate label, further improving accessibility.",
+                    "Ensure `selectedSubjects[0]` is always defined to prevent potential errors."
+                ]
+            }
+        },
+        {
+            "file_id": "12",
+            "file_name": "spLayout.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\spLayout.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Healthy.",
+                "engineering_health_score": 100
+            }
+        },
+        {
+            "file_id": "13",
+            "file_name": "Transactions.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\Transactions.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "14",
+            "file_name": "uploadFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "15",
+            "file_name": "uploadProgessFile.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\uploadProgessFile.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "16",
+            "file_name": "viewExamTimeTable.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewExamTimeTable.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        },
+        {
+            "file_id": "17",
+            "file_name": "viewMarksheet.vue",
+            "file_path": "c:\\Users\\Lenovo\\Desktop\\Office_Domain\\vuefiles\\viewMarksheet.vue",
+            "ai_analysis": [],
+            "ui_accessibility_analysis": [],
+            "visual_simulation": {
+                "layout_assessment": "Analyzed by AI.",
+                "engineering_health_score": 100,
+                "recommendations": []
+            }
+        }
+    ]
+}
