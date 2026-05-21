@@ -1,443 +1,58 @@
 [
     {
-        "file_id": 43,
+        "file_id": 5,
         "method": "GET",
         "url": "[dynamic]",
         "payload_data": "",
         "api_id": 1
     },
     {
-        "file_id": 43,
-        "method": "CREATE",
+        "file_id": 5,
+        "method": "GET",
         "url": "[dynamic]",
         "payload_data": "...",
         "api_id": 2
     },
     {
-        "file_id": 44,
+        "file_id": 8,
         "method": "GET",
         "url": "[dynamic]",
-        "payload_data": "",
+        "payload_data": "...",
         "api_id": 3
     },
     {
-        "file_id": 44,
-        "method": "CREATE",
-        "url": "[dynamic]",
-        "payload_data": "...",
+        "file_id": 10,
+        "method": "GET",
+        "url": "{var}{var}/{var}",
+        "payload_data": "",
         "api_id": 4
     },
     {
-        "file_id": 45,
+        "file_id": 10,
         "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
+        "url": "{var}{var}/{var}",
+        "payload_data": "...",
         "api_id": 5
     },
     {
-        "file_id": 45,
-        "method": "CREATE",
-        "url": "[dynamic]",
+        "file_id": 16,
+        "method": "GET",
+        "url": "https://staging2-srtmuops.dulive.ac/package/toysto.html",
         "payload_data": "...",
         "api_id": 6
     },
     {
-        "file_id": 49,
+        "file_id": 17,
         "method": "GET",
-        "url": "[dynamic]",
+        "url": "{var}S62FDECD1608437AA61ECF8F2B39A961/{var}",
         "payload_data": "",
         "api_id": 7
     },
     {
-        "file_id": 49,
+        "file_id": 17,
         "method": "GET",
-        "url": "[dynamic]",
+        "url": "{var}S62FDECD1608437AA61ECF8F2B39A961/{var}",
         "payload_data": "...",
         "api_id": 8
-    },
-    {
-        "file_id": 68,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 9
-    },
-    {
-        "file_id": 68,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 10
-    },
-    {
-        "file_id": 68,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 11
-    },
-    {
-        "file_id": 68,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 12
-    },
-    {
-        "file_id": 68,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 13
-    },
-    {
-        "file_id": 68,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 14
-    },
-    {
-        "file_id": 70,
-        "method": "GET",
-        "url": "/duOpsServices/importDataExcel",
-        "payload_data": "",
-        "api_id": 15
-    },
-    {
-        "file_id": 70,
-        "method": "POST",
-        "url": "/duOpsServices/importDataExcel",
-        "payload_data": "...",
-        "api_id": 16
-    },
-    {
-        "file_id": 70,
-        "method": "GET",
-        "url": "/duOpsServices/callApi",
-        "payload_data": "",
-        "api_id": 17
-    },
-    {
-        "file_id": 70,
-        "method": "POST",
-        "url": "/duOpsServices/callApi",
-        "payload_data": "...",
-        "api_id": 18
-    },
-    {
-        "file_id": 72,
-        "method": "GET",
-        "url": "/resultServer/syncserver/college/studentDetails/",
-        "payload_data": "",
-        "api_id": 19
-    },
-    {
-        "file_id": 72,
-        "method": "POST",
-        "url": "/resultServer/syncserver/college/studentDetails/",
-        "payload_data": "...",
-        "api_id": 20
-    },
-    {
-        "file_id": 72,
-        "method": "GET",
-        "url": "/resultServer/syncserver/college/studentMarksheet/",
-        "payload_data": "",
-        "api_id": 21
-    },
-    {
-        "file_id": 72,
-        "method": "POST",
-        "url": "/resultServer/syncserver/college/studentMarksheet/",
-        "payload_data": "...",
-        "api_id": 22
-    },
-    {
-        "file_id": 82,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 23
-    },
-    {
-        "file_id": 82,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 24
-    },
-    {
-        "file_id": 86,
-        "method": "GET",
-        "url": "/examinationserver/modifyExamForm",
-        "payload_data": "",
-        "api_id": 25
-    },
-    {
-        "file_id": 86,
-        "method": "POST",
-        "url": "/examinationserver/modifyExamForm",
-        "payload_data": "...",
-        "api_id": 26
-    },
-    {
-        "file_id": 87,
-        "method": "GET",
-        "url": "/adecServer/r/checkCourseChangeStudent",
-        "payload_data": "",
-        "api_id": 27
-    },
-    {
-        "file_id": 87,
-        "method": "POST",
-        "url": "/adecServer/r/checkCourseChangeStudent",
-        "payload_data": "...",
-        "api_id": 28
-    },
-    {
-        "file_id": 87,
-        "method": "GET",
-        "url": "/adecServer/r/removeCourseChangeStudent",
-        "payload_data": "",
-        "api_id": 29
-    },
-    {
-        "file_id": 87,
-        "method": "POST",
-        "url": "/adecServer/r/removeCourseChangeStudent",
-        "payload_data": "...",
-        "api_id": 30
-    },
-    {
-        "file_id": 87,
-        "method": "GET",
-        "url": "/duOpsServices/PaperChange",
-        "payload_data": "",
-        "api_id": 31
-    },
-    {
-        "file_id": 87,
-        "method": "POST",
-        "url": "/duOpsServices/PaperChange",
-        "payload_data": "...",
-        "api_id": 32
-    },
-    {
-        "file_id": 99,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 33
-    },
-    {
-        "file_id": 99,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 34
-    },
-    {
-        "file_id": 99,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 35
-    },
-    {
-        "file_id": 99,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 36
-    },
-    {
-        "file_id": 101,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 37
-    },
-    {
-        "file_id": 101,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 38
-    },
-    {
-        "file_id": 106,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 39
-    },
-    {
-        "file_id": 109,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 40
-    },
-    {
-        "file_id": 111,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 41
-    },
-    {
-        "file_id": 111,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 42
-    },
-    {
-        "file_id": 115,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 43
-    },
-    {
-        "file_id": 116,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 44
-    },
-    {
-        "file_id": 116,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 45
-    },
-    {
-        "file_id": 116,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 46
-    },
-    {
-        "file_id": 116,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 47
-    },
-    {
-        "file_id": 116,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 48
-    },
-    {
-        "file_id": 116,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 49
-    },
-    {
-        "file_id": 116,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 50
-    },
-    {
-        "file_id": 116,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 51
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 52
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 53
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 54
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 55
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 56
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 57
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 58
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 59
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 60
-    },
-    {
-        "file_id": 119,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 61
-    },
-    {
-        "file_id": 120,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "",
-        "api_id": 62
-    },
-    {
-        "file_id": 120,
-        "method": "GET",
-        "url": "[dynamic]",
-        "payload_data": "...",
-        "api_id": 63
     }
 ]

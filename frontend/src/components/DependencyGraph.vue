@@ -168,6 +168,22 @@
                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                    CIRCULAR DEP
                 </div>
+                <div class="analysis-mode-selector">
+                  <button 
+                    :class="['btn-mode', activeAnalysisMode === 'ecosystem' ? 'active' : '']"
+                    @click="setAnalysisMode('ecosystem')"
+                    title="Show direct dependencies and dependents"
+                  >
+                    🔍 Local View
+                  </button>
+                  <button 
+                    :class="['btn-mode', activeAnalysisMode === 'blast' ? 'active' : '']"
+                    @click="setAnalysisMode('blast')"
+                    title="Show downstream blast radius of transitive parents"
+                  >
+                    💥 Blast Radius
+                  </button>
+                </div>
                 <button class="btn-ghost" @click="toggleLayout">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h16M4 14h16M10 6v12M14 6v12"></path></svg>
                   {{ layoutMode === 'physics' ? 'Hierarchy' : 'Exploration' }}
@@ -180,10 +196,122 @@
 
               <!-- Vis Network Container -->
               <div ref="graphCanvas" class="graph-canvas"></div>
+            </div>            <!-- Refactor Safety Side-Drawer Dashboard (Blast Radius Mode) -->
+            <div class="detail-panel refactor-dashboard" v-if="selectedNode && activeAnalysisMode === 'blast'">
+              <!-- Title & Header -->
+              <div class="panel-section dashboard-header">
+                <div class="header-badge pulse-orange">💥 REFACTOR PLAYGROUND</div>
+                <h3>Refactor Risk Assessment</h3>
+                <p class="subtitle">Analyzing downstream blast radius and refactoring safety metrics</p>
+              </div>
+
+              <!-- Dynamic Risk Gauge Section -->
+              <div class="panel-section risk-gauge-section">
+                <div class="risk-gauge-container">
+                  <svg class="progress-ring" width="120" height="120">
+                    <circle 
+                      class="progress-ring-bg" 
+                      stroke="var(--border-subtle)" 
+                      stroke-width="8" 
+                      fill="transparent" 
+                      r="48" 
+                      cx="60" 
+                      cy="60"
+                    />
+                    <circle 
+                      class="progress-ring-circle" 
+                      :stroke="riskGaugeColor" 
+                      stroke-width="8" 
+                      stroke-linecap="round"
+                      fill="transparent" 
+                      r="48" 
+                      cx="60" 
+                      cy="60"
+                      :stroke-dasharray="strokeDashArray"
+                      :stroke-dashoffset="strokeDashOffset"
+                    />
+                  </svg>
+                  <div class="risk-gauge-value">
+                    <span class="score-number">{{ blastRadiusRiskScore }}%</span>
+                    <span :class="['score-rating', riskRatingClass]">{{ riskRatingName }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Downstream Impact Summary Stats -->
+              <div class="panel-section metrics-section">
+                <label>Blast Radius Metrics</label>
+                <div class="metrics-grid">
+                  <div class="metric-card">
+                    <div class="metric-val text-orange">{{ transitiveDependents.length }}</div>
+                    <div class="metric-lbl">Total Impacted Files</div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-val text-amber">{{ dependents.length }}</div>
+                    <div class="metric-lbl">Direct Dependents</div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-val" :class="nodeIssueCount > 0 ? 'text-red font-bold' : 'text-green'">{{ nodeIssueCount }}</div>
+                    <div class="metric-lbl">Active Defects</div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-val" :class="selectedNode?.is_circular ? 'text-red' : 'text-blue'">
+                      {{ selectedNode?.is_circular ? 'Yes' : 'No' }}
+                    </div>
+                    <div class="metric-lbl">Circular Imports</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Affected Upstream Spine -->
+              <div class="panel-section entry-points-section">
+                <label>Affected Upstream Spine (Entry Points & Pages)</label>
+                <p class="description-small">Critical high-level components and routes that will be affected by code modifications here:</p>
+                <div v-if="transitiveDependents.length" class="affected-list custom-scrollbar">
+                  <button 
+                    v-for="nid in transitiveDependents" 
+                    :key="nid" 
+                    class="affected-list-item hover-lift"
+                    @click="focusEcosystem(nid)"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="item-icon"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <span class="item-name">{{ graphData.file_map[nid]?.name }}</span>
+                    <span v-if="graphData.file_map[nid]?.name.toLowerCase().includes('main') || graphData.file_map[nid]?.name.toLowerCase().includes('app') || graphData.file_map[nid]?.name.toLowerCase().includes('page')" class="entry-tag">Entry</span>
+                  </button>
+                </div>
+                <p v-else class="empty-text">No downstream dependents affected.</p>
+              </div>
+
+              <!-- Safe Refactoring Checklist -->
+              <div class="panel-section checklist-section">
+                <label>Refactor Safety Checklist</label>
+                <div class="checklist-items">
+                  <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" checked />
+                    <span class="checklist-text">Isolate and test local changes independently</span>
+                  </label>
+                  <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" :disabled="nodeIssueCount === 0" :checked="nodeIssueCount === 0" />
+                    <span class="checklist-text" :class="{ 'strike-through-done': nodeIssueCount === 0 }">Resolve the {{ nodeIssueCount }} active component defects first</span>
+                  </label>
+                  <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" />
+                    <span class="checklist-text">Ensure all exported interfaces and props are backward compatible</span>
+                  </label>
+                  <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" :disabled="!selectedNode?.is_circular" :checked="!selectedNode?.is_circular" />
+                    <span class="checklist-text" :class="{ 'strike-through-done': !selectedNode?.is_circular }">Decouple existing import loop/circular reference</span>
+                  </label>
+                  <label class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox" />
+                    <span class="checklist-text">Run regression tests on all {{ transitiveDependents.length }} affected parent components</span>
+                  </label>
+                </div>
+              </div>
             </div>
 
-            <!-- Details Panel Docked Right -->
-            <div class="detail-panel" v-if="selectedNode">
+            <!-- Standard Details Panel (Ecosystem Mode) -->
+            <div class="detail-panel" v-if="selectedNode && activeAnalysisMode !== 'blast'">
               <!-- Blast Radius / Issues warning -->
               <div v-if="nodeIssueCount > 0" class="panel-section circular-panel" style="background-color: var(--accent-danger-subtle); border-color: rgba(239,68,68,0.25);">
                 <label class="red-label" style="display:flex; align-items:center; gap:0.4rem; color:var(--accent-danger)">
@@ -315,6 +443,7 @@ export default {
       searchQuery: '',
       isIsolationActive: false,
       isolatedNodeId: null,
+      activeAnalysisMode: 'ecosystem',
       
       // Mindmap state
       expandedMindmapNodes: [],
@@ -399,6 +528,57 @@ export default {
     },
     mmSvgViewBox() {
       return `0 0 ${this.mmSvgWidth} ${this.mmSvgHeight}`;
+    },
+    transitiveDependents() {
+      if (!this.selectedNode || !this.graphData) return [];
+      return this.getTransitiveDependents(this.selectedNode.id);
+    },
+    blastRadiusRiskScore() {
+      if (!this.selectedNode || !this.graphData) return 0;
+      const directCount = this.dependents.length;
+      const transitiveCount = this.transitiveDependents.length;
+      const hasCycles = this.selectedNode.is_circular ? 1 : 0;
+      const issuesCount = this.nodeIssueCount;
+      
+      let score = 0;
+      if (transitiveCount > 0) {
+        score += Math.min(40, directCount * 15);
+        score += Math.min(40, (transitiveCount - directCount) * 8);
+        score += hasCycles * 20;
+        score += Math.min(20, issuesCount * 5);
+      } else {
+        score += Math.min(10, issuesCount * 5);
+      }
+      return Math.min(100, Math.round(score));
+    },
+    riskRatingName() {
+      const score = this.blastRadiusRiskScore;
+      if (score === 0) return 'NO RISK';
+      if (score <= 20) return 'LOW RISK';
+      if (score <= 60) return 'MEDIUM RISK';
+      return 'HIGH RISK';
+    },
+    riskRatingClass() {
+      const score = this.blastRadiusRiskScore;
+      if (score === 0) return 'risk-none';
+      if (score <= 20) return 'risk-low';
+      if (score <= 60) return 'risk-medium';
+      return 'risk-high';
+    },
+    riskGaugeColor() {
+      const score = this.blastRadiusRiskScore;
+      if (score === 0) return '#10b981';
+      if (score <= 20) return '#3b82f6';
+      if (score <= 60) return '#f59e0b';
+      return '#ef4444';
+    },
+    strokeDashArray() {
+      return 2 * Math.PI * 48;
+    },
+    strokeDashOffset() {
+      const percent = this.blastRadiusRiskScore;
+      const circumference = this.strokeDashArray;
+      return circumference - (percent / 100) * circumference;
     }
   },
   async mounted() {
@@ -495,6 +675,23 @@ export default {
         arrows: { to: { enabled: true, scaleFactor: 0.8 } }
       }));
     },
+    getTransitiveDependents(nodeId, visited = new Set()) {
+      const nid = parseInt(nodeId);
+      if (visited.has(nid)) return [];
+      visited.add(nid);
+      const direct = this.graphData?.impact_map?.[nid] || [];
+      let all = direct.map(id => parseInt(id));
+      for (const childId of direct) {
+        all = all.concat(this.getTransitiveDependents(parseInt(childId), visited));
+      }
+      return Array.from(new Set(all));
+    },
+    setAnalysisMode(mode) {
+      this.activeAnalysisMode = mode;
+      if (this.selectedNode) {
+        this.focusEcosystem(this.selectedNode.id);
+      }
+    },
     focusEcosystem(nodeId) {
       this.selectedNode = this.rawNodes.find(n => n.id === nodeId);
       if (!this.selectedNode) return;
@@ -526,6 +723,12 @@ export default {
             return Array.from(journey.edges).some(je => je.from_id === e.from && je.to_id === e.to);
           })
           .map(e => ({ ...e }));
+      } else if (this.activeAnalysisMode === 'blast') {
+        const transitiveDependents = this.getTransitiveDependents(nodeId);
+        const blastRadiusIds = new Set([nodeId, ...transitiveDependents]);
+        safeEdges = this.rawEdges
+          .filter(e => blastRadiusIds.has(e.from) && blastRadiusIds.has(e.to))
+          .map(e => ({ ...e }));
       } else {
         safeEdges = this.rawEdges
           .filter(e => e.from === nodeId || e.to === nodeId)
@@ -534,81 +737,121 @@ export default {
       
       // Build ecosystem node set and apply active colors
       const ecoNodesMap = new Map();
-      
-      // Add the focus node safely
-      ecoNodesMap.set(nodeId, {
-        ...this.selectedNode,
-        color: {
-          background: this.isIsolationActive ? nodeBgColor : (isDark ? 'rgba(99, 102, 241, 0.2)' : 'rgba(99, 102, 241, 0.1)'),
-          border: this.isIsolationActive ? journeyColor : focusColor,
-          highlight: { border: this.isIsolationActive ? journeyColor : focusColor, background: isDark ? 'rgba(99, 102, 241, 0.3)' : 'rgba(99, 102, 241, 0.2)' },
-        },
-        font: { color: textColor, size: 16, face: 'Inter, system-ui, sans-serif', bold: true },
-        shape: 'box', borderWidth: this.isIsolationActive ? 3 : 3, borderRadius: 8,
-        shadow: { enabled: true, color: this.isIsolationActive ? 'rgba(168, 85, 247, 0.4)' : 'rgba(99, 102, 241, 0.4)', size: 10, x: 0, y: 0 },
-        margin: { top: 14, bottom: 14, left: 18, right: 18 }
-      });
 
-      safeEdges.forEach(edge => {
-        // Handle edges logic
-        const commonStyling = {
-          font: { color: textColor, size: 13, face: 'Inter' },
-          shape: 'box', borderWidth: 1.5, borderRadius: 6, margin: 10
-        };
+      if (this.activeAnalysisMode === 'blast') {
+        const transitiveDependents = this.getTransitiveDependents(nodeId);
+        const blastRadiusIds = new Set([nodeId, ...transitiveDependents]);
+        
+        blastRadiusIds.forEach(nid => {
+          const raw = this.rawNodes.find(n => n.id === nid);
+          if (raw) {
+            const isFocus = nid === nodeId;
+            ecoNodesMap.set(nid, {
+              ...raw,
+              font: { color: textColor, size: isFocus ? 16 : 13, face: 'Inter, system-ui, sans-serif', bold: isFocus },
+              shape: 'box',
+              borderWidth: isFocus ? 3.5 : 2,
+              borderRadius: isFocus ? 8 : 6,
+              color: {
+                background: isFocus 
+                  ? (isDark ? 'rgba(239, 68, 68, 0.2)' : 'rgba(239, 68, 68, 0.1)')
+                  : (isDark ? 'rgba(249, 115, 22, 0.12)' : 'rgba(249, 115, 22, 0.06)'),
+                border: isFocus ? '#ef4444' : '#f97316',
+                highlight: {
+                  border: isFocus ? '#ef4444' : '#f97316',
+                  background: isFocus ? 'rgba(239, 68, 68, 0.3)' : 'rgba(249, 115, 22, 0.2)'
+                }
+              },
+              shadow: {
+                enabled: true,
+                color: isFocus ? 'rgba(239, 68, 68, 0.5)' : 'rgba(249, 115, 22, 0.25)',
+                size: isFocus ? 12 : 6,
+                x: 0, y: 0
+              },
+              margin: isFocus 
+                ? { top: 14, bottom: 14, left: 18, right: 18 }
+                : { top: 10, bottom: 10, left: 14, right: 14 }
+            });
+          }
+        });
 
-        if (this.isIsolationActive) {
-          // In isolation mode, color everything in the journey pathway
-          [edge.from, edge.to].forEach(nid => {
-            if (!ecoNodesMap.has(nid)) {
-              const raw = this.rawNodes.find(n => n.id === nid);
-              if (raw) {
-                ecoNodesMap.set(nid, {
-                  ...raw,
-                  ...commonStyling,
-                  color: { border: journeyColor, background: nodeBgColor },
-                  borderWidth: 2
-                });
+        safeEdges.forEach(edge => {
+          edge.color = { color: '#f97316', opacity: 0.9 };
+          edge.width = 2.5;
+          edge.dashes = [6, 4];
+        });
+      } else {
+        // Standard and Journey Isolation styling
+        ecoNodesMap.set(nodeId, {
+          ...this.selectedNode,
+          color: {
+            background: this.isIsolationActive ? nodeBgColor : (isDark ? 'rgba(99, 102, 241, 0.2)' : 'rgba(99, 102, 241, 0.1)'),
+            border: this.isIsolationActive ? journeyColor : focusColor,
+            highlight: { border: this.isIsolationActive ? journeyColor : focusColor, background: isDark ? 'rgba(99, 102, 241, 0.3)' : 'rgba(99, 102, 241, 0.2)' },
+          },
+          font: { color: textColor, size: 16, face: 'Inter, system-ui, sans-serif', bold: true },
+          shape: 'box', borderWidth: this.isIsolationActive ? 3 : 3, borderRadius: 8,
+          shadow: { enabled: true, color: this.isIsolationActive ? 'rgba(168, 85, 247, 0.4)' : 'rgba(99, 102, 241, 0.4)', size: 10, x: 0, y: 0 },
+          margin: { top: 14, bottom: 14, left: 18, right: 18 }
+        });
+
+        safeEdges.forEach(edge => {
+          const commonStyling = {
+            font: { color: textColor, size: 13, face: 'Inter' },
+            shape: 'box', borderWidth: 1.5, borderRadius: 6, margin: 10
+          };
+
+          if (this.isIsolationActive) {
+            [edge.from, edge.to].forEach(nid => {
+              if (!ecoNodesMap.has(nid)) {
+                const raw = this.rawNodes.find(n => n.id === nid);
+                if (raw) {
+                  ecoNodesMap.set(nid, {
+                    ...raw,
+                    ...commonStyling,
+                    color: { border: journeyColor, background: nodeBgColor },
+                    borderWidth: 2
+                  });
+                }
+              }
+            });
+            edge.color = { color: journeyColor, opacity: 1.0 };
+            edge.width = 3;
+          } else {
+            if (edge.to === nodeId) {
+              if (!ecoNodesMap.has(edge.from)) {
+                const raw = this.rawNodes.find(n => n.id === edge.from);
+                if (raw) {
+                  ecoNodesMap.set(edge.from, {
+                    ...raw,
+                    ...commonStyling,
+                    color: { border: dependentColor, background: isDark ? (hasIssues ? 'rgba(239, 68, 68, 0.1)' : 'rgba(245, 158, 11, 0.1)') : (hasIssues ? 'rgba(239, 68, 68, 0.05)' : 'rgba(245, 158, 11, 0.05)') },
+                    borderWidth: hasIssues ? 2 : 1.5
+                  });
+                }
+              }
+              edge.color = { color: dependentColor, opacity: hasIssues ? 1.0 : 0.6 };
+              if (hasIssues) {
+                edge.dashes = [8, 6];
+                edge.width = 3;
               }
             }
-          });
-          edge.color = { color: journeyColor, opacity: 1.0 };
-          edge.width = 3;
-        } else {
-           // Standard ecosystem coloring (same as before)
-           if (edge.to === nodeId) {
-             if (!ecoNodesMap.has(edge.from)) {
-               const raw = this.rawNodes.find(n => n.id === edge.from);
-               if (raw) {
-                 ecoNodesMap.set(edge.from, {
-                   ...raw,
-                   ...commonStyling,
-                   color: { border: dependentColor, background: isDark ? (hasIssues ? 'rgba(239, 68, 68, 0.1)' : 'rgba(245, 158, 11, 0.1)') : (hasIssues ? 'rgba(239, 68, 68, 0.05)' : 'rgba(245, 158, 11, 0.05)') },
-                   borderWidth: hasIssues ? 2 : 1.5
-                 });
-               }
-             }
-             edge.color = { color: dependentColor, opacity: hasIssues ? 1.0 : 0.6 };
-             if (hasIssues) {
-               edge.dashes = [8, 6];
-               edge.width = 3;
-             }
-           }
-           
-           if (edge.from === nodeId) {
-             if (!ecoNodesMap.has(edge.to)) {
-               const raw = this.rawNodes.find(n => n.id === edge.to);
-               if (raw) {
-                 ecoNodesMap.set(edge.to, {
-                   ...raw,
-                   ...commonStyling,
-                   color: { border: dependencyColor, background: isDark ? 'rgba(14, 165, 233, 0.1)' : 'rgba(14, 165, 233, 0.05)' },
-                 });
-               }
-             }
-             edge.color = { color: dependencyColor, opacity: 0.6 };
-           }
-        }
-      });
+            if (edge.from === nodeId) {
+              if (!ecoNodesMap.has(edge.to)) {
+                const raw = this.rawNodes.find(n => n.id === edge.to);
+                if (raw) {
+                  ecoNodesMap.set(edge.to, {
+                    ...raw,
+                    ...commonStyling,
+                    color: { border: dependencyColor, background: isDark ? 'rgba(14, 165, 233, 0.1)' : 'rgba(14, 165, 233, 0.05)' },
+                  });
+                }
+              }
+              edge.color = { color: dependencyColor, opacity: 0.6 };
+            }
+          }
+        });
+      }
 
       // Break Vue proxy references completely
       const finalNodes = JSON.parse(JSON.stringify(Array.from(ecoNodesMap.values())));
@@ -1670,6 +1913,281 @@ export default {
 }
 .mm-node-root .mm-node-badge {
   background: rgba(255,255,255,0.25);
+}
+
+/* ===== Refactor Playground & Dashboard Styles ===== */
+.refactor-dashboard {
+  background: var(--bg-overlay, var(--bg-surface));
+  border-left: 1px solid var(--border-subtle);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-header {
+  padding: 1.25rem;
+}
+
+.header-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+  font-size: 0.65rem;
+  font-weight: 800;
+  border-radius: var(--radius-full, 99px);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.pulse-orange {
+  animation: pulseOrange 2s infinite;
+}
+
+@keyframes pulseOrange {
+  0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(249, 115, 22, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+}
+
+.dashboard-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.dashboard-header .subtitle {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin: 4px 0 0 0;
+  line-height: 1.4;
+}
+
+.risk-gauge-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1.25rem;
+  background: radial-gradient(circle at center, rgba(249, 115, 22, 0.03) 0%, transparent 80%);
+}
+
+.risk-gauge-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.risk-gauge-value {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-number {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.score-rating {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.risk-none { color: #10b981; }
+.risk-low { color: #3b82f6; }
+.risk-medium { color: #f59e0b; }
+.risk-high { color: #ef4444; }
+
+.metrics-section {
+  padding: 1.25rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.metric-card {
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md, 8px);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.metric-val {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.metric-lbl {
+  font-size: 0.65rem;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+
+.text-orange { color: #f97316; }
+.text-amber { color: #f59e0b; }
+.text-red { color: #ef4444; }
+.text-green { color: #10b981; }
+.text-blue { color: #3b82f6; }
+
+.description-small {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.affected-list {
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-right: 4px;
+}
+
+.affected-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm, 4px);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+}
+
+.affected-list-item:hover {
+  background: rgba(249, 115, 22, 0.08);
+  border-color: #f97316;
+  color: var(--text-primary);
+}
+
+.affected-list-item .item-icon {
+  color: var(--text-tertiary);
+  transition: color 0.2s ease;
+}
+
+.affected-list-item:hover .item-icon {
+  color: #f97316;
+}
+
+.affected-list-item .item-name {
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.entry-tag {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.12);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+.checklist-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checklist-checkbox {
+  margin-top: 0.15rem;
+  accent-color: #f97316;
+  cursor: pointer;
+}
+
+.checklist-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.checklist-item:hover .checklist-text {
+  color: var(--text-primary);
+}
+
+.strike-through-done {
+  text-decoration: line-through;
+  opacity: 0.6;
+  color: var(--text-tertiary) !important;
+}
+
+/* Tabbed selector styling */
+.analysis-mode-selector {
+  display: flex;
+  background: var(--bg-inset);
+  padding: 2px;
+  border-radius: var(--radius-sm, 4px);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-mode {
+  background: transparent;
+  border: none;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm, 4px);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-mode:hover {
+  color: var(--text-secondary);
+}
+
+.btn-mode.active {
+  background: var(--bg-surface);
+  color: #f97316;
+  box-shadow: var(--shadow-sm);
 }
 
 </style>

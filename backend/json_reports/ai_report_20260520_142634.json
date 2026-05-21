@@ -1,9 +1,9 @@
 {
-    "overall_score": 62,
+    "overall_score": 99,
     "audit_status": "complete",
     "project_name": "PrismAI Project",
-    "report_id": "20260520_171111",
-    "timestamp": "2026-05-20T17:11:11.950029",
+    "report_id": "20260520_142634",
+    "timestamp": "2026-05-20T14:26:34.284982",
     "files_analyzed": 17,
     "total_issues": 9,
     "total_real_issues": 9,

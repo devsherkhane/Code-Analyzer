@@ -587,10 +587,35 @@ def run_ai_reporter():
         "files": final_report
     }
 
-    # Adjust score based on issues
+    # Adjust score based on issues (severity-weighted and coverage-resilient)
     if len(all_bundles) > 0:
-        penalty = (total_real * 2) / len(all_bundles)
-        report_data["overall_score"] = max(10, 100 - int(penalty))
+        total_penalty = 0.0
+        for b in all_bundles:
+            fid = str(b["file_id"])
+            res = ai_cache.get(b["_hash"]) or new_results.get(fid)
+            if res:
+                # Coverage penalty for files that failed/timed-out (engineering_health_score == 0)
+                health = res.get("visual_simulation", {}).get("engineering_health_score", -1)
+                if health == 0:
+                    total_penalty += 5.0
+                
+                # Severity-weighted penalties for confirmed issues
+                ui, logic = _split_results_by_type(res.get("issues", []))
+                for issue in ui + logic:
+                    if issue.get("is_real_issue", True):
+                        sev = str(issue.get("severity", "")).lower().strip()
+                        if "critical" in sev:
+                            total_penalty += 10.0
+                        elif "high" in sev:
+                            total_penalty += 6.0
+                        elif "medium" in sev:
+                            total_penalty += 3.0
+                        else:  # low or default
+                            total_penalty += 1.0
+                            
+        density_factor = max(1.0, len(all_bundles) / 10.0)
+        overall_penalty = total_penalty / density_factor
+        report_data["overall_score"] = max(10, 100 - int(overall_penalty))
     
     # 1. Save to Latest (standard location)
     latest_report_path = os.path.normpath(os.path.join(CACHE_DIR, "..", "ai_report.json"))
