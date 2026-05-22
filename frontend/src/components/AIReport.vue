@@ -47,7 +47,7 @@
           <div class="qg-score-wrap">
             <svg viewBox="0 0 36 36" class="qg-ring">
               <path class="qg-ring-bg" d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"/>
-              <path class="qg-ring-fill" :class="scoreColor" :stroke-dasharray="`${reportData.overall_score}, 100`" d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"/>
+              <path class="qg-ring-fill" :class="scoreColor" :style="`--score-offset: ${100 - reportData.overall_score}`" d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"/>
             </svg>
             <div class="qg-score-num">
               <span class="qg-val">{{ reportData.overall_score }}</span>
@@ -103,7 +103,7 @@
           </div>
           <div class="severity-bar-container">
             <div class="severity-bar">
-              <div v-for="seg in severitySegments" :key="seg.label" class="severity-segment" :style="{ width: seg.pct + '%', background: seg.color }" :title="seg.label + ': ' + seg.count"></div>
+              <div v-for="seg in severitySegments" :key="seg.label" class="severity-segment" :class="'sev-seg-' + seg.label.toLowerCase()" :style="{ width: seg.pct + '%' }" :title="seg.label + ': ' + seg.count"></div>
             </div>
             <div class="severity-legend">
               <div v-for="seg in severitySegments" :key="'l-'+seg.label" class="legend-item">
@@ -1275,17 +1275,22 @@ export default {
 .quality-gate-passed .quality-gate-status { color:var(--accent-success); }
 .quality-gate-failed .quality-gate-status { color:var(--accent-danger); }
 .quality-gate-warning .quality-gate-status { color:var(--accent-warning); }
-.qg-score-wrap { position:relative; width:64px; height:64px; margin-left:auto; flex-shrink:0; }
-.qg-ring { display:block; width:100%; height:100%; }
-.qg-ring-bg { fill:none; stroke:var(--border-subtle); stroke-width:3; }
-.qg-ring-fill { fill:none; stroke-width:3; stroke-linecap:round; animation:ringDraw 1s var(--ease-out) forwards; }
-.ring-success { stroke:var(--accent-success); }
-.ring-good { stroke:#22d3ee; }
-.ring-warning { stroke:var(--accent-warning); }
-.ring-danger { stroke:var(--accent-danger); }
+.qg-score-wrap { position:relative; width:68px; height:68px; margin-left:auto; flex-shrink:0; padding:2px; background:var(--bg-inset); border-radius:50%; border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; }
+.qg-ring { display:block; width:100%; height:100%; transform: rotate(-90deg); }
+.qg-ring-bg { fill:none; stroke:rgba(255,255,255,0.04); stroke-width:3; }
+.qg-ring-fill { fill:none; stroke-width:3; stroke-linecap:round; stroke-dasharray:100; stroke-dashoffset:100; animation:ringDraw 1.4s var(--ease-out) forwards; transition:stroke 0.3s; }
+.ring-success { stroke:var(--accent-success); filter:drop-shadow(0 0 4px var(--accent-success)); }
+.ring-good { stroke:#22d3ee; filter:drop-shadow(0 0 4px #22d3ee); }
+.ring-warning { stroke:var(--accent-warning); filter:drop-shadow(0 0 4px var(--accent-warning)); }
+.ring-danger { stroke:var(--accent-danger); filter:drop-shadow(0 0 4px var(--accent-danger)); }
 .qg-score-num { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-.qg-val { font-size:1.3rem; font-weight:800; color:var(--text-primary); line-height:1; }
+.qg-val { font-size:1.35rem; font-weight:800; color:var(--text-primary); line-height:1; }
 .qg-max { font-size:0.55rem; color:var(--text-tertiary); }
+
+@keyframes ringDraw {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: var(--score-offset, 0); }
+}
 
 /* KPI Strip */
 .kpi-strip { display:grid; grid-template-columns:repeat(4, 1fr); gap:1rem; }
@@ -1303,11 +1308,17 @@ export default {
 
 /* Severity Bar */
 .severity-bar-container { padding:1.25rem; }
-.severity-bar { display:flex; height:10px; border-radius:5px; overflow:hidden; gap:2px; margin-bottom:1rem; }
-.severity-segment { transition:width .6s var(--ease-out); min-width:2px; border-radius:2px; }
+.severity-bar { display:flex; height:16px; border-radius:var(--radius-sm, 6px); overflow:hidden; gap:3px; margin-bottom:1.25rem; background:var(--bg-inset); padding:2px; border:1px solid var(--border-subtle); }
+.severity-segment { transition:all var(--duration-normal) var(--ease-out); min-width:2px; border-radius:4px; position:relative; }
+.severity-segment:hover { transform:scaleY(1.15); z-index:10; cursor:pointer; box-shadow:0 0 12px var(--shadow-color); }
+.sev-seg-critical { --shadow-color: rgba(239, 68, 68, 0.5); background: linear-gradient(135deg, #ef4444, #f87171) !important; box-shadow: 0 0 8px rgba(239, 68, 68, 0.2); }
+.sev-seg-high     { --shadow-color: rgba(249, 115, 22, 0.5); background: linear-gradient(135deg, #f97316, #fb923c) !important; box-shadow: 0 0 8px rgba(249, 115, 22, 0.2); }
+.sev-seg-medium   { --shadow-color: rgba(245, 158, 11, 0.5); background: linear-gradient(135deg, #f59e0b, #fbbf24) !important; box-shadow: 0 0 8px rgba(245, 158, 11, 0.2); }
+.sev-seg-low      { --shadow-color: rgba(59, 130, 246, 0.5); background: linear-gradient(135deg, #3b82f6, #60a5fa) !important; box-shadow: 0 0 8px rgba(59, 130, 246, 0.2); }
+
 .severity-legend { display:flex; gap:1.5rem; flex-wrap:wrap; }
-.legend-item { display:flex; align-items:center; gap:0.4rem; font-size:0.78rem; }
-.legend-dot { width:8px; height:8px; border-radius:5  0%; flex-shrink:0; }
+.legend-item { display:flex; align-items:center; gap:0.5rem; font-size:0.78rem; padding:0.25rem 0.6rem; background:var(--bg-inset); border-radius:var(--radius-sm); border:1px solid var(--border-subtle); }
+.legend-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 .legend-label { color:var(--text-secondary); }
 .legend-count { font-weight:700; color:var(--text-primary); }
 
@@ -1425,15 +1436,17 @@ export default {
 .line-dot { width: 6px; height: 6px; background: var(--accent-danger); border-radius: 50%; }
 
 /* File Inspector Issues Panel */
-.ws-issues-panel { border: 1px solid var(--border-subtle); border-radius: var(--radius-md); margin-top: 1rem; overflow: hidden; background: var(--bg-surface); }
-.issues-panel-header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; cursor: pointer; background: var(--bg-overlay); transition: background 0.2s; border-bottom: 1px solid var(--border-subtle); }
+.ws-issues-panel { border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); margin-top: 1rem; overflow: hidden; background: var(--bg-surface); box-shadow: var(--shadow-sm); }
+.issues-panel-header { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1.25rem; cursor: pointer; background: var(--bg-inset); transition: all 0.2s ease; border-bottom: 1px solid var(--border-subtle); }
 .issues-panel-header:hover { background: var(--bg-surface-hover); }
-.iph-left { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
-.issues-panel-body { padding: 0.5rem; max-height: 400px; overflow-y: auto; }
+.iph-left { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
+.issues-panel-body { padding: 0.75rem; max-height: 400px; overflow-y: auto; }
 
-.ws-issue-item { padding: 0.85rem 1rem; margin: 0.35rem 0; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); cursor: pointer; transition: all 0.2s ease; background: var(--bg-surface); }
-.ws-issue-item:hover { border-color: var(--accent-primary); box-shadow: 0 0 0 1px var(--accent-primary-subtle); }
-.ws-issue-item.ws-issue-active { border-color: var(--accent-primary); background: var(--accent-primary-subtle); box-shadow: 0 0 0 2px var(--accent-primary-subtle); }
+.ws-issue-item { padding: 1rem 1.25rem; margin-bottom: 0.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); cursor: pointer; transition: all var(--duration-normal) var(--ease-out); background: var(--bg-inset); position: relative; overflow: hidden; }
+.ws-issue-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: transparent; transition: all 0.2s; }
+.ws-issue-item:hover { border-color: var(--accent-primary-glow); transform: translateY(-1px); box-shadow: var(--shadow-sm); background: var(--bg-surface-hover); }
+.ws-issue-item.ws-issue-active { border-color: var(--accent-primary); background: var(--accent-primary-subtle); box-shadow: 0 0 16px var(--accent-primary-glow); }
+.ws-issue-item.ws-issue-active::before { background: var(--accent-primary); }
 .ws-issue-top { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
 .ws-issue-type { font-size: 0.82rem; font-weight: 700; color: var(--text-primary); }
 .ws-issue-rationale { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }

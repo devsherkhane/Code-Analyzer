@@ -2020,5 +2020,54 @@
             "layout_assessment": "Healthy.",
             "engineering_health_score": 100
         }
+    },
+    "7cc099818d4eb6d2596703bb3248557f0ae7d9bfe3912ec376f54f83175bb181": {
+        "issues": [
+            {
+                "line": 5,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "div with data-tip=\"Back\"",
+                "problem": "The `sr-only` class is used to hide the text content of the 'Back' icon, but it doesn't provide sufficient ARIA attributes to make the icon accessible to screen readers. Screen readers may not announce the icon's role or purpose. It also relies solely on a hidden text label, a fragile accessibility pattern.",
+                "original_code": "<div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\" ></i><span class=\"sr-only\">Back</span></div>",
+                "fixed_code": "<div data-tip=\"Back\" class=\"tooltip tooltip-right cursor-pointer\" @click=\"goBackMenu()\"><i class=\"fa-light fa-circle-arrow-left text-xl text-[#54519e] font-bold\"></i><span aria-label=\"Back\" role=\"button\">Back</span></div>",
+                "explanation": "Adding `aria-label=\"Back\"` and `role=\"button\"` to the `span` element provides the necessary semantic information for screen readers to understand the icon's purpose. This is a critical accessibility fix.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -5 +5 @@\n-<span class=\"sr-only\">Back</span;\n+\n<span aria-label=\"Back\" role=\"button\">Back</span>",
+                "is_real_issue": true
+            },
+            {
+                "line": 67,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "medium",
+                "element": "v-for loop for getCreditScoreMaster",
+                "problem": "The color classes for credit items are conditionally based on `item.isActive`. However, the color classes do not include a `label` to describe the associated credit value. Screen readers may not have context for what these colored credits represent.",
+                "original_code": "<div class=\"credit\" v-for=\"(item, index) in getCreditScoreMaster\" :key=\"index\"\n68:             :class=\"[(index === 0 && item.isActive ? 'credit-1' : ''), (index === 1 && item.isActive ? 'credit-2' : ''), (index === 2 && item.isActive ? 'credit-4' : ''), (index === 3 && item.isActive ? 'credit' : '')]\"\n69:             @click=\"selectCredit(item.creditScore)\">\n70:             {{ parseInt(item.creditScore) }}\n71:           </div>",
+                "fixed_code": "<div class=\"credit\" v-for=\"(item, index) in getCreditScoreMaster\" :key=\"index\"\n72:             :class=\"[(index === 0 && item.isActive ? 'credit-1' : ''), (index === 1 && item.isActive ? 'credit-2' : ''), (index === 2 && item.isActive ? 'credit-4' : ''), (index === 3 && item.isActive ? 'credit' : '')]\"\n73:             @click=\"selectCredit(item.creditScore)\" aria-label=\"{{ parseInt(item.creditScore) }}\">\n74:             {{ parseInt(item.creditScore) }}\n75:           </div>",
+                "explanation": "Adding `aria-label=\"{{ parseInt(item.creditScore) }}\"` to the `div` element provides a textual description of the credit value for screen readers. This greatly improves the accessibility of the credit selection component.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -67 +67 @@\n-<span class=\"credit\" v-for=\"(item, index) in getCreditScoreMaster\" :key=\"index\"\n70:             :class=\"[(index === 0 && item.isActive ? 'credit-1' : ''), (index === 1 && item.isActive ? 'credit-2' : ''), (index === 2 && item.isActive ? 'credit-4' : ''), (index === 3 && item.isActive ? 'credit' : '')]\"\n71:             @click=\"selectCredit(item.creditScore)\">\n72:             {{ parseInt(item.creditScore) }}\n73:           </div>\n74:           </div>\n\n<span class=\"credit\" v-for=\"(item, index) in getCreditScoreMaster\" :key=\"index\"\n72:             :class=\"[(index === 0 && item.isActive ? 'credit-1' : ''), (index === 1 && item.isActive ? 'credit-2' : ''), (index === 2 && item.isActive ? 'credit-4' : ''), (index === 3 && item.isActive ? 'credit' : '')]\"\n73:             @click=\"selectCredit(item.creditScore)\" aria-label=\"{{ parseInt(item.creditScore) }}\">\n74:             {{ parseInt(item.creditScore) }}\n75:           </div>",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 85,
+            "recommendations": []
+        }
+    },
+    "27ea2ff09dbdffb39ee4be4484508454630b1ed43413186284229a4d022df59c": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 100,
+            "recommendations": []
+        }
+    },
+    "198111f00da0a2006410eb495a64be1b5e8e9f7fbd46ef93f9e4dc50e2293912": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 100,
+            "recommendations": []
+        }
     }
 }

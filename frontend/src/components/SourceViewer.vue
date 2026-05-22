@@ -125,12 +125,13 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--bg-inset);
+  background: var(--code-bg, #0b0e14);
   font-family: var(--font-mono);
   font-size: 0.82rem;
   line-height: 1.6;
   overflow: hidden;
   border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
 }
 
 .viewer-state {
@@ -164,7 +165,7 @@ export default {
   text-align: right;
   user-select: none;
   flex-shrink: 0;
-  min-width: 40px;
+  min-width: 44px;
 }
 
 .line-number {
@@ -173,14 +174,16 @@ export default {
   font-size: inherit;
   height: 1.6em;
   line-height: inherit;
+  transition: all var(--duration-fast) var(--ease-out);
 }
 
 .highlight-line {
-  background: var(--accent-danger-subtle);
-  color: var(--accent-danger);
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: var(--accent-danger) !important;
   font-weight: 700;
   border-left: 3px solid var(--accent-danger);
   padding-left: calc(0.75rem - 3px);
+  box-shadow: inset 1px 0 0 rgba(239, 68, 68, 0.4);
 }
 
 .code-content-wrapper {
@@ -202,10 +205,11 @@ export default {
 .line-bg {
   height: 1.6em;
   width: 100%;
+  transition: all var(--duration-fast);
 }
 
 .hl-bg {
-  background: var(--accent-danger-subtle);
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.02) 70%, transparent);
 }
 
 .code-content {

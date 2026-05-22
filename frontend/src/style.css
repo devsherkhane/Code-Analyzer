@@ -99,6 +99,21 @@
   /* Legacy compatibility variables */
   --surface-2: #1e1e2a;
   --border-color: rgba(255, 255, 255, 0.06);
+
+  --bg-sidebar: rgba(14, 14, 21, 0.75);
+  --border-sidebar: rgba(255, 255, 255, 0.08);
+
+  /* Glass and Console variables for Dark Theme */
+  --bg-glass-elevated: rgba(14, 14, 21, 0.7);
+  --inset-glass-elevated: inset 0 1px 2px rgba(255, 255, 255, 0.08);
+  --bg-glass-card: rgba(22, 22, 31, 0.4);
+  --bg-hardware-console: radial-gradient(100% 100% at 0% 0%, rgba(22, 22, 31, 0.9) 0%, rgba(14, 14, 21, 0.95) 100%);
+  --shadow-hardware-console: var(--shadow-glow), 0 10px 30px rgba(0, 0, 0, 0.5);
+
+  /* Chat Widget variables for Dark Theme */
+  --bg-chat-input: linear-gradient(to top, rgba(14, 14, 21, 0.8), rgba(22, 22, 31, 0.4));
+  --bg-issue-picker: rgba(22, 22, 31, 0.95);
+  --shadow-issue-picker: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
 /* ── Light theme ────────────────────────────────────────────────────── */
@@ -164,6 +179,21 @@
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
   --shadow-xl: 0 12px 48px rgba(0,0,0,0.15);
   --shadow-glow: 0 0 40px rgba(79, 70, 229, 0.08);
+
+  --bg-sidebar: rgba(255, 255, 255, 0.75);
+  --border-sidebar: rgba(0, 0, 0, 0.08);
+
+  /* Glass and Console variables for Light Theme */
+  --bg-glass-elevated: rgba(255, 255, 255, 0.7);
+  --inset-glass-elevated: inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  --bg-glass-card: rgba(255, 255, 255, 0.65);
+  --bg-hardware-console: radial-gradient(100% 100% at 0% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(240, 242, 248, 0.9) 100%);
+  --shadow-hardware-console: var(--shadow-glow), 0 10px 30px rgba(0, 0, 0, 0.05);
+
+  /* Chat Widget variables for Light Theme */
+  --bg-chat-input: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(245, 246, 250, 0.7));
+  --bg-issue-picker: rgba(255, 255, 255, 0.95);
+  --shadow-issue-picker: 0 20px 50px rgba(0, 0, 0, 0.08);
 }
 
 /* ── Global Reset & Base ────────────────────────────────────────────── */
@@ -810,3 +840,388 @@ code {
 [data-theme='dark'] .text-slate-500 {
   color: #94a3b8 !important; /* Brighter slate for readability */
 }
+
+/* ==========================================================================
+   PrismAI UI Enhancements: Modal, Search, Gauges, and Canvas Visuals
+   ========================================================================== */
+
+/* Glassmorphic Modals */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 15, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn var(--duration-normal) var(--ease-out);
+}
+
+.modal-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 600px;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: slideUp var(--duration-slow) var(--ease-spring);
+  position: relative;
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all var(--duration-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-inset);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Modern Text Inputs */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--text-tertiary);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.text-input {
+  width: 100%;
+  padding: 0.65rem 1rem 0.65rem 2.25rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-primary-glow);
+  background: var(--bg-surface);
+}
+
+/* Sparklines & Gauge Animations */
+.sparkline-path {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: drawLine 2s forwards var(--ease-out);
+}
+
+.gauge-circle {
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 1.5s var(--ease-out);
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Simulated Integration Modal Elements */
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.stepper::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-default);
+  z-index: 1;
+}
+
+.stepper-progress {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  z-index: 1;
+  transition: width 0.4s ease;
+}
+
+.step-node {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 2px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  z-index: 2;
+  transition: all 0.3s;
+}
+
+.step-node.active {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary-subtle);
+  color: var(--accent-primary);
+  box-shadow: 0 0 0 4px var(--accent-primary-glow);
+}
+
+.step-node.done {
+  border-color: var(--accent-success);
+  background: var(--accent-success);
+  color: white;
+}
+
+.integration-code-box {
+  background: #09090e;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  position: relative;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.integration-code-box pre {
+  margin: 0;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 5;
+}
+
+/* Glow effects and particles helper */
+.glow-spot {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--accent-primary-glow) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   PrismAI UI Modernizations (Glass Panels, Glowing Hover, & Retro Console)
+   ========================================================================== */
+
+/* High-fidelity Glassmorphic panel utility */
+.glass-panel {
+  background: var(--bg-overlay) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-md), inset 0 1px 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+.glass-panel-elevated {
+  background: var(--bg-glass-elevated) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid var(--border-default) !important;
+  box-shadow: var(--shadow-lg), var(--inset-glass-elevated) !important;
+}
+
+/* Hardware command console container */
+.hardware-console {
+  background: var(--bg-hardware-console) !important;
+  border: 1px solid var(--border-strong) !important;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hardware-console);
+  position: relative;
+  overflow: hidden;
+}
+
+.hardware-console::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-primary-hover), transparent);
+  pointer-events: none;
+}
+
+/* Floating overlay layout animations */
+.glow-pulse-active {
+  animation: pulse-glow-border 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-glow-border {
+  0%, 100% {
+    border-color: var(--border-default);
+    box-shadow: var(--shadow-sm);
+  }
+  50% {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 15px var(--accent-primary-glow);
+  }
+}
+
+/* Retro Logging Shell styling */
+.retro-shell {
+  background: #09090d !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.retro-shell-header {
+  background: rgba(22, 22, 31, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mac-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.35rem;
+}
+.mac-dot-red { background: #ef4444; }
+.mac-dot-yellow { background: #f59e0b; }
+.mac-dot-green { background: #10b981; }
+
+.retro-log-line {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #a1a1aa;
+}
+
+.retro-log-line.log-info { color: #818cf8; }
+.retro-log-line.log-warn { color: #f59e0b; }
+.retro-log-line.log-err { color: #ef4444; text-shadow: 0 0 4px rgba(239, 68, 68, 0.3); }
+
+/* Premium active left-accent bars for navigations */
+.sidebar-glow-item {
+  position: relative;
+}
+
+.sidebar-glow-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 3px;
+  background: var(--accent-primary);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  opacity: 0;
+  transform: scaleY(0.3);
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.sidebar-glow-item.active::before {
+  opacity: 1;
+  transform: scaleY(1);
+  box-shadow: 0 0 10px var(--accent-primary);
+}
+
+/* Micro 3D lift hover effects */
+.hover-premium-lift {
+  transition: transform var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.hover-premium-lift:hover {
+  transform: translateY(-3px) translateZ(0);
+  border-color: var(--accent-primary-hover);
+  box-shadow: var(--shadow-md), 0 8px 24px rgba(99, 102, 241, 0.1);
+}
+
+/* Custom linear gradient severity segments */
+.gradient-bar-critical { background: linear-gradient(90deg, #ef4444, #f43f5e) !important; }
+.gradient-bar-high { background: linear-gradient(90deg, #f97316, #fb923c) !important; }
+.gradient-bar-medium { background: linear-gradient(90deg, #f59e0b, #fbbf24) !important; }
+.gradient-bar-low { background: linear-gradient(90deg, #3b82f6, #60a5fa) !important; }
+
+/* Custom syntax highlighting overrides for Prism inside the viewer */
+.source-viewer .token.comment { color: #6b7280 !important; font-style: italic; }
+.source-viewer .token.keyword { color: #f43f5e !important; font-weight: 600; }
+.source-viewer .token.string { color: #10b981 !important; }
+.source-viewer .token.function { color: #6366f1 !important; }
+.source-viewer .token.number { color: #f59e0b !important; }
+.source-viewer .token.operator { color: #8b5cf6 !important; }
+.source-viewer .token.class-name { color: #0ea5e9 !important; }
+
+

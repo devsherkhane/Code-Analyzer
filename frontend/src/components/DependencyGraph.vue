@@ -155,9 +155,7 @@
             </div>
             <h4>Select a File to Inspect</h4>
             <p>Pick a component from the left to visualize its direct imports and dependencies without the clutter.</p>
-          </div>
-
-          <div v-show="selectedNode" class="canvas-wrapper">
+          </div>          <div v-show="selectedNode" class="canvas-wrapper">
             <div class="canvas-center">
               <div class="canvas-toolbar">
                 <div class="node-title-badge">
@@ -188,9 +186,16 @@
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h16M4 14h16M10 6v12M14 6v12"></path></svg>
                   {{ layoutMode === 'physics' ? 'Hierarchy' : 'Exploration' }}
                 </button>
-                <button class="btn-ghost" @click="resetCamera">
+                <button class="btn-ghost" @click="resetCamera" title="Fit Entire Network View">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><polyline points="3 3 3 8 8 8"></polyline></svg>
                   Center
+                </button>
+                <div class="zoom-controls-divider"></div>
+                <button class="btn-ghost btn-zoom" @click="zoomIn" title="Zoom In (Scale up)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+                <button class="btn-ghost btn-zoom" @click="zoomOut" title="Zoom Out (Scale down)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 </button>
               </div>
 
@@ -205,35 +210,73 @@
                 <p class="subtitle">Analyzing downstream blast radius and refactoring safety metrics</p>
               </div>
 
-              <!-- Dynamic Risk Gauge Section -->
+              <!-- Dynamic Risk Gauge Section with Dual-Track Rings -->
               <div class="panel-section risk-gauge-section">
-                <div class="risk-gauge-container">
-                  <svg class="progress-ring" width="120" height="120">
-                    <circle 
-                      class="progress-ring-bg" 
-                      stroke="var(--border-subtle)" 
-                      stroke-width="8" 
-                      fill="transparent" 
-                      r="48" 
-                      cx="60" 
-                      cy="60"
-                    />
-                    <circle 
-                      class="progress-ring-circle" 
-                      :stroke="riskGaugeColor" 
-                      stroke-width="8" 
-                      stroke-linecap="round"
-                      fill="transparent" 
-                      r="48" 
-                      cx="60" 
-                      cy="60"
-                      :stroke-dasharray="strokeDashArray"
-                      :stroke-dashoffset="strokeDashOffset"
-                    />
-                  </svg>
-                  <div class="risk-gauge-value">
-                    <span class="score-number">{{ blastRadiusRiskScore }}%</span>
-                    <span :class="['score-rating', riskRatingClass]">{{ riskRatingName }}</span>
+                <div class="risk-gauge-wrapper-container">
+                  <div class="risk-gauge-container">
+                    <svg class="progress-ring" width="120" height="120">
+                      <!-- Outer Track (Transitive Risk Score) -->
+                      <circle 
+                        class="progress-ring-bg" 
+                        stroke="var(--border-subtle)" 
+                        stroke-width="8" 
+                        fill="transparent" 
+                        r="48" 
+                        cx="60" 
+                        cy="60"
+                      />
+                      <circle 
+                        class="progress-ring-circle" 
+                        :stroke="riskGaugeColor" 
+                        stroke-width="8" 
+                        stroke-linecap="round"
+                        fill="transparent" 
+                        r="48" 
+                        cx="60" 
+                        cy="60"
+                        :stroke-dasharray="strokeDashArray"
+                        :stroke-dashoffset="strokeDashOffset"
+                      />
+                      
+                      <!-- Inner Track (Direct Dependents Impact) -->
+                      <circle 
+                        class="progress-ring-bg-inner" 
+                        stroke="var(--border-subtle)" 
+                        stroke-width="5" 
+                        fill="transparent" 
+                        r="36" 
+                        cx="60" 
+                        cy="60"
+                        style="opacity: 0.25;"
+                      />
+                      <circle 
+                        class="progress-ring-circle-inner" 
+                        stroke="#0ea5e9" 
+                        stroke-width="5" 
+                        stroke-linecap="round"
+                        fill="transparent" 
+                        r="36" 
+                        cx="60" 
+                        cy="60"
+                        :stroke-dasharray="innerStrokeDashArray"
+                        :stroke-dashoffset="innerStrokeDashOffset"
+                        style="transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 0 3px rgba(14, 165, 227, 0.3));"
+                      />
+                    </svg>
+                    <div class="risk-gauge-value">
+                      <span class="score-number">{{ blastRadiusRiskScore }}%</span>
+                      <span :class="['score-rating', riskRatingClass]">{{ riskRatingName }}</span>
+                    </div>
+                  </div>
+                  <div class="risk-gauge-legend">
+                    <div class="legend-item">
+                      <span class="legend-dot" :style="{ backgroundColor: riskGaugeColor }"></span>
+                      <span class="legend-label">Downstream Risk</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-dot" style="background-color: #0ea5e9"></span>
+                      <span class="legend-label">Direct Impact Ratio</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -371,11 +414,10 @@
                   Focusing on logical spine
                 </div>
               </div>
-            </div>
+            </div>         </div>
           </div>
 
         </div>
-      </div>
 
       <!-- Mindmap View (NotebookLM Style) -->
       <div v-show="viewMode === 'mindmap' && !loading && !error" class="mindmap-layout" style="height: 100%; width: 100%; position: relative; overflow: hidden;">
@@ -399,15 +441,24 @@
                @wheel.prevent="mmZoom">
             <div class="mm-transform" :style="mmTransformStyle">
               <svg class="mm-svg" :width="mmSvgWidth" :height="mmSvgHeight" :viewBox="mmSvgViewBox">
+                <defs>
+                  <filter id="mm-line-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="1.5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
                 <path v-for="(line, i) in mmLines" :key="'l'+i"
                       :d="line.d" fill="none" :stroke="line.color" :stroke-width="line.width"
-                      stroke-linecap="round" :opacity="line.opacity" />
+                      stroke-linecap="round" :opacity="line.opacity"
+                      style="filter: drop-shadow(0px 0px 4px rgba(99, 102, 241, 0.2)); transition: all 0.3s ease;" />
               </svg>
               <div v-for="n in mmRenderedNodes" :key="'n'+n.id"
                    class="mm-node"
                    :class="{ 'mm-node-root': n.isRoot, 'mm-node-leaf': !n.hasChildren, 'mm-node-expanded': n.isExpanded, 'mm-node-issue': n.hasIssues }"
                    :style="n.style"
                    @click.stop="mmToggleNode(n.id)">
+                <!-- Exclamation defect badge for nodes with issues -->
+                <span v-if="n.hasIssues" class="mm-node-issue-badge" title="Active defects detected">!</span>
                 <span class="mm-node-label">{{ n.label }}</span>
                 <span v-if="n.hasChildren" class="mm-node-badge">{{ n.childCount }}</span>
               </div>
@@ -578,6 +629,16 @@ export default {
     strokeDashOffset() {
       const percent = this.blastRadiusRiskScore;
       const circumference = this.strokeDashArray;
+      return circumference - (percent / 100) * circumference;
+    },
+    innerStrokeDashArray() {
+      return 2 * Math.PI * 36;
+    },
+    innerStrokeDashOffset() {
+      const directCount = this.dependents.length;
+      const transitiveCount = this.transitiveDependents.length;
+      const percent = transitiveCount === 0 ? 0 : Math.round((directCount / transitiveCount) * 100);
+      const circumference = this.innerStrokeDashArray;
       return circumference - (percent / 100) * circumference;
     }
   },
@@ -883,6 +944,24 @@ export default {
         }, 100);
       }
     },
+    zoomIn() {
+      if (this.network) {
+        const currentScale = this.network.getScale();
+        this.network.moveTo({
+          scale: currentScale * 1.25,
+          animation: { duration: 250, easingFunction: 'easeInOutQuad' }
+        });
+      }
+    },
+    zoomOut() {
+      if (this.network) {
+        const currentScale = this.network.getScale();
+        this.network.moveTo({
+          scale: currentScale / 1.25,
+          animation: { duration: 250, easingFunction: 'easeInOutQuad' }
+        });
+      }
+    },
     findUserJourneyPaths(targetId) {
       if (!this.graphData) return { nodes: new Set(), edges: new Set() };
       
@@ -1185,12 +1264,15 @@ export default {
             const py = y;
             const cx = childResult.x;
             const cy = childResult.y;
-            const midX = (px + cx) / 2;
+            
+            // horizontal offset control points for custom Bezier curve pathways
+            const cp1x = px + 60;
+            const cp2x = cx - 60;
             
             const childColor = colors[childBranchColor % colors.length];
             
             lines.push({
-              d: `M ${px} ${py} C ${midX} ${py}, ${midX} ${cy}, ${cx} ${cy}`,
+              d: `M ${px} ${py} C ${cp1x} ${py}, ${cp2x} ${cy}, ${cx} ${cy}`,
               color: childColor.line,
               width: depth === 0 ? 3.5 : 2.5,
               opacity: depth === 0 ? 0.65 : 0.45
@@ -2188,6 +2270,112 @@ export default {
   background: var(--bg-surface);
   color: #f97316;
   box-shadow: var(--shadow-sm);
+}
+
+/* Zoom & Toolbar Accessories */
+.zoom-controls-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-subtle);
+  margin: 0 4px;
+}
+.btn-zoom {
+  padding: 0.3rem !important;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm, 4px) !important;
+}
+
+/* Dual Ring Risk Gauge Legend */
+.risk-gauge-wrapper-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+.risk-gauge-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  width: 100%;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.75rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.legend-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Pulsing Issue Badge on Mindmap Bubbles */
+.mm-node-issue-badge {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--bg-surface);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+  z-index: 12;
+  animation: pulse-red-badge 1.8s infinite;
+}
+
+@keyframes pulse-red-badge {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* NotebookLM style mindmap node layout refinement */
+.mm-node {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.mm-node-root {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.25) 0%, rgba(124, 58, 237, 0.25) 100%) !important;
+  border: 2px solid var(--accent-primary) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.25) !important;
+}
+
+.mm-node-issue {
+  background: rgba(239, 68, 68, 0.08) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  color: var(--accent-danger) !important;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.15) !important;
+  animation: mmPulseIssue 2.5s ease-in-out infinite !important;
+}
+
+.mm-node-issue:hover {
+  background: rgba(239, 68, 68, 0.12) !important;
+  border-color: var(--accent-danger) !important;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.25) !important;
 }
 
 </style>

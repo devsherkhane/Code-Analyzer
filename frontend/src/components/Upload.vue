@@ -1,27 +1,31 @@
 <template>
   <div class="upload-root">
-    <div class="upload-card card card-elevated">
+    <div class="upload-card glass-panel-elevated">
       <!-- Workspace Info -->
-      <div class="workspace-info card card-flat">
+      <div class="workspace-info hardware-console glow-pulse-active">
         <div class="workspace-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
         </div>
         <div class="workspace-details">
-          <span class="workspace-label">Connected Workspace</span>
+          <span class="workspace-label">CONNECTED COMPILER NODE</span>
           <span class="workspace-path">{{ vscodePath || 'No workspace connected' }}</span>
         </div>
+        <span class="node-live-tag" style="margin-left: auto; display: flex; align-items: center; gap: 0.35rem; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--accent-success); text-transform: uppercase;">
+          <span class="pulse-dot-tag" style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent-success); animation: pulse 1.8s infinite;"></span>
+          LIVE
+        </span>
       </div>
 
       <!-- Actions -->
       <div class="upload-actions">
         <!-- Direct Workspace Analysis for VS Code -->
-        <button class="btn-primary btn-lg upload-btn" @click="analyzeWorkspace" :disabled="!isVSCode || status === 'running' || status === 'queued'">
+        <button class="btn-primary btn-lg upload-btn hover-premium-lift" @click="analyzeWorkspace" :disabled="!isVSCode || status === 'running' || status === 'queued'">
           <svg v-if="status === 'idle'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
           <span v-else class="spinner"></span>
-          {{ status === 'idle' ? 'Start Project Audit' : 'Analyzing...' }}
+          {{ status === 'idle' ? 'Start Codebase Audit' : 'Analyzing...' }}
         </button>
         
-        <button class="btn-ghost btn-lg" @click="$emit('analysis-complete')">
+        <button class="btn-ghost btn-lg hover-premium-lift" @click="$emit('analysis-complete')">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           View Last Report
         </button>
@@ -61,14 +65,24 @@
           <p class="pipeline-message" :class="status">{{ message }}</p>
 
           <!-- Real-time Log Viewer -->
-          <div v-if="logs.length > 0" class="log-viewer card card-flat" ref="logContainer">
-            <div class="log-header">
-                <div class="log-dot"></div>
-                <span class="log-title">Live Pipeline Logs</span>
+          <div v-if="logs.length > 0" class="log-viewer retro-shell" ref="logContainer" style="width: 100%; margin-top: 1.5rem;">
+            <div class="retro-shell-header">
+              <div style="display: flex; align-items: center;">
+                <span class="mac-dot mac-dot-red"></span>
+                <span class="mac-dot mac-dot-yellow"></span>
+                <span class="mac-dot mac-dot-green"></span>
+              </div>
+              <span class="log-title" style="font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">terminal - prism-pipeline</span>
+              <div style="width: 42px;"></div> <!-- Spacer balancing dots -->
             </div>
-            <div class="log-body custom-scrollbar">
-              <div v-for="(log, idx) in logs" :key="idx" class="log-line" :class="{ 'log-err': log.includes('[ERROR]') }">
-                <span class="log-timestamp">{{ formatTime(new Date()) }}</span>
+            <div class="log-body custom-scrollbar" style="background: #08080c; padding: 1rem; max-height: 250px; overflow-y: auto;">
+              <div v-for="(log, idx) in logs" :key="idx" class="retro-log-line" 
+                   :class="{ 
+                     'log-err': log.toLowerCase().includes('error') || log.toLowerCase().includes('fail') || log.toLowerCase().includes('fatal'), 
+                     'log-warn': log.toLowerCase().includes('warn') || log.toLowerCase().includes('warning'), 
+                     'log-info': log.toLowerCase().includes('info') || log.toLowerCase().includes('init') || log.toLowerCase().includes('success') 
+                   }">
+                <span class="log-timestamp" style="color: #4b5563; margin-right: 0.75rem; user-select: none;">{{ formatTime(new Date()) }}</span>
                 <span class="log-text">{{ log }}</span>
               </div>
             </div>
@@ -79,21 +93,21 @@
 
     <!-- Feature Showcase -->
     <div class="features-grid">
-      <div class="feature-card">
+      <div class="feature-card hover-premium-lift">
         <div class="feature-icon" style="background:var(--accent-primary-subtle);color:var(--accent-primary)">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
         </div>
         <h4>AI-Powered Analysis</h4>
         <p>Gemini AI detects logic flaws, architectural anti-patterns, and semantic issues beyond static rules.</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card hover-premium-lift">
         <div class="feature-icon" style="background:var(--accent-danger-subtle);color:var(--accent-danger)">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         </div>
         <h4>Accessibility Audit</h4>
         <p>Markuplint-based structural checks with AI false-positive filtering for real-world accuracy.</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card hover-premium-lift">
         <div class="feature-icon" style="background:var(--accent-success-subtle);color:var(--accent-success)">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         </div>
@@ -204,61 +218,60 @@ export default {
 
 <style scoped>
 .upload-root { max-width:640px; margin:0 auto; animation:slideUp 0.5s var(--ease-out); }
-.upload-card { padding:2rem; display:flex; flex-direction:column; gap:1.25rem; }
+.upload-card { padding:2.5rem; display:flex; flex-direction:column; gap:1.5rem; }
 
 /* Workspace Info */
-.workspace-info { padding:1.25rem; display:flex; align-items:center; gap:1rem; background:var(--bg-raised); border:1px solid var(--border-default); border-radius:var(--radius-lg); margin-bottom:0.5rem; }
-.workspace-icon { width:40px; height:40px; border-radius:var(--radius-md); background:var(--accent-primary-subtle); color:var(--accent-primary); display:flex; align-items:center; justify-content:center; }
+.workspace-info { padding:1.25rem; display:flex; align-items:center; gap:1rem; margin-bottom:0.5rem; }
+.workspace-icon { width:42px; height:42px; border-radius:var(--radius-md); background:var(--accent-primary-subtle); color:var(--accent-primary); display:flex; align-items:center; justify-content:center; box-shadow: 0 0 15px rgba(99, 102, 241, 0.15); }
 .workspace-details { display:flex; flex-direction:column; gap:0.25rem; overflow:hidden; }
-.workspace-label { font-size:0.75rem; font-weight:600; color:var(--text-tertiary); text-transform:uppercase; letter-spacing:0.02em; }
-.workspace-path { font-size:0.9rem; color:var(--text-primary); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.workspace-label { font-size:0.65rem; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.06em; opacity: 0.85; }
+.workspace-path { font-family: var(--font-mono); font-size:0.8rem; color:var(--text-primary); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
 /* Actions */
-.upload-actions { display:flex; gap:0.75rem; }
+.upload-actions { display:flex; gap:0.75rem; margin-top: 0.5rem; }
 .upload-btn { flex:1; }
 
 /* Spinner */
 .spinner { width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-radius:50%; border-top-color:#fff; animation:spin 0.8s linear infinite; display:inline-block; }
 
 /* Pipeline */
-.pipeline { padding:1.25rem 0 0.25rem; display:flex; flex-direction:column; align-items:center; gap:1rem; animation:fadeIn 0.3s var(--ease-out); }
-.pipeline-steps { display:flex; align-items:center; gap:0; width:100%; max-width:360px; }
-.pipeline-step { display:flex; flex-direction:column; align-items:center; gap:0.4rem; flex-shrink:0; }
-.step-indicator { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; border:2px solid var(--border-default); color:var(--text-tertiary); background:var(--bg-surface); transition:all var(--duration-normal) var(--ease-out); }
-.step-label { font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary); transition:color var(--duration-normal); }
-.pipeline-line { flex:1; height:2px; background:var(--border-default); margin:0 -0.25rem; margin-bottom:1.2rem; border-radius:1px; transition:background var(--duration-normal); }
-.line-active { background:var(--accent-primary); }
-.step-active .step-indicator { border-color:var(--accent-primary); color:var(--accent-primary); background:var(--accent-primary-subtle); box-shadow:0 0 0 4px var(--accent-primary-glow); }
-.step-active .step-label { color:var(--accent-primary); }
-.step-done .step-indicator { border-color:var(--accent-success); background:var(--accent-success); color:white; }
+.pipeline { padding:1.5rem 0 0.5rem; display:flex; flex-direction:column; align-items:center; gap:1.25rem; animation:fadeIn 0.3s var(--ease-out); width: 100%; }
+.pipeline-steps { display:flex; align-items:center; gap:0; width:100%; max-width:420px; margin-bottom: 0.5rem; }
+.pipeline-step { display:flex; flex-direction:column; align-items:center; gap:0.5rem; flex-shrink:0; position: relative; z-index: 2; }
+.step-indicator { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700; border:2px solid var(--border-default); color:var(--text-tertiary); background:var(--bg-surface); transition:all var(--duration-normal) var(--ease-out); }
+.step-label { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-tertiary); transition:color var(--duration-normal); }
+.pipeline-line { flex:1; height:3px; background:var(--border-default); margin:0 -0.25rem; margin-bottom:1.3rem; border-radius:2px; transition:background var(--duration-normal); z-index: 1; }
+.line-active { background: var(--accent-primary); box-shadow: 0 0 8px var(--accent-primary-glow); }
+.step-active .step-indicator { border-color:var(--accent-primary); color:var(--accent-primary); background:var(--accent-primary-subtle); box-shadow:0 0 0 5px var(--accent-primary-glow), 0 0 15px var(--accent-primary); }
+.step-active .step-label { color:var(--accent-primary); text-shadow: 0 0 8px var(--accent-primary-glow); }
+.step-done .step-indicator { border-color:var(--accent-success); background:var(--accent-success); color:white; box-shadow: 0 0 12px var(--accent-success-subtle); }
 .step-done .step-label { color:var(--accent-success); }
-.step-check { font-size:0.8rem; }
-.step-error .step-indicator { border-color:var(--accent-danger); background:var(--accent-danger-subtle); color:var(--accent-danger); }
+.step-check { font-size:0.9rem; font-weight: bold; }
+.step-error .step-indicator { border-color:var(--accent-danger); background:var(--accent-danger-subtle); color:var(--accent-danger); box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); }
 .step-error .step-label { color:var(--accent-danger); }
-.step-spinner { width:14px; height:14px; border:2px solid var(--accent-primary-glow); border-radius:50%; border-top-color:var(--accent-primary); animation:spin 0.8s linear infinite; display:inline-block; }
-.pipeline-message { font-size:0.85rem; font-weight:500; text-align:center; padding:0.6rem 1rem; border-radius:var(--radius-md); width:100%; }
-.pipeline-message.queued, .pipeline-message.running { color:var(--accent-primary); background:var(--accent-primary-subtle); }
-.pipeline-message.done { color:var(--accent-success); background:var(--accent-success-subtle); }
-.pipeline-message.error { color:var(--accent-danger); background:var(--accent-danger-subtle); }
+.step-spinner { width:16px; height:16px; border:2px solid var(--accent-primary-glow); border-radius:50%; border-top-color:var(--accent-primary); animation:spin 0.8s linear infinite; display:inline-block; }
+.pipeline-message { font-size:0.8rem; font-weight:600; text-align:center; padding:0.75rem 1.25rem; border-radius:var(--radius-md); width:100%; border: 1px solid transparent; font-family: var(--font-sans); }
+.pipeline-message.queued, .pipeline-message.running { color:var(--accent-primary); background:var(--accent-primary-subtle); border-color: var(--accent-primary-glow); }
+.pipeline-message.done { color:var(--accent-success); background:var(--accent-success-subtle); border-color: var(--accent-success-subtle); }
+.pipeline-message.error { color:var(--accent-danger); background:var(--accent-danger-subtle); border-color: var(--accent-danger-subtle); }
 
-/* Log Viewer */
-.log-viewer { width:100%; margin-top:1.5rem; background:var(--bg-inset); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); overflow:hidden; display:flex; flex-direction:column; max-height:300px; animation:slideUp 0.3s var(--ease-out); }
-.log-header { padding:0.6rem 1rem; background:var(--bg-overlay); border-bottom:1px solid var(--border-subtle); display:flex; align-items:center; gap:0.6rem; }
-.log-dot { width:8px; height:8px; background:var(--accent-primary); border-radius:50%; animation:pulse 2s infinite; }
-.log-title { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-tertiary); }
-.log-body { flex:1; overflow-y:auto; padding:0.75rem; font-family:var(--font-mono); font-size:0.78rem; display:flex; flex-direction:column; gap:0.25rem; background:#0c0c12; }
-.log-line { display:flex; gap:0.75rem; line-height:1.5; color:#a5a5b1; }
-.log-timestamp { color:#5c5c6b; flex-shrink:0; pointer-events:none; }
+/* Log Viewer Scoped Overrides */
+.log-viewer { width:100%; margin-top:1.5rem; overflow:hidden; display:flex; flex-direction:column; max-height:300px; animation:slideUp 0.3s var(--ease-out); }
+.log-body { flex:1; overflow-y:auto; padding:1rem; font-family:var(--font-mono); font-size:0.78rem; display:flex; flex-direction:column; gap:0.35rem; }
+.log-line { display:flex; gap:0.75rem; line-height:1.5; }
+.log-timestamp { flex-shrink:0; pointer-events:none; }
 .log-text { word-break:break-all; }
-.log-err { color:var(--accent-danger-glow) !important; }
-
-@keyframes pulse { 0% { opacity:1; } 50% { opacity:0.4; } 100% { opacity:1; } }
 
 /* Feature Cards */
-.features-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; margin-top:2rem; }
-.feature-card { background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:1.5rem; transition:all var(--duration-normal) var(--ease-out); }
-.feature-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:var(--border-strong); }
-.feature-icon { width:44px; height:44px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
-.feature-card h4 { font-size:0.95rem; margin-bottom:0.5rem; color:var(--text-primary); }
-.feature-card p { font-size:0.82rem; color:var(--text-tertiary); line-height:1.5; margin:0; }
+.features-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.25rem; margin-top:2.5rem; }
+.feature-card { background:var(--bg-glass-card); border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem; transition:all var(--duration-normal) var(--ease-out); backdrop-filter: blur(10px); }
+.feature-card:hover { border-color:var(--accent-primary-glow); box-shadow:var(--shadow-md), 0 8px 30px rgba(99, 102, 241, 0.05); }
+.feature-icon { width:48px; height:48px; border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
+.feature-card h4 { font-size:1rem; font-weight: 700; margin-bottom:0.6rem; color:var(--text-primary); }
+.feature-card p { font-size:0.8rem; color:var(--text-secondary); line-height:1.6; margin:0; }
+
+@media (max-width: 768px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .upload-actions { flex-direction: column; }
+}
 </style>
