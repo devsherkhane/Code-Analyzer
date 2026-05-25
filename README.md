@@ -4,7 +4,7 @@
 
 ---
 
-## 1. Executive Summary & Vision
+## 1. Executive Summary & Vision 
 
 **PrismAI** (also referred to as **Code-Analyzer**) is a next-generation developer platform designed to automate frontend application modernization. By merging **static code analysis**, **Abstract Syntax Tree (AST) parsing**, **Model Context Protocol (MCP)** context sharing, and **Large Language Models (LLMs)**, PrismAI bridges the gap between design aesthetics, accessibility standards, and code quality.
 
