@@ -1,205 +1,58 @@
 [
     {
-        "file_id": 1,
+        "file_id": 5,
         "method": "GET",
-        "url": "/api/admin/reset",
+        "url": "[dynamic]",
         "payload_data": "",
         "api_id": 1
     },
     {
-        "file_id": 1,
+        "file_id": 5,
         "method": "GET",
-        "url": "/api/admin/reset",
+        "url": "[dynamic]",
         "payload_data": "...",
         "api_id": 2
     },
     {
-        "file_id": 2,
+        "file_id": 8,
         "method": "GET",
-        "url": "/api/data?page={var}",
-        "payload_data": "",
+        "url": "[dynamic]",
+        "payload_data": "...",
         "api_id": 3
     },
     {
-        "file_id": 2,
+        "file_id": 10,
         "method": "GET",
-        "url": "/api/data?page={var}",
-        "payload_data": "...",
+        "url": "{var}{var}/{var}",
+        "payload_data": "",
         "api_id": 4
     },
     {
-        "file_id": 2,
+        "file_id": 10,
         "method": "GET",
-        "url": "/api/data/{var}",
-        "payload_data": "",
+        "url": "{var}{var}/{var}",
+        "payload_data": "...",
         "api_id": 5
     },
     {
-        "file_id": 2,
+        "file_id": 16,
         "method": "GET",
-        "url": "/api/data/{var}",
+        "url": "https://staging2-srtmuops.dulive.ac/package/toysto.html",
         "payload_data": "...",
         "api_id": 6
     },
     {
-        "file_id": 3,
+        "file_id": 17,
         "method": "GET",
-        "url": "/api/images",
+        "url": "{var}S62FDECD1608437AA61ECF8F2B39A961/{var}",
         "payload_data": "",
         "api_id": 7
     },
     {
-        "file_id": 3,
+        "file_id": 17,
         "method": "GET",
-        "url": "/api/images",
+        "url": "{var}S62FDECD1608437AA61ECF8F2B39A961/{var}",
         "payload_data": "...",
         "api_id": 8
-    },
-    {
-        "file_id": 4,
-        "method": "GET",
-        "url": "http://api.myapp.com/auth/login",
-        "payload_data": "",
-        "api_id": 9
-    },
-    {
-        "file_id": 4,
-        "method": "POST",
-        "url": "http://api.myapp.com/auth/login",
-        "payload_data": "...",
-        "api_id": 10
-    },
-    {
-        "file_id": 5,
-        "method": "GET",
-        "url": "",
-        "payload_data": "",
-        "api_id": 11
-    },
-    {
-        "file_id": 5,
-        "method": "GET",
-        "url": "/api/notifications",
-        "payload_data": "",
-        "api_id": 12
-    },
-    {
-        "file_id": 5,
-        "method": "GET",
-        "url": "/api/notifications",
-        "payload_data": "...",
-        "api_id": 13
-    },
-    {
-        "file_id": 6,
-        "method": "GET",
-        "url": "http://payment.internal/charge",
-        "payload_data": "",
-        "api_id": 14
-    },
-    {
-        "file_id": 6,
-        "method": "GET",
-        "url": "http://payment.internal/charge",
-        "payload_data": "...",
-        "api_id": 15
-    },
-    {
-        "file_id": 7,
-        "method": "GET",
-        "url": "",
-        "payload_data": "",
-        "api_id": 16
-    },
-    {
-        "file_id": 7,
-        "method": "GET",
-        "url": "/api/cart/add",
-        "payload_data": "",
-        "api_id": 17
-    },
-    {
-        "file_id": 7,
-        "method": "GET",
-        "url": "/api/cart/add",
-        "payload_data": "...",
-        "api_id": 18
-    },
-    {
-        "file_id": 7,
-        "method": "GET",
-        "url": "/api/wishlist/add",
-        "payload_data": "",
-        "api_id": 19
-    },
-    {
-        "file_id": 7,
-        "method": "GET",
-        "url": "/api/wishlist/add",
-        "payload_data": "...",
-        "api_id": 20
-    },
-    {
-        "file_id": 8,
-        "method": "GET",
-        "url": "",
-        "payload_data": "",
-        "api_id": 21
-    },
-    {
-        "file_id": 8,
-        "method": "GET",
-        "url": "/api/search?q={var}",
-        "payload_data": "",
-        "api_id": 22
-    },
-    {
-        "file_id": 8,
-        "method": "GET",
-        "url": "/api/search?q={var}",
-        "payload_data": "...",
-        "api_id": 23
-    },
-    {
-        "file_id": 9,
-        "method": "GET",
-        "url": "",
-        "payload_data": "",
-        "api_id": 24
-    },
-    {
-        "file_id": 10,
-        "method": "GET",
-        "url": "",
-        "payload_data": "",
-        "api_id": 25
-    },
-    {
-        "file_id": 10,
-        "method": "GET",
-        "url": "/api/users/{var}",
-        "payload_data": "",
-        "api_id": 26
-    },
-    {
-        "file_id": 10,
-        "method": "GET",
-        "url": "/api/users/{var}",
-        "payload_data": "...",
-        "api_id": 27
-    },
-    {
-        "file_id": 10,
-        "method": "GET",
-        "url": "/api/users/{var}",
-        "payload_data": "",
-        "api_id": 28
-    },
-    {
-        "file_id": 10,
-        "method": "GET",
-        "url": "/api/users/{var}",
-        "payload_data": "...",
-        "api_id": 29
     }
 ]

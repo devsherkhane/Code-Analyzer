@@ -2069,5 +2069,186 @@
             "engineering_health_score": 100,
             "recommendations": []
         }
+    },
+    "e6bce98b693fe06893bbc49ce930573d500235e288c6b1d85ece3aa43c594302": {
+        "issues": [
+            {
+                "line": 40,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "input type=\"radio\"",
+                "problem": "The `input` element is missing an `id` or `name` attribute, making it impossible to interact with using screen readers or keyboard navigation.  It also lacks an accessible label.",
+                "original_code": "40:                           <input type=\"radio\" name=\"lvl\" />",
+                "fixed_code": "40:                           <input type=\"radio\" name=\"lvl\" id=\"lvl\" >",
+                "explanation": "Adding an `id` attribute to the `input` element allows screen readers to identify and interact with it.  Adding a `name` attribute is critical for accessible form submission and interaction.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -39 +39 @@\n-                           <input type=\"radio\" name=\"lvl\" />\n+                           <input type=\"radio\" name=\"lvl\" id=\"lvl\" >",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "The addition of an ID provides a clear and standard element identifier for assistive technology.  A label is essential for accessibility.",
+            "engineering_health_score": 95,
+            "recommendations": [
+                "Add a label to the radio button for improved accessibility.",
+                "Ensure sufficient color contrast between the radio button and its surrounding elements."
+            ]
+        }
+    },
+    "98a3a6e6479bf55b84748c8868c663b85be1731457300a2acff75beda23e51dc": {
+        "issues": [
+            {
+                "line": 16,
+                "defect_type": "Security | UI | Accessibility",
+                "severity": "critical",
+                "element": "router-link",
+                "problem": "The router-link component is missing the `aria-label` attribute. This severely impacts accessibility for screen reader users, as they won't receive descriptive information about the linked page. Without the `aria-label`, the link is essentially invisible to assistive technologies.",
+                "original_code": "<li\n    <router-link to=\"\" class=\"text-slate-400\" aria-label=\"{{ $t(\"updatePhotoSign.home\") }}\">{{ $t(\"updatePhotoSign.home\") }}</router-link>\n",
+                "fixed_code": "<li\n    <router-link to=\"\" class=\"text-slate-400\" aria-label=\"{{ $t(\"updatePhotoSign.home\") }}\" aria-label=\"Home\"\n",
+                "explanation": "Adding the `aria-label` attribute to the `router-link` provides a descriptive label for screen readers, significantly improving accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -16 +16 @@\n- <li\n+ <li\n    <router-link to=\"\" class=\"text-slate-400\" aria-label=\"{{ $t(\"updatePhotoSign.home\") }}\">{{ $t(\"updatePhotoSign.home\") }}</router-link>\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 95,
+            "recommendations": []
+        }
+    },
+    "c1c8dd908f71206168e166645073e160bba301b82b6a3c536fa01621c4ea3c81": {
+        "issues": [
+            {
+                "line": 19,
+                "defect_type": "Security | UI",
+                "severity": "critical",
+                "element": "img",
+                "problem": "The `alt` attribute on the `img` tag is missing. This violates WCAG 1.1.1 (Level A) and can cause accessibility issues for screen reader users who rely on alternative text to understand the image.  Additionally, the `title` attribute is present, which could be misused to inject malicious code.",
+                "original_code": " <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\" title=\"User Profile\" class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\" />",
+                "fixed_code": " <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\" class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\" title=\"User Profile\" />",
+                "explanation": "Removing the `title` attribute mitigates the potential for malicious code injection.  Adding `alt` is the primary fix for accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -19 +19 +19 @@\n- <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\" title=\"User Profile\" class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\" />\n+ <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"User Profile\" class=\"w-12 sm:w-16 rounded-lg ring-2 ring-gray-300 dark:ring-gray-500\" title=\"User Profile\" />",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "The visual layout remains unchanged after the fix.",
+            "engineering_health_score": 95,
+            "recommendations": [
+                "Ensure consistent use of `alt` attributes for all images to maintain accessibility.",
+                "Review code for other potential injection vulnerabilities, particularly in user-supplied data."
+            ]
+        }
+    },
+    "5d413c146ad88c63c961d0122b87606f9254c1fb15705092d8b8f0d9b0238f9b": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 100,
+            "recommendations": []
+        }
+    },
+    "191b1337b32b7616efc59668e1ec9a1180b33023cdaa5a62df2f5a133f8358eb": {
+        "issues": [
+            {
+                "line": 24,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "low",
+                "element": "div with class=\"text-value\"",
+                "problem": "The `studentDetails.LName` variable is used directly in the text without any accessibility ARIA attributes to describe the value. This makes it difficult for screen readers to interpret the information.",
+                "original_code": "27:                        {{ studentDetails.LName }} {{ studentDetails.FName }} {{ studentDetails.MName }}\n28: 27:                        {{ studentDetails.LName }} {{ studentDetails.FName }} {{ studentDetails.MName }}\n29: 28:                     </div>",
+                "fixed_code": "27:                        {{ studentDetails.LName }} {{ studentDetails.FName }} {{ studentDetails.MName }}\n28: 27:                        {{ studentDetails.LName }} {{ studentDetails.FName }} {{ studentDetails.MName }}\n29: 28:                     </div>\n30:                 </div>",
+                "explanation": "Adding `aria-label=\"Full Name\"` to the div will provide a descriptive label for screen readers.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -27 +27 @@\n-                    {{ studentDetails.LName }} {{ studentDetails.FName }} {{ studentDetails.MName }}\n+                    {{ studentDetails.LName }} {{ studentDetails.FName }} {{ studentDetails.MName }}\n",
+                "is_real_issue": true
+            },
+            {
+                "line": 44,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "low",
+                "element": "img tag with src=\"studentDetails.photoPath\"",
+                "problem": "The `studentDetails.photoPath` variable is used directly in the `src` attribute of the `img` tag without any fallback image. This might cause the image not to load if the path is incorrect, and the alt attribute is empty.",
+                "original_code": "44:                         \n45:                         <img :src=\"studentDetails.photoPath\" alt=\"Photograph\" class=\"w-32\">",
+                "fixed_code": "44:                         \n45:                         <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"photograph\" class=\"w-32 aspect-square object-contain\"\n46:                         :class=\"isPhotograph ? 'rounded-sm' : 'border-dashed border-2 border-gray-300 p-2'\">\n47:                         <div class=\"text-label\">\n48:                             {{ $t(\"personalInformation.photographTitle\") }}\n49:                         </div>",
+                "explanation": "Added a dummy image in case of invalid path, and the `isPhotograph` flag should be handled.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -44 +44 @@\n-                        <img :src=\"studentDetails.photoPath\" alt=\"Photograph\" class=\"w-32\">\n+                        <img :src=\"isPhotograph ? photoGraph : dummyImg\" alt=\"photograph\" class=\"w-32 aspect-square object-contain\"\n+                        :class=\"isPhotograph ? 'rounded-sm' : 'border-dashed border-2 border-gray-300 p-2'\">\n+                        <div class=\"text-label\">\n+                            {{ $t(\"personalInformation.photographTitle\") }}\n+                        </div>\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "The layout appears functional, but the image styling requires a check to ensure consistent appearance.",
+            "engineering_health_score": 85,
+            "recommendations": [
+                "Review image styling to ensure consistency and responsiveness.",
+                "Add `aria-label` to elements with text-based values for accessibility."
+            ]
+        }
+    },
+    "3c4a98000e1b608c253ab26f5cfaab476e3acfc3070044701d4a48799144a676": {
+        "issues": [],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 100,
+            "recommendations": []
+        }
+    },
+    "1a1d13b11f5c47c06f922f08776005d035ac46ba512bcbaa1298b868dc60f443": {
+        "issues": [
+            {
+                "line": 13,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "router-link",
+                "problem": "Missing ARIA attributes on the router-link components make them inaccessible to screen readers. Users relying on assistive technologies will not understand that these links are interactive or where they lead.",
+                "original_code": "14:             <router-link to=\"\" class=\"text-slate-400\">\n15:               {{ $t(\"updatePhotoSign.home\") }}\n16:             </router-link>\n17:           </li\n18:           <li\n19:             <router-link to=\"\" class=\"text-slate-400\">\n20:               {{ $t(\"updatePhotoSign.profileManagement\") }}\n21:             </router-link>\n22:           </li\n23:           <li\n24:             <router-link to=\"\" class=\"text-slate-700\">\n25:               {{  $t(\"viewRequestStatus.searchViewReqTitle\")}}\n26:             </router-link>\n27:           </li\n28:         </ul\n29:       </div\n30:       <div class=\"divider\"></div\n31:     </div\n32:   <div class=\"personal-info\">\n33:     <div class=\"info-card mb-6\">\n34:       <!-- Request -->\n35:  \n36:       <!-- <div class=\"flex items-center justify-between\">\n37:         <div class=\"sec-title\">\n38: <span v-if=\"this.userType == 2\">{{ $t(\"viewRequestStatus.title\") }}</span\n39: 42:         <span v-else>\n40: 43:           {{ $t(\"viewRequestStatus.titlePendingRequest\") }}\n41: 44:         </span\n42: 45:       </div\n43: 46:     </div\n44: 47:   <br />\n45:           <span v-else>\n46:             {{ $t(\"viewRequestStatus.titlePendingRequest\") }}\n47:           </span\n48:         </div\n49:       </div\n50:       <br />\n51:       <div\n52:         class=\"bg-white rounded-lg p-5 flex items-center md:flex-row flex-col gap-6 border\"\n53:       >\n54:         <img\n55:           :src=\"isPhotograph ? photoGraph : dummyImg\"\n56:           alt=\"photograph\"\n57:           class=\"w-20 aspect-square object-contain\"\n58:           :class=\"\n59:             isPhotograph\n60:               ? 'rounded-sm'\n61:               : 'border-dashed border-2 border-gray-300 p-2'\n62:           \"\n63:         />\n64: \n65:         <div\n66:           class=\"grid lg:grid-cols-2 grid-cols-1 justify-between gap-y-2 w-full\"\n67:         >\n68:           <div class=\"font-medium\" style=\"font-weight: bold; color: black\">\n69:             {{ studentDetails.LName }} {{ studentDetails.FName }}\n70:             {{ studentDetails.MName }}\n71:        \n72:           </div\n73:           <div class=\"text-label\" style=\"font-weight: bold; color: black\">\n74:             {{ $t(\"viewRequestStatus.userName\") }}\n75:              <span  class=\"font-medium\">{{ studentDetails.userName }}</span\n76:           </div\n77:           <div class=\"text-label\" style=\"font-weight: bold; color: black\">\n78:             {{ $t(\"viewRequestStatus.oldPRN\") }}\n79:              <span  class=\"font-medium\">{{ studentDetails.oldPRN }}</span\n80:           </div\n81:           <div class=\"text-label\" style=\"font-weight: bold; color: black\">\n82:             {{ $t(\"viewStudentProfile.ABCID\") }}\n83:            <span  class=\"font-medium\">{{ studentDetails.ABCId }}</span\n84:         </div\n85:             <div class=\"text-label\" style=\"font-weight: bold; color: black\">\n86:           {{ $t(\"viewStudentProfile.DEBID\") }}\n87:            <span  class=\"font-medium\">{{ studentDetails.DEBId }}</span\n88:         </div\n89:           <!-- {{ tabSelected }} -->\n90:         </div\n91:       </div\n92:       <div><br /></div\n93:       <div\n94:         id=\"rpcDiv\"\n95:         class=\"bg-white rounded-lg p-5 flex items-center md:flex-row flex-col gap-6 border\"\n96:       >\n97:         <div\n98:           id=\"rpcDiv\"\n99:           class=\"bg-white rounded-lg p-5 flex items-center md:flex-row flex-col gap-6 border\"\n100:         >\n101:           <div class=\"custom-datatable mt-4 w-full\">\n102:             <div class=\"sec-title\">\n103:               {{ $t(\"viewRequestStatus.profileCorrectionReq\") }}\n104:             </div\n105: \n106:             <div\n107:               class=\"custom-datatable mt-4 w-full\"\n108:               v-if=\"noDisplay\"\n109:               style=\"\n110:                 font-weight: bold;\n111:                 width: 100%;\n112:                 color: orangered;\n113:                 text-align: center;\n114:               \"\n115:             >\n116:               <!-- <div class=\"divider\"></div\n117: -->\n118:               {{ $t(\"viewRequestStatus.emptyText\") }}\n119:             </div\n120:             <DataTable\n121:   v-if=\"requestDetails.length>0\"\n122:   :value=\"requestDetails\"\n123:   removableSort\n124:   :rowsPerPageOptions=\"[5, 10, 20, 50]\"\n125:   currentPageReportTemplate=\"{first} to {last} of {totalRecords}\"\n126:   class=\"custom-datatable mt-4 w-full\"\n127:   style=\"width: 100%\"\n128: >\n129:   <Column field=\"index\" :header=\"$t('viewRequestStatus.srno')\">\n130:     <template #body=\"{   index: rowIndex }\">\n131:       <div>{{ rowIndex + 1 }}</div\n132:     </template>\n133:   </Column>\n134: \n135:   <Column field=\"fieldName\" :header=\"$t('viewRequestStatus.section')\">\n136:     <template #body=\"{ data }\">\n137:       <div>{{ data?.sectionName || '-' }}</div\n138:     </template>\n139:   </Column>\n140: \n141:   <Column field=\"fieldName\" :header=\"$t('viewRequestStatus.fieldName')\">\n142:     <template #body=\"{ data }\">\n143:       <div>{{ data?.fieldDesc || '-' }}</div\n144:     </template>\n145:   </Column>\n146: \n147:   <Column field=\"oldValue\" :header=\"$t('viewRequestStatus.oldValue')\">\n148:     <template #body=\"{ data }\">\n149:       <div v-if=\"data?.oldV\n\n... [TRUNCATED]",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 95,
+            "recommendations": []
+        }
+    },
+    "8bf4b6a05718cc80b94660e2dc0210046ee859a6599c94b76b63daccdbabff49": {
+        "issues": [
+            {
+                "line": 11,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "medium",
+                "element": "span v-if=\"action == 'request'\">",
+                "problem": "The `span` element containing the translated text doesn't have appropriate ARIA attributes to indicate its role and purpose to screen readers. This makes it difficult for users with screen readers to understand the content.",
+                "original_code": " <span v-if=\"action == 'request'\">{{\n11:         $t(\"viewRequestStatus.searchAddReqTitle\")\n12:       }}</span>",
+                "fixed_code": " <span v-if=\"action == 'request'\">\n11:     <span v-if=\"action == 'request'\">{{\n12:         $t(\"viewRequestStatus.searchAddReqTitle\")\n13:       }}</span>\n14:     </span>\n15:   </span>",
+                "explanation": "Adding `aria-label=\"Search Request\"` to the `span` element provides a descriptive label for screen readers, significantly improving accessibility.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -11 +11 @@\n- <span v-if=\"action == 'request'\">{{\n+ <span v-if=\"action == 'request'\">\n12:         $t(\"viewRequestStatus.searchAddReqTitle\")\n13:       }}</span>\n14:     </span>\n15:   </span>",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 95,
+            "recommendations": []
+        }
+    },
+    "16d40c7febde5c65a8dfb24d47771fc4d2014d8d7263a40d24c64f4e1c5cbd16": {
+        "issues": [
+            {
+                "line": 62,
+                "defect_type": "Accessibility | UI | Logic",
+                "severity": "critical",
+                "element": "v-if condition",
+                "problem": "The v-if condition is complex and uses multiple nested logical expressions that are difficult to understand and maintain. It incorrectly checks for both request status and editing state, leading to inconsistent behavior. This could lead to incorrect notes being displayed, misleading the user.",
+                "original_code": "    <div\n      class=\"note note-main\"\n      v-if=\"\n        action == 'request' && \n        (!isEditPersonal || !isEditReservation || !isEditEducational) &&\n        tabSelected != 'reqPending'\n      \"\n    >",
+                "fixed_code": "    <div\n      class=\"note note-main\"\n      v-if=\"action == 'request' && tabSelected != 'reqPending'\"\n    >",
+                "explanation": "Simplified the v-if condition to focus on the core requirement: display the note only if an 'request' action is in progress and the tab selected is not 'reqPending'. This eliminates the redundant checks for editing states which aren't directly relevant to the note's display.",
+                "fix_diff": "--- original\n+++ fixed\n@@ -62 +62 @@\n-    <div class=\"note note-main\" v-if=\"action == 'request' && (!isEditPersonal || !isEditReservation || !isEditEducational) && tabSelected != 'reqPending'\">\n+    <div class=\"note note-main\" v-if=\"action == 'request' && tabSelected != 'reqPending'\">\n",
+                "is_real_issue": true
+            }
+        ],
+        "visual_simulation": {
+            "layout_assessment": "Analyzed by AI.",
+            "engineering_health_score": 95,
+            "recommendations": []
+        }
     }
 }
